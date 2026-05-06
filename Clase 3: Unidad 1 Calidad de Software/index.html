@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calidad del Software · Presentación</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="deck">
+    <div class="slides" id="slides">
+
+      <section class="slide">
+        <div class="frame">
+          <div class="topbar">
+            <div class="eyebrow">Clase 3 · Evaluación de Proyectos</div>
+            <div class="slide-count">1 / 10</div>
+          </div>
+          <div class="content hero-grid">
+            <div>
+              <h1 class="hero-title">Calidad del Software</h1>
+              <p class="hero-sub">
+                <b>QA y QC</b>, <b>verificación y validación</b>, <b>criterios de evaluación</b>,
+                <b>calidad del producto</b>, <b>calidad en uso</b>, <b>métricas</b> y <b>checklists</b>.
+              </p>
+            </div>
+            <div class="panel">
+              <h3>Hoy vamos a poder…</h3>
+              <div class="mini-list">
+                <div class="mini-item">
+                  <div class="mini-icon">01</div>
+                  <div><b>Comprender</b><span>Qué significa calidad más allá de “anda o no anda”.</span></div>
+                </div>
+                <div class="mini-item">
+                  <div class="mini-icon">02</div>
+                  <div><b>Distinguir</b><span>Proceso, producto y experiencia de uso.</span></div>
+                </div>
+                <div class="mini-item">
+                  <div class="mini-icon">03</div>
+                  <div><b>Reconocer</b><span>Cómo se usan checklists para ordenar el control de calidad.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="frame">
+          <div class="topbar">
+            <h2 class="title">Idea central</h2>
+            <div class="slide-count">2 / 10</div>
+          </div>
+          <div class="content grid-2">
+            <article class="card">
+              <div class="pill">Punto de partida</div>
+              <p>Un software puede abrir, responder y guardar datos, pero aun así ser lento, confuso o poco útil para quien lo necesita.</p>
+              <p>Por eso, la calidad no se limita a si “anda” o “no anda”. Conviene mirar tres dimensiones:</p>
+              <div class="icon-grid" style="grid-template-columns:repeat(3,1fr);">
+                <div class="icon-card">
+                  <div class="icon-bubble">🧩</div>
+                  <b>Producto</b>
+                  <span>Qué se construye</span>
+                </div>
+                <div class="icon-card">
+                  <div class="icon-bubble">⚙</div>
+                  <b>Proceso</b>
+                  <span>Cómo se construye</span>
+                </div>
+                <div class="icon-card">
+                  <div class="icon-bubble">👤</div>
+                  <b>Uso</b>
+                  <span>Cómo lo vive el usuario</span>
+                </div>
+              </div>
+              <div class="callout"><b>Idea clave:</b> la calidad no se agrega al final. Se trabaja durante todo el desarrollo.</div>
+            </article>
+            <article class="card">
+              <h3>Preguntas para pensar</h3>
+              <div class="stat-grid">
+                <div class="stat"><b>1</b><span>¿Una app que funciona pero es confusa tiene calidad?</span></div>
+                <div class="stat"><b>2</b><span>¿Un sistema rápido pero con errores frecuentes puede considerarse bueno?</span></div>
+                <div class="stat"><b>3</b><span>¿Alcanza con probar al final?</span></div>
+              </div>
+              <div class="checkpoint">
+                <h4>Checkpoint</h4>
+                <p>¿Cuál expresa mejor la idea de calidad de software?</p>
+                <div class="options" data-answer="2">
+                  <button class="option-btn">1. Un software tiene calidad si no se cierra solo.</button>
+                  <button class="option-btn">2. Un software tiene calidad si funciona, responde a la necesidad y puede usarse de manera adecuada.</button>
+                  <button class="option-btn">3. Un software tiene calidad solo cuando tiene muchas funciones.</button>
+                </div>
+                <div class="feedback"></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="frame">
+          <div class="topbar">
+            <h2 class="title">QA y QC</h2>
+            <div class="slide-count">3 / 10</div>
+          </div>
+          <div class="content grid-2">
+            <article class="card">
+              <h3>Definición explicada</h3>
+              <p><b>QA (Quality Assurance)</b> se enfoca en el <b>proceso</b>. Busca prevenir errores antes de que lleguen al producto.</p>
+              <p><b>QC (Quality Control)</b> se enfoca en el <b>producto</b>. Busca detectar errores o defectos en aquello que ya fue construido.</p>
+              <table>
+                <tr><th>Aspecto</th><th>QA</th><th>QC</th></tr>
+                <tr><td>Foco</td><td>Proceso</td><td>Producto</td></tr>
+                <tr><td>Propósito</td><td>Prevenir</td><td>Detectar</td></tr>
+                <tr><td>Ejemplo</td><td>Definir estándares y checklist</td><td>Ejecutar pruebas y revisar fallos</td></tr>
+              </table>
+            </article>
+            <article class="card">
+              <h3>Esquema visual</h3>
+              <div class="flow">
+                <div class="flow-box">Definir proceso<span>estándares · roles · criterios</span></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Construir producto<span>pantallas · funciones · datos</span></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Revisar y probar<span>errores · fallos · defectos</span></div>
+              </div>
+              <div class="callout"><b>Lectura:</b> QA organiza el trabajo. QC revisa el resultado.</div>
+              <div class="checkpoint">
+                <h4>Checkpoint</h4>
+                <p>Si un equipo define procedimientos y listas de revisión antes de desarrollar, ¿eso corresponde a…?</p>
+                <div class="options" data-answer="1">
+                  <button class="option-btn">1. QA</button>
+                  <button class="option-btn">2. QC</button>
+                  <button class="option-btn">3. Solo testing</button>
+                </div>
+                <div class="feedback"></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="frame">
+          <div class="topbar">
+            <h2 class="title">Checklists</h2>
+            <div class="slide-count">4 / 10</div>
+          </div>
+          <div class="content grid-2">
+            <article class="card">
+              <h3>¿Para qué sirven?</h3>
+              <p>Una checklist es una lista de verificación que ordena la revisión y evita olvidar puntos importantes.</p>
+              <ul>
+                <li>Hace visibles criterios concretos.</li>
+                <li>Reduce olvidos en revisiones repetidas.</li>
+                <li>Ayuda a tomar decisiones con más objetividad.</li>
+                <li>Se usa mucho en QA para ordenar el control previo.</li>
+              </ul>
+              <div class="callout"><b>Importante:</b> una checklist útil debe ser clara, concreta y verificable.</div>
+            </article>
+            <article class="panel dark">
+              <h3>Checklist de pantalla de login</h3>
+              <ul class="checklist">
+                <li>El campo “usuario” acepta texto correctamente.</li>
+                <li>La contraseña oculta los caracteres ingresados.</li>
+                <li>Existe mensaje de error si faltan datos obligatorios.</li>
+                <li>El sistema no permite enviar el formulario vacío.</li>
+                <li>El enlace “Olvidé mi contraseña” está visible.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="frame">
+          <div class="topbar">
+            <h2 class="title">Checklists reales o simuladas</h2>
+            <div class="slide-count">5 / 10</div>
+          </div>
+          <div class="content grid-3">
+            <article class="card">
+              <h3>Login</h3>
+              <ul class="checklist">
+                <li>La contraseña oculta caracteres.</li>
+                <li>Hay mensaje de error si faltan datos.</li>
+                <li>No se puede enviar el formulario vacío.</li>
+                <li>El enlace “Olvidé mi contraseña” está visible.</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Carga de notas</h3>
+              <ul class="checklist">
+                <li>El docente puede seleccionar curso y materia.</li>
+                <li>Los alumnos aparecen completos en pantalla.</li>
+                <li>No se aceptan letras en un campo numérico.</li>
+                <li>El sistema avisa si una nota está fuera de rango.</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>App de turnos</h3>
+              <ul class="checklist">
+                <li>El paciente puede elegir especialidad.</li>
+                <li>El calendario muestra fechas disponibles reales.</li>
+                <li>No se puede reservar dos veces el mismo turno.</li>
+                <li>El sistema envía recordatorio al contacto registrado.</li>
+              </ul>
+            </article>
+            <article class="card" style="grid-column:1 / -1;">
+              <h3>Checklist mal redactada</h3>
+              <div class="grid-2">
+                <div>
+                  <ul class="checklist">
+                    <li>La pantalla está bien.</li>
+                    <li>El sistema se ve lindo.</li>
+                    <li>Parece que funciona.</li>
+                  </ul>
+                </div>
+                <div class="callout"><b>Problema:</b> estos ítems son vagos. No permiten verificar nada con precisión ni decidir si algo se cumple o no.</div>
+              </div>
+              <div class="checkpoint">
+                <h4>Checkpoint</h4>
+                <p>¿Cuál se parece más a una checklist útil?</p>
+                <div class="options" data-answer="2">
+                  <button class="option-btn">1. La app está buena. Se ve linda. Parece correcta.</button>
+                  <button class="option-btn">2. El sistema no permite enviar formularios vacíos. El mensaje de error se muestra claramente. Los datos permanecen guardados luego de actualizar.</button>
+                  <button class="option-btn">3. El sistema no parece raro. Está más o menos bien.</button>
+                </div>
+                <div class="feedback"></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="frame">
+          <div class="topbar">
+            <h2 class="title">Verificación y validación</h2>
+            <div class="slide-count">6 / 10</div>
+          </div>
+          <div class="content grid-2">
+            <article class="card">
+              <div class="pill">Verificación</div>
+              <p><b>Pregunta:</b> ¿Estoy construyendo correctamente el producto?</p>
+              <p>Revisa si el sistema fue desarrollado según lo previsto y si la implementación es correcta.</p>
+            </article>
+            <article class="card">
+              <div class="pill">Validación</div>
+              <p><b>Pregunta:</b> ¿Estoy construyendo el producto correcto?</p>
+              <p>Analiza si ese sistema realmente resuelve la necesidad del usuario o de la organización.</p>
+            </article>
+            <article class="card" style="grid-column:1 / -1;">
+              <h3>Ejemplo aplicado</h3>
+              <div class="grid-2">
+                <div>
+                  <p><b>Sistema de turnos médicos</b></p>
+                  <ul>
+                    <li><b>Verificación:</b> guarda correctamente el turno y registra la fecha.</li>
+                    <li><b>Validación:</b> realmente ayuda a sacar turnos de manera simple y útil.</li>
+                  </ul>
+                </div>
+                <div class="callout">Un sistema puede estar <b>bien hecho</b> y, aun así, no ser <b>el adecuado</b> para el problema real.</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="frame">
+          <div class="topbar">
+            <h2 class="title">Criterios de evaluación</h2>
+            <div class="slide-count">7 / 10</div>
+          </div>
+          <div class="content grid-2">
+            <article class="card">
+              <table>
+                <tr><th>Criterio</th><th>Qué significa</th><th>Ejemplo</th></tr>
+                <tr><td><b>Omisión</b></td><td>Falta algo que debería estar</td><td>La app no permite recuperar contraseña</td></tr>
+                <tr><td><b>Excedente</b></td><td>Se agregó algo innecesario</td><td>Hay varias opciones para lo mismo</td></tr>
+                <tr><td><b>Incorrecto</b></td><td>Está, pero funciona mal</td><td>El sistema calcula mal el total</td></tr>
+              </table>
+            </article>
+            <article class="card">
+              <div class="flow">
+                <div class="flow-box">Omisión<span>falta algo importante</span></div>
+                <div class="flow-box">Excedente<span>hay algo que sobra</span></div>
+                <div class="flow-box">Incorrecto<span>está, pero funciona mal</span></div>
+              </div>
+              <div class="checkpoint">
+                <h4>Checkpoint</h4>
+                <p>Si un sistema tiene un módulo que no se usa nunca y no aporta valor real, eso sería…</p>
+                <div class="options" data-answer="2">
+                  <button class="option-btn">1. Omisión</button>
+                  <button class="option-btn">2. Excedente</button>
+                  <button class="option-btn">3. Validación</button>
+                </div>
+                <div class="feedback"></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="frame">
+          <div class="topbar">
+            <h2 class="title">Calidad del producto</h2>
+            <div class="slide-count">8 / 10</div>
+          </div>
+          <div class="content">
+            <div class="icon-grid">
+              <div class="icon-card">
+                <div class="icon-bubble">⚙</div>
+                <b>Funcionalidad</b>
+                <span>¿Hace lo que debe hacer?</span>
+              </div>
+              <div class="icon-card">
+                <div class="icon-bubble">👁</div>
+                <b>Usabilidad</b>
+                <span>¿Se entiende y se usa con facilidad?</span>
+              </div>
+              <div class="icon-card">
+                <div class="icon-bubble">⚡</div>
+                <b>Rendimiento</b>
+                <span>¿Responde con velocidad adecuada?</span>
+              </div>
+              <div class="icon-card">
+                <div class="icon-bubble">🛡</div>
+                <b>Fiabilidad</b>
+                <span>¿Funciona sin errores frecuentes?</span>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <article class="card">
+                <table>
+                  <tr><th>Atributo</th><th>Pregunta orientadora</th><th>Ejemplo</th></tr>
+                  <tr><td>Funcionalidad</td><td>¿Hace lo que debe hacer?</td><td>Registrar asistencia o emitir turnos</td></tr>
+                  <tr><td>Usabilidad</td><td>¿Se entiende fácilmente?</td><td>Botones claros, menú ordenado</td></tr>
+                  <tr><td>Rendimiento</td><td>¿Responde rápido?</td><td>No se bloquea en alta demanda</td></tr>
+                  <tr><td>Fiabilidad</td><td>¿Se mantiene estable?</td><td>No pierde datos ni se cierra solo</td></tr>
+                </table>
+              </article>
+              <article class="card">
+                <div class="callout">La calidad del producto depende del equilibrio entre varias dimensiones, no de una sola.</div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="frame">
+          <div class="topbar">
+            <h2 class="title">Calidad en uso y métricas</h2>
+            <div class="slide-count">9 / 10</div>
+          </div>
+          <div class="content grid-2">
+            <article class="card">
+              <h3>Calidad en uso</h3>
+              <p>La experiencia real del usuario puede modificar completamente la valoración del sistema.</p>
+              <ul>
+                <li>Puede funcionar bien, pero resultar confuso.</li>
+                <li>Puede tener muchas opciones, pero no ayudar realmente.</li>
+                <li>Puede ser estable, pero demasiado lento para el momento de uso.</li>
+              </ul>
+              <div class="callout"><b>Ejemplo:</b> una plataforma escolar funciona, pero los docentes tardan mucho en encontrar las opciones correctas.</div>
+            </article>
+
+            <article class="card">
+              <h3>Métricas</h3>
+              <p>Las métricas permiten observar tendencias y justificar decisiones con datos.</p>
+              <ul>
+                <li>Cantidad de errores detectados por día</li>
+                <li>Cantidad de usuarios afectados por un fallo</li>
+                <li>Número de operaciones canceladas</li>
+                <li>Cantidad de reclamos recibidos</li>
+              </ul>
+              <div class="svg-wrap">
+                <svg width="100%" height="220" viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="60" y1="170" x2="450" y2="170" stroke="#8b919a" stroke-width="2"/>
+                  <line x1="60" y1="20" x2="60" y2="170" stroke="#8b919a" stroke-width="2"/>
+                  <rect x="95" y="110" width="60" height="60" fill="#ffe6ef"/>
+                  <rect x="185" y="80" width="60" height="90" fill="#ef7ca6"/>
+                  <rect x="275" y="45" width="60" height="125" fill="#b31657"/>
+                  <rect x="365" y="128" width="60" height="42" fill="#eceff3"/>
+                  <text x="125" y="192" text-anchor="middle" font-size="14" fill="#202124">Lun</text>
+                  <text x="215" y="192" text-anchor="middle" font-size="14" fill="#202124">Mar</text>
+                  <text x="305" y="192" text-anchor="middle" font-size="14" fill="#202124">Mié</text>
+                  <text x="395" y="192" text-anchor="middle" font-size="14" fill="#202124">Jue</text>
+                </svg>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="frame">
+          <div class="topbar">
+            <h2 class="title">Caso aplicado y cierre</h2>
+            <div class="slide-count">10 / 10</div>
+          </div>
+          <div class="content grid-2">
+            <article class="card">
+              <h3>Situación</h3>
+              <p>Supongamos un sistema escolar con estos problemas:</p>
+              <ul>
+                <li>algunos alumnos no aparecen en listados,</li>
+                <li>la carga de notas es lenta,</li>
+                <li>los docentes no comprenden ciertas funciones,</li>
+                <li>hay módulos que casi no se usan.</li>
+              </ul>
+              <table>
+                <tr><th>Problema</th><th>Interpretación</th></tr>
+                <tr><td>Alumnos no aparecen</td><td>Incorrecto u omisión; afecta funcionalidad y fiabilidad</td></tr>
+                <tr><td>Sistema lento</td><td>Problema de rendimiento</td></tr>
+                <tr><td>Funciones confusas</td><td>Problema de usabilidad y calidad en uso</td></tr>
+                <tr><td>Módulos sin uso</td><td>Posible excedente</td></tr>
+              </table>
+            </article>
+            <article class="card">
+              <h3>Cierre</h3>
+              <p>La calidad del software no es un adorno ni una simple prueba final. Es un eje central del desarrollo y de la evaluación de proyectos.</p>
+              <div class="callout"><b>Conclusión:</b> no alcanza con decir “anda” o “no anda”. Hay que explicar <b>qué tipo de problema existe</b>, <b>dónde aparece</b> y <b>cómo podría medirse o mejorarse</b>.</div>
+              <div class="callout" style="margin-top:12px;">La calidad se piensa, se organiza, se revisa y se mejora.</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="kbd">← / → para avanzar</div>
+    <div class="dots" id="dots"></div>
+    <div class="nav">
+      <button class="prev" id="prevBtn">← Anterior</button>
+      <button class="next" id="nextBtn">Siguiente →</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

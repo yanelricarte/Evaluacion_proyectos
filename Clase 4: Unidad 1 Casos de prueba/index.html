@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Diseño de Casos de Prueba</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="deck">
+
+  <section class="slide active">
+    <div class="kicker">Testing de software</div>
+    <h1>Diseño de Casos de Prueba</h1>
+    <p class="lead">Una forma organizada de evaluar si un sistema cumple con lo que se espera de él.</p>
+    <div class="question">¿Cómo sabemos si un sistema funciona correctamente?</div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Concepto inicial</div>
+    <h2>Probar no es "usar a ver qué pasa"</h2>
+    <p>En ingeniería de software, probar implica diseñar situaciones específicas para verificar si el sistema cumple con sus requisitos. No se trata de observar si "parece funcionar", sino de comprobar comportamientos esperados frente a entradas definidas.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Uso informal</div>
+        <p>El usuario interactúa sin criterio definido, sin saber qué debería ocurrir exactamente.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Prueba diseñada</div>
+        <p>Se define un dato de entrada y se anticipa el resultado esperado para poder evaluar correctamente.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Idea central del</div>
+    <h2>No es posible probar todo</h2>
+    <p>En un sistema real, cada dato puede combinarse con muchos otros. Esto genera una gran cantidad de posibles situaciones de prueba, imposibles de cubrir completamente.</p>
+    <div class="example">
+      Ejemplo: si un formulario tiene 4 campos y cada uno admite múltiples valores, las combinaciones posibles crecen rápidamente, haciendo inviable probar cada una de ellas.
+    </div>
+    <p class="highlight">Por eso, el testing requiere selección y criterio.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Estrategia de prueba</div>
+    <h2>Probar con criterio</h2>
+    <p>Como no podemos probar todo, seleccionamos casos representativos que tengan mayor posibilidad de detectar errores.</p>
+    <ul>
+      <li>Reducimos cantidad de pruebas.</li>
+      <li>Cubrimos situaciones importantes.</li>
+      <li>Justificamos por qué elegimos esos casos.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Diferencia clave</div>
+    <h2>Condición de prueba</h2>
+    <p>Es la situación o regla que queremos verificar en el sistema. Todavía no es una prueba concreta: es aquello que debe ser evaluado.</p>
+    <div class="example">
+      Condición: validar que la edad ingresada esté dentro del rango permitido.
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Diferencia clave</div>
+    <h2>Caso de prueba</h2>
+    <p>Es una prueba concreta. Incluye los datos que se ingresan y el resultado que se espera obtener.</p>
+    <table class="mini-table">
+      <tr><th>Dato de entrada</th><th>Resultado esperado</th></tr>
+      <tr><td>Edad: 25</td><td>El sistema acepta el registro</td></tr>
+      <tr><td>Edad: 10</td><td>El sistema rechaza el registro</td></tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Técnica 1</div>
+    <h2>Clases de equivalencia</h2>
+    <p>Esta técnica consiste en dividir los datos de entrada en grupos que se comportan de la misma manera. Se asume que si un valor de ese grupo funciona correctamente, los demás también lo harán.</p>
+    <div class="example">
+      Edad válida entre 18 y 65:<br>
+      <span class="pill">menor a 18</span> inválida &nbsp; 
+      <span class="pill">18 a 65</span> válida &nbsp; 
+      <span class="pill">mayor a 65</span> inválida
+    </div>
+    <p>Esto permite reducir la cantidad de pruebas sin perder cobertura significativa.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Ejemplo</div>
+    <h2>Un valor representa al grupo</h2>
+    <p>No hace falta probar todas las edades. Se eligen valores representativos de cada clase.</p>
+    <table class="mini-table">
+      <tr><th>Valor</th><th>Clase</th><th>Resultado esperado</th></tr>
+      <tr><td>30</td><td>Válida</td><td>Aceptar</td></tr>
+      <tr><td>10</td><td>Inválida</td><td>Rechazar</td></tr>
+      <tr><td>70</td><td>Inválida</td><td>Rechazar</td></tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Técnica 2</div>
+    <h2>Análisis de valores límite</h2>
+    <p>Los errores suelen aparecer en los extremos de los rangos, ya que es allí donde se aplican las validaciones. Por eso, se prueban valores cercanos a esos límites.</p>
+    <div class="example">
+      Si el rango permitido es 18 a 65:<br>
+      17 → fuera del rango<br>
+      18 → límite válido<br>
+      65 → límite válido<br>
+      66 → fuera del rango
+    </div>
+    <p>Esta técnica complementa a las clases de equivalencia.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Ejemplo</div>
+    <h2>Valores límite en edad</h2>
+    <table class="mini-table">
+      <tr><th>Valor</th><th>Tipo</th><th>Resultado esperado</th></tr>
+      <tr><td>17</td><td>Fuera del límite inferior</td><td>Rechazar</td></tr>
+      <tr><td>18</td><td>Límite mínimo válido</td><td>Aceptar</td></tr>
+      <tr><td>65</td><td>Límite máximo válido</td><td>Aceptar</td></tr>
+      <tr><td>66</td><td>Fuera del límite superior</td><td>Rechazar</td></tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Técnica 3</div>
+    <h2>Conjetura de errores</h2>
+    <p>Además de las técnicas formales, el tester utiliza su experiencia para anticipar posibles fallas que no siempre están explicitadas en los requisitos.</p>
+    <ul>
+      <li>Campos vacíos que deberían ser obligatorios.</li>
+      <li>Ingreso de texto en campos numéricos.</li>
+      <li>Valores negativos o fuera de contexto.</li>
+      <li>Formatos incorrectos (ejemplo: email inválido).</li>
+    </ul>
+    <p>Esta técnica agrega una dimensión práctica al diseño de pruebas.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Ejemplo integrado</div>
+    <h2>Contraseña mínima de 6 caracteres</h2>
+    <p>En este ejemplo se combinan distintas técnicas para construir casos de prueba más completos.</p>
+    <table class="mini-table">
+      <tr><th>Dato</th><th>Técnica aplicada</th><th>Resultado esperado</th></tr>
+      <tr><td>"abc"</td><td>Equivalencia inválida</td><td>Rechazar</td></tr>
+      <tr><td>"abcdef"</td><td>Equivalencia válida</td><td>Aceptar</td></tr>
+      <tr><td>"12345"</td><td>Límite inválido</td><td>Rechazar</td></tr>
+      <tr><td>"123456"</td><td>Límite válido</td><td>Aceptar</td></tr>
+      <tr><td>""</td><td>Conjetura de error</td><td>Mostrar error</td></tr>
+    </table>
+    <p>Esto permite cubrir diferentes tipos de situaciones con pocos casos bien seleccionados.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Relación con el trabajo práctico</div>
+    <h2>¿Qué deberán producir?</h2>
+    <p>Para cada condición de prueba, deberán organizar casos con datos de entrada, tipo de prueba y resultado esperado.</p>
+    <div class="example">
+      La clave no es escribir muchos casos, sino elegirlos y justificarlos correctamente.
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Cierre</div>
+    <h2>Idea final</h2>
+    <p class="lead">Diseñar casos de prueba significa transformar requisitos en situaciones concretas para evaluar el comportamiento del sistema.</p>
+    <div class="question">Se trata de probar con criterio estratégico.</div>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <div class="progress-wrap">
+    <div class="counter" id="counter">1 / 14</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div class="hint">Usá ← → o los botones</div>
+  <div class="buttons">
+    <button id="prevBtn">Anterior</button>
+    <button id="nextBtn">Siguiente</button>
+  </div>
+</nav>
+<script src="script.js"></script>
+</body>
+</html>
