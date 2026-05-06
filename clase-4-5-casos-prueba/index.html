@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Diseño de Casos de Prueba</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="deck">
+
+  <section class="slide active">
+    <div class="kicker">Testing de software</div>
+    <h1>Diseño de Casos de Prueba</h1>
+    <p class="lead">Una forma organizada de evaluar si un sistema cumple con lo que se espera de él.</p>
+    <div class="question">¿Cómo sabemos si un sistema funciona correctamente?</div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Recapitulando</div>
+    <h2>De la calidad a la prueba: cómo se conecta lo que vimos</h2>
+    <p class="lead">En las clases anteriores definimos qué entendemos por calidad y diferenciamos QA y QC. Hoy trabajamos sobre <b>cómo se diseñan</b> las pruebas que QC ejecuta.</p>
+    <div class="recap-grid">
+      <div class="recap-card before">
+        <span class="recap-tag">Clase 2 y 3</span>
+        <h3>Lo que ya sabemos</h3>
+        <ul>
+          <li><b>QA</b> previene errores ordenando el proceso.</li>
+          <li><b>QC</b> detecta errores revisando el producto.</li>
+          <li>La <b>verificación</b> mira si el sistema está bien hecho; la <b>validación</b>, si resuelve la necesidad.</li>
+        </ul>
+      </div>
+      <div class="recap-card now">
+        <span class="recap-tag">Hoy</span>
+        <h3>Lo que vamos a construir</h3>
+        <ul>
+          <li>Cómo elegir <b>qué probar</b> cuando no se puede probar todo.</li>
+          <li>Tres técnicas para diseñar casos de prueba con criterio.</li>
+          <li>La diferencia entre <b>condición</b> y <b>caso</b> de prueba.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Concepto inicial</div>
+    <h2>Probar no es "usar a ver qué pasa"</h2>
+    <p>En ingeniería de software, probar implica diseñar situaciones específicas para verificar si el sistema cumple con sus requisitos. No se trata de observar si "parece funcionar", sino de comprobar comportamientos esperados frente a entradas definidas.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Uso informal</div>
+        <p>El usuario interactúa sin criterio definido, sin saber qué debería ocurrir exactamente.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Prueba diseñada</div>
+        <p>Se define un dato de entrada y se anticipa el resultado esperado para poder evaluar correctamente.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Idea central del</div>
+    <h2>No es posible probar todo</h2>
+    <p>En un sistema real, cada dato puede combinarse con muchos otros. Esto genera una gran cantidad de posibles situaciones de prueba, imposibles de cubrir completamente.</p>
+    <div class="example">
+      Ejemplo: si un formulario tiene 4 campos y cada uno admite múltiples valores, las combinaciones posibles crecen rápidamente, haciendo inviable probar cada una de ellas.
+    </div>
+    <p class="highlight">Por eso, el testing requiere selección y criterio.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Estrategia de prueba</div>
+    <h2>Probar con criterio</h2>
+    <p>Como no podemos probar todo, seleccionamos casos representativos que tengan mayor posibilidad de detectar errores.</p>
+    <ul>
+      <li>Reducimos cantidad de pruebas.</li>
+      <li>Cubrimos situaciones importantes.</li>
+      <li>Justificamos por qué elegimos esos casos.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Diferencia clave</div>
+    <h2>Condición de prueba</h2>
+    <p>Es la situación o regla que queremos verificar en el sistema. Todavía no es una prueba concreta: es aquello que debe ser evaluado.</p>
+    <div class="example">
+      Condición: validar que la edad ingresada esté dentro del rango permitido.
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Diferencia clave</div>
+    <h2>Caso de prueba</h2>
+    <p>Es una prueba concreta. Incluye los datos que se ingresan y el resultado que se espera obtener.</p>
+    <table class="mini-table">
+      <tr><th>Dato de entrada</th><th>Resultado esperado</th></tr>
+      <tr><td>Edad: 25</td><td>El sistema acepta el registro</td></tr>
+      <tr><td>Edad: 10</td><td>El sistema rechaza el registro</td></tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Técnica 1</div>
+    <h2>Clases de equivalencia</h2>
+    <p>Esta técnica consiste en dividir los datos de entrada en grupos que se comportan de la misma manera. Se asume que si un valor de ese grupo funciona correctamente, los demás también lo harán.</p>
+    <div class="example">
+      Edad válida entre 18 y 65:<br>
+      <span class="pill">menor a 18</span> inválida &nbsp; 
+      <span class="pill">18 a 65</span> válida &nbsp; 
+      <span class="pill">mayor a 65</span> inválida
+    </div>
+    <p>Esto permite reducir la cantidad de pruebas sin perder cobertura significativa.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Ejemplo</div>
+    <h2>Un valor representa al grupo</h2>
+    <p>No hace falta probar todas las edades. Se eligen valores representativos de cada clase.</p>
+    <table class="mini-table">
+      <tr><th>Valor</th><th>Clase</th><th>Resultado esperado</th></tr>
+      <tr><td>30</td><td>Válida</td><td>Aceptar</td></tr>
+      <tr><td>10</td><td>Inválida</td><td>Rechazar</td></tr>
+      <tr><td>70</td><td>Inválida</td><td>Rechazar</td></tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Comprobación · Técnica 1</div>
+    <h2>Aplicar clases de equivalencia</h2>
+    <p class="lead">Un formulario acepta una <b>edad entre 18 y 65 años</b>. Si tuvieras que diseñar pruebas con la técnica de equivalencia, ¿qué selección sería más adecuada?</p>
+    <div class="checkpoint">
+      <h4>Elegí la opción correcta</h4>
+      <p class="cp-q">¿Qué conjunto de valores cubre mejor las clases de equivalencia?</p>
+      <div class="options" data-answer="2">
+        <button class="option-btn">1. Probar 18, 19, 20 y 21 (todos cercanos al límite mínimo).</button>
+        <button class="option-btn">2. Probar 30 (válida), 10 (inválida menor) y 70 (inválida mayor).</button>
+        <button class="option-btn">3. Probar todos los valores posibles entre 0 y 100.</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Técnica 2</div>
+    <h2>Análisis de valores límite</h2>
+    <p>Los errores suelen aparecer en los extremos de los rangos, ya que es allí donde se aplican las validaciones. Por eso, se prueban valores cercanos a esos límites.</p>
+    <div class="example">
+      Si el rango permitido es 18 a 65:<br>
+      17 → fuera del rango<br>
+      18 → límite válido<br>
+      65 → límite válido<br>
+      66 → fuera del rango
+    </div>
+    <p>Esta técnica complementa a las clases de equivalencia.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Ejemplo</div>
+    <h2>Valores límite en edad</h2>
+    <table class="mini-table">
+      <tr><th>Valor</th><th>Tipo</th><th>Resultado esperado</th></tr>
+      <tr><td>17</td><td>Fuera del límite inferior</td><td>Rechazar</td></tr>
+      <tr><td>18</td><td>Límite mínimo válido</td><td>Aceptar</td></tr>
+      <tr><td>65</td><td>Límite máximo válido</td><td>Aceptar</td></tr>
+      <tr><td>66</td><td>Fuera del límite superior</td><td>Rechazar</td></tr>
+    </table>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Comprobación · Técnica 2</div>
+    <h2>Detectar valores límite</h2>
+    <p class="lead">Un sistema de notas acepta valores entre <b>0 y 10</b>. ¿Qué conjunto de valores conviene probar para verificar los límites?</p>
+    <div class="checkpoint">
+      <h4>Elegí la opción correcta</h4>
+      <p class="cp-q">¿Cuál es la mejor selección por análisis de valores límite?</p>
+      <div class="options" data-answer="2">
+        <button class="option-btn">1. 5 (un valor del medio del rango).</button>
+        <button class="option-btn">2. -1, 0, 10 y 11 (los bordes y los valores apenas afuera).</button>
+        <button class="option-btn">3. 0 y 10 únicamente, ya que son los extremos válidos.</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Técnica 3</div>
+    <h2>Conjetura de errores</h2>
+    <p>Además de las técnicas formales, el tester utiliza su experiencia para anticipar posibles fallas que no siempre están explicitadas en los requisitos.</p>
+    <ul>
+      <li>Campos vacíos que deberían ser obligatorios.</li>
+      <li>Ingreso de texto en campos numéricos.</li>
+      <li>Valores negativos o fuera de contexto.</li>
+      <li>Formatos incorrectos (ejemplo: email inválido).</li>
+    </ul>
+    <p>Esta técnica agrega una dimensión práctica al diseño de pruebas.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Comprobación · Técnica 3</div>
+    <h2>Identificar conjeturas de error</h2>
+    <p class="lead">Un formulario de inscripción pide nombre, edad y correo. ¿Cuál de estas pruebas corresponde mejor a la <b>conjetura de errores</b>?</p>
+    <div class="checkpoint">
+      <h4>Elegí la opción correcta</h4>
+      <p class="cp-q">¿Qué prueba se basa en la experiencia del tester más que en una regla del enunciado?</p>
+      <div class="options" data-answer="3">
+        <button class="option-btn">1. Probar con edad 30 (un valor central del rango válido).</button>
+        <button class="option-btn">2. Probar con edad 17 y 18 para comprobar el límite mínimo.</button>
+        <button class="option-btn">3. Dejar el correo vacío e ingresar letras donde se espera un número.</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Síntesis</div>
+    <h2>¿Cuándo conviene cada técnica?</h2>
+    <p class="lead">Las tres técnicas se complementan. Cada una responde a una pregunta diferente y se aplica en momentos distintos del diseño de pruebas.</p>
+    <table class="mini-table compare-table">
+      <tr><th>Técnica</th><th>Pregunta que responde</th><th>Cuándo conviene usarla</th></tr>
+      <tr>
+        <td>Clases de equivalencia</td>
+        <td>¿Qué grupos de datos se comportan igual?</td>
+        <td>Cuando hay muchos valores posibles que comparten un comportamiento esperado.</td>
+      </tr>
+      <tr>
+        <td>Análisis de valores límite</td>
+        <td>¿Qué pasa justo en los bordes?</td>
+        <td>Donde hay rangos, mínimos, máximos o reglas con números.</td>
+      </tr>
+      <tr>
+        <td>Conjetura de errores</td>
+        <td>¿Qué fallos podrían no estar previstos?</td>
+        <td>Para casos no documentados: vacíos, formatos raros, tipos incorrectos.</td>
+      </tr>
+    </table>
+    <p class="highlight">En la práctica, un buen diseño combina las tres.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Ejemplo integrado · Interactivo</div>
+    <h2>Contraseña mínima de 6 caracteres</h2>
+    <p>Para cada dato de entrada, identificá qué técnica se aplicó y cuál sería el resultado esperado. Después de elegir, vas a ver la corrección.</p>
+    <div class="classifier" data-classifier="passwords">
+      <div class="classifier-row" data-correct="EI">
+        <span class="cls-data">"abc"</span>
+        <div class="cls-options">
+          <button data-tech="EV">Equivalencia válida</button>
+          <button data-tech="EI">Equivalencia inválida</button>
+          <button data-tech="LV">Límite válido</button>
+          <button data-tech="LI">Límite inválido</button>
+          <button data-tech="C">Conjetura de error</button>
+        </div>
+        <span class="cls-result"></span>
+      </div>
+      <div class="classifier-row" data-correct="EV">
+        <span class="cls-data">"abcdef"</span>
+        <div class="cls-options">
+          <button data-tech="EV">Equivalencia válida</button>
+          <button data-tech="EI">Equivalencia inválida</button>
+          <button data-tech="LV">Límite válido</button>
+          <button data-tech="LI">Límite inválido</button>
+          <button data-tech="C">Conjetura de error</button>
+        </div>
+        <span class="cls-result"></span>
+      </div>
+      <div class="classifier-row" data-correct="LI">
+        <span class="cls-data">"12345"</span>
+        <div class="cls-options">
+          <button data-tech="EV">Equivalencia válida</button>
+          <button data-tech="EI">Equivalencia inválida</button>
+          <button data-tech="LV">Límite válido</button>
+          <button data-tech="LI">Límite inválido</button>
+          <button data-tech="C">Conjetura de error</button>
+        </div>
+        <span class="cls-result"></span>
+      </div>
+      <div class="classifier-row" data-correct="LV">
+        <span class="cls-data">"123456"</span>
+        <div class="cls-options">
+          <button data-tech="EV">Equivalencia válida</button>
+          <button data-tech="EI">Equivalencia inválida</button>
+          <button data-tech="LV">Límite válido</button>
+          <button data-tech="LI">Límite inválido</button>
+          <button data-tech="C">Conjetura de error</button>
+        </div>
+        <span class="cls-result"></span>
+      </div>
+      <div class="classifier-row" data-correct="C">
+        <span class="cls-data">"" (vacío)</span>
+        <div class="cls-options">
+          <button data-tech="EV">Equivalencia válida</button>
+          <button data-tech="EI">Equivalencia inválida</button>
+          <button data-tech="LV">Límite válido</button>
+          <button data-tech="LI">Límite inválido</button>
+          <button data-tech="C">Conjetura de error</button>
+        </div>
+        <span class="cls-result"></span>
+      </div>
+    </div>
+    <p class="highlight">Con cinco casos bien elegidos cubrimos los tres tipos de técnicas.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Relación con el trabajo práctico</div>
+    <h2>¿Qué deberán producir?</h2>
+    <p>Para cada condición de prueba, deberán organizar casos con datos de entrada, tipo de prueba y resultado esperado.</p>
+    <div class="example">
+      La clave no es escribir muchos casos, sino elegirlos y justificarlos correctamente.
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Cierre</div>
+    <h2>Idea final</h2>
+    <p class="lead">Diseñar casos de prueba significa transformar requisitos en situaciones concretas para evaluar el comportamiento del sistema.</p>
+    <div class="question">Se trata de probar con criterio estratégico.</div>
+  </section>
+
+</div>
+
+<button class="view-toggle" id="viewToggle" aria-pressed="false" title="Ver en pantalla completa, sin navegación visible">
+  <svg class="vt-icon vt-expand" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6"/></svg>
+  <svg class="vt-icon vt-compress" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6"/></svg>
+  <span class="vt-label">Pantalla completa</span>
+</button>
+<div class="exit-hint" id="exitHint">Pulsá <b>Esc</b> para salir</div>
+<nav class="nav">
+  <div class="progress-wrap">
+    <div class="counter" id="counter">1 / 1</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div class="hint">Usá ← → o los botones</div>
+  <div class="buttons">
+    <button id="prevBtn">Anterior</button>
+    <button id="nextBtn">Siguiente</button>
+  </div>
+</nav>
+<script src="script.js"></script>
+</body>
+</html>

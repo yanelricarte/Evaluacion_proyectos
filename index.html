@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluación de Proyectos</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      background:linear-gradient(135deg,#1e3a8a,#0f172a);
+      color:#f1f5f9;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:2rem 1rem;
+    }
+    main{max-width:880px;width:100%}
+    h1{font-size:clamp(1.75rem,4vw,2.5rem);margin:0 0 .5rem;line-height:1.2}
+    .subtitle{color:#94a3b8;margin:0 0 2.5rem;font-size:1.05rem}
+    .grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    a.card{
+      display:block;
+      padding:1.5rem;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:12px;
+      color:inherit;
+      text-decoration:none;
+      transition:transform .15s ease,background .15s ease,border-color .15s ease;
+    }
+    a.card:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.1);
+      border-color:rgba(96,165,250,.5);
+    }
+    a.card.disabled{opacity:.5;pointer-events:none}
+    .tag{
+      display:inline-block;
+      font-size:.75rem;
+      font-weight:600;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      color:#60a5fa;
+      margin-bottom:.5rem;
+    }
+    .card h2{margin:0 0 .35rem;font-size:1.15rem}
+    .card p{margin:0;color:#cbd5e1;font-size:.95rem;line-height:1.4}
+    footer{margin-top:2.5rem;color:#64748b;font-size:.85rem;text-align:center}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Evaluación de Proyectos</h1>
+    <p class="subtitle">Materiales y presentaciones de la materia, organizados por clase.</p>
+
+    <div class="grid">
+      <a class="card" href="clase-2-3-calidad-software/">
+        <span class="tag">Unidad 1 · Clases 2-3</span>
+        <h2>Calidad del Software</h2>
+        <p>Presentación introductoria a los conceptos de calidad del software.</p>
+      </a>
+
+      <a class="card" href="clase-4-5-casos-prueba/">
+        <span class="tag">Unidad 1 · Clases 4-5</span>
+        <h2>Casos de Prueba</h2>
+        <p>Diseño y técnicas de generación de casos de prueba.</p>
+      </a>
+
+      <a class="card" href="clase-6-instrumentos-evaluacion/">
+        <span class="tag">Unidad 1 · Clase 6</span>
+        <h2>Instrumentos de Evaluación</h2>
+        <p>Instrumentos de evaluación en proyectos tecnológicos.</p>
+      </a>
+
+      <a class="card" href="actividad-integradora/">
+        <span class="tag">Cierre · Unidad 1</span>
+        <h2>Actividad Integradora</h2>
+        <p>Actividad de cierre que integra los temas de la unidad.</p>
+      </a>
+    </div>
+
+    <footer>Yanel Ricarte · 2026</footer>
+  </main>
+</body>
+</html>

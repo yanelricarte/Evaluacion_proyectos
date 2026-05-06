@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actividad integradora · Evaluación de Proyectos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Actividad integradora · Unidad 1 · 7.º año</div>
+    <h1>Evaluemos un sistema real, paso a paso</h1>
+    <p class="lead">Vas a aplicar lo trabajado en las tres clases sobre un mismo sistema. En cada paso recibís devolución para discutir en clase.</p>
+    <div class="track">
+      <a class="track-step" href="#paso-1"><b>1</b><span>Detectar problemas</span></a>
+      <a class="track-step" href="#paso-2"><b>2</b><span>Diseñar casos de prueba</span></a>
+      <a class="track-step" href="#paso-3"><b>3</b><span>Elegir instrumentos</span></a>
+      <a class="track-step" href="#paso-4"><b>4</b><span>Producción guiada</span></a>
+      <a class="track-step" href="#resultado"><b>5</b><span>Resultado y reflexión</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="scenario" id="escenario">
+  <div class="kicker">El sistema a evaluar</div>
+  <h2>App de Reservas de Canchas del Polideportivo Escolar</h2>
+  <div class="scenario-grid">
+    <article class="scenario-card">
+      <h3>¿Qué hace?</h3>
+      <p>Permite a estudiantes reservar canchas del polideportivo (fútbol, básquet, vóley) para los recreos.</p>
+      <p>Datos que pide: <b>nombre, curso, cancha, día y horario.</b></p>
+    </article>
+    <article class="scenario-card">
+      <h3>Reglas declaradas por el colegio</h3>
+      <ul>
+        <li>Cada estudiante puede hacer <b>una reserva por día</b> como máximo.</li>
+        <li>Solo se reservan los recreos de <b>10:00, 12:00 y 14:00</b>.</li>
+        <li>Si la cancha ya está reservada, <b>no aparece disponible</b>.</li>
+        <li>El sistema debe enviar un <b>comprobante</b> al confirmar.</li>
+        <li>Solo pueden reservar estudiantes <b>entre 12 y 18 años</b> (incluidos).</li>
+      </ul>
+    </article>
+  </div>
+  <p class="hint">Objetivo de la actividad: usar lo que vimos sobre <b>calidad</b>, <b>casos de prueba</b> e <b>instrumentos de evaluación</b> para analizar este sistema y poder fundamentar una decisión.</p>
+</section>
+
+<!-- ===== PASO 1: Detección de problemas (Clase 2-3) ===== -->
+<section class="step" id="paso-1">
+  <header class="step-header">
+    <span class="step-num">1</span>
+    <div>
+      <div class="kicker">De lo que vimos en Clase 2 y 3</div>
+      <h2>Clasifiquen los problemas reportados</h2>
+    </div>
+  </header>
+  <p>Los usuarios reportaron las siguientes situaciones. Para cada una, elegí <b>el tipo de problema</b> (omisión, excedente o incorrecto) y <b>el atributo de calidad</b> que más se ve afectado. Después aparece la devolución.</p>
+
+  <div class="problems">
+
+    <article class="problem" data-tipo="omision" data-atributo="funcionalidad">
+      <p class="problem-text">"No hay forma de cancelar una reserva una vez hecha."</p>
+      <div class="choice-group">
+        <span class="cg-label">Tipo de problema</span>
+        <div class="choices" data-field="tipo">
+          <button data-value="omision">Omisión</button>
+          <button data-value="excedente">Excedente</button>
+          <button data-value="incorrecto">Incorrecto</button>
+        </div>
+      </div>
+      <div class="choice-group">
+        <span class="cg-label">Atributo de calidad afectado</span>
+        <div class="choices" data-field="atributo">
+          <button data-value="funcionalidad">Funcionalidad</button>
+          <button data-value="usabilidad">Usabilidad</button>
+          <button data-value="rendimiento">Rendimiento</button>
+          <button data-value="fiabilidad">Fiabilidad</button>
+        </div>
+      </div>
+      <div class="problem-feedback">
+        <b>Es una omisión.</b> Falta una funcionalidad que el sistema debería tener (cancelar la reserva). Afecta principalmente la <b>funcionalidad</b>: hay una acción esperable que no está disponible. Para discutir: ¿qué pasaría si un estudiante se enferma y no puede liberar su turno?
+      </div>
+    </article>
+
+    <article class="problem" data-tipo="incorrecto" data-atributo="fiabilidad">
+      <p class="problem-text">"El sistema permitió reservar la misma cancha dos veces a la misma hora a dos estudiantes distintos."</p>
+      <div class="choice-group">
+        <span class="cg-label">Tipo de problema</span>
+        <div class="choices" data-field="tipo">
+          <button data-value="omision">Omisión</button>
+          <button data-value="excedente">Excedente</button>
+          <button data-value="incorrecto">Incorrecto</button>
+        </div>
+      </div>
+      <div class="choice-group">
+        <span class="cg-label">Atributo de calidad afectado</span>
+        <div class="choices" data-field="atributo">
+          <button data-value="funcionalidad">Funcionalidad</button>
+          <button data-value="usabilidad">Usabilidad</button>
+          <button data-value="rendimiento">Rendimiento</button>
+          <button data-value="fiabilidad">Fiabilidad</button>
+        </div>
+      </div>
+      <div class="problem-feedback">
+        <b>Es incorrecto.</b> La función existe pero opera mal: viola una regla del sistema (no puede haber dos reservas iguales). Afecta sobre todo la <b>fiabilidad</b>: el sistema se comporta de manera inconsistente y no se puede confiar en su resultado. Para discutir: ¿en qué momento del flujo se podría detectar esto antes?
+      </div>
+    </article>
+
+    <article class="problem" data-tipo="incorrecto" data-atributo="rendimiento">
+      <p class="problem-text">"Cuando hay muchos alumnos conectados al mismo tiempo, la app tarda más de 30 segundos en cargar las canchas disponibles."</p>
+      <div class="choice-group">
+        <span class="cg-label">Tipo de problema</span>
+        <div class="choices" data-field="tipo">
+          <button data-value="omision">Omisión</button>
+          <button data-value="excedente">Excedente</button>
+          <button data-value="incorrecto">Incorrecto</button>
+        </div>
+      </div>
+      <div class="choice-group">
+        <span class="cg-label">Atributo de calidad afectado</span>
+        <div class="choices" data-field="atributo">
+          <button data-value="funcionalidad">Funcionalidad</button>
+          <button data-value="usabilidad">Usabilidad</button>
+          <button data-value="rendimiento">Rendimiento</button>
+          <button data-value="fiabilidad">Fiabilidad</button>
+        </div>
+      </div>
+      <div class="problem-feedback">
+        <b>Es incorrecto:</b> la función está, pero responde fuera de los tiempos aceptables. El atributo afectado es el <b>rendimiento</b>. Para discutir: ¿este problema se ve siempre o solo en momentos puntuales? ¿Qué métrica usarían para registrarlo (segundos promedio, picos, cantidad de usuarios concurrentes)?
+      </div>
+    </article>
+
+    <article class="problem" data-tipo="incorrecto" data-atributo="usabilidad">
+      <p class="problem-text">"Los nombres de los recreos aparecen en inglés (morning break, lunch break) y nadie del colegio los entiende."</p>
+      <div class="choice-group">
+        <span class="cg-label">Tipo de problema</span>
+        <div class="choices" data-field="tipo">
+          <button data-value="omision">Omisión</button>
+          <button data-value="excedente">Excedente</button>
+          <button data-value="incorrecto">Incorrecto</button>
+        </div>
+      </div>
+      <div class="choice-group">
+        <span class="cg-label">Atributo de calidad afectado</span>
+        <div class="choices" data-field="atributo">
+          <button data-value="funcionalidad">Funcionalidad</button>
+          <button data-value="usabilidad">Usabilidad</button>
+          <button data-value="rendimiento">Rendimiento</button>
+          <button data-value="fiabilidad">Fiabilidad</button>
+        </div>
+      </div>
+      <div class="problem-feedback">
+        <b>Es incorrecto.</b> La información está, pero no se entiende: la decisión de diseño no responde al usuario real. El atributo afectado es la <b>usabilidad</b>. Para discutir: este es un caso típico donde un sistema "funciona" pero no resuelve la necesidad. ¿Recuerdan la diferencia entre <i>verificación</i> y <i>validación</i>?
+      </div>
+    </article>
+
+    <article class="problem" data-tipo="excedente" data-atributo="usabilidad">
+      <p class="problem-text">"Hay dos botones distintos para hacer la misma reserva: 'Reservar' y 'Confirmar reserva'. Confunden a los estudiantes."</p>
+      <div class="choice-group">
+        <span class="cg-label">Tipo de problema</span>
+        <div class="choices" data-field="tipo">
+          <button data-value="omision">Omisión</button>
+          <button data-value="excedente">Excedente</button>
+          <button data-value="incorrecto">Incorrecto</button>
+        </div>
+      </div>
+      <div class="choice-group">
+        <span class="cg-label">Atributo de calidad afectado</span>
+        <div class="choices" data-field="atributo">
+          <button data-value="funcionalidad">Funcionalidad</button>
+          <button data-value="usabilidad">Usabilidad</button>
+          <button data-value="rendimiento">Rendimiento</button>
+          <button data-value="fiabilidad">Fiabilidad</button>
+        </div>
+      </div>
+      <div class="problem-feedback">
+        <b>Es excedente.</b> Hay algo que sobra: dos caminos para hacer lo mismo. Aunque parece un problema chico, en evaluación cuenta como <b>usabilidad</b>: el usuario duda y se equivoca. Para discutir: ¿les parece grave este problema o menor? ¿Por qué?
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== PASO 2: Diseño de casos de prueba (Clase 4-5) ===== -->
+<section class="step" id="paso-2">
+  <header class="step-header">
+    <span class="step-num">2</span>
+    <div>
+      <div class="kicker">De lo que vimos en Clase 4 y 5</div>
+      <h2>Diseñen casos de prueba para una regla concreta</h2>
+    </div>
+  </header>
+  <div class="rule-card">
+    <span class="rule-tag">Regla a probar</span>
+    <p>El sistema debe permitir reservar solo si el estudiante tiene <b>entre 12 y 18 años (incluidos)</b>.</p>
+  </div>
+
+  <article class="test-step" data-correct="3">
+    <h3>2.1 · Clases de equivalencia</h3>
+    <p>¿En cuántas clases distintas podemos agrupar los datos de entrada según el comportamiento esperado?</p>
+    <div class="choices" data-field="answer">
+      <button data-value="2">2 clases</button>
+      <button data-value="3">3 clases</button>
+      <button data-value="4">4 clases</button>
+    </div>
+    <div class="step-feedback">
+      <b>Tres clases.</b> Edades válidas (12 a 18), inválidas por debajo (menores de 12) e inválidas por encima (mayores de 18). Con eso ya tenemos un valor representante de cada grupo y reducimos cantidad de pruebas sin perder cobertura.
+    </div>
+  </article>
+
+  <article class="test-step multi" data-correct="11,12,18,19">
+    <h3>2.2 · Valores límite</h3>
+    <p>De estos valores, ¿cuáles probarías para cubrir el <b>análisis de valores límite</b>? Marcá <b>todos</b> los que correspondan y después tocá "Verificar".</p>
+    <div class="multi-choices" data-field="values">
+      <button data-value="11">11</button>
+      <button data-value="12">12</button>
+      <button data-value="15">15</button>
+      <button data-value="18">18</button>
+      <button data-value="19">19</button>
+      <button data-value="100">100</button>
+    </div>
+    <button class="check-btn">Verificar</button>
+    <div class="step-feedback">
+      <b>Los valores frontera son 11, 12, 18 y 19.</b> Probás justo afuera (11 y 19) y justo adentro (12 y 18). 15 es un caso central, sirve para equivalencia pero no para límites. 100 está muy lejos del borde, no aporta nueva información.
+    </div>
+  </article>
+
+  <article class="test-step" data-correct="vacio">
+    <h3>2.3 · Conjetura de errores</h3>
+    <p>¿Cuál de estas pruebas se basa más en <b>conjetura de errores</b> (la experiencia del tester) y no en una regla declarada?</p>
+    <div class="choices" data-field="answer">
+      <button data-value="medio">Probar con edad = 15.</button>
+      <button data-value="vacio">Dejar el campo edad vacío.</button>
+      <button data-value="limite">Probar 12 y 18.</button>
+    </div>
+    <div class="step-feedback">
+      <b>Dejar el campo vacío</b> es conjetura: el enunciado no lo pide, pero un buen tester piensa "¿qué pasa si no se ingresa nada?". Si el sistema rompe ahí, descubrimos un fallo no previsto. Probar 15 es equivalencia. Probar 12 y 18 son valores límite.
+    </div>
+  </article>
+</section>
+
+<!-- ===== PASO 3: Elección de instrumentos (Clase 6) ===== -->
+<section class="step" id="paso-3">
+  <header class="step-header">
+    <span class="step-num">3</span>
+    <div>
+      <div class="kicker">De lo que vimos en Clase 6</div>
+      <h2>Elijan el instrumento adecuado a cada propósito</h2>
+    </div>
+  </header>
+  <p>Para cada propósito de evaluación, elegí el instrumento que mejor se ajusta. Después aparece la devolución.</p>
+
+  <div class="match-list">
+
+    <article class="match-item" data-correct="cotejo">
+      <p class="match-text">"Verificar que la app permite reservar, cancelar y mostrar el comprobante."</p>
+      <div class="choices" data-field="instrument">
+        <button data-value="cotejo">Lista de cotejo</button>
+        <button data-value="escala">Escala de valoración</button>
+        <button data-value="rubrica">Rúbrica analítica</button>
+        <button data-value="matriz">Matriz de comparación</button>
+      </div>
+      <div class="match-feedback">
+        <b>Lista de cotejo.</b> Son funciones puntuales que se chequean con sí/no: ¿permite reservar? ¿permite cancelar? ¿muestra comprobante? Es el primer filtro de evaluación y la herramienta más rápida.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="escala">
+      <p class="match-text">"Saber qué tan fácil es hacer una reserva por primera vez para un estudiante que nunca usó la app."</p>
+      <div class="choices" data-field="instrument">
+        <button data-value="cotejo">Lista de cotejo</button>
+        <button data-value="escala">Escala de valoración</button>
+        <button data-value="rubrica">Rúbrica analítica</button>
+        <button data-value="matriz">Matriz de comparación</button>
+      </div>
+      <div class="match-feedback">
+        <b>Escala de valoración.</b> "Qué tan fácil" no es sí/no: hay grados (inicial, básico, adecuado, avanzado). La escala permite describir comportamientos observables en cada nivel: cuántos errores comete, cuánto tarda, si pide ayuda, etc.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="rubrica">
+      <p class="match-text">"Evaluar la app en su conjunto: funcionalidad, usabilidad, rendimiento y seguridad."</p>
+      <div class="choices" data-field="instrument">
+        <button data-value="cotejo">Lista de cotejo</button>
+        <button data-value="escala">Escala de valoración</button>
+        <button data-value="rubrica">Rúbrica analítica</button>
+        <button data-value="matriz">Matriz de comparación</button>
+      </div>
+      <div class="match-feedback">
+        <b>Rúbrica analítica.</b> Cuando hay <b>varios criterios distintos</b>, la rúbrica los evalúa por separado y muestra el perfil completo: una app puede tener buena funcionalidad y baja usabilidad, por ejemplo. La rúbrica hace visible esa diferencia.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="matriz">
+      <p class="match-text">"Decidir si conviene usar esta app o reemplazarla por otra similar disponible."</p>
+      <div class="choices" data-field="instrument">
+        <button data-value="cotejo">Lista de cotejo</button>
+        <button data-value="escala">Escala de valoración</button>
+        <button data-value="rubrica">Rúbrica analítica</button>
+        <button data-value="matriz">Matriz de comparación</button>
+      </div>
+      <div class="match-feedback">
+        <b>Matriz de comparación.</b> Cuando se evalúan <b>alternativas</b> (esta app vs. otra), la matriz cruza criterios y opciones para comparar punto por punto y fundamentar la decisión.
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== PASO 4: Mini producción guiada ===== -->
+<section class="step" id="paso-4">
+  <header class="step-header">
+    <span class="step-num">4</span>
+    <div>
+      <div class="kicker">Producción guiada</div>
+      <h2>Ahora produzcan ustedes</h2>
+    </div>
+  </header>
+  <p>Escribí tus respuestas. La devolución no califica el contenido (eso queda para la puesta en común), pero sí señala si cumplís con los criterios formales que vimos en clase.</p>
+
+  <article class="prod-task">
+    <h3>4.1 · Escribí un requisito para una lista de cotejo</h3>
+    <p class="prod-help">Tiene que poder responderse con sí o no observando la app, sin opinar. Verbos útiles: <i>muestra, impide, registra, permite, bloquea, confirma, solicita, valida, genera</i>.</p>
+    <textarea id="prod1" rows="3" placeholder="Ej: el sistema impide hacer dos reservas para la misma cancha y horario."></textarea>
+    <button class="prod-check" data-target="prod1">Pedir devolución</button>
+    <div class="prod-feedback" id="prod1-feedback"></div>
+  </article>
+
+  <article class="prod-task">
+    <h3>4.2 · Diseñá un caso de prueba</h3>
+    <p class="prod-help">Aplicá lo de Clase 4-5: definí un dato de entrada, identificá la técnica que usás y anticipá el resultado esperado.</p>
+    <div class="prod-fields">
+      <label>
+        <span>Dato de entrada</span>
+        <input type="text" id="prod2-data" placeholder="Ej: edad = 11">
+      </label>
+      <label>
+        <span>Técnica aplicada</span>
+        <select id="prod2-tech">
+          <option value="">Elegí una técnica</option>
+          <option value="EV">Equivalencia válida</option>
+          <option value="EI">Equivalencia inválida</option>
+          <option value="LV">Valor límite válido</option>
+          <option value="LI">Valor límite inválido</option>
+          <option value="C">Conjetura de error</option>
+        </select>
+      </label>
+      <label>
+        <span>Resultado esperado</span>
+        <input type="text" id="prod2-result" placeholder="Ej: el sistema rechaza la reserva con un mensaje claro.">
+      </label>
+    </div>
+    <button class="prod-check" data-target="prod2">Pedir devolución</button>
+    <div class="prod-feedback" id="prod2-feedback"></div>
+  </article>
+
+  <article class="prod-task">
+    <h3>4.3 · Justificá tu instrumento</h3>
+    <p class="prod-help">Si tuvieras que recomendar UN instrumento para evaluar esta app y presentárselo a la dirección, ¿cuál elegirías y por qué? Mencioná al menos un atributo de calidad y una evidencia.</p>
+    <textarea id="prod3" rows="4" placeholder="Yo elegiría una rúbrica analítica porque..."></textarea>
+    <button class="prod-check" data-target="prod3">Pedir devolución</button>
+    <div class="prod-feedback" id="prod3-feedback"></div>
+  </article>
+</section>
+
+<!-- ===== PASO 5: Resultado y reflexión ===== -->
+<section class="step result-section" id="resultado">
+  <header class="step-header">
+    <span class="step-num">5</span>
+    <div>
+      <div class="kicker">Resultado y reflexión</div>
+      <h2>Tu recorrido y disparadores para conversar</h2>
+    </div>
+  </header>
+
+  <div class="score-grid">
+    <div class="score-card" data-section="paso-1"><span class="score-label">Detección de problemas</span><span class="score-value" id="score-1">— / 10</span></div>
+    <div class="score-card" data-section="paso-2"><span class="score-label">Casos de prueba</span><span class="score-value" id="score-2">— / 3</span></div>
+    <div class="score-card" data-section="paso-3"><span class="score-label">Instrumentos</span><span class="score-value" id="score-3">— / 4</span></div>
+    <div class="score-card total"><span class="score-label">Total</span><span class="score-value" id="score-total">— / 17</span></div>
+  </div>
+
+  <div class="reflection">
+    <h3>Para discutir en clase</h3>
+    <ul>
+      <li>¿Qué problema te pareció <b>más grave</b> y por qué?</li>
+      <li>¿Qué técnica de prueba descubrió fallos que el resto no veía?</li>
+      <li>Si tuvieran que elegir <b>un solo instrumento</b> para evaluar la app, ¿cuál sería y por qué?</li>
+      <li>¿Qué cambiarían del sistema antes de que se use a gran escala?</li>
+    </ul>
+    <button class="action-btn" id="recompute">Volver a calcular puntaje</button>
+    <button class="action-btn secondary" onclick="window.print()">Imprimir o guardar PDF</button>
+  </div>
+</section>
+
+</main>
+
+<footer class="page-foot">
+  <span>Actividad integradora · Evaluación de Proyectos · 7.º año</span>
+  <span>Calidad · Casos de prueba · Instrumentos de evaluación</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
