@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clase 7 · Cierre de Unidad 1 — Evaluación de Proyectos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- 1. Cover -->
+  <section class="slide cover active">
+    <div class="cover-mark"></div>
+    <div class="student">Material para estudiantes · 7.º año</div>
+    <div class="kicker">Evaluación de Proyectos · Unidad 1</div>
+    <h1>Cierre de unidad</h1>
+    <p class="lead">Repaso integrador de calidad del software, casos de prueba e instrumentos de evaluación.</p>
+    <div class="pill-row">
+      <span class="pill">Repaso conceptual</span>
+      <span class="pill">Actividad guiada</span>
+      <span class="pill">Preparación para evaluación individual</span>
+    </div>
+    <div class="footer"><span>Clase 7 · Cierre de Unidad 1</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 2. Propósito -->
+  <section class="slide">
+    <div class="kicker">Propósito de la clase</div>
+    <h2>Ordenar lo aprendido y preparar la evaluación individual</h2>
+    <div class="grid3">
+      <div class="card accent"><div class="label">Hoy vamos a…</div><h3>Integrar</h3><p>Relacionar calidad, atributos, QA/QC, casos de prueba, evidencias e instrumentos.</p></div>
+      <div class="card accent"><div class="label">Hoy vamos a…</div><h3>Aplicar</h3><p>Trabajar con un sistema concreto (la actividad integradora) para practicar el análisis completo.</p></div>
+      <div class="card accent"><div class="label">Hoy vamos a…</div><h3>Preparar</h3><p>Anticipar la evaluación individual de la próxima clase, centrada en capacidades.</p></div>
+    </div>
+    <div class="footer"><span>Propósito</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 3. Recorrido de la unidad -->
+  <section class="slide">
+    <div class="kicker">Lo que recorrimos</div>
+    <h2>¿Qué trabajamos en la Unidad 1?</h2>
+    <div class="flow">
+      <div class="step"><b>Calidad</b><span>Qué significa evaluar un software más allá de "anda o no anda".</span></div>
+      <div class="step"><b>Atributos</b><span>Dimensiones como usabilidad, seguridad o rendimiento.</span></div>
+      <div class="step"><b>Criterios</b><span>Formas observables de analizar un atributo.</span></div>
+      <div class="step"><b>Casos</b><span>Situaciones diseñadas para verificar comportamientos.</span></div>
+      <div class="step"><b>Evidencias</b><span>Datos o resultados que sostienen la evaluación.</span></div>
+      <div class="step"><b>QA / QC</b><span>Prevención y control de calidad.</span></div>
+      <div class="step"><b>Instrumentos</b><span>Lista de cotejo, escala y rúbrica.</span></div>
+    </div>
+    <p class="subtitle">Hoy retomamos toda esta cadena en orden para que se vea como un solo recorrido.</p>
+    <div class="footer"><span>Mapa de recorrido</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 4. Calidad: mirada integral -->
+  <section class="slide">
+    <div class="kicker">Idea central</div>
+    <h2>La calidad del software es una mirada integral</h2>
+    <div class="grid2">
+      <div>
+        <p>Un sistema puede ejecutar una función y, aun así, presentar dificultades de uso, seguridad, rendimiento, confiabilidad o adecuación al contexto.</p>
+        <p>Evaluar calidad implica observar <b>el producto técnico</b>, <b>la experiencia del usuario</b> y <b>las condiciones reales de uso</b>.</p>
+      </div>
+      <div class="card">
+        <div class="label">Ejemplo</div>
+        <h3>Inscripción a talleres</h3>
+        <p>Permite cargar datos, pero algunos estudiantes no encuentran el botón de confirmación y el sistema acepta inscripciones sin cupo.</p>
+        <p><b>La calidad está comprometida</b> en usabilidad, adecuación funcional y confiabilidad.</p>
+      </div>
+    </div>
+    <div class="footer"><span>Calidad del software</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 5. Atributos -->
+  <section class="slide">
+    <div class="kicker">Atributos de calidad</div>
+    <h2>Dimensiones para mirar un software</h2>
+    <div class="grid4">
+      <div class="card flat"><span class="badge">Usabilidad</span><p>¿El usuario puede completar la tarea sin confundirse?</p></div>
+      <div class="card flat"><span class="badge">Seguridad</span><p>¿El sistema protege datos y controla accesos?</p></div>
+      <div class="card flat"><span class="badge">Rendimiento</span><p>¿Responde en tiempos adecuados?</p></div>
+      <div class="card flat"><span class="badge">Confiabilidad</span><p>¿Registra operaciones sin errores frecuentes?</p></div>
+      <div class="card flat"><span class="badge">Mantenibilidad</span><p>¿Puede corregirse o modificarse con claridad?</p></div>
+      <div class="card flat"><span class="badge">Accesibilidad</span><p>¿Puede ser utilizado por distintos perfiles de usuario?</p></div>
+      <div class="card flat"><span class="badge">Adecuación funcional</span><p>¿Resuelve lo que realmente se necesita?</p></div>
+      <div class="card flat"><span class="badge">Contexto</span><p>La importancia de cada atributo depende del sistema.</p></div>
+    </div>
+    <div class="footer"><span>Atributos de calidad</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 6. Atributo → Criterio → Evidencia -->
+  <section class="slide">
+    <div class="kicker">De lo general a lo observable</div>
+    <h2>Atributo → Criterio → Evidencia</h2>
+    <table class="table">
+      <thead><tr><th>Atributo</th><th>Criterio observable</th><th>Evidencia posible</th></tr></thead>
+      <tbody>
+        <tr><td>Usabilidad</td><td>El usuario completa la tarea sin ayuda.</td><td>Observación del recorrido, tiempo y dudas.</td></tr>
+        <tr><td>Seguridad</td><td>El sistema restringe funciones según perfil.</td><td>Prueba con usuario común y administrador.</td></tr>
+        <tr><td>Rendimiento</td><td>La operación responde en menos de 3 segundos.</td><td>Medición del tiempo de respuesta.</td></tr>
+        <tr><td>Confiabilidad</td><td>La operación se registra correctamente.</td><td>Comprobante, fecha, hora o registro generado.</td></tr>
+      </tbody>
+    </table>
+    <p class="lead">La evaluación mejora cuando el atributo se convierte en un criterio que se puede observar, probar o medir.</p>
+    <div class="footer"><span>Criterios y evidencias</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 7. QA y QC -->
+  <section class="slide">
+    <div class="kicker">QA y QC</div>
+    <h2>Dos miradas complementarias sobre la calidad</h2>
+    <div class="grid2">
+      <article class="card qa">
+        <h3>QA · Aseguramiento</h3>
+        <p>Trabaja sobre <b>el proceso</b> para prevenir problemas de calidad.</p>
+        <ul>
+          <li>Definir criterios de aceptación.</li>
+          <li>Planificar pruebas antes de construir.</li>
+          <li>Establecer estándares.</li>
+          <li>Revisar requisitos.</li>
+        </ul>
+      </article>
+      <article class="card qc">
+        <h3>QC · Control</h3>
+        <p>Trabaja sobre <b>el producto</b> para detectar errores o incumplimientos.</p>
+        <ul>
+          <li>Ejecutar casos de prueba.</li>
+          <li>Revisar entregables.</li>
+          <li>Registrar fallas.</li>
+          <li>Verificar requisitos implementados.</li>
+        </ul>
+      </article>
+    </div>
+    <p class="subtitle">QA previene. QC verifica. Los dos sostienen la calidad.</p>
+    <div class="footer"><span>QA y QC</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 8. NUEVA: Las 3 técnicas de prueba -->
+  <section class="slide">
+    <div class="kicker">Recuperando Clase 4-5</div>
+    <h2>Las tres técnicas para diseñar casos de prueba</h2>
+    <div class="grid3">
+      <article class="card"><span class="badge">Técnica 1</span><h3>Clases de equivalencia</h3><p>Agrupar los datos por comportamiento esperado y probar un representante de cada grupo. Reduce cantidad de pruebas sin perder cobertura.</p></article>
+      <article class="card"><span class="badge">Técnica 2</span><h3>Análisis de valores límite</h3><p>Probar los bordes del rango: justo adentro y justo afuera. Es donde más suelen aparecer errores.</p></article>
+      <article class="card"><span class="badge">Técnica 3</span><h3>Conjetura de errores</h3><p>Anticipar fallos no explicitados en el enunciado: vacíos, formatos raros, tipos incorrectos. Apela a la experiencia del tester.</p></article>
+    </div>
+    <p class="subtitle">En la práctica, un buen diseño combina las tres.</p>
+    <div class="footer"><span>Técnicas de prueba</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 9. Casos de prueba (ahora con técnica) -->
+  <section class="slide">
+    <div class="kicker">Casos de prueba</div>
+    <h2>La evidencia se obtiene probando situaciones concretas</h2>
+    <table class="table">
+      <thead><tr><th>Caso de prueba</th><th>Técnica</th><th>Atributo</th><th>Resultado esperado</th></tr></thead>
+      <tbody>
+        <tr><td>Ingresar con contraseña incorrecta</td><td>Conjetura</td><td>Seguridad</td><td>El sistema rechaza el acceso.</td></tr>
+        <tr><td>Inscribirse a un taller con cupo (cupo = 5)</td><td>Equivalencia válida</td><td>Funcionalidad</td><td>El sistema registra la inscripción y confirma.</td></tr>
+        <tr><td>Inscribirse cuando queda <b>1 cupo</b> (último)</td><td>Valor límite</td><td>Regla de negocio</td><td>El sistema acepta y deja el cupo en 0.</td></tr>
+        <tr><td>Inscribirse con cupo en 0</td><td>Valor límite inválido</td><td>Regla de negocio</td><td>El sistema bloquea y explica el motivo.</td></tr>
+        <tr><td>Completar tarea sin ayuda externa</td><td>Observación directa</td><td>Usabilidad</td><td>El usuario finaliza el recorrido con pocas dudas.</td></tr>
+      </tbody>
+    </table>
+    <div class="footer"><span>Casos de prueba y evidencias</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 10. Instrumentos -->
+  <section class="slide">
+    <div class="kicker">Instrumentos</div>
+    <h2>Formas de registrar la evaluación</h2>
+    <div class="grid3">
+      <article class="card"><span class="badge">1</span><h3>Lista de cotejo</h3><p>Verifica requisitos mínimos con cumple / no cumple.</p><p class="muted" style="font-size:.92em">Útil como primer filtro.</p></article>
+      <article class="card"><span class="badge">2</span><h3>Escala de valoración</h3><p>Gradúa niveles de desempeño de un atributo.</p><p class="muted" style="font-size:.92em">Útil para usabilidad, rendimiento.</p></article>
+      <article class="card"><span class="badge">3</span><h3>Rúbrica analítica</h3><p>Evalúa varios criterios con niveles descriptivos.</p><p class="muted" style="font-size:.92em">Útil para una mirada integral.</p></article>
+    </div>
+    <div class="map" style="margin-top:22px">
+      <div class="map-line"><span class="node">Caso de prueba</span><span class="arrow">produce</span><span class="node">Evidencia</span><span class="arrow">se registra en</span><span class="node">Instrumento</span><span class="arrow">permite</span><span class="node">Conclusión técnica</span></div>
+    </div>
+    <div class="footer"><span>Lista · Escala · Rúbrica</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 11. NUEVA: Decidir el instrumento -->
+  <section class="slide">
+    <div class="kicker">Decidir el instrumento</div>
+    <h2>¿Cuándo conviene usar cada uno?</h2>
+    <table class="table">
+      <thead><tr><th>Propósito de evaluación</th><th>Instrumento</th><th>Ejemplo en App de Reservas</th></tr></thead>
+      <tbody>
+        <tr><td>Verificar requisitos mínimos (presencia / ausencia)</td><td><b>Lista de cotejo</b></td><td>Verificar que el sistema permita reservar, cancelar y mostrar comprobante.</td></tr>
+        <tr><td>Valorar un atributo en grados de desempeño</td><td><b>Escala de valoración</b></td><td>Evaluar qué tan fácil es hacer una reserva por primera vez.</td></tr>
+        <tr><td>Analizar varias dimensiones a la vez</td><td><b>Rúbrica analítica</b></td><td>Evaluar la app en funcionalidad, usabilidad, rendimiento y seguridad.</td></tr>
+        <tr><td>Comparar alternativas</td><td><b>Matriz de comparación</b></td><td>Decidir entre dos apps de reserva similares.</td></tr>
+      </tbody>
+    </table>
+    <p class="subtitle">El instrumento se elige <b>según el propósito de la evaluación</b>, no al revés.</p>
+    <div class="footer"><span>Elegir según propósito</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 12. V/F validadoras -->
+  <section class="slide">
+    <div class="kicker">Activación · Verdadero o Falso</div>
+    <h2>Repaso rápido antes de la actividad</h2>
+    <p class="subtitle">Elegí V o F en cada tarjeta. Vas a ver si acertaste y la justificación.</p>
+    <div class="tf-grid">
+      <div class="tf-card" data-correct="F">
+        <div class="vf"><button data-choice="V" aria-label="Verdadero">V</button><button data-choice="F" aria-label="Falso">F</button></div>
+        <p>Si un sistema cumple su función principal, ya puede considerarse de buena calidad.</p>
+        <div class="feedback"><span class="answer">Falso</span>La funcionalidad es necesaria, pero la calidad también incluye usabilidad, seguridad, rendimiento, confiabilidad y adecuación al contexto.</div>
+      </div>
+      <div class="tf-card" data-correct="V">
+        <div class="vf"><button data-choice="V" aria-label="Verdadero">V</button><button data-choice="F" aria-label="Falso">F</button></div>
+        <p>Un atributo de calidad necesita criterios observables para poder evaluarse.</p>
+        <div class="feedback"><span class="answer">Verdadero</span>Un atributo amplio debe traducirse en criterios concretos: claridad del flujo, tiempo de tarea, cantidad de errores, mensajes comprensibles.</div>
+      </div>
+      <div class="tf-card" data-correct="F">
+        <div class="vf"><button data-choice="V" aria-label="Verdadero">V</button><button data-choice="F" aria-label="Falso">F</button></div>
+        <p>QA y QC son básicamente lo mismo: revisar el producto al final.</p>
+        <div class="feedback"><span class="answer">Falso</span>QA actúa sobre el proceso para <b>prevenir</b> problemas. QC actúa sobre el producto para <b>detectar</b> errores. Son complementarias, no iguales.</div>
+      </div>
+      <div class="tf-card" data-correct="V">
+        <div class="vf"><button data-choice="V" aria-label="Verdadero">V</button><button data-choice="F" aria-label="Falso">F</button></div>
+        <p>Los valores límite son los que más suelen revelar errores de programación.</p>
+        <div class="feedback"><span class="answer">Verdadero</span>Es justo en los bordes donde se aplican las validaciones del código (por ejemplo, <code>if edad &gt;= 18</code>) y donde aparecen los típicos errores "off-by-one".</div>
+      </div>
+    </div>
+    <div class="footer"><span>Verdadero o Falso</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 13. Mapa conceptual -->
+  <section class="slide">
+    <div class="kicker">Mapa conceptual</div>
+    <h2>Cómo se construye una evaluación técnica</h2>
+    <div class="map">
+      <div class="map-line"><span class="node">Calidad del software</span><span class="arrow">se analiza con</span><span class="node">Atributos</span><span class="arrow">que se traducen en</span><span class="node">Criterios</span></div>
+      <div class="map-line"><span class="node">Criterios</span><span class="arrow">se verifican con</span><span class="node">Casos de prueba</span><span class="arrow">aplicando</span><span class="node soft">equivalencia / límites / conjetura</span></div>
+      <div class="map-line"><span class="node">Casos</span><span class="arrow">producen</span><span class="node">Evidencias</span><span class="arrow">que se registran con</span><span class="node">Instrumentos</span></div>
+      <div class="map-line"><span class="node">Instrumentos</span><span class="arrow">permiten elaborar una</span><span class="node">Conclusión técnica</span></div>
+      <div class="map-line"><span class="node">QA</span><span class="arrow">previene</span><span class="node">QC</span><span class="arrow">verifica</span><span class="node soft">Ambos sostienen la calidad</span></div>
+    </div>
+    <div class="footer"><span>Mapa conceptual de unidad</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 14. NUEVA: Actividad → Integradora -->
+  <section class="slide">
+    <div class="kicker">Actividad de hoy</div>
+    <h2>Aplicamos todo en la actividad integradora</h2>
+    <p>Trabajan en grupos sobre un sistema concreto: la <b>App de Reservas de Canchas del Polideportivo</b>. Cinco pasos con feedback inmediato.</p>
+
+    <div class="activity-card">
+      <h3>🎯 Actividad integradora — App de Reservas</h3>
+      <p style="font-size:clamp(15px,1.15vw,19px); margin:8px 0 0">Pasos del trabajo: <b>Detectar problemas</b> · <b>Diseñar casos de prueba</b> · <b>Elegir instrumentos</b> · <b>Producción guiada</b> · <b>Reflexión</b>.</p>
+      <a class="activity-cta" href="../actividad-integradora/" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Abrir la actividad integradora
+      </a>
+    </div>
+
+    <h3 style="margin-top:24px; font-size:clamp(18px,1.5vw,24px); color:var(--ink)">Roles sugeridos (grupos de 4)</h3>
+    <div class="roles-grid">
+      <div class="role"><span class="role-letter">A</span><h4>Coordinador/a</h4><p>Lleva el tiempo y asegura que todos opinen.</p></div>
+      <div class="role"><span class="role-letter">B</span><h4>Redactor/a</h4><p>Escribe respuestas en la actividad.</p></div>
+      <div class="role"><span class="role-letter">C</span><h4>Revisor/a</h4><p>Verifica que cada respuesta sea fundamentada.</p></div>
+      <div class="role"><span class="role-letter">D</span><h4>Vocero/a</h4><p>Presenta en la puesta en común.</p></div>
+    </div>
+    <p class="subtitle">Tiempo total estimado: 35-40 min. La integradora guarda las respuestas en el navegador (no se pierden si refrescás).</p>
+    <div class="footer"><span>Actividad guiada</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 15. NUEVA: Auto-test -->
+  <section class="slide">
+    <div class="kicker">Autoevaluación rápida</div>
+    <h2>Auto-test integrador (4 preguntas)</h2>
+    <p class="subtitle">Sirve para chequear que el recorrido quedó claro antes de la evaluación individual de la próxima clase.</p>
+
+    <div class="quiz" id="quiz">
+      <article class="quiz-q" data-correct="b">
+        <p>1. Un sistema responde en menos de 3 segundos. ¿De qué atributo es indicador?</p>
+        <div class="quiz-options">
+          <button data-value="a">a) Usabilidad</button>
+          <button data-value="b">b) Rendimiento</button>
+          <button data-value="c">c) Mantenibilidad</button>
+        </div>
+        <div class="quiz-feedback"><b>Rendimiento.</b> Tiempos de respuesta y estabilidad bajo carga son indicadores típicos de este atributo.</div>
+      </article>
+
+      <article class="quiz-q" data-correct="c">
+        <p>2. Para evaluar varias dimensiones a la vez (funcionalidad, usabilidad, seguridad…), el instrumento más adecuado es:</p>
+        <div class="quiz-options">
+          <button data-value="a">a) Lista de cotejo</button>
+          <button data-value="b">b) Escala de valoración</button>
+          <button data-value="c">c) Rúbrica analítica</button>
+        </div>
+        <div class="quiz-feedback"><b>Rúbrica analítica.</b> Permite evaluar cada criterio en niveles distintos y mostrar el perfil de desempeño del sistema.</div>
+      </article>
+
+      <article class="quiz-q" data-correct="a">
+        <p>3. "Definir criterios de aceptación antes de construir el sistema" es una acción de:</p>
+        <div class="quiz-options">
+          <button data-value="a">a) QA (Aseguramiento)</button>
+          <button data-value="b">b) QC (Control)</button>
+          <button data-value="c">c) Ninguna de las dos</button>
+        </div>
+        <div class="quiz-feedback"><b>QA.</b> QA actúa sobre el proceso, ANTES de construir, para prevenir errores. QC verifica después.</div>
+      </article>
+
+      <article class="quiz-q" data-correct="b">
+        <p>4. Para un rango "edad entre 12 y 18 (incluidos)", los valores límite a probar son:</p>
+        <div class="quiz-options">
+          <button data-value="a">a) Solo 12 y 18</button>
+          <button data-value="b">b) 11, 12, 18 y 19</button>
+          <button data-value="c">c) Cualquier número entre 12 y 18</button>
+        </div>
+        <div class="quiz-feedback"><b>11, 12, 18 y 19.</b> Probamos justo adentro de los límites (12 y 18) y justo afuera (11 y 19). Ahí es donde más se rompen las validaciones.</div>
+      </article>
+    </div>
+    <div class="quiz-summary" id="quizSummary"><span id="quizScore">— / 4</span><span style="font-weight:500">Si acertaste 3 o 4, estás listo. Si menos, revisá los conceptos antes de la evaluación.</span></div>
+    <div class="footer"><span>Auto-test</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 16. NUEVA: Metacognición -->
+  <section class="slide">
+    <div class="kicker">Para vos, antes de cerrar</div>
+    <h2>Metacognición: ¿cómo te llevás con esta unidad?</h2>
+    <p class="subtitle">Tus respuestas se guardan solo en tu navegador. No se mandan a ningún lado. Sirven para que el grupo se prepare mejor.</p>
+    <div class="meta-grid">
+      <div class="meta-card">
+        <label for="meta1">¿Qué concepto te quedó <b>más claro</b> de la unidad?</label>
+        <textarea id="meta1" placeholder="Por ejemplo: la cadena atributo → criterio → evidencia."></textarea>
+      </div>
+      <div class="meta-card">
+        <label for="meta2">¿Qué tema te <b>cuesta más</b> y querés repasar antes de la evaluación?</label>
+        <textarea id="meta2" placeholder="Por ejemplo: distinguir cuándo conviene cada instrumento."></textarea>
+      </div>
+      <div class="meta-card">
+        <label for="meta3">¿Qué <b>ejemplo concreto</b> recordás que te ayudó a entender?</label>
+        <textarea id="meta3" placeholder="Por ejemplo: la app de reservas que no permitía cancelar."></textarea>
+      </div>
+      <div class="meta-card">
+        <label for="meta4">¿Qué <b>duda</b> querés traer a la puesta en común?</label>
+        <textarea id="meta4" placeholder="Una pregunta concreta para discutir con el grupo."></textarea>
+      </div>
+    </div>
+    <p class="meta-status" id="metaStatus">Las respuestas se guardan automáticamente mientras escribís.</p>
+    <div class="export-bar">
+      <p class="export-warn"><b>Importante:</b> las respuestas se guardan solo en este navegador. Si vas a usar otra computadora, descargalas o copialas antes de irte.</p>
+      <div class="export-actions">
+        <button class="export-btn" id="btnDownload">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Descargar como archivo
+        </button>
+        <button class="export-btn secondary" id="btnCopy">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copiar todo al portapapeles
+        </button>
+        <span class="export-status" id="exportStatus"></span>
+      </div>
+    </div>
+    <div class="footer"><span>Metacognición</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 17. Puesta en común -->
+  <section class="slide">
+    <div class="kicker">Puesta en común</div>
+    <h2>Compartimos decisiones de evaluación</h2>
+    <div class="grid2">
+      <div class="card"><h3>Cada grupo comparte</h3><ul>
+        <li>Un problema detectado y cómo lo clasificaron.</li>
+        <li>Un caso de prueba diseñado y la técnica usada.</li>
+        <li>El instrumento que eligieron y por qué.</li>
+        <li>Una decisión que les costó tomar.</li>
+      </ul></div>
+      <div class="card accent"><h3>Preguntas de revisión colectiva</h3><ul>
+        <li>¿El criterio elegido es realmente observable?</li>
+        <li>¿El caso de prueba produce una evidencia útil?</li>
+        <li>¿El instrumento se ajusta al propósito?</li>
+        <li>¿Otro grupo habría llegado a la misma conclusión?</li>
+      </ul></div>
+    </div>
+    <div class="footer"><span>Revisión colectiva</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 18. Próxima clase -->
+  <section class="slide">
+    <div class="kicker">Próxima clase</div>
+    <h2>Evaluación individual de cierre de unidad</h2>
+    <p>La próxima clase resolvés una evaluación individual a partir de un caso entregado por la docente. Todos trabajan sobre la misma situación.</p>
+    <div class="grid2" style="margin-top:18px">
+      <article class="card"><h3>Vas a aplicar</h3><ul>
+        <li>Calidad del software y atributos.</li>
+        <li>De atributo a criterio observable.</li>
+        <li>Casos de prueba (las tres técnicas).</li>
+        <li>QA y QC en una decisión concreta.</li>
+        <li>Selección de instrumento adecuado.</li>
+      </ul></article>
+      <article class="card accent"><h3>Capacidades evaluadas</h3><ul>
+        <li><b>Analizar</b> un sistema desde varios atributos.</li>
+        <li><b>Seleccionar</b> criterios observables.</li>
+        <li><b>Diseñar</b> casos de prueba con técnica.</li>
+        <li><b>Aplicar</b> el instrumento adecuado.</li>
+        <li><b>Fundamentar</b> una conclusión técnica.</li>
+      </ul></article>
+    </div>
+    <p class="subtitle"><b>Sugerencia:</b> repasen los conceptos donde sacaron menos en el auto-test y revisen la actividad integradora completa.</p>
+    <div class="footer"><span>Anticipo de evaluación</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 19. Cierre visual con 5 nodos -->
+  <section class="slide">
+    <div class="kicker">Cierre</div>
+    <h2>Evaluar software = construir una decisión fundamentada</h2>
+    <div class="closing-flow">
+      <div class="closing-node"><span class="cn-num">1</span><h4>Mirar con criterios</h4><p>Traducir cada atributo de calidad en algo observable.</p></div>
+      <div class="closing-node"><span class="cn-num">2</span><h4>Probar con técnica</h4><p>Diseñar casos usando equivalencia, límites y conjetura.</p></div>
+      <div class="closing-node"><span class="cn-num">3</span><h4>Registrar con evidencia</h4><p>Capturar datos, mediciones, observaciones reales.</p></div>
+      <div class="closing-node"><span class="cn-num">4</span><h4>Interpretar con instrumento</h4><p>Elegir cotejo, escala, rúbrica o matriz según propósito.</p></div>
+      <div class="closing-node"><span class="cn-num">5</span><h4>Concluir con fundamento</h4><p>Tomar y comunicar una decisión técnica defendible.</p></div>
+    </div>
+    <p class="lead" style="margin-top:28px">Evaluar no es decir "anda" o "no anda". Es <b>construir una decisión que se pueda explicar</b>.</p>
+    <div class="footer"><span>Fin de clase · Unidad 1 cerrada</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+</div>
+
+<button class="view-toggle" id="viewToggle" aria-pressed="false" title="Ver en pantalla completa, sin navegación visible">
+  <svg class="vt-icon vt-expand" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6"/></svg>
+  <svg class="vt-icon vt-compress" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6"/></svg>
+  <span class="vt-label">Pantalla completa</span>
+</button>
+<div class="exit-hint" id="exitHint">Pulsá <b>Esc</b> para salir</div>
+
+<div class="controls">
+  <button class="btn secondary" onclick="prevSlide()">← Anterior</button>
+  <button class="btn" onclick="nextSlide()">Siguiente →</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
