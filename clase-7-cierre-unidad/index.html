@@ -63,20 +63,49 @@
     <h2>La calidad del software es una mirada integral</h2>
     <div class="grid2">
       <div>
-        <p>Un sistema puede ejecutar una función y, aun así, presentar dificultades de uso, seguridad, rendimiento, confiabilidad o adecuación al contexto.</p>
-        <p>Evaluar calidad implica observar <b>el producto técnico</b>, <b>la experiencia del usuario</b> y <b>las condiciones reales de uso</b>.</p>
+        <p>Un sistema puede ejecutar una función y, aun así, presentar dificultades de uso, seguridad, rendimiento, fiabilidad o adecuación al contexto.</p>
+        <p>Conviene distinguir <b>calidad del producto</b> (qué hace y cómo lo hace) de <b>calidad en uso</b> (cómo lo vive el usuario real en su contexto). Un sistema puede ser fuerte en una y débil en la otra.</p>
       </div>
       <div class="card">
         <div class="label">Ejemplo</div>
         <h3>Inscripción a talleres</h3>
         <p>Permite cargar datos, pero algunos estudiantes no encuentran el botón de confirmación y el sistema acepta inscripciones sin cupo.</p>
-        <p><b>La calidad está comprometida</b> en usabilidad, adecuación funcional y confiabilidad.</p>
+        <p><b>La calidad está comprometida</b> en usabilidad, funcionalidad y fiabilidad.</p>
       </div>
     </div>
     <div class="footer"><span>Calidad del software</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
-  <!-- 5. Atributos -->
+  <!-- 5. Verificación, Validación y tipos de problema -->
+  <section class="slide">
+    <div class="kicker">Antes de los atributos</div>
+    <h2>Dos preguntas que ordenan toda evaluación + cómo nombrar los problemas</h2>
+
+    <div class="grid2">
+      <article class="card qa">
+        <h3>Verificación</h3>
+        <p><b>Pregunta:</b> ¿Estoy construyendo correctamente el producto?</p>
+        <p>Revisa si el sistema fue desarrollado según lo previsto y si la implementación es correcta.</p>
+      </article>
+      <article class="card qc">
+        <h3>Validación</h3>
+        <p><b>Pregunta:</b> ¿Estoy construyendo el producto correcto?</p>
+        <p>Analiza si ese sistema realmente resuelve la necesidad del usuario o de la organización.</p>
+      </article>
+    </div>
+
+    <h3 style="margin-top:28px; font-size:clamp(18px, 1.5vw, 24px); color:var(--ink)">Tipos de problema cuando algo no se cumple</h3>
+    <div class="grid3">
+      <article class="card flat"><span class="badge">Omisión</span><p><b>Falta algo</b> que debería estar.</p><p class="muted" style="font-size:.92em">Ej.: no hay forma de cancelar una reserva.</p></article>
+      <article class="card flat"><span class="badge">Excedente</span><p><b>Sobra algo</b> innecesario.</p><p class="muted" style="font-size:.92em">Ej.: dos botones distintos para la misma acción.</p></article>
+      <article class="card flat"><span class="badge">Incorrecto</span><p><b>Está, pero funciona mal.</b></p><p class="muted" style="font-size:.92em">Ej.: deja reservar dos veces la misma cancha al mismo horario.</p></article>
+    </div>
+
+    <p class="subtitle">Esta clasificación va a aparecer en la evaluación individual. Conviene poder nombrar el tipo de problema con precisión.</p>
+    <div class="footer"><span>V&V · Tipos de problema</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 6. Atributos -->
   <section class="slide">
     <div class="kicker">Atributos de calidad</div>
     <h2>Dimensiones para mirar un software</h2>
@@ -84,10 +113,10 @@
       <div class="card flat"><span class="badge">Usabilidad</span><p>¿El usuario puede completar la tarea sin confundirse?</p></div>
       <div class="card flat"><span class="badge">Seguridad</span><p>¿El sistema protege datos y controla accesos?</p></div>
       <div class="card flat"><span class="badge">Rendimiento</span><p>¿Responde en tiempos adecuados?</p></div>
-      <div class="card flat"><span class="badge">Confiabilidad</span><p>¿Registra operaciones sin errores frecuentes?</p></div>
+      <div class="card flat"><span class="badge">Fiabilidad</span><p>¿Registra operaciones sin errores frecuentes?</p></div>
       <div class="card flat"><span class="badge">Mantenibilidad</span><p>¿Puede corregirse o modificarse con claridad?</p></div>
       <div class="card flat"><span class="badge">Accesibilidad</span><p>¿Puede ser utilizado por distintos perfiles de usuario?</p></div>
-      <div class="card flat"><span class="badge">Adecuación funcional</span><p>¿Resuelve lo que realmente se necesita?</p></div>
+      <div class="card flat"><span class="badge">Funcionalidad</span><p>¿Resuelve lo que realmente se necesita?</p></div>
       <div class="card flat"><span class="badge">Contexto</span><p>La importancia de cada atributo depende del sistema.</p></div>
     </div>
     <div class="footer"><span>Atributos de calidad</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
@@ -103,7 +132,7 @@
         <tr><td>Usabilidad</td><td>El usuario completa la tarea sin ayuda.</td><td>Observación del recorrido, tiempo y dudas.</td></tr>
         <tr><td>Seguridad</td><td>El sistema restringe funciones según perfil.</td><td>Prueba con usuario común y administrador.</td></tr>
         <tr><td>Rendimiento</td><td>La operación responde en menos de 3 segundos.</td><td>Medición del tiempo de respuesta.</td></tr>
-        <tr><td>Confiabilidad</td><td>La operación se registra correctamente.</td><td>Comprobante, fecha, hora o registro generado.</td></tr>
+        <tr><td>Fiabilidad</td><td>La operación se registra correctamente.</td><td>Comprobante, fecha, hora o registro generado.</td></tr>
       </tbody>
     </table>
     <p class="lead">La evaluación mejora cuando el atributo se convierte en un criterio que se puede observar, probar o medir.</p>
@@ -174,15 +203,16 @@
   <section class="slide">
     <div class="kicker">Instrumentos</div>
     <h2>Formas de registrar la evaluación</h2>
-    <div class="grid3">
-      <article class="card"><span class="badge">1</span><h3>Lista de cotejo</h3><p>Verifica requisitos mínimos con cumple / no cumple.</p><p class="muted" style="font-size:.92em">Útil como primer filtro.</p></article>
-      <article class="card"><span class="badge">2</span><h3>Escala de valoración</h3><p>Gradúa niveles de desempeño de un atributo.</p><p class="muted" style="font-size:.92em">Útil para usabilidad, rendimiento.</p></article>
-      <article class="card"><span class="badge">3</span><h3>Rúbrica analítica</h3><p>Evalúa varios criterios con niveles descriptivos.</p><p class="muted" style="font-size:.92em">Útil para una mirada integral.</p></article>
+    <div class="grid4">
+      <article class="card"><span class="badge">1</span><h3>Lista de cotejo</h3><p>Verifica requisitos mínimos con cumple / no cumple.</p><p class="muted" style="font-size:.92em">Primer filtro.</p></article>
+      <article class="card"><span class="badge">2</span><h3>Escala de valoración</h3><p>Gradúa niveles de desempeño de un atributo.</p><p class="muted" style="font-size:.92em">Usabilidad, rendimiento.</p></article>
+      <article class="card"><span class="badge">3</span><h3>Rúbrica analítica</h3><p>Evalúa varios criterios con niveles descriptivos.</p><p class="muted" style="font-size:.92em">Mirada integral.</p></article>
+      <article class="card"><span class="badge">4</span><h3>Matriz de comparación</h3><p>Compara alternativas según varios criterios.</p><p class="muted" style="font-size:.92em">Decidir entre opciones.</p></article>
     </div>
     <div class="map" style="margin-top:22px">
       <div class="map-line"><span class="node">Caso de prueba</span><span class="arrow">produce</span><span class="node">Evidencia</span><span class="arrow">se registra en</span><span class="node">Instrumento</span><span class="arrow">permite</span><span class="node">Conclusión técnica</span></div>
     </div>
-    <div class="footer"><span>Lista · Escala · Rúbrica</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+    <div class="footer"><span>Lista · Escala · Rúbrica · Matriz</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
   <!-- 11. NUEVA: Decidir el instrumento -->
@@ -211,7 +241,7 @@
       <div class="tf-card" data-correct="F">
         <div class="vf"><button data-choice="V" aria-label="Verdadero">V</button><button data-choice="F" aria-label="Falso">F</button></div>
         <p>Si un sistema cumple su función principal, ya puede considerarse de buena calidad.</p>
-        <div class="feedback"><span class="answer">Falso</span>La funcionalidad es necesaria, pero la calidad también incluye usabilidad, seguridad, rendimiento, confiabilidad y adecuación al contexto.</div>
+        <div class="feedback"><span class="answer">Falso</span>La funcionalidad es necesaria, pero la calidad también incluye usabilidad, seguridad, rendimiento, fiabilidad y adecuación al contexto.</div>
       </div>
       <div class="tf-card" data-correct="V">
         <div class="vf"><button data-choice="V" aria-label="Verdadero">V</button><button data-choice="F" aria-label="Falso">F</button></div>
@@ -246,7 +276,28 @@
     <div class="footer"><span>Mapa conceptual de unidad</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
-  <!-- 14. NUEVA: Actividad → Integradora -->
+  <!-- 14. Esquema integrador de 7 pasos -->
+  <section class="slide">
+    <div class="kicker">Esquema integrador</div>
+    <h2>De la tarea a la conclusión técnica en 7 pasos</h2>
+    <p class="subtitle">Cuando tengas que evaluar un sistema en la próxima clase, podés seguir este orden para no perder ningún paso.</p>
+    <table class="table compact">
+      <thead><tr><th style="width:6%">#</th><th style="width:42%">Pregunta</th><th style="width:26%">Producto</th><th>Ejemplo (plataforma educativa, entregar TP)</th></tr></thead>
+      <tbody>
+        <tr><td><b>1</b></td><td>¿Qué sistema y qué tarea voy a analizar?</td><td>Tarea concreta</td><td>Plataforma educativa · Entregar un trabajo práctico</td></tr>
+        <tr><td><b>2</b></td><td>¿Qué aspecto de calidad me interesa?</td><td>Atributo</td><td>Usabilidad</td></tr>
+        <tr><td><b>3</b></td><td>¿Cómo lo voy a observar?</td><td>Criterio observable</td><td>El estudiante completa la entrega sin asistencia.</td></tr>
+        <tr><td><b>4</b></td><td>¿Cómo lo voy a comprobar?</td><td>Caso de prueba (con técnica)</td><td>Subir un archivo y confirmar la entrega (equivalencia válida).</td></tr>
+        <tr><td><b>5</b></td><td>¿Qué resultado obtengo?</td><td>Evidencia</td><td>Completa en pocos pasos y recibe confirmación.</td></tr>
+        <tr><td><b>6</b></td><td>¿Cómo lo voy a registrar?</td><td>Instrumento</td><td>Escala de valoración.</td></tr>
+        <tr><td><b>7</b></td><td>¿Qué puedo concluir?</td><td>Conclusión técnica</td><td>El flujo es adecuado si resulta claro, rápido y confirma.</td></tr>
+      </tbody>
+    </table>
+    <p class="subtitle"><b>Tip:</b> si una conclusión no se puede reconstruir desde una evidencia, falta trabajo en algún paso anterior.</p>
+    <div class="footer"><span>Esquema de 7 pasos</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 15. NUEVA: Actividad → Integradora -->
   <section class="slide">
     <div class="kicker">Actividad de hoy</div>
     <h2>Aplicamos todo en la actividad integradora</h2>
@@ -392,21 +443,24 @@
     <p>La próxima clase resolvés una evaluación individual a partir de un caso entregado por la docente. Todos trabajan sobre la misma situación.</p>
     <div class="grid2" style="margin-top:18px">
       <article class="card"><h3>Vas a aplicar</h3><ul>
-        <li>Calidad del software y atributos.</li>
-        <li>De atributo a criterio observable.</li>
-        <li>Casos de prueba (las tres técnicas).</li>
+        <li>Calidad del producto y calidad en uso.</li>
+        <li>Atributos de calidad y criterios observables.</li>
+        <li>Tipos de problema (omisión, excedente, incorrecto).</li>
+        <li>Las tres técnicas de prueba.</li>
         <li>QA y QC en una decisión concreta.</li>
-        <li>Selección de instrumento adecuado.</li>
+        <li>Selección del instrumento adecuado.</li>
       </ul></article>
       <article class="card accent"><h3>Capacidades evaluadas</h3><ul>
-        <li><b>Analizar</b> un sistema desde varios atributos.</li>
-        <li><b>Seleccionar</b> criterios observables.</li>
+        <li><b>Analizar</b> la calidad de un software desde varios atributos.</li>
+        <li><b>Seleccionar</b> atributos pertinentes y criterios observables.</li>
         <li><b>Diseñar</b> casos de prueba con técnica.</li>
-        <li><b>Aplicar</b> el instrumento adecuado.</li>
+        <li><b>Reconocer</b> evidencias que sostengan la evaluación.</li>
+        <li><b>Diferenciar</b> QA y QC en acciones concretas.</li>
+        <li><b>Aplicar</b> el instrumento adecuado al propósito.</li>
         <li><b>Fundamentar</b> una conclusión técnica.</li>
       </ul></article>
     </div>
-    <p class="subtitle"><b>Sugerencia:</b> repasen los conceptos donde sacaron menos en el auto-test y revisen la actividad integradora completa.</p>
+    <p class="subtitle"><b>Sugerencia:</b> repasen el resumen teórico que les compartí por Drive, revisen los temas donde sacaron menos en el auto-test y vuelvan sobre la actividad integradora.</p>
     <div class="footer"><span>Anticipo de evaluación</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
