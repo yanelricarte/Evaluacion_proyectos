@@ -310,10 +310,176 @@ function updateScores() {
 }
 updateScores();
 
-// Botón recalcular (también limpia y vuelve a empezar si querés)
-document.getElementById('recompute').addEventListener('click', () => {
-  if (confirm('¿Querés volver a calcular el puntaje? (Esto no borra tus respuestas)')) {
-    updateScores();
-    document.getElementById('resultado').scrollIntoView({ behavior:'smooth' });
+// ===== Autosave de los textareas/inputs del Paso 4 =====
+const PROD_FIELDS = ['prod1', 'prod2-data', 'prod2-tech', 'prod2-result', 'prod3'];
+PROD_FIELDS.forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const key = 'prod_' + id;
+  if (state[key]) el.value = state[key];
+  el.addEventListener('input', () => {
+    state[key] = el.value;
+    saveState(state);
+  });
+});
+
+// ===== Exportación de respuestas =====
+const TIPO_LABELS = { omision:'Omisión', excedente:'Excedente', incorrecto:'Incorrecto' };
+const ATR_LABELS = { funcionalidad:'Funcionalidad', usabilidad:'Usabilidad', rendimiento:'Rendimiento', fiabilidad:'Fiabilidad' };
+const TECH_LABELS = { EV:'Equivalencia válida', EI:'Equivalencia inválida', LV:'Valor límite válido', LI:'Valor límite inválido', C:'Conjetura de error' };
+const INSTR_LABELS = { cotejo:'Lista de cotejo', escala:'Escala de valoración', rubrica:'Rúbrica analítica', matriz:'Matriz de comparación' };
+
+function buildExportText() {
+  const now = new Date();
+  const dd = String(now.getDate()).padStart(2, '0');
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const yyyy = now.getFullYear();
+  const hh = String(now.getHours()).padStart(2, '0');
+  const mi = String(now.getMinutes()).padStart(2, '0');
+
+  let out = '';
+  out += '═══════════════════════════════════════════════════\n';
+  out += '  ACTIVIDAD INTEGRADORA — Evaluación de Proyectos\n';
+  out += '  App de Reservas de Canchas del Polideportivo\n';
+  out += `  Fecha: ${dd}/${mm}/${yyyy} ${hh}:${mi}\n`;
+  out += '═══════════════════════════════════════════════════\n\n';
+
+  // Paso 1: Problemas
+  out += '── PASO 1 · DETECCIÓN DE PROBLEMAS ──\n\n';
+  document.querySelectorAll('.problem').forEach((problem, idx) => {
+    const text = problem.querySelector('.problem-text')?.textContent.trim() || '';
+    const correctTipo = problem.dataset.tipo;
+    const correctAtr = problem.dataset.atributo;
+    const ans = state[`p1_${idx}`] || {};
+    out += `${idx + 1}. ${text}\n`;
+    if (ans.tipo) {
+      const tipoOK = ans.tipo === correctTipo;
+      out += `   Tipo elegido: ${TIPO_LABELS[ans.tipo] || ans.tipo}  ${tipoOK ? '✓' : '✗ (correcta: ' + TIPO_LABELS[correctTipo] + ')'}\n`;
+    } else {
+      out += '   Tipo: (sin responder)\n';
+    }
+    if (ans.atributo) {
+      const atrOK = ans.atributo === correctAtr;
+      out += `   Atributo elegido: ${ATR_LABELS[ans.atributo] || ans.atributo}  ${atrOK ? '✓' : '✗ (correcto: ' + ATR_LABELS[correctAtr] + ')'}\n`;
+    } else {
+      out += '   Atributo: (sin responder)\n';
+    }
+    out += '\n';
+  });
+
+  // Paso 2: Casos de prueba
+  out += '── PASO 2 · DISEÑO DE CASOS DE PRUEBA ──\n\n';
+  const p2Questions = [
+    '2.1 Clases de equivalencia (¿cuántas clases?)',
+    '2.2 Valores límite (cuáles probar)',
+    '2.3 Conjetura de errores (cuál es)'
+  ];
+  document.querySelectorAll('.test-step').forEach((step, idx) => {
+    out += `${p2Questions[idx]}\n`;
+    const ans = state[`p2_${idx}`];
+    const ok = state[`p2_${idx}_score`];
+    if (ans !== undefined && ans !== null) {
+      const display = Array.isArray(ans) ? ans.join(', ') : ans;
+      out += `   Tu respuesta: ${display}  ${ok ? '✓' : '✗'}\n`;
+      if (!ok) out += `   Correcta: ${step.dataset.correct}\n`;
+    } else {
+      out += '   (sin responder)\n';
+    }
+    out += '\n';
+  });
+
+  // Paso 3: Matching de instrumentos
+  out += '── PASO 3 · ELECCIÓN DE INSTRUMENTOS ──\n\n';
+  document.querySelectorAll('.match-item').forEach((item, idx) => {
+    const text = item.querySelector('.match-text')?.textContent.trim() || '';
+    const correct = item.dataset.correct;
+    const ans = state[`p3_${idx}`];
+    const ok = state[`p3_${idx}_score`];
+    out += `${idx + 1}. ${text}\n`;
+    if (ans) {
+      out += `   Tu elección: ${INSTR_LABELS[ans] || ans}  ${ok ? '✓' : '✗ (correcto: ' + (INSTR_LABELS[correct] || correct) + ')'}\n`;
+    } else {
+      out += '   (sin responder)\n';
+    }
+    out += '\n';
+  });
+
+  // Paso 4: Producción guiada
+  out += '── PASO 4 · PRODUCCIÓN GUIADA ──\n\n';
+  out += '4.1 Requisito para lista de cotejo:\n';
+  out += `   ${(document.getElementById('prod1')?.value || '(sin responder)').trim()}\n\n`;
+  out += '4.2 Caso de prueba diseñado:\n';
+  out += `   Dato de entrada:     ${(document.getElementById('prod2-data')?.value || '(sin completar)').trim()}\n`;
+  const techVal = document.getElementById('prod2-tech')?.value;
+  out += `   Técnica aplicada:    ${techVal ? (TECH_LABELS[techVal] || techVal) : '(sin completar)'}\n`;
+  out += `   Resultado esperado:  ${(document.getElementById('prod2-result')?.value || '(sin completar)').trim()}\n\n`;
+  out += '4.3 Justificación del instrumento:\n';
+  out += `   ${(document.getElementById('prod3')?.value || '(sin responder)').trim()}\n\n`;
+
+  // Puntaje
+  const s1 = document.getElementById('score-1').textContent;
+  const s2 = document.getElementById('score-2').textContent;
+  const s3 = document.getElementById('score-3').textContent;
+  const st = document.getElementById('score-total').textContent;
+  out += '── PUNTAJE ──\n\n';
+  out += `Detección de problemas:  ${s1}\n`;
+  out += `Casos de prueba:         ${s2}\n`;
+  out += `Instrumentos:            ${s3}\n`;
+  out += `Total:                   ${st}\n\n`;
+
+  out += '═══════════════════════════════════════════════════\n';
+  out += 'Guardalo en Drive, mandátelo por mail o pegalo donde\n';
+  out += 'lo puedas recuperar. Si cambiás de navegador o PC,\n';
+  out += 'las respuestas guardadas localmente se pierden.\n';
+  out += '═══════════════════════════════════════════════════\n';
+  return out;
+}
+
+function flashStatus(text) {
+  const el = document.getElementById('exportStatus');
+  if (!el) return;
+  el.textContent = text;
+  el.classList.add('show');
+  clearTimeout(flashStatus._t);
+  flashStatus._t = setTimeout(() => el.classList.remove('show'), 2400);
+}
+
+document.getElementById('btnDownload')?.addEventListener('click', () => {
+  const text = buildExportText();
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const now = new Date();
+  const stamp = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}`;
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `actividad-integradora_${stamp}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  flashStatus('Descargado');
+});
+
+document.getElementById('btnCopy')?.addEventListener('click', async () => {
+  const text = buildExportText();
+  try {
+    await navigator.clipboard.writeText(text);
+    flashStatus('Copiado al portapapeles');
+  } catch {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); flashStatus('Copiado al portapapeles'); }
+    catch { flashStatus('No se pudo copiar'); }
+    document.body.removeChild(ta);
   }
+});
+
+// Botón recalcular (sin confirm modal: feedback inline)
+document.getElementById('recompute')?.addEventListener('click', () => {
+  updateScores();
+  flashStatus('Puntaje recalculado');
 });

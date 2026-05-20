@@ -583,6 +583,62 @@ textarea:focus, input:focus, select:focus{
   color:var(--primary-dark);
 }
 
+/* ===== Barra de exportación (descargar / copiar / imprimir / recalcular) ===== */
+.export-bar{
+  margin-top:24px;
+  padding:18px 22px;
+  background:linear-gradient(180deg, var(--soft), #fff);
+  border:1px solid var(--no-border);
+  border-left:5px solid var(--primary);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-soft);
+}
+.export-warn{
+  margin:0 0 14px !important;
+  font-size:clamp(13px, 1vw, 17px);
+  line-height:1.45;
+  color:var(--primary-dark);
+}
+.export-warn b{color:var(--primary)}
+.export-actions{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.export-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:12px;
+  border:0;
+  background:linear-gradient(135deg, var(--primary), var(--primary-2));
+  color:#fff;
+  font:inherit;
+  font-size:clamp(13px, 1vw, 16px);
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:var(--shadow-soft);
+  transition:.18s ease;
+}
+.export-btn:hover{filter:brightness(1.05); transform:translateY(-1px)}
+.export-btn.secondary{
+  background:#fff;
+  color:var(--primary-dark);
+  border:1.5px solid var(--primary);
+}
+.export-btn.secondary:hover{background:var(--soft)}
+.export-status{
+  font-size:clamp(12px, .9vw, 14px);
+  color:var(--ok);
+  font-weight:700;
+  margin-left:6px;
+  opacity:0;
+  transition:opacity .2s ease;
+}
+.export-status.show{opacity:1}
+
 /* ===== Footer ===== */
 .page-foot{
   text-align:center;

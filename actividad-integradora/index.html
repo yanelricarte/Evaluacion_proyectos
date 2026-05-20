@@ -395,8 +395,29 @@
       <li>Si tuvieran que elegir <b>un solo instrumento</b> para evaluar la app, ¿cuál sería y por qué?</li>
       <li>¿Qué cambiarían del sistema antes de que se use a gran escala?</li>
     </ul>
-    <button class="action-btn" id="recompute">Volver a calcular puntaje</button>
-    <button class="action-btn secondary" onclick="window.print()">Imprimir o guardar PDF</button>
+  </div>
+
+  <div class="export-bar">
+    <p class="export-warn"><b>Importante:</b> tus respuestas se guardan solo en este navegador. Si vas a usar otra computadora, descargalas o copialas antes de cerrar.</p>
+    <div class="export-actions">
+      <button class="export-btn" id="btnDownload">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Descargar como archivo
+      </button>
+      <button class="export-btn secondary" id="btnCopy">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copiar todo al portapapeles
+      </button>
+      <button class="export-btn secondary" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Imprimir o guardar PDF
+      </button>
+      <button class="export-btn secondary" id="recompute">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        Recalcular puntaje
+      </button>
+      <span class="export-status" id="exportStatus"></span>
+    </div>
   </div>
 </section>
 
