@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clase 1 · Presentación e introducción a calidad — Evaluación de Proyectos</title>
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="deck" id="deck">
+
+    <!-- 1. Cover -->
+    <section class="slide cover active">
+      <div class="cover-mark"></div>
+      <div class="student">Material para estudiantes · 7.º año</div>
+      <div class="kicker">Evaluación de Proyectos · Clase 1</div>
+      <h1>Evaluación de Proyectos </h1>
+      <p class="lead">Presentación de la materia e introducción al concepto de calidad del software.</p>
+      <div class="pill-row">
+        <span class="pill">Presentación</span>
+        <span class="pill">Calidad del software</span>
+        <span class="pill">Criterios de evaluación</span>
+      </div>
+      <div class="footer"><span>Clase 1 · Apertura de Unidad 1</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 2. Objetivos -->
+    <section class="slide">
+      <div class="kicker">Objetivos de la clase</div>
+      <h2>Qué nos proponemos en esta clase</h2>
+      <div class="grid2">
+        <div class="card accent">
+          <div class="label">Objetivo</div>
+          <h3>Presentar la materia</h3>
+          <p>Conocer el propósito de Evaluación de Proyectos dentro de la tecnicatura y su lugar en el recorrido
+            formativo.</p>
+        </div>
+        <div class="card accent">
+          <div class="label">Objetivo</div>
+          <h3>Introducir la evaluación tecnológica</h3>
+          <p>Entender qué significa <b>evaluar tecnología</b> y por qué no alcanza con que un sistema “funcione”.</p>
+        </div>
+        <div class="card accent">
+          <div class="label">Objetivo</div>
+          <h3>Comprender la calidad del software</h3>
+          <p>Aproximarnos al concepto de <b>calidad del software</b> desde distintas miradas: técnica, del usuario y
+            normativa.</p>
+        </div>
+        <div class="card accent">
+          <div class="label">Objetivo</div>
+          <h3>Reconocer criterios de evaluación</h3>
+          <p>Aceptar que toda decisión tecnológica requiere <b>criterios explícitos</b> para poder ser fundamentada.</p>
+        </div>
+      </div>
+      <div class="footer"><span>Objetivos</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 3. Idea central · tesis de la materia -->
+    <section class="slide">
+      <div class="kicker">Idea central de la materia</div>
+      <h2>Más que desarrollar, evaluar</h2>
+      <p class="bigline">La informática no solo consiste en <b>desarrollar</b> tecnología. También implica
+        <b>evaluarla</b> y <b>tomar decisiones fundamentadas</b>.</p>
+
+      <div class="vs-grid">
+        <div class="vs-card vs-before">
+          <div class="vs-tag">Mirada incompleta</div>
+          <h3>Solo construir</h3>
+          <ul>
+            <li>“¿Anda o no anda?”</li>
+            <li>Foco en el código.</li>
+            <li>Decisiones por intuición.</li>
+          </ul>
+        </div>
+        <div class="vs-arrow" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </div>
+        <div class="vs-card vs-after">
+          <div class="vs-tag">Mirada de la materia</div>
+          <h3>Construir + Evaluar</h3>
+          <ul>
+            <li>“¿Qué tan bien y para quién?”</li>
+            <li>Comparar opciones con criterios.</li>
+            <li>Decidir y poder explicar por qué.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="subtitle">Esta es la promesa de la materia: pensar la tecnología no solo como algo que se
+        <b>construye</b>, sino como algo que se <b>elige</b>, se <b>compara</b> y se <b>justifica</b>.</p>
+      <div class="footer"><span>Tesis de la materia</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 4. Hoja de ruta -->
+    <section class="slide">
+      <div class="kicker">Hoja de ruta de la clase</div>
+      <h2>Cómo vamos a recorrer esta clase</h2>
+      <p class="subtitle">Seis momentos. En cada uno vamos a sumar una pieza para entender qué significa <b>evaluar</b>
+        en informática.</p>
+      <div class="flow">
+        <div class="step"><b>1 · Disparador</b><span>¿Qué hace que un software sea “bueno”?</span></div>
+        <div class="step"><b>2 · Decisión</b><span>Por qué evaluar antes de decidir.</span></div>
+        <div class="step"><b>3 · Definiciones</b><span>Tres miradas sobre la calidad.</span></div>
+        <div class="step"><b>4 · Atributos y costo</b><span>Dimensiones y por qué importa.</span></div>
+        <div class="step"><b>5 · Aplicación</b><span>Caso real + matriz en vivo + quiz.</span></div>
+        <div class="step"><b>6 · Cierre y proyección</b><span>Síntesis y qué viene en el año.</span></div>
+      </div>
+      <p class="subtitle">Al final vas a poder analizar un sistema desde varios atributos y empezar a pensar en una
+        <b>matriz de evaluación</b>.</p>
+      <div class="footer"><span>Mapa de la clase</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 4. Para empezar -->
+    <section class="slide">
+      <div class="kicker">Para empezar</div>
+      <h2>¿Qué hace que un software sea “bueno”?</h2>
+      <p class="lead">Antes de definir nada, una pregunta abierta: cuando decimos que una aplicación es <b>buena</b>,
+        ¿qué estamos diciendo exactamente?</p>
+      <p class="subtitle">Pensalo unos segundos antes de pasar al siguiente slide. No hay una sola respuesta correcta —
+        el sentido común va a chocar contra varias preguntas.</p>
+      <div class="pause-mark">Pará acá · 2 min <span class="pause-detail">— discutí con tu compañero</span></div>
+      <div class="footer"><span>Disparador</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 4. Respuestas posibles -->
+    <section class="slide">
+      <div class="kicker">Respuestas posibles</div>
+      <h2>Lo que solemos contestar</h2>
+      <div class="grid4">
+        <div class="card flat"><span class="badge">1</span>
+          <h3>Que funcione</h3>
+          <p>Cumple su propósito principal sin romperse al primer intento.</p>
+        </div>
+        <div class="card flat"><span class="badge">2</span>
+          <h3>Que no tenga errores</h3>
+          <p>No falla en operaciones habituales ni muestra mensajes confusos.</p>
+        </div>
+        <div class="card flat"><span class="badge">3</span>
+          <h3>Que sea rápido</h3>
+          <p>Responde en tiempos razonables y no obliga a esperar.</p>
+        </div>
+        <div class="card flat"><span class="badge">4</span>
+          <h3>Que sea fácil de usar</h3>
+          <p>Cualquier persona puede aprender a usarlo sin mucho esfuerzo.</p>
+        </div>
+      </div>
+      <p class="subtitle">Todas son respuestas válidas — pero parciales. Cada una mira <b>un aspecto distinto</b> de la
+        calidad. ¿Cómo se combinan? ¿Cuál pesa más? Eso es lo que vamos a estudiar.</p>
+      <div class="footer"><span>Lluvia de ideas</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 5. Las decisiones tecnológicas -->
+    <section class="slide">
+      <div class="kicker">Las decisiones tecnológicas</div>
+      <h2>No alcanza con que “funcione”: hay que decidir</h2>
+      <p class="bigline">Las organizaciones deben analizar distintas alternativas tecnológicas <b>antes</b> de tomar una
+        decisión.</p>
+      <div class="ieee-box" style="margin-top:18px">
+        <b>Ejemplo cercano.</b> La escuela usa hoy una plataforma para gestionar las clases. <b>Alguien la eligió</b>
+        entre varias opciones: Classroom, Moodle, un sistema propio. Esa elección no fue al azar — alguien comparó
+        costos, facilidad de uso, soporte y privacidad de los datos. <b>Eso es evaluación de proyectos.</b>
+      </div>
+      <p class="subtitle">Elegir un software, una arquitectura o una infraestructura implica comparar opciones, ponderar
+        criterios y justificar la elección. Esa es la materia.</p>
+      <div class="footer"><span>Idea fuerza</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 6. Evaluar un proyecto significa -->
+    <section class="slide">
+      <div class="kicker">Evaluar un proyecto significa…</div>
+      <h2>Cinco acciones que hacen a la evaluación</h2>
+      <div class="grid3">
+        <div class="card flat"><span class="badge">1</span>
+          <h3>Analizar</h3>
+          <p>Mirar el sistema desde distintos ángulos para entender qué hace y cómo.</p>
+        </div>
+        <div class="card flat"><span class="badge">2</span>
+          <h3>Comparar</h3>
+          <p>Poner alternativas frente a frente y ver dónde se diferencian.</p>
+        </div>
+        <div class="card flat"><span class="badge">3</span>
+          <h3>Medir</h3>
+          <p>Traducir lo observado a datos concretos: tiempos, errores, usabilidad.</p>
+        </div>
+        <div class="card flat"><span class="badge">4</span>
+          <h3>Justificar</h3>
+          <p>Explicar la decisión con argumentos sostenidos en evidencia.</p>
+        </div>
+        <div class="card flat"><span class="badge">5</span>
+          <h3>Decidir</h3>
+          <p>Tomar una posición fundamentada y asumir sus consecuencias.</p>
+        </div>
+      </div>
+      <p class="subtitle">Evaluar es construir una <b>decisión que se pueda explicar</b>.</p>
+      <div class="footer"><span>Verbos de la evaluación</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 9. Tres miradas sobre la calidad -->
+    <section class="slide">
+      <div class="kicker">¿Qué es calidad de software?</div>
+      <h2>Tres miradas que se complementan</h2>
+      <p class="subtitle">No hay una única forma de definir la calidad. Vamos a ver tres aproximaciones:
+        <b>intuitiva</b>, <b>filosófica</b> y <b>normativa</b>. Cada una aporta algo distinto.</p>
+      <div class="grid3">
+        <article class="card"><span class="badge">1 · Intuitiva</span>
+          <h3>Foco en el usuario</h3>
+          <p>“Tiene calidad cuando sus características <b>satisfacen las necesidades</b> del usuario.”</p>
+          <p class="muted" style="font-size:.92em">Simple y operativa, pero deja afuera el proceso y los aspectos
+            técnicos.</p>
+        </article>
+        <article class="card"><span class="badge">2 · Filosófica</span>
+          <h3>Pirsig: se reconoce</h3>
+          <p>La calidad es algo que <b>reconocemos</b> de inmediato aunque sea difícil de <b>definir con precisión</b>.
+          </p>
+          <p class="muted" style="font-size:.92em">Útil para problematizar: no toda intuición se puede explicar
+            fácilmente.</p>
+        </article>
+        <article class="card"><span class="badge">3 · Normativa</span>
+          <h3>IEEE: medible</h3>
+          <p>Es el <b>grado</b> en que un sistema combina <b>atributos</b> y satisface <b>expectativas</b>.</p>
+          <p class="muted" style="font-size:.92em">Sirve para evaluar: permite descomponer la calidad en partes
+            observables.</p>
+        </article>
+      </div>
+      <p class="subtitle">En los próximos slides vemos cada una en detalle. Después vas a ver cómo se conectan.</p>
+      <div class="footer"><span>Mapa de definiciones</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 10. Definición 1 · Intuitiva -->
+    <section class="slide">
+      <div class="kicker">Definición 1 · Mirada intuitiva</div>
+      <h2>La definición “de sentido común”</h2>
+      <div class="def-block intuitiva">
+        <div class="def-badge">1</div>
+        <div class="def-body">
+          <div class="def-label">Definición intuitiva</div>
+          <p class="bigline" style="font-size:clamp(24px, 2.1vw, 36px); margin:6px 0 0">Un software tiene calidad cuando
+            sus <b>características</b> satisfacen las <b>necesidades del usuario</b>.</p>
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:32px">
+        <div class="card flat" style="border-top:4px solid var(--ok-border)">
+          <h3 style="color:var(--ok)">Lo que aporta</h3>
+          <ul>
+            <li>Es <b>simple</b> y fácil de comunicar.</li>
+            <li>Pone al <b>usuario</b> en el centro.</li>
+            <li>Sirve como punto de partida pedagógico.</li>
+          </ul>
+        </div>
+        <div class="card flat" style="border-top:4px solid var(--no-border)">
+          <h3 style="color:var(--no)">Lo que deja afuera</h3>
+          <ul>
+            <li>No habla del <b>proceso</b> de desarrollo.</li>
+            <li>“Necesidades” es <b>ambiguo</b>: ¿necesidades sentidas, declaradas, reales?</li>
+            <li>No permite <b>medir</b> ni comparar alternativas.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer"><span>1 · Mirada intuitiva</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 11. Definición 2 · Pirsig -->
+    <section class="slide">
+      <div class="kicker">Definición 2 · Mirada filosófica</div>
+      <h2>Pirsig: la calidad se reconoce, aunque sea difícil de definir</h2>
+      <div class="ieee-box">
+        <b>Robert M. Pirsig</b> (1928–2017) · escritor y filósofo estadounidense. Su libro <i>Zen y el arte del
+          mantenimiento de la motocicleta</i> (1974) discute qué entendemos por “calidad” en general — no solo en
+        software. Nos sirve porque pone en palabras algo que <b>todos sentimos</b> pero que cuesta definir.
+      </div>
+      <div class="def-block filosofica">
+        <div class="def-badge">2</div>
+        <div class="def-body">
+          <div class="def-label">Definición filosófica · Robert M. Pirsig</div>
+          <p class="bigline" style="font-size:clamp(22px, 1.9vw, 32px); margin:6px 0 0">La calidad es algo que las
+            personas <b>reconocen de manera inmediata</b>, aunque resulte difícil de <b>definir con precisión</b>.</p>
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:32px">
+        <div>
+          <p>Es decir:</p>
+          <ul>
+            <li><b>Sabemos</b> cuándo algo tiene calidad.</li>
+            <li><b>Explicar</b> exactamente qué es la calidad puede resultar complejo.</li>
+          </ul>
+          <p class="muted" style="font-size:.95em; margin-top:14px">Pirsig propone esta idea en <i>Zen y el arte del
+              mantenimiento de la motocicleta</i> (1974). Es una mirada filosófica, no técnica.</p>
+        </div>
+        <div class="card">
+          <div class="label">¿Por qué nos sirve?</div>
+          <h3>Para problematizar la intuición</h3>
+          <p>Esto no ocurre porque la calidad sea un concepto misterioso, sino porque es una <b>experiencia simple,
+              directa e inmediata</b>.</p>
+          <p>El trabajo de la materia es <b>nombrar</b> lo que percibimos: traducir esa intuición en <b>criterios
+              observables</b>.</p>
+        </div>
+      </div>
+      <div class="footer"><span>2 · Mirada filosófica</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 12. Definición 3 · IEEE -->
+    <section class="slide">
+      <div class="kicker">Definición 3 · Mirada normativa</div>
+      <h2>La definición del IEEE</h2>
+      <div class="ieee-box">
+        <b>IEEE</b> · <i>Institute of Electrical and Electronics Engineers</i> — en español, <b>Instituto de Ingenieros
+          Eléctricos y Electrónicos</b>. Organismo internacional que estandariza terminología y prácticas en ingeniería
+        de software (entre otros campos).
+      </div>
+      <div class="def-block normativa">
+        <div class="def-badge">3</div>
+        <div class="def-body">
+          <div class="def-label">Definición normativa · IEEE</div>
+          <p class="bigline" style="font-size:clamp(22px, 1.9vw, 32px); margin:6px 0 0">La calidad del software es el
+            <b>grado</b> en que un sistema posee una <b>combinación adecuada de atributos</b> y satisface las
+            <b>expectativas del usuario</b>.</p>
+        </div>
+      </div>
+      <div class="grid3" style="margin-top:18px">
+        <article class="card flat"><span class="badge">Grado</span>
+          <p>La calidad <b>no es binaria</b>: no es “sí o no”, sino “más o menos”. Se puede medir en niveles.</p>
+        </article>
+        <article class="card flat"><span class="badge">Combinación de atributos</span>
+          <p>No depende de una sola cosa: es un <b>conjunto</b> (correctitud, performance, usabilidad…) que se
+            equilibra.</p>
+        </article>
+        <article class="card flat"><span class="badge">Expectativas del usuario</span>
+          <p>Lo que se considera “bueno” <b>depende del contexto</b> y de quién lo use.</p>
+        </article>
+      </div>
+      <div class="footer"><span>3 · Mirada normativa</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 12. Problemas asociados -->
+    <section class="slide">
+      <div class="kicker">Problemas asociados</div>
+      <h2>¿Por qué la calidad es difícil de garantizar?</h2>
+      <div class="grid3">
+        <article class="card"><span class="badge">Problema 1</span>
+          <h3>Especificación orientada al consumidor</h3>
+          <p>La especificación se orienta a las características del producto que el <b>consumidor quiere</b>, no
+            necesariamente a lo que el sistema podría brindar.</p>
+        </article>
+        <article class="card"><span class="badge">Problema 2</span>
+          <h3>Atributos difíciles de definir</h3>
+          <p>No se sabe cómo especificar ciertas características de calidad (por ejemplo, <b>mantenimiento</b>) de una
+            forma <b>no ambigua</b>.</p>
+        </article>
+        <article class="card"><span class="badge">Problema 3</span>
+          <h3>Especificación vs expectativas</h3>
+          <p>Aunque un producto se ajuste a su especificación, los usuarios <b>no</b> lo consideran de alta calidad si
+            no responde a sus <b>expectativas reales</b>.</p>
+        </article>
+      </div>
+      <p class="subtitle">Conclusión: la calidad no se puede tercerizar en un documento. Hay que <b>observar</b>,
+        <b>medir</b> y <b>contrastar</b> con el contexto real de uso.</p>
+      <div class="footer"><span>Tensiones del concepto</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 13. Atributos de calidad -->
+    <section class="slide">
+      <div class="kicker">Atributos de calidad</div>
+      <h2>Las dimensiones para mirar un software</h2>
+      <div class="grid4">
+        <div class="card flat"><span class="badge">Correctitud</span>
+          <p>¿Hace lo que dice que hace? Cumple los requisitos definidos.</p>
+        </div>
+        <div class="card flat"><span class="badge">Confiabilidad</span>
+          <p>¿Lo hace de forma consistente? Estable en el tiempo y bajo distintas condiciones.</p>
+        </div>
+        <div class="card flat"><span class="badge">Performance</span>
+          <p>¿En qué tiempos responde? Eficiencia en uso de recursos.</p>
+        </div>
+        <div class="card flat"><span class="badge">Usabilidad</span>
+          <p>¿Es fácil de aprender y usar? También llamada <i>amigabilidad</i> en la literatura clásica.</p>
+        </div>
+        <div class="card flat"><span class="badge">Robustez</span>
+          <p>¿Cómo reacciona ante entradas inesperadas o errores? Tolerancia a fallas.</p>
+        </div>
+        <div class="card flat"><span class="badge">Seguridad</span>
+          <p>¿Protege los datos y el acceso? Confidencialidad, integridad y control de permisos.</p>
+        </div>
+        <div class="card flat"><span class="badge">Mantenibilidad</span>
+          <p>¿Se puede modificar y mejorar sin romper otras partes?</p>
+        </div>
+        <div class="card flat"><span class="badge">Portabilidad</span>
+          <p>¿Funciona en distintos entornos, sistemas o dispositivos?</p>
+        </div>
+      </div>
+      <div class="ieee-box" style="margin-top:18px">
+        <b>Nota.</b> Este listado se apoya en los modelos clásicos de <b>McCall (1977)</b> y <b>Boehm (1978)</b>,
+        alineado con la norma vigente <b>ISO/IEC 25010</b>, que organiza la calidad en <b>8 características</b>
+        (Funcionalidad, Confiabilidad, Performance, Usabilidad, Seguridad, Compatibilidad, Mantenibilidad,
+        Portabilidad). Los conceptos centrales se mantienen; solo cambia la clasificación.
+      </div>
+      <p class="subtitle">El peso de cada atributo <b>depende del sistema</b> y de quién lo use: no todos los atributos
+        pesan lo mismo en todos los contextos.</p>
+      <div class="footer"><span>Atributos clásicos · McCall / Boehm</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 14. Gestión y Coste de calidad -->
+    <section class="slide">
+      <div class="kicker">Gestión y coste de calidad</div>
+      <h2>Cuánto cuesta corregir un error según la etapa</h2>
+      <p class="subtitle">Cuanto más tarde se detecta un error, <b>más caro</b> es corregirlo. La calidad no es solo una
+        cuestión técnica: tiene un impacto económico directo.</p>
+      <div class="cost-chart">
+        <div class="cc-bar" style="--h:4%"><span class="cc-val">1 vez</span><span class="cc-stage">Requisitos</span>
+        </div>
+        <div class="cc-bar" style="--h:8%"><span class="cc-val">3–6 veces</span><span class="cc-stage">Diseño</span>
+        </div>
+        <div class="cc-bar" style="--h:18%"><span class="cc-val">10 veces</span><span class="cc-stage">Código</span>
+        </div>
+        <div class="cc-bar" style="--h:34%"><span class="cc-val">15–40 veces</span><span class="cc-stage">Prueba de
+            desarrollo</span></div>
+        <div class="cc-bar" style="--h:58%"><span class="cc-val">30–70 veces</span><span class="cc-stage">Prueba de
+            sistema</span></div>
+        <div class="cc-bar tall" style="--h:96%"><span class="cc-val">40–1000 veces</span><span class="cc-stage">En
+            explotación</span></div>
+      </div>
+      <div class="ieee-box" style="margin-top:22px">
+        <b>Fuente.</b> Curva de costos de <b>Barry Boehm (1981)</b>, en <i>Software Engineering Economics</i>. Es uno de
+        los datos más citados de la ingeniería de software. <b>Hoy</b>, con prácticas como integración continua, testing
+        automatizado y ciclos cortos, los multiplicadores son <b>más bajos</b>, pero la idea central sigue vigente:
+        <b>detectar temprano cuesta menos</b>.
+      </div>
+      <div class="footer"><span>Curva de Boehm · Coste relativo de corregir un error</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 15. Ejes conceptuales · vocabulario consolidado -->
+    <section class="slide">
+      <div class="kicker">Ejes conceptuales</div>
+      <h2>Los conceptos que vamos a usar todo el año</h2>
+      <p class="subtitle">Ya los vimos en acción. Ahora los nombramos para tenerlos a mano todo el año.</p>
+      <div class="grid3">
+        <div class="card"><h3>Proyecto</h3><p>La unidad que vamos a evaluar: un sistema, una red, una organización.</p></div>
+        <div class="card"><h3>Criterios</h3><p>Las dimensiones observables que permiten emitir un juicio fundamentado.</p></div>
+        <div class="card"><h3>Herramientas</h3><p>Los instrumentos concretos que usamos para registrar la evaluación.</p></div>
+        <div class="card"><h3>Áreas</h3><p>Los distintos campos donde se evalúa: software, redes, sistemas, organización.</p></div>
+        <div class="card"><h3>Auditoría</h3><p>La mirada externa y sistemática sobre un proceso o producto tecnológico.</p></div>
+        <div class="card"><h3>Decisión</h3><p>El acto final: tomar una posición fundamentada en lo evaluado.</p></div>
+      </div>
+      <div class="footer"><span>Ejes de la materia</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 16. Relación con la materia -->
+    <section class="slide">
+      <div class="kicker">Relación con la materia</div>
+      <h2>De los atributos a la decisión</h2>
+      <div class="map">
+        <div class="map-line"><span class="node">Atributos de calidad</span><span class="arrow">se traducen
+            en</span><span class="node">Criterios de evaluación</span><span class="arrow">se organizan en</span><span
+            class="node">Matriz de evaluación</span><span class="arrow">sostienen una</span><span class="node">Decisión
+            tecnológica</span></div>
+      </div>
+      <p class="lead">Esta cadena es el hilo conductor de la materia. Cada unidad va a aportar piezas para construirla.
+      </p>
+      <div class="footer"><span>Hilo conductor</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 16. Actividad inicial -->
+    <section class="slide">
+      <div class="kicker">Actividad inicial</div>
+      <h2>Caso: elegir una plataforma educativa</h2>
+      <p>Imaginen que la escuela necesita elegir una plataforma para gestionar clases, tareas y comunicación con las
+        familias. Tres alternativas sobre la mesa:</p>
+      <div class="grid3" style="margin-top:18px">
+        <article class="card"><span class="badge">Opción A</span>
+          <h3>Google Classroom</h3>
+          <p>Plataforma gratuita y muy extendida. Integrada con el ecosistema Google (Drive, Meet, Gmail).</p>
+        </article>
+        <article class="card"><span class="badge">Opción B</span>
+          <h3>Moodle</h3>
+          <p>Plataforma de código abierto, autoalojada, altamente configurable. Requiere infraestructura y mantenimiento
+            propio.</p>
+        </article>
+        <article class="card"><span class="badge">Opción C</span>
+          <h3>Sistema propio</h3>
+          <p>Desarrollo a medida para la escuela. Máximo control, pero también máximo costo y tiempo de desarrollo.</p>
+        </article>
+      </div>
+      <p class="subtitle"><b>¿Cuál elegirían?</b> ¿Y, sobre todo, con qué <b>criterios</b> tomarían la decisión? Pasemos
+        al siguiente slide.</p>
+      <div class="pause-mark">Pará acá · 3 min <span class="pause-detail">— elegí una opción y anotá tus razones</span>
+      </div>
+      <div class="footer"><span>Caso disparador</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 17. Preguntas para analizar -->
+    <section class="slide">
+      <div class="kicker">Preguntas para analizar</div>
+      <h2>Tres preguntas que ordenan la decisión</h2>
+      <div class="grid3">
+        <article class="card accent"><span class="badge">1</span>
+          <h3>¿Qué opción elegirían?</h3>
+          <p>Antes de analizar nada en profundidad: ¿qué intuición tienen? La intuición vale como punto de partida, pero
+            hay que poder justificarla.</p>
+        </article>
+        <article class="card accent"><span class="badge">2</span>
+          <h3>¿Qué criterios usarían?</h3>
+          <p>¿Costo? ¿Facilidad de uso? ¿Seguridad? ¿Personalización? Cada criterio que sumen define qué van a mirar de
+            cada alternativa.</p>
+        </article>
+        <article class="card accent"><span class="badge">3</span>
+          <h3>¿Qué ventajas tiene cada alternativa?</h3>
+          <p>Ninguna opción es “mejor” en abstracto. Cada una resuelve <b>algunas</b> cosas mejor que las otras.</p>
+        </article>
+      </div>
+      <p class="subtitle">Cuando justifiquen su elección, van a estar haciendo <b>evaluación de proyectos</b>. Esa es la
+        práctica que vamos a sistematizar.</p>
+      <div class="footer"><span>Pensamiento crítico</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 18. Matriz parcial · anticipo -->
+    <section class="slide">
+      <div class="kicker">Anticipo · Matriz de evaluación</div>
+      <h2>Una matriz para comparar las tres opciones</h2>
+      <p class="subtitle">Así se ve, en su forma más simple, una matriz de evaluación: <b>criterios</b> en las filas,
+        <b>alternativas</b> en las columnas. Algunas celdas ya están completas — son datos objetivos. Otras tienen
+        <b>?</b> porque <b>requieren analizar y decidir</b>.</p>
+      <table class="table compact" style="margin-top:18px">
+        <thead>
+          <tr>
+            <th style="width:24%">Criterio</th>
+            <th style="width:25%">Google Classroom</th>
+            <th style="width:25%">Moodle</th>
+            <th>Sistema propio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Costo inicial</b></td>
+            <td>Gratis</td>
+            <td>Gratis (software)</td>
+            <td>Alto (desarrollo)</td>
+          </tr>
+          <tr>
+            <td><b>Personalización</b></td>
+            <td>Limitada</td>
+            <td>Alta</td>
+            <td>Total</td>
+          </tr>
+          <tr>
+            <td><b>Facilidad de uso</b></td>
+            <td>?</td>
+            <td>?</td>
+            <td>?</td>
+          </tr>
+          <tr>
+            <td><b>Mantenimiento</b></td>
+            <td>?</td>
+            <td>Requiere servidor propio</td>
+            <td>?</td>
+          </tr>
+          <tr>
+            <td><b>Seguridad de datos</b></td>
+            <td>?</td>
+            <td>?</td>
+            <td>?</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="ieee-box" style="margin-top:24px">
+        <b>Los <span style="color:var(--primary)">?</span> los vamos a completar entre todos en el <b>siguiente
+            slide</b>.</b> Ahí la matriz se vuelve <b>interactiva</b>: ustedes le asignan un <b>peso</b> a cada criterio
+        y un <b>puntaje del 1 al 5</b> a cada alternativa. El sistema calcula el ganador en vivo. <b>Si cambian los
+          pesos, puede cambiar el ganador</b> — ese es el punto de aprendizaje.
+      </div>
+      <div class="footer"><span>Anticipo de matriz de evaluación</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 18b. Actividad · Matriz de evaluación en vivo -->
+    <section class="slide">
+      <div class="kicker">Actividad · Matriz en vivo</div>
+      <h2>Asigná pesos y descubrí quién gana</h2>
+      <p class="subtitle">Dale un <b>peso</b> a cada criterio (deben sumar 100%) y un <b>puntaje del 1 al 5</b> a cada
+        opción. La matriz calcula el total ponderado en vivo. Si cambiás los pesos, cambia el ganador — <b>ese</b> es el
+        punto.</p>
+
+      <div class="matrix" id="matrix">
+        <div class="matrix-head">
+          <div class="mx-cell mx-h-criterio">Criterio</div>
+          <div class="mx-cell mx-h-peso">Peso (%)</div>
+          <div class="mx-cell mx-h-opt">Google Classroom</div>
+          <div class="mx-cell mx-h-opt">Moodle</div>
+          <div class="mx-cell mx-h-opt">Sistema propio</div>
+        </div>
+
+        <div class="matrix-row" data-defaults="25,5,4,2">
+          <div class="mx-cell mx-criterio"><b>Costo</b><span>Inicial + mantenimiento</span></div>
+          <div class="mx-cell"><input class="mx-peso" type="number" min="0" max="100" step="5" value="25"
+              inputmode="numeric" aria-label="Peso del criterio Costo, porcentaje"><span class="mx-suf"
+              aria-hidden="true">%</span></div>
+          <div class="mx-cell"><input class="mx-score" type="number" min="1" max="5" step="1" value="5"
+              inputmode="numeric" aria-label="Puntaje de Google Classroom en Costo, 1 a 5"></div>
+          <div class="mx-cell"><input class="mx-score" type="number" min="1" max="5" step="1" value="4"
+              inputmode="numeric" aria-label="Puntaje de Moodle en Costo, 1 a 5"></div>
+          <div class="mx-cell"><input class="mx-score" type="number" min="1" max="5" step="1" value="2"
+              inputmode="numeric" aria-label="Puntaje de Sistema propio en Costo, 1 a 5"></div>
+        </div>
+
+        <div class="matrix-row" data-defaults="20,5,3,3">
+          <div class="mx-cell mx-criterio"><b>Facilidad de uso</b><span>¿Pueden usarla docentes y familias?</span></div>
+          <div class="mx-cell"><input class="mx-peso" type="number" min="0" max="100" step="5" value="20"
+              inputmode="numeric" aria-label="Peso del criterio Facilidad de uso, porcentaje"><span class="mx-suf"
+              aria-hidden="true">%</span></div>
+          <div class="mx-cell"><input class="mx-score" type="number" min="1" max="5" step="1" value="5"
+              inputmode="numeric" aria-label="Puntaje de Google Classroom en Facilidad de uso, 1 a 5"></div>
+          <div class="mx-cell"><input class="mx-score" type="number" min="1" max="5" step="1" value="3"
+              inputmode="numeric" aria-label="Puntaje de Moodle en Facilidad de uso, 1 a 5"></div>
+          <div class="mx-cell"><input class="mx-score" type="number" min="1" max="5" step="1" value="3"
+              inputmode="numeric" aria-label="Puntaje de Sistema propio en Facilidad de uso, 1 a 5"></div>
+        </div>
+
+        <div class="matrix-row" data-defaults="20,2,4,5">
+          <div class="mx-cell mx-criterio"><b>Personalización</b><span>¿Se adapta a la escuela?</span></div>
+          <div class="mx-cell"><input class="mx-peso" type="number" min="0" max="100" step="5" value="20"
+              inputmode="numeric" aria-label="Peso del criterio Personalización, porcentaje"><span class="mx-suf"
+              aria-hidden="true">%</span></div>
+          <div class="mx-cell"><input class="mx-score" type="number" min="1" max="5" step="1" value="2"
+              inputmode="numeric" aria-label="Puntaje de Google Classroom en Personalización, 1 a 5"></div>
+          <div class="mx-cell"><input class="mx-score" type="number" min="1" max="5" step="1" value="4"
+              inputmode="numeric" aria-label="Puntaje de Moodle en Personalización, 1 a 5"></div>
+          <div class="mx-cell"><input class="mx-score" type="number" min="1" max="5" step="1" value="5"
+              inputmode="numeric" aria-label="Puntaje de Sistema propio en Personalización, 1 a 5"></div>
+        </div>
+
+        <div class="matrix-row" data-defaults="20,3,4,5">
+          <div class="mx-cell mx-criterio"><b>Seguridad y datos</b><span>¿Dónde quedan los datos de menores?</span>
+          </div>
+          <div class="mx-cell"><input class="mx-peso" type="number" min="0" max="100" step="5" value="20"
+              inputmode="numeric" aria-label="Peso del criterio Seguridad y datos, porcentaje"><span class="mx-suf"
+              aria-hidden="true">%</span></div>
+          <div class="mx-cell"><input class="mx-score" type="number" min="1" max="5" step="1" value="3"
+              inputmode="numeric" aria-label="Puntaje de Google Classroom en Seguridad y datos, 1 a 5"></div>
+          <div class="mx-cell"><input class="mx-score" type="number" min="1" max="5" step="1" value="4"
+              inputmode="numeric" aria-label="Puntaje de Moodle en Seguridad y datos, 1 a 5"></div>
+          <div class="mx-cell"><input class="mx-score" type="number" min="1" max="5" step="1" value="5"
+              inputmode="numeric" aria-label="Puntaje de Sistema propio en Seguridad y datos, 1 a 5"></div>
+        </div>
+
+        <div class="matrix-row" data-defaults="15,5,3,2">
+          <div class="mx-cell mx-criterio"><b>Soporte y mantenimiento</b><span>¿Quién lo mantiene andando?</span></div>
+          <div class="mx-cell"><input class="mx-peso" type="number" min="0" max="100" step="5" value="15"
+              inputmode="numeric" aria-label="Peso del criterio Soporte y mantenimiento, porcentaje"><span
+              class="mx-suf" aria-hidden="true">%</span></div>
+          <div class="mx-cell"><input class="mx-score" type="number" min="1" max="5" step="1" value="5"
+              inputmode="numeric" aria-label="Puntaje de Google Classroom en Soporte, 1 a 5"></div>
+          <div class="mx-cell"><input class="mx-score" type="number" min="1" max="5" step="1" value="3"
+              inputmode="numeric" aria-label="Puntaje de Moodle en Soporte, 1 a 5"></div>
+          <div class="mx-cell"><input class="mx-score" type="number" min="1" max="5" step="1" value="2"
+              inputmode="numeric" aria-label="Puntaje de Sistema propio en Soporte, 1 a 5"></div>
+        </div>
+
+        <div class="matrix-foot">
+          <div class="mx-cell mx-foot-label">Total ponderado</div>
+          <div class="mx-cell mx-pesos-total"><span id="mxPesosTotal">100</span><span class="mx-suf">%</span></div>
+          <div class="mx-cell mx-score-total" data-opt="0">—</div>
+          <div class="mx-cell mx-score-total" data-opt="1">—</div>
+          <div class="mx-cell mx-score-total" data-opt="2">—</div>
+        </div>
+      </div>
+
+      <div class="matrix-warn" id="mxWarn">Los pesos deben sumar 100%. Ahora suman <b id="mxWarnVal">—</b>.</div>
+
+      <div class="matrix-result">
+        <div class="mx-rank-bars" id="mxRanking"></div>
+        <button class="btn secondary mx-reset" id="mxReset" type="button">Reiniciar valores</button>
+      </div>
+
+      <div class="footer"><span>Atributos → Criterios → Matriz → Decisión</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 19. Quiz · ¿Qué atributo está fallando? -->
+    <section class="slide">
+      <div class="kicker">Actividad de aplicación</div>
+      <h2>¿Qué atributo de calidad está fallando?</h2>
+      <p class="subtitle">Leé cada situación y elegí el atributo afectado. Vas a ver si acertaste y por qué.</p>
+
+      <div class="quiz" id="quiz">
+        <article class="quiz-q" data-correct="b">
+          <p><b>Situación 1.</b> Una aplicación funciona correctamente, pero <b>tarda mucho tiempo en responder</b>
+            cuando el usuario realiza una acción.</p>
+          <div class="quiz-options">
+            <button data-value="a">a) Correctitud</button>
+            <button data-value="b">b) Performance</button>
+            <button data-value="c">c) Usabilidad</button>
+          </div>
+          <div class="quiz-feedback"><b>Performance.</b> El sistema responde, pero los tiempos no son adecuados. La
+            performance mide eficiencia y velocidad de respuesta.</div>
+        </article>
+
+        <article class="quiz-q" data-correct="c">
+          <p><b>Situación 2.</b> Un sistema funciona bien la mayor parte del tiempo, pero <b>cada tanto deja de
+              funcionar o se bloquea</b>.</p>
+          <div class="quiz-options">
+            <button data-value="a">a) Portabilidad</button>
+            <button data-value="b">b) Performance</button>
+            <button data-value="c">c) Confiabilidad</button>
+          </div>
+          <div class="quiz-feedback"><b>Confiabilidad.</b> Cuando un sistema falla intermitentemente, lo que falla es la
+            <b>consistencia</b>: no se puede depender de él para tareas críticas.</div>
+        </article>
+
+        <article class="quiz-q" data-correct="a">
+          <p><b>Situación 3.</b> Una aplicación tiene muchas funciones, pero <b>los usuarios no logran entender cómo
+              utilizarla</b>.</p>
+          <div class="quiz-options">
+            <button data-value="a">a) Usabilidad</button>
+            <button data-value="b">b) Correctitud</button>
+            <button data-value="c">c) Robustez</button>
+          </div>
+          <div class="quiz-feedback"><b>Usabilidad.</b> La funcionalidad puede ser correcta, pero si los usuarios no
+            logran usarla, la calidad <b>en uso</b> está comprometida.</div>
+        </article>
+
+        <article class="quiz-q" data-correct="c">
+          <p><b>Situación 4.</b> Un sistema funciona correctamente, pero <b>cada vez que se quiere agregar una nueva
+              función hay que modificar gran parte del código</b>.</p>
+          <div class="quiz-options">
+            <button data-value="a">a) Performance</button>
+            <button data-value="b">b) Portabilidad</button>
+            <button data-value="c">c) Mantenibilidad</button>
+          </div>
+          <div class="quiz-feedback"><b>Mantenibilidad.</b> Un sistema mantenible permite agregar o cambiar
+            funcionalidad con esfuerzo razonable. Cuando un cambio impacta todo, la mantenibilidad es baja.</div>
+        </article>
+      </div>
+      <div class="quiz-summary" id="quizSummary"><span id="quizScore">— / 4</span><span style="font-weight:500">Si
+          acertaste 3 o 4, la idea de “atributo” quedó clara. Si menos, volvé al slide de atributos.</span></div>
+      <div class="quiz-reset-wrap">
+        <button class="btn secondary" id="quizReset" type="button">Reiniciar respuestas</button>
+      </div>
+      <div class="footer"><span>Quiz de atributos</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 21. Cierre · Mapa visual integrador -->
+    <section class="slide">
+      <div class="kicker">Cierre de la clase</div>
+      <h2>Calidad del Software · vista de conjunto</h2>
+      <p class="subtitle">La calidad <b>no</b> depende de un solo factor. Es la suma de tres ejes (usuario, proceso,
+        gestión), un conjunto de <b>atributos</b> que se equilibran y un compromiso con la <b>detección temprana</b> de
+        errores.</p>
+      <div class="mind-map">
+        <div class="mm-root">CALIDAD</div>
+        <div class="mm-branches">
+          <div class="mm-branch">
+            <h4>Usuario</h4>
+            <ul>
+              <li>Necesidades</li>
+              <li>Experiencia</li>
+            </ul>
+          </div>
+          <div class="mm-branch">
+            <h4>Proceso</h4>
+            <ul>
+              <li>Desarrollo</li>
+              <li>Pruebas</li>
+            </ul>
+          </div>
+          <div class="mm-branch">
+            <h4>Gestión</h4>
+            <ul>
+              <li>Planificación</li>
+              <li>Control</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mm-attrs">
+          <div class="mm-attrs-label">Atributos de calidad</div>
+          <div class="mm-attrs-list">
+            <span class="pill">Correctitud</span>
+            <span class="pill">Confiabilidad</span>
+            <span class="pill">Robustez</span>
+            <span class="pill">Performance</span>
+            <span class="pill">Usabilidad</span>
+            <span class="pill">Seguridad</span>
+            <span class="pill">Mantenibilidad</span>
+            <span class="pill">Portabilidad</span>
+          </div>
+        </div>
+        <div class="mm-cost">
+          <b>Costo de errores ↑</b>
+          <span>Detectar temprano reduce el costo.</span>
+        </div>
+      </div>
+      <div class="footer"><span>Síntesis integradora</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 22. Recorrido de la materia · qué viene después -->
+    <section class="slide">
+      <div class="kicker">Lo que viene · recorrido anual</div>
+      <h2>Cómo vamos a desplegar el año</h2>
+      <p class="subtitle">Esta clase abrió la Unidad 1. Así se conecta con el resto del año:</p>
+      <div class="grid3">
+        <div class="card accent"><span class="badge">1</span>
+          <h3>Matrices de evaluación</h3>
+          <p>Construir el instrumento base: cómo cruzar criterios y alternativas para decidir.</p>
+        </div>
+        <div class="card accent"><span class="badge">2</span>
+          <h3>Evaluación de sistemas</h3>
+          <p>Analizar sistemas de información en uso dentro de organizaciones.</p>
+        </div>
+        <div class="card accent"><span class="badge">3</span>
+          <h3>Evaluación de redes</h3>
+          <p>Mirar la infraestructura: rendimiento, seguridad, escalabilidad.</p>
+        </div>
+        <div class="card accent"><span class="badge">4</span>
+          <h3>Evaluación de software</h3>
+          <p>Calidad del producto y calidad en uso. El núcleo de esta unidad.</p>
+        </div>
+        <div class="card accent"><span class="badge">5</span>
+          <h3>Organización de sistemas</h3>
+          <p>Cómo se estructura el área tecnológica de una organización.</p>
+        </div>
+        <div class="card accent"><span class="badge">6</span>
+          <h3>Auditoría</h3>
+          <p>Cierre del recorrido: mirada externa y sistemática.</p>
+        </div>
+      </div>
+      <div class="footer"><span>Mapa anual</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+    <!-- 23. ¿Cómo analizar la calidad de una aplicación? -->
+    <section class="slide">
+      <div class="kicker">Checklist para analizar</div>
+      <h2>¿Cómo analizar la calidad de una aplicación?</h2>
+      <p class="subtitle">Para evaluar una aplicación, alcanza con cinco preguntas. Cada pregunta apunta a un
+        <b>atributo</b> distinto.</p>
+      <div class="check-list">
+        <div class="check-row">
+          <div class="check-q">¿Funciona correctamente?</div>
+          <div class="check-arrow">→</div>
+          <div class="check-a">Correctitud</div>
+        </div>
+        <div class="check-row">
+          <div class="check-q">¿Es confiable y estable?</div>
+          <div class="check-arrow">→</div>
+          <div class="check-a">Confiabilidad</div>
+        </div>
+        <div class="check-row">
+          <div class="check-q">¿Es rápida y eficiente?</div>
+          <div class="check-arrow">→</div>
+          <div class="check-a">Performance</div>
+        </div>
+        <div class="check-row">
+          <div class="check-q">¿Es fácil de usar?</div>
+          <div class="check-arrow">→</div>
+          <div class="check-a">Usabilidad</div>
+        </div>
+        <div class="check-row">
+          <div class="check-q">¿Se puede modificar o mejorar fácilmente?</div>
+          <div class="check-arrow">→</div>
+          <div class="check-a">Mantenibilidad</div>
+        </div>
+      </div>
+      <p class="lead" style="margin-top:24px">Cinco preguntas, cinco atributos, una evaluación que se puede
+        <b>explicar</b>. Eso es lo que vamos a sistematizar a lo largo de la materia.</p>
+      <div class="footer"><span>Fin de clase · Apertura de Unidad 1</span>
+        <div class="progress">
+          <div class="bar"></div>
+        </div><span class="num"></span>
+      </div>
+    </section>
+
+  </div>
+
+  <button class="view-toggle" id="viewToggle" aria-pressed="false"
+    title="Ver en pantalla completa, sin navegación visible">
+    <svg class="vt-icon vt-expand" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6" />
+    </svg>
+    <svg class="vt-icon vt-compress" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6" />
+    </svg>
+    <span class="vt-label">Pantalla completa</span>
+  </button>
+  <div class="exit-hint" id="exitHint">Pulsá <b>Esc</b> para salir</div>
+
+  <nav class="controls" aria-label="Navegación de slides">
+    <button class="btn secondary" onclick="prevSlide()" aria-label="Slide anterior">← Anterior</button>
+    <button class="btn" onclick="nextSlide()" aria-label="Slide siguiente">Siguiente →</button>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
