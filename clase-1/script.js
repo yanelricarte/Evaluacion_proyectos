@@ -16,9 +16,11 @@ function update(){
     if (bar) bar.style.width = ((current + 1) / slides.length * 100) + '%';
     if (num) num.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
   });
-  // Reset scroll del slide activo: que el título siempre quede a la vista
+  // Reset scroll del slide activo: que el título siempre quede a la vista.
+  // El scroll vive en .slide-body (no en .slide).
   const active = slides[current];
-  if (active) active.scrollTop = 0;
+  const activeBody = active?.querySelector('.slide-body');
+  if (activeBody) activeBody.scrollTop = 0;
   location.hash = 'slide-' + (current + 1);
   try { localStorage.setItem(STORAGE_KEY, String(current)); } catch (_) {}
 }

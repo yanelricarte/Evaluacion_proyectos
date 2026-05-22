@@ -120,27 +120,38 @@ p{margin:0}
 .slide{
   position:absolute;
   inset:0;
-  padding:clamp(36px, 4vw, 64px) clamp(28px, 6vw, 92px) clamp(120px, 10vw, 140px);
   opacity:0;
   transform:translateX(34px);
   transition:opacity .32s ease, transform .32s ease;
   display:flex;
   flex-direction:column;
-  justify-content:center;        /* fallback browsers viejos */
-  justify-content:safe center;   /* moderno: cuando el contenido excede, alinea desde arriba (no recorta el título) */
+  overflow:hidden;               /* el scroll vive en .slide-body, no en el slide */
+}
+.slide.active{opacity:1; transform:translateX(0); z-index:2}
+
+/* Wrapper interno con todo el contenido del slide. El footer queda como hermano
+   de este wrapper, así NO scrollea con el contenido y siempre vive en el bottom
+   del slide. */
+.slide-body{
+  flex:1;
+  min-height:0;                  /* permite que el flex item se encoja para scrollear */
+  padding:clamp(36px, 4vw, 64px) clamp(28px, 6vw, 92px) clamp(20px, 2.5vw, 36px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  justify-content:safe center;
   gap:0;
   overflow-y:auto;
   overflow-x:hidden;
   -webkit-overflow-scrolling:touch;
   scroll-behavior:smooth;
 }
-.slide.active{opacity:1; transform:translateX(0); z-index:2}
 
-/* En slides con quiz/contenido extenso fuerzo alineación desde arriba siempre,
-   para que el título quede fijo aunque se expandan los feedbacks. */
-.slide:has(.quiz),
-.slide:has(.matrix),
-.slide:has(.cost-chart){
+/* En slides con quiz/matrix/cost-chart, alineo desde arriba para que el título
+   quede fijo y el contenido crezca naturalmente hacia abajo. */
+.slide:has(.quiz) .slide-body,
+.slide:has(.matrix) .slide-body,
+.slide:has(.cost-chart) .slide-body{
   justify-content:flex-start;
 }
 
@@ -251,12 +262,14 @@ p,.body{
   text-wrap:balance;
 }
 
-/* ===== Footer ===== */
+/* ===== Footer =====
+   Hermano del .slide-body adentro del .slide (que es flex-column con overflow:hidden).
+   El .slide-body se queda con todo el espacio scrolleable; el footer queda
+   naturalmente al final, sin scroll ni sticky/fixed/absolute. Padding-bottom
+   reserva espacio para los controles fijos. */
 .footer{
-  position:absolute;
-  bottom:clamp(70px, 6vw, 90px);   /* arriba de los controles fijos */
-  left:clamp(28px, 6vw, 92px);
-  right:clamp(28px, 6vw, 92px);
+  flex-shrink:0;
+  padding:8px clamp(28px, 6vw, 92px) clamp(70px, 6vw, 90px);
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -264,26 +277,24 @@ p,.body{
   font-size:clamp(13px, .95vw, 18px);
   letter-spacing:.04em;
   gap:18px;
-  pointer-events:none;             /* no bloquea clics al scroll */
-  isolation:isolate;               /* crea stacking context para que ::before quede arriba del contenido scroll */
+  background:var(--bg);
+  position:relative;
 }
-/* Fade detrás del footer: en slides con scroll, oculta el contenido que pasa por detrás
-   para que el footer no se solape con el texto del slide. Los valores left/right negativos
-   exceden cualquier padding del slide; el slide tiene overflow-x:hidden para contenerlo. */
+/* Fade gradient sobre el borde superior, suavizando la transición con el
+   .slide-body que termina arriba. */
 .footer::before{
   content:"";
   position:absolute;
-  left:-100vw;
-  right:-100vw;
-  top:-44px;
-  bottom:calc(-1 * clamp(70px, 6vw, 90px));
-  background:linear-gradient(180deg, rgba(246,247,249,0) 0%, var(--bg) 55%);
+  left:0;
+  right:0;
+  top:-24px;
+  height:24px;
+  background:linear-gradient(180deg, rgba(246,247,249,0) 0%, var(--bg) 100%);
   pointer-events:none;
-  z-index:-1;
 }
-/* En el cover el fondo es distinto a --bg, ajustamos el fade para encajar */
+.slide.cover .footer{background:#f2f1f4}
 .slide.cover .footer::before{
-  background:linear-gradient(180deg, rgba(242,241,244,0) 0%, #f2f1f4 55%);
+  background:linear-gradient(180deg, rgba(242,241,244,0) 0%, #f2f1f4 100%);
 }
 .footer .progress, .footer .num, .footer span{pointer-events:auto}
 .progress{
@@ -1216,7 +1227,7 @@ body.fullscreen-mode .controls,
 body.fullscreen-mode .view-toggle,
 body.fullscreen-mode .footer{display:none}
 body.fullscreen-mode .exit-hint{display:block; animation:fadeOut .25s ease 3s forwards}
-body.fullscreen-mode .slide{padding:46px 80px 56px}
+body.fullscreen-mode .slide-body{padding:46px 80px 56px}
 
 @keyframes fadeOut{to{opacity:0}}
 
@@ -1261,8 +1272,10 @@ body.fullscreen-mode .slide{padding:46px 80px 56px}
     width:100vw;
     height:auto;
     min-height:auto;
-    padding:24px;
+    overflow:visible;
+    display:block;
   }
+  .slide-body{padding:24px; overflow:visible; display:block}
   .controls, .view-toggle, .exit-hint{display:none}
   .footer{display:none}
 }
@@ -1284,7 +1297,63 @@ body.fullscreen-mode .slide{padding:46px 80px 56px}
   .flow{grid-template-columns:1fr 1fr}
   .flow .step:not(:last-child)::after{display:none}
   .quiz-options{grid-template-columns:1fr}
-  .cost-chart{grid-template-columns:repeat(3, 1fr); height:auto; min-height:340px; gap:14px}
+  /* Cost chart · layout horizontal en tablet y mobile. La grilla de 6 barras
+     en 3 columnas (2 filas) hace que los cc-stage labels (bottom:-26px) se solapen
+     con los bars de la fila siguiente. Una fila por etapa es más clara y escala
+     mejor en cualquier ancho. */
+  .cost-chart{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    height:auto;
+    min-height:0;
+    padding:18px;
+    align-items:stretch;
+  }
+  .cc-bar{
+    display:grid;
+    grid-template-columns:140px 1fr auto;
+    gap:12px;
+    align-items:center;
+    height:auto;
+    min-height:38px;
+  }
+  .cc-bar::before{
+    width:var(--h, 10%);
+    min-width:10px;             /* barras chicas (4%, 8%) quedan visibles */
+    height:16px;
+    border-radius:0 8px 8px 0;
+    box-shadow:none;
+    grid-column:2;
+    grid-row:1;
+    align-self:center;
+    background:linear-gradient(90deg, var(--primary-3), var(--primary));
+  }
+  .cc-bar.tall::before{
+    background:linear-gradient(90deg, var(--primary-2), var(--primary-dark));
+  }
+  .cc-stage{
+    position:static;
+    width:auto;
+    text-align:left;
+    font-size:13px;
+    color:var(--ink-soft);
+    font-weight:700;
+    grid-column:1;
+    grid-row:1;
+    line-height:1.3;
+  }
+  .cc-val{
+    position:static;
+    font-size:11px;
+    padding:2px 6px;
+    grid-column:3;
+    grid-row:1;
+    border:1px solid var(--gray-3);
+    background:#fff;
+    border-radius:6px;
+    white-space:nowrap;
+  }
   .mm-branches{grid-template-columns:1fr}
   .mm-branches::before{display:none}
   .mm-branch::before{display:none}
@@ -1367,13 +1436,13 @@ body.fullscreen-mode .slide{padding:46px 80px 56px}
 
 /* ===== Responsive · Celular (landscape y vertical) ===== */
 @media (max-width: 600px){
-  .slide{
-    padding:24px 20px 130px;
+  .slide-body{
+    padding:24px 20px 16px;
     justify-content:flex-start;       /* sin centrado vertical: el contenido fluye desde arriba */
   }
   /* En el cover, dejar aire respecto a la franja fucsia lateral (18px) y al borde superior */
-  .slide.cover{
-    padding:44px 24px 130px 36px;
+  .slide.cover .slide-body{
+    padding:44px 24px 16px 36px;
   }
   .kicker{font-size:12px; padding:6px 12px; margin-bottom:12px}
   .cover .kicker{margin-bottom:22px}
@@ -1413,11 +1482,12 @@ body.fullscreen-mode .slide{padding:46px 80px 56px}
   .table thead, .table tbody, .table tr{display:table; width:100%; min-width:560px; table-layout:fixed}
   .table th, .table td{padding:10px 12px; font-size:13px; line-height:1.4}
 
-  /* Cost chart en mobile: 2 columnas con row-gap amplio para que los labels
-     de stage (bottom:-26px) no caigan adentro de las barras de la fila siguiente */
-  .cost-chart{grid-template-columns:repeat(2, 1fr); min-height:520px; padding:14px 10px 0; column-gap:14px; row-gap:48px}
-  .cc-stage{font-size:11px; bottom:-26px}
-  .cc-val{font-size:11px; padding:1px 4px}
+  /* Cost chart · layout horizontal ya definido en ≤980px. En mobile sólo
+     compactamos la columna de etiquetas para que entren los nombres largos. */
+  .cost-chart{padding:12px}
+  .cc-bar{grid-template-columns:96px 1fr auto; gap:8px; min-height:32px}
+  .cc-bar::before{height:13px}
+  .cc-stage{font-size:12px}
 
   /* Ranking de la matriz · barra full-width abajo para no comprimir el nombre */
   .mx-rank-bar{grid-template-columns:1fr auto; gap:6px 10px}
@@ -1446,16 +1516,17 @@ body.fullscreen-mode .slide{padding:46px 80px 56px}
   }
   .mm-cost b{font-size:12.5px}
 
-  /* Definiciones */
-  .def-block{flex-direction:column; padding:16px 18px; gap:10px}
+  /* Definiciones · en flex-direction:column, .def-body { flex:1 } resuelve
+     flex-basis:0 en main axis y colapsa el cuerpo. flex:1 1 auto usa
+     content-based basis y garantiza altura del contenido. */
+  .def-block{flex-direction:column; padding:16px 18px; gap:10px; align-items:flex-start}
+  .def-body{flex:1 1 auto; width:100%}
   .def-badge{width:40px; height:40px; font-size:20px}
   .ieee-box{padding:12px 14px; font-size:13px; line-height:1.45}
 
-  /* Footer y controles más compactos */
+  /* Footer y controles más compactos en mobile */
   .footer{
-    bottom:74px;
-    left:16px;
-    right:16px;
+    padding:6px 16px 70px;
     font-size:11px;
     gap:10px;
   }
@@ -1470,7 +1541,7 @@ body.fullscreen-mode .slide{padding:46px 80px 56px}
 
 /* ===== Celular pequeño ===== */
 @media (max-width: 420px){
-  .slide{padding:20px 16px 130px}
+  .slide-body{padding:20px 16px 16px}
   h1{font-size:30px}
   h2{font-size:22px}
   .bigline{font-size:18px}
