@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Evaluación de Proyectos">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d52b70"/>
+      <stop offset="100%" stop-color="#b31759"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#g)"/>
+  <rect x="16" y="12" width="32" height="42" rx="5" fill="#ffffff"/>
+  <rect x="24" y="8" width="16" height="8" rx="2.5" fill="#7f1228"/>
+  <path d="M22 32 L29 39 L43 25" fill="none" stroke="#b31759" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
