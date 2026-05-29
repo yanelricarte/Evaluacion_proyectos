@@ -59,6 +59,51 @@ document.querySelectorAll('.options').forEach(group => {
   });
 });
 
+// ===== Ejercicio de producción (feedback heurístico) =====
+const VAGUE_WORDS = /\b(buena?|bonit[oa]|lind[oa]|f[áa]cil|r[áa]pid[oa]|c[óo]modo|agradable|sencill[oa]|amigable|funciona\s+bien|anda\s+bien)\b/gi;
+const ACTION_VERBS = /\b(muestra|impide|registra|permite|bloquea|confirma|solicita|valida|genera|emite|rechaza|env[íi]a|guarda|elimina|edita|cancela|verifica|notifica|carga|filtra|ordena|exporta|imprime|comprueba|contabiliza)\b/gi;
+const PROD_KEY = 'clase2-3:prod-login';
+
+const prodInput = document.getElementById('prod-login');
+const prodBtn = document.getElementById('prod-login-btn');
+const prodFb = document.getElementById('prod-login-feedback');
+
+if (prodInput && prodBtn && prodFb) {
+  try {
+    const saved = localStorage.getItem(PROD_KEY);
+    if (saved) prodInput.value = saved;
+  } catch (_) {}
+  prodInput.addEventListener('input', () => {
+    try { localStorage.setItem(PROD_KEY, prodInput.value); } catch (_) {}
+  });
+
+  prodBtn.addEventListener('click', () => {
+    const text = (prodInput.value || '').trim();
+    prodFb.classList.remove('ok', 'partial', 'no');
+    if (!text) {
+      prodFb.classList.add('no');
+      prodFb.innerHTML = '<b>No escribiste todavía.</b> Probá con un verbo concreto: <i>"el sistema impide…"</i> o <i>"el sistema muestra…"</i>.';
+      return;
+    }
+    const vague = text.match(VAGUE_WORDS) || [];
+    const verbs = text.match(ACTION_VERBS) || [];
+    const checks = [];
+
+    if (verbs.length) checks.push(`<li>✔ Usa un verbo observable (<b>${[...new Set(verbs.map(v => v.toLowerCase()))].join(', ')}</b>).</li>`);
+    else checks.push('<li>✘ No detecté un verbo observable. Probá con: <i>muestra, impide, registra, permite, bloquea, confirma…</i></li>');
+
+    if (!vague.length) checks.push('<li>✔ No usa palabras vagas ("bueno", "fácil", "lindo").</li>');
+    else checks.push(`<li>✘ Hay palabras vagas (<b>${[...new Set(vague.map(v => v.toLowerCase()))].join(', ')}</b>). No permiten verificar si el ítem se cumple o no.</li>`);
+
+    if (text.length < 20) checks.push('<li>✘ Es muy corto. Describí <b>qué hace</b> el sistema y <b>en qué condición</b>.</li>');
+    else checks.push('<li>✔ Describe qué hace y en qué condición.</li>');
+
+    const score = (verbs.length ? 1 : 0) + (!vague.length ? 1 : 0) + (text.length >= 20 ? 1 : 0);
+    prodFb.classList.add(score === 3 ? 'ok' : score >= 2 ? 'partial' : 'no');
+    prodFb.innerHTML = `<b>Devolución automática.</b> Es un primer filtro — la versión final la decidimos entre todos.<ul>${checks.join('')}</ul>`;
+  });
+}
+
 // ===== Modo pantalla completa =====
 const viewToggle = document.getElementById('viewToggle');
 function setFullscreen(on) {
