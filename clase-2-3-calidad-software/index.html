@@ -593,23 +593,28 @@
             <h2 class="title">Para tu carpeta — Síntesis</h2>
             <div class="slide-count"></div>
           </div>
-          <div class="content fit-center">
+          <div class="content cloze-content">
             <article class="card">
-              <div class="pill">Registro en la carpeta</div>
+              <div class="pill">Registro en la carpeta — Versión interactiva</div>
               <div class="reg-head">
-                <span><b>Fecha:</b> <span class="blank short"></span></span>
+                <span><b>Fecha:</b></span>
                 <span><b>Título:</b> Calidad del software</span>
                 <span><b>Materia:</b> Evaluación de Proyectos</span>
               </div>
-              <p>Copiá el encabezado y estas frases en tu carpeta, y <b>completá los espacios</b> con tus palabras. Te queda el resumen de la unidad para estudiar.</p>
-              <ul class="cloze-list">
-                <li>La calidad no es solo que «ande»: también es <span class="blank"></span></li>
-                <li><b>QA</b> se enfoca en el <span class="blank short"></span> (prevenir); <b>QC</b>, en el <span class="blank short"></span> (detectar).</li>
-                <li><b>Verificación</b> pregunta «¿<span class="blank short"></span>?»; <b>validación</b>, «¿<span class="blank short"></span>?».</li>
-                <li>Tipos de error: <b>omisión</b> = <span class="blank short"></span>, <b>excedente</b> = <span class="blank short"></span>, <b>incorrecto</b> = <span class="blank short"></span>.</li>
-                <li>Las <b>4 dimensiones</b> del producto: <span class="blank"></span></li>
-                <li>Una <b>buena métrica</b> dice <span class="blank short"></span> y <span class="blank short"></span>.</li>
+              <p>Completá los espacios <b>con tus palabras</b> y tocá <b>Verificar</b>. Si te trabás en una, tocá la lucecita <span class="cloze-hint-icon" aria-hidden="true">💡</span> para ver una pista. Al final, copiá el resumen corregido a tu carpeta.</p>
+              <ul class="cloze-list" id="clozeList">
+                <li>La calidad no es solo que «ande»: también es <span class="cloze-wrap"><input class="cloze-input" type="text" id="ci0" data-keywords="útil,confiable,usable,funcional,mantenible,eficiente,accesible,seguro" autocomplete="off"><span class="cloze-fb" id="cf0"></span><button class="cloze-hint" data-hint="Pensá en atributos del software: ¿qué hace que un programa sea valioso para quien lo usa?" aria-label="Pista">💡</button></span></li>
+                <li><b>QA</b> se enfoca en el <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci1" data-answers="proceso" autocomplete="off"><span class="cloze-fb" id="cf1"></span><button class="cloze-hint" data-hint="QA previene: trabaja sobre cómo se construye (el ___)" aria-label="Pista">💡</button></span> (prevenir); <b>QC</b>, en el <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci2" data-answers="producto" autocomplete="off"><span class="cloze-fb" id="cf2"></span><button class="cloze-hint" data-hint="QC detecta: revisa lo que ya está construido (el ___)" aria-label="Pista">💡</button></span> (detectar).</li>
+                <li><b>Verificación</b> pregunta «¿<span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci3" data-answers="está bien construido,se construyó correctamente,se hizo bien,lo hice bien,está bien hecho,lo construí bien" autocomplete="off"><span class="cloze-fb" id="cf3"></span><button class="cloze-hint" data-hint="Verificación mira hacia adentro: el código, la construcción" aria-label="Pista">💡</button></span>?»; <b>validación</b>, «¿<span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci4" data-answers="resuelve la necesidad,es el producto correcto,satisface la necesidad,es lo que necesita el usuario,responde a la necesidad" autocomplete="off"><span class="cloze-fb" id="cf4"></span><button class="cloze-hint" data-hint="Validación mira hacia afuera: el usuario, el problema real" aria-label="Pista">💡</button></span>?».</li>
+                <li>Tipos de error: <b>omisión</b> = <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci5" data-answers="falta algo,falta,algo que falta,algo faltante" autocomplete="off"><span class="cloze-fb" id="cf5"></span><button class="cloze-hint" data-hint="¿Qué tipo de error es cuando algo directamente no está?" aria-label="Pista">💡</button></span>, <b>excedente</b> = <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci6" data-answers="sobra algo,sobra,algo que sobra,innecesario,algo innecesario" autocomplete="off"><span class="cloze-fb" id="cf6"></span><button class="cloze-hint" data-hint="¿Qué tipo de error es cuando hay algo que nadie pidió?" aria-label="Pista">💡</button></span>, <b>incorrecto</b> = <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci7" data-answers="está pero funciona mal,funciona mal,está mal,anda mal,está pero anda mal,hecho mal" autocomplete="off"><span class="cloze-fb" id="cf7"></span><button class="cloze-hint" data-hint="¿Qué tipo de error es cuando algo existe pero no opera como debería?" aria-label="Pista">💡</button></span>.</li>
+                <li>Las <b>4 dimensiones</b> del producto: <span class="cloze-wrap"><input class="cloze-input" type="text" id="ci8" data-keywords="funcionalidad,usabilidad,rendimiento,fiabilidad" placeholder="ej: funcionalidad, usabilidad…" autocomplete="off"><span class="cloze-fb" id="cf8"></span><button class="cloze-hint" data-hint="Mirá la slide anterior: las cuatro con iconos" aria-label="Pista">💡</button></span></li>
+                <li>Una <b>buena métrica</b> dice <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci9" data-answers="qué mide,qué,mide qué,qué mide," autocomplete="off"><span class="cloze-fb" id="cf9"></span><button class="cloze-hint" data-hint="Lo primero que debe decir una métrica es… (el objeto)" aria-label="Pista">💡</button></span> y <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci10" data-answers="cómo se mide,cómo,mide cómo,cómo la mide,cómo medirla,cómo se calcula" autocomplete="off"><span class="cloze-fb" id="cf10"></span><button class="cloze-hint" data-hint="Lo segundo que debe decir una métrica es… (la unidad o método)" aria-label="Pista">💡</button></span>.</li>
               </ul>
+              <div class="cloze-bar">
+                <button class="prod-check" id="clozeCheck">Verificar</button>
+                <button class="dd-reset" id="clozeReset">Reiniciar</button>
+                <div class="dd-score" id="clozeScore" aria-live="polite"></div>
+              </div>
             </article>
           </div>
         </div>
