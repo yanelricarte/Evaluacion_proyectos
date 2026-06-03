@@ -35,19 +35,45 @@ liveRegion.className = 'sr-only';
 liveRegion.setAttribute('aria-live', 'polite');
 document.body.appendChild(liveRegion);
 
+function isMobile(){
+  return window.innerWidth <= 768;
+}
+
 function update(){
-  slides.style.transform = `translateX(-${current * 100}vw)`;
+  if (isMobile()) {
+    slideEls[current].scrollIntoView({ behavior:'smooth', block:'start' });
+    // En mobile todas las slides son alcanzables por scroll
+    slideEls.forEach(s => {
+      s.removeAttribute('inert');
+      s.setAttribute('aria-hidden', 'false');
+    });
+  } else {
+    slides.style.transform = `translateX(-${current * 100}vw)`;
+    // Solo en desktop: slides fuera de pantalla no son focusables
+    slideEls.forEach((s, i) => {
+      const off = i !== current;
+      s.toggleAttribute('inert', off);
+      s.setAttribute('aria-hidden', String(off));
+    });
+  }
   dots.forEach((d, i) => d.classList.toggle('active', i === current));
-  // Las slides fuera de pantalla no deben ser focusables ni leídas
-  slideEls.forEach((s, i) => {
-    const off = i !== current;
-    s.toggleAttribute('inert', off);
-    s.setAttribute('aria-hidden', String(off));
-  });
   const title = slideEls[current].querySelector('h1, h2');
   liveRegion.textContent = `Slide ${current + 1} de ${total}` + (title ? ': ' + title.textContent.trim() : '');
   try { localStorage.setItem(STORAGE_KEY, String(current)); } catch(_) {}
 }
+
+// Al cambiar el tamaño de la ventana, refrescar el modo
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (!isMobile()) {
+      slides.style.transform = `translateX(-${current * 100}vw)`;
+      slides.style.transition = 'none';
+      requestAnimationFrame(() => requestAnimationFrame(() => { slides.style.transition = ''; }));
+    }
+  }, 200);
+});
 
 function goTo(i){
   current = Math.max(0, Math.min(total - 1, i));
