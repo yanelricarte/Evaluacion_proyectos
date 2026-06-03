@@ -285,3 +285,145 @@ if (h) {
   } catch (_) {}
 }
 update();
+
+// ===== Registro para la carpeta: cloze interactivo con feedback =====
+(function () {
+  const list = document.getElementById('clozeList');
+  if (!list) return;
+
+  const inputs = Array.from(list.querySelectorAll('.cloze-input'));
+  const checkBtn = document.getElementById('clozeCheck');
+  const resetBtn = document.getElementById('clozeReset');
+  const score = document.getElementById('clozeScore');
+  const hints = Array.from(list.querySelectorAll('.cloze-hint'));
+
+  function normalize(s) {
+    return s.toLowerCase().replace(/[¿?¡!,.;:]/g, '').replace(/\s+/g, ' ').trim();
+  }
+
+  function getAccepted(el) {
+    return (el.dataset.answers || '').split(',').map(s => normalize(s)).filter(Boolean);
+  }
+  function getKeywords(el) {
+    return (el.dataset.keywords || '').split(',').map(s => normalize(s)).filter(Boolean);
+  }
+
+  function checkInput(el) {
+    const val = normalize(el.value);
+    const fb = document.getElementById(el.id.replace('ci', 'cf'));
+    if (!fb) return false;
+
+    if (!val) {
+      el.className = 'cloze-input' + (el.classList.contains('short') ? ' short' : '');
+      fb.textContent = '';
+      fb.className = 'cloze-fb';
+      return false;
+    }
+
+    let correct = false;
+    const accepted = getAccepted(el);
+    if (accepted.length) {
+      correct = accepted.some(a => val === a || val.startsWith(a) || a.startsWith(val));
+    }
+
+    const keywords = getKeywords(el);
+    if (keywords.length && !correct) {
+      const wordsInVal = val.split(/\s+/);
+      const found = keywords.filter(kw => wordsInVal.some(w => w.includes(kw) || kw.includes(w)));
+      correct = found.length >= Math.min(2, Math.ceil(keywords.length / 2));
+      if (!correct && found.length) {
+        el.className = 'cloze-input' + (el.classList.contains('short') ? ' short' : '') + ' no';
+        fb.textContent = found.length < 2
+          ? 'Cerca: falta alguna de estas ideas: ' + keywords.join(', ')
+          : 'Falta al menos una idea clave. Repasá la unidad.';
+        fb.className = 'cloze-fb no show';
+        return false;
+      }
+    }
+
+    if (!accepted.length && !keywords.length) {
+      correct = val.length >= 2;
+    }
+
+    if (correct) {
+      el.className = 'cloze-input' + (el.classList.contains('short') ? ' short' : '') + ' ok';
+      fb.textContent = '¡Bien!';
+      fb.className = 'cloze-fb ok show';
+      return true;
+    }
+    el.className = 'cloze-input' + (el.classList.contains('short') ? ' short' : '') + ' no';
+    fb.textContent = accepted.length ? 'Probá con: ' + accepted[0] : 'Revisá el contenido de la unidad.';
+    fb.className = 'cloze-fb no show';
+    return false;
+  }
+
+  function resetAll() {
+    inputs.forEach(el => {
+      el.value = '';
+      el.className = 'cloze-input' + (el.classList.contains('short') ? ' short' : '');
+      const fb = document.getElementById(el.id.replace('ci', 'cf'));
+      if (fb) { fb.textContent = ''; fb.className = 'cloze-fb'; }
+    });
+    hints.forEach(h => h.classList.remove('revealed'));
+    score.textContent = '';
+    score.className = 'dd-score';
+  }
+
+  hints.forEach(h => {
+    h.addEventListener('click', () => {
+      const wrap = h.closest('.cloze-wrap');
+      if (!wrap) return;
+      const input = wrap.querySelector('.cloze-input');
+      const fb = input ? document.getElementById(input.id.replace('ci', 'cf')) : null;
+      if (!fb) return;
+      h.classList.toggle('revealed');
+      if (h.classList.contains('revealed')) {
+        fb.textContent = '💡 ' + (h.dataset.hint || 'Revisá el contenido de la unidad.');
+        fb.className = 'cloze-fb show';
+        fb.style.background = '#2f3a4f';
+      } else {
+        fb.textContent = '';
+        fb.className = 'cloze-fb';
+        fb.style.background = '';
+      }
+    });
+  });
+
+  inputs.forEach((el, i) => {
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        checkInput(el);
+        const next = inputs[i + 1];
+        if (next) setTimeout(() => next.focus(), 100);
+      }
+    });
+    el.addEventListener('input', () => {
+      el.className = 'cloze-input' + (el.classList.contains('short') ? ' short' : '');
+      const fb = document.getElementById(el.id.replace('ci', 'cf'));
+      if (fb) { fb.textContent = ''; fb.className = 'cloze-fb'; }
+      score.textContent = '';
+      score.className = 'dd-score';
+    });
+  });
+
+  checkBtn.addEventListener('click', () => {
+    hints.forEach(h => h.classList.remove('revealed'));
+    let ok = 0, answered = 0;
+    inputs.forEach(el => {
+      if (el.value.trim()) answered++;
+      if (checkInput(el)) ok++;
+    });
+    const total = inputs.length;
+    const cls = ok === total ? 'ok' : ok >= Math.ceil(total * 0.6) ? 'partial' : 'no';
+    const msg = ok === total
+      ? '¡Completaste todo bien! Copiá a mano el resumen en tu carpeta.'
+      : answered < total
+        ? 'Completá todos los espacios y volvé a verificar.'
+        : 'Revisá las respuestas marcadas y corregí.';
+    score.className = 'dd-score ' + cls;
+    score.innerHTML = `<b>${ok}/${total} correctas.</b> ${msg}`;
+  });
+
+  resetBtn.addEventListener('click', resetAll);
+})();

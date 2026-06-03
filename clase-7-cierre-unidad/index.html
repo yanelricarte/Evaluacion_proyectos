@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 </head>
 <body>
 <div class="deck" id="deck">
@@ -465,6 +465,35 @@
     <div class="footer"><span>Revisión colectiva</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
+  <!-- 17b. Para tu carpeta — Registro -->
+  <section class="slide">
+    <div class="kicker">Para tu carpeta</div>
+    <h2>Registro de la unidad — Síntesis</h2>
+    <p class="subtitle">Completá los espacios. Si alguno no sale, la <span class="cloze-hint-icon" aria-hidden="true">💡</span> da una pista. Lo que quede acá, copialo <b>a mano en tu carpeta</b>: es el resumen de la unidad.</p>
+    <div class="card cloze-content">
+      <div class="reg-head">
+        <span><b>Fecha:</b> ____ / ____ / ______</span>
+        <span><b>Título:</b> Cierre Unidad 1 — Evaluación de software</span>
+        <span><b>Materia:</b> Evaluación de Proyectos</span>
+      </div>
+      <ul class="cloze-list" id="clozeList">
+        <li>La calidad se mira en dos planos: calidad del <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci0" data-answers="producto" autocomplete="off"><span class="cloze-fb" id="cf0"></span><button class="cloze-hint" data-hint="Qué hace el sistema y cómo lo hace (el ___)" aria-label="Pista">💡</button></span> y calidad en <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci1" data-answers="uso" autocomplete="off"><span class="cloze-fb" id="cf1"></span><button class="cloze-hint" data-hint="Cómo lo vive el usuario real en su contexto (calidad en ___)" aria-label="Pista">💡</button></span>.</li>
+        <li>Un atributo amplio se vuelve evaluable cuando se traduce en un <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci2" data-answers="criterio,criterio observable,parámetro" autocomplete="off"><span class="cloze-fb" id="cf2"></span><button class="cloze-hint" data-hint="Forma observable de mirar un atributo; en la bibliografía también se llama parámetro" aria-label="Pista">💡</button></span> observable.</li>
+        <li>Los tres tipos de problema: <b>omisión</b> = <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci3" data-answers="falta algo,falta,algo que falta,algo faltante" autocomplete="off"><span class="cloze-fb" id="cf3"></span><button class="cloze-hint" data-hint="Cuando algo que debería estar directamente no está" aria-label="Pista">💡</button></span>, <b>excedente</b> = <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci4" data-answers="sobra algo,sobra,algo que sobra,innecesario,algo innecesario" autocomplete="off"><span class="cloze-fb" id="cf4"></span><button class="cloze-hint" data-hint="Cuando hay algo innecesario que nadie pidió" aria-label="Pista">💡</button></span>, <b>incorrecto</b> = <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci5" data-answers="está pero funciona mal,funciona mal,está mal,anda mal,está pero anda mal,hecho mal" autocomplete="off"><span class="cloze-fb" id="cf5"></span><button class="cloze-hint" data-hint="Cuando algo existe pero no opera como debería" aria-label="Pista">💡</button></span>.</li>
+        <li>Las tres técnicas para diseñar casos de prueba: clases de <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci6" data-answers="equivalencia" autocomplete="off"><span class="cloze-fb" id="cf6"></span><button class="cloze-hint" data-hint="Agrupar datos por comportamiento esperado y probar un representante de cada grupo" aria-label="Pista">💡</button></span>, análisis de valores <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci7" data-answers="límite,limite" autocomplete="off"><span class="cloze-fb" id="cf7"></span><button class="cloze-hint" data-hint="Los bordes del rango: justo adentro y justo afuera" aria-label="Pista">💡</button></span> y conjetura de <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci8" data-answers="errores,error" autocomplete="off"><span class="cloze-fb" id="cf8"></span><button class="cloze-hint" data-hint="Anticipar fallos no explicitados, apelando a la experiencia" aria-label="Pista">💡</button></span>.</li>
+        <li><b>QA</b> trabaja sobre el <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci9" data-answers="proceso" autocomplete="off"><span class="cloze-fb" id="cf9"></span><button class="cloze-hint" data-hint="QA previene: actúa sobre cómo se construye (el ___)" aria-label="Pista">💡</button></span> para <b>prevenir</b>; <b>QC</b>, sobre el <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci10" data-answers="producto" autocomplete="off"><span class="cloze-fb" id="cf10"></span><button class="cloze-hint" data-hint="QC verifica: revisa lo ya construido (el ___)" aria-label="Pista">💡</button></span> para <b>detectar</b>.</li>
+        <li>El instrumento se elige según el propósito: para varias dimensiones a la vez, una <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci11" data-answers="rúbrica,rubrica,rúbrica analítica,rubrica analitica" autocomplete="off"><span class="cloze-fb" id="cf11"></span><button class="cloze-hint" data-hint="Evalúa varios criterios con niveles descriptivos; da una mirada integral" aria-label="Pista">💡</button></span>; para verificar requisitos mínimos (cumple / no cumple), una lista de <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci12" data-answers="cotejo" autocomplete="off"><span class="cloze-fb" id="cf12"></span><button class="cloze-hint" data-hint="Primer filtro: presencia / ausencia de requisitos" aria-label="Pista">💡</button></span>.</li>
+        <li>La cadena completa de la evaluación: atributo → criterio → caso de prueba → <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci13" data-answers="evidencia,evidencias" autocomplete="off"><span class="cloze-fb" id="cf13"></span><button class="cloze-hint" data-hint="Dato o resultado que produce el caso de prueba y sostiene la evaluación" aria-label="Pista">💡</button></span> → instrumento → <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci14" data-answers="conclusión,conclusion,conclusión técnica,conclusion tecnica" autocomplete="off"><span class="cloze-fb" id="cf14"></span><button class="cloze-hint" data-hint="La decisión técnica final, defendible con evidencia" aria-label="Pista">💡</button></span>.</li>
+      </ul>
+      <div class="cloze-bar">
+        <button class="prod-check" id="clozeCheck">Verificar</button>
+        <button class="dd-reset" id="clozeReset">Reiniciar</button>
+        <div class="dd-score" id="clozeScore" aria-live="polite"></div>
+      </div>
+    </div>
+    <div class="footer"><span>Registro para la carpeta</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
   <!-- 18. Próxima clase -->
   <section class="slide">
     <div class="kicker">Próxima clase</div>
@@ -525,6 +554,6 @@
   <button class="btn" onclick="nextSlide()">Siguiente →</button>
 </div>
 
-<script src="script.js?v=5"></script>
+<script src="script.js?v=6"></script>
 </body>
 </html>
