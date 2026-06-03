@@ -8,9 +8,11 @@ Material didáctico de la materia **Evaluación de Proyectos** (7.º año, orien
 
 | Carpeta | Tema | Slides / secciones |
 |---|---|---|
-| [clase-2-3-calidad-software/](clase-2-3-calidad-software/) | Calidad del software (QA/QC, V&V, criterios omisión/excedente/incorrecto, atributos, métricas) | 10 slides |
+| [clase-1/](clase-1/) | Presentación de la materia e introducción a la calidad: atributos, matriz de evaluación ponderada en vivo y mapa anual | 25 slides |
+| [clase-2-3-calidad-software/](clase-2-3-calidad-software/) | Calidad del software (QA/QC, V&V, criterios omisión/excedente/incorrecto, atributos, métricas) | 21 slides (19 base + 2 del TP2 en modo `?presencial`) |
 | [clase-4-5-casos-prueba/](clase-4-5-casos-prueba/) | Diseño de casos de prueba (clases de equivalencia, valores límite, conjetura de errores) | 19 slides |
 | [clase-6-instrumentos-evaluacion/](clase-6-instrumentos-evaluacion/) | Instrumentos de evaluación (lista de cotejo, escala de valoración, rúbrica analítica) | 34 slides |
+| [clase-7-cierre-unidad/](clase-7-cierre-unidad/) | Cierre integrador de la unidad: repaso, mapa conceptual, esquema de 7 pasos, auto-test, metacognición y lanzamiento de la actividad integradora | 21 slides |
 | [actividad-integradora/](actividad-integradora/) | Actividad integradora de cierre — escenario único "App de Reservas de Canchas" | 5 pasos |
 
 > La actividad integradora es **viva**: se actualiza cuando se agregan conceptos a las clases de la unidad. Cuando empiece la Unidad 2, va a tener su propia carpeta `actividad-integradora-…`.
