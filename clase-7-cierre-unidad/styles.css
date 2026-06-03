@@ -794,6 +794,31 @@ li{font-size:clamp(15px, 1.15vw, 20px); line-height:1.5; margin:6px 0; color:var
   margin:0;
 }
 
+/* ===== Enlaces de cierre (material teórico + actividad) ===== */
+.closing-links{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin-top:30px;
+  flex-wrap:wrap;
+}
+.closing-link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 24px;
+  border-radius:14px;
+  background:linear-gradient(135deg, var(--primary), var(--primary-2));
+  color:#fff;
+  font-weight:800;
+  font-size:clamp(16px, 1.2vw, 20px);
+  text-decoration:none;
+  box-shadow:0 12px 24px rgba(179,23,89,.22);
+  transition:.18s ease;
+}
+.closing-link:hover{filter:brightness(1.05); transform:translateY(-2px)}
+.closing-link svg{flex:0 0 auto}
+
 /* ===== Botón pantalla completa ===== */
 .view-toggle{
   position:fixed;
