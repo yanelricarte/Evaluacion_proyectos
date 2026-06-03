@@ -11,6 +11,7 @@ function showSlide(index){
   slides[current].classList.remove('active');
   current = Math.max(0, Math.min(index, slides.length - 1));
   slides[current].classList.add('active');
+  window.scrollTo(0, 0);
   counter.textContent = `${current + 1} / ${slides.length}`;
   progressFill.style.width = `${((current + 1) / slides.length) * 100}%`;
   prevBtn.disabled = current === 0;

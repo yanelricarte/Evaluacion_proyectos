@@ -16,11 +16,9 @@ function update(){
     if (bar) bar.style.width = ((current + 1) / slides.length * 100) + '%';
     if (num) num.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
   });
-  // Reset scroll del slide activo: que el título siempre quede a la vista.
-  // El scroll vive en .slide-body (no en .slide).
-  const active = slides[current];
-  const activeBody = active?.querySelector('.slide-body');
-  if (activeBody) activeBody.scrollTop = 0;
+  // Reset scroll: que el título de la slide activa siempre quede a la vista.
+  // El scroll lo maneja la página (cada slide es min-height:100vh).
+  window.scrollTo(0, 0);
   location.hash = 'slide-' + (current + 1);
   try { localStorage.setItem(STORAGE_KEY, String(current)); } catch (_) {}
 }

@@ -81,8 +81,7 @@ html,body{
   margin:0;
   padding:0;
   width:100%;
-  height:100%;
-  overflow:hidden;
+  overflow-x:hidden;
   background:var(--bg);
   color:var(--ink);
   font-family:"Inter",system-ui,sans-serif;
@@ -100,51 +99,39 @@ h1,h2,h3,h4{
 p{margin:0}
 
 /* ===== Deck y slides =====
-   El deck usa position:fixed para ocupar TODO el viewport visible,
-   independientemente del comportamiento de body/html en cada browser. */
+   Cada slide ocupa el alto de la ventana con min-height:100vh y la página
+   scrollea normalmente. Sin position:fixed/absolute (que en algunos browsers
+   —Brave— renderiza corto y deja el footer a media pantalla). */
 .deck{
-  position:fixed;
-  inset:0;
+  position:relative;
   width:100%;
-  height:100%;              /* del html que ya es 100% */
   background:
     radial-gradient(circle at 92% 10%, rgba(214,41,108,.07), transparent 32%),
     radial-gradient(circle at 4% 92%, rgba(239,125,167,.06), transparent 30%),
     linear-gradient(135deg, #fffdfd 0%, #ffffff 55%, var(--bg) 100%);
 }
-/* Soporte moderno: dvh para mobile con barra de URL dinámica */
-@supports (height: 100dvh){
-  .deck{height:100dvh}
-}
 
 .slide{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  transform:translateX(34px);
-  transition:opacity .32s ease, transform .32s ease;
-  display:flex;
+  display:none;
+  position:relative;
+  min-height:100vh;
+  min-height:100dvh;
   flex-direction:column;
-  overflow:hidden;               /* el scroll vive en .slide-body, no en el slide */
 }
-.slide.active{opacity:1; transform:translateX(0); z-index:2}
+.slide.active{display:flex}
 
 /* Wrapper interno con todo el contenido del slide. El footer queda como hermano
    de este wrapper, así NO scrollea con el contenido y siempre vive en el bottom
    del slide. */
 .slide-body{
   flex:1;
-  min-height:0;                  /* permite que el flex item se encoja para scrollear */
+  min-height:0;                  /* permite que el flex item se encoja dentro del slide */
   padding:clamp(36px, 4vw, 64px) clamp(28px, 6vw, 92px) clamp(20px, 2.5vw, 36px);
   display:flex;
   flex-direction:column;
   justify-content:center;
-  justify-content:safe center;
   gap:0;
-  overflow-y:auto;
   overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;
-  scroll-behavior:smooth;
 }
 /* Los hijos del slide-body NO deben comprimirse — mantienen su altura natural
    y si total > viewport, scrollea el slide-body. Sin esto, el flex column
@@ -1297,6 +1284,11 @@ body.fullscreen-mode .slide-body{padding:46px 80px 56px}
 
 /* ===== Responsive · Tablet ===== */
 @media (max-width: 980px){
+  /* En mobile/tablet se muestran TODAS las slides apiladas y se recorre con
+     scroll vertical como un documento. Se ocultan los controles de navegación. */
+  .slide{display:flex; min-height:auto}
+  .controls, .view-toggle, .dots{display:none}
+  .footer{display:none}
   .grid2, .grid3, .grid4{grid-template-columns:1fr 1fr; gap:14px}
   .flow{grid-template-columns:1fr 1fr}
   .flow .step:not(:last-child)::after{display:none}

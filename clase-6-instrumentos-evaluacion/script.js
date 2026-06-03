@@ -10,6 +10,7 @@ function update(){
     if(num) num.textContent = String(current+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
   });
   location.hash = 'slide-' + (current+1);
+  window.scrollTo(0,0);
   try { localStorage.setItem(STORAGE_KEY, String(current)); } catch(_) {}
 }
 

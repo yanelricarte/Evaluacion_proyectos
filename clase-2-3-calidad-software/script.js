@@ -49,6 +49,7 @@ function update(){
     });
   } else {
     slides.style.transform = `translateX(-${current * 100}vw)`;
+    window.scrollTo(0, 0);
     // Solo en desktop: slides fuera de pantalla no son focusables
     slideEls.forEach((s, i) => {
       const off = i !== current;
