@@ -293,9 +293,9 @@ function fbProd3(fb) {
 
 // ===== Cálculo de puntajes =====
 function updateScores() {
-  // Paso 1: 5 problemas × 2 puntos = 10
+  // Paso 1: 6 problemas × 2 puntos = 12
   let s1 = 0;
-  for (let i = 0; i < 5; i++) s1 += (state[`p1_${i}`]?.score || 0);
+  for (let i = 0; i < 6; i++) s1 += (state[`p1_${i}`]?.score || 0);
   // Paso 2: 3 pasos × 1 punto = 3
   let s2 = 0;
   for (let i = 0; i < 3; i++) s2 += (state[`p2_${i}_score`] || 0);
@@ -303,10 +303,10 @@ function updateScores() {
   let s3 = 0;
   for (let i = 0; i < 4; i++) s3 += (state[`p3_${i}_score`] || 0);
 
-  document.getElementById('score-1').textContent = `${s1} / 10`;
+  document.getElementById('score-1').textContent = `${s1} / 12`;
   document.getElementById('score-2').textContent = `${s2} / 3`;
   document.getElementById('score-3').textContent = `${s3} / 4`;
-  document.getElementById('score-total').textContent = `${s1 + s2 + s3} / 17`;
+  document.getElementById('score-total').textContent = `${s1 + s2 + s3} / 19`;
 }
 updateScores();
 

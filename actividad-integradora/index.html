@@ -62,7 +62,7 @@
       <h2>Clasifiquen los problemas reportados</h2>
     </div>
   </header>
-  <p>Los usuarios reportaron las siguientes situaciones. Para cada una, elegí <b>el tipo de problema</b> (omisión, excedente o incorrecto) y <b>el atributo de calidad</b> que más se ve afectado. Después aparece la devolución.</p>
+  <p>Los usuarios reportaron las siguientes situaciones. Para cada una, elegí <b>el tipo de problema</b> (omisión, excedente o incorrecto) y <b>el atributo de calidad</b> que más se ve afectado. Al marcar ambas opciones aparece el feedback.</p>
 
   <div class="problems">
 
@@ -186,6 +186,30 @@
       </div>
     </article>
 
+    <article class="problem" data-tipo="incorrecto" data-atributo="fiabilidad">
+      <p class="problem-text">"A veces, cuando varios cursos reservan al mismo tiempo, la app se queda congelada y, al cerrarla y volver a entrar, algunas reservas ya no aparecen."</p>
+      <div class="choice-group">
+        <span class="cg-label">Tipo de problema</span>
+        <div class="choices" data-field="tipo">
+          <button data-value="omision">Omisión</button>
+          <button data-value="excedente">Excedente</button>
+          <button data-value="incorrecto">Incorrecto</button>
+        </div>
+      </div>
+      <div class="choice-group">
+        <span class="cg-label">Atributo de calidad afectado</span>
+        <div class="choices" data-field="atributo">
+          <button data-value="funcionalidad">Funcionalidad</button>
+          <button data-value="usabilidad">Usabilidad</button>
+          <button data-value="rendimiento">Rendimiento</button>
+          <button data-value="fiabilidad">Fiabilidad</button>
+        </div>
+      </div>
+      <div class="problem-feedback">
+        <b>Es incorrecto.</b> La función de reservar existe, pero el sistema se comporta de forma <b>imprevisible</b> y encima <b>pierde datos</b>. El atributo más afectado es la <b>fiabilidad</b>: el sistema no es confiable, falla bajo carga y no se recupera bien. Para discutir: ¿cuál es la diferencia entre este caso y el de rendimiento? Acá no es solo lentitud, sino que el sistema deja de funcionar correctamente y los datos se pierden.
+      </div>
+    </article>
+
   </div>
 </section>
 
@@ -256,7 +280,7 @@
       <h2>Elijan el instrumento adecuado a cada propósito</h2>
     </div>
   </header>
-  <p>Para cada propósito de evaluación, elegí el instrumento que mejor se ajusta. Después aparece la devolución.</p>
+  <p>Para cada propósito de evaluación, elegí el instrumento que mejor se ajusta. Al elegir se muestra la corrección.</p>
 
   <div class="match-list">
 
@@ -382,10 +406,10 @@
   </header>
 
   <div class="score-grid">
-    <div class="score-card" data-section="paso-1"><span class="score-label">Detección de problemas</span><span class="score-value" id="score-1">— / 10</span></div>
+    <div class="score-card" data-section="paso-1"><span class="score-label">Detección de problemas</span><span class="score-value" id="score-1">— / 12</span></div>
     <div class="score-card" data-section="paso-2"><span class="score-label">Casos de prueba</span><span class="score-value" id="score-2">— / 3</span></div>
     <div class="score-card" data-section="paso-3"><span class="score-label">Instrumentos</span><span class="score-value" id="score-3">— / 4</span></div>
-    <div class="score-card total"><span class="score-label">Total</span><span class="score-value" id="score-total">— / 17</span></div>
+    <div class="score-card total"><span class="score-label">Total</span><span class="score-value" id="score-total">— / 19</span></div>
   </div>
 
   <div class="reflection">
