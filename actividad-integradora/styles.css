@@ -652,6 +652,67 @@ textarea:focus, input:focus, select:focus{
   gap:4px;
 }
 
+.export-btn.danger{
+  background:linear-gradient(135deg,var(--no),var(--no));
+}
+.export-btn.danger:hover{
+  filter:brightness(1.1);
+  transform:translateY(-1px);
+}
+
+/* ===== Modal de confirmación ===== */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:rgba(20,22,26,.5);
+  backdrop-filter:blur(4px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.modal-overlay[hidden]{display:none}
+.modal{
+  background:#fff;
+  border-radius:var(--radius);
+  padding:32px;
+  max-width:460px;
+  width:100%;
+  box-shadow:0 32px 64px rgba(20,22,26,.16);
+  animation:modalIn .2s ease;
+}
+@keyframes modalIn{
+  from{opacity:0; transform:scale(.96) translateY(8px)}
+  to{opacity:1; transform:scale(1) translateY(0)}
+}
+.modal h3{
+  font-size:clamp(22px, 2vw, 28px);
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:10px;
+}
+.modal p{
+  font-size:clamp(16px, 1.2vw, 19px);
+  color:var(--ink-soft);
+  line-height:1.5;
+  margin-bottom:24px;
+}
+.modal-actions{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+}
+.modal-cancel{
+  background:#fff !important;
+  color:var(--ink-soft) !important;
+  border:1.5px solid var(--gray-3) !important;
+}
+.modal-cancel:hover{
+  border-color:var(--gray-2) !important;
+  background:var(--gray-4) !important;
+}
+
 /* ===== Print ===== */
 @media print{
   body{background:#fff}

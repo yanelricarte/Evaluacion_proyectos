@@ -478,12 +478,25 @@ document.getElementById('btnCopy')?.addEventListener('click', async () => {
   }
 });
 
-// Botón reiniciar (confirma antes de borrar)
+// Botón reiniciar con modal
+const resetModal = document.getElementById('resetModal');
+
 document.getElementById('btnReset')?.addEventListener('click', () => {
-  if (!confirm('¿Estás seguro? Se van a borrar todas tus respuestas y el puntaje.')) return;
-  if (!confirm('Confirmá de nuevo: no hay forma de recuperar lo que respondiste.')) return;
+  resetModal.hidden = false;
+});
+
+document.getElementById('modalCancel')?.addEventListener('click', () => {
+  resetModal.hidden = true;
+});
+
+document.getElementById('modalConfirm')?.addEventListener('click', () => {
   localStorage.removeItem(STORAGE_KEY);
   location.reload();
+});
+
+// Cerrar modal con Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !resetModal.hidden) resetModal.hidden = true;
 });
 
 // Botón recalcular (sin confirm modal: feedback inline)
