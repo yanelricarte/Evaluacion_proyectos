@@ -12,8 +12,8 @@ let current = 0;
 
 function update(){
   slides.forEach((s, i) => s.classList.toggle('active', i === current));
-  // Al cambiar de slide, arrancar desde arriba (en mobile la slide scrollea internamente)
-  if (slides[current]) slides[current].scrollTop = 0;
+  // Al cambiar de slide, llevar la página al tope
+  window.scrollTo(0, 0);
   // Sincronizar los puntos de navegación (escritorio)
   if (typeof dotsWrap !== 'undefined' && dotsWrap) {
     [...dotsWrap.children].forEach((d, i) => d.classList.toggle('active', i === current));
