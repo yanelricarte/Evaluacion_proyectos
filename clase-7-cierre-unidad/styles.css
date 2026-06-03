@@ -939,9 +939,10 @@ body.fullscreen-mode .slide{padding:46px 80px 56px}
   .controls, .view-toggle, .dots{display:none}
   .footer{display:none}
 
-  /* Tablas: contenedor con scroll horizontal propio para no romper el ancho */
-  .table-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:22px; border:1px solid var(--gray-3); border-radius:var(--radius-sm)}
-  .table-wrap .table{min-width:560px; box-shadow:none; border:0}
+  /* Tablas: entran en el ancho (sin scroll horizontal), texto más chico */
+  .table-wrap{margin-top:22px}
+  .table-wrap .table{min-width:0; width:100%}
+  .table th, .table td{padding:9px 8px; font-size:13px; line-height:1.35; vertical-align:top}
 
   .grid2, .grid3, .grid4, .tf-grid, .meta-grid{grid-template-columns:1fr}
   .flow{grid-template-columns:1fr}
@@ -970,6 +971,5 @@ body.fullscreen-mode .slide{padding:46px 80px 56px}
   .roles-grid{grid-template-columns:1fr}
   .map{padding:18px 16px}
   .activity-card{padding:20px 18px}
-  .table-wrap .table{min-width:520px}
-  .table th, .table td{padding:11px 12px}
+  .table th, .table td{padding:7px 6px; font-size:12px; line-height:1.3}
 }
