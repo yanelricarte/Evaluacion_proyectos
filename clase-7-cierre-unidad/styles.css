@@ -68,9 +68,8 @@ p{margin:0}
 
 /* ===== Deck y slides ===== */
 .deck{
-  width:100vw;
-  height:100vh;
-  position:relative;
+  position:fixed;
+  inset:0;
   background:
     radial-gradient(circle at 92% 10%, rgba(214,41,108,.07), transparent 32%),
     radial-gradient(circle at 4% 92%, rgba(239,125,167,.06), transparent 30%),
@@ -86,8 +85,9 @@ p{margin:0}
   transition:opacity .32s ease, transform .32s ease;
   display:flex;
   flex-direction:column;
-  justify-content:center;
-  overflow:hidden;
+  justify-content:safe center;
+  overflow-x:hidden;
+  overflow-y:auto;       /* si el contenido no entra a lo alto, la slide scrollea (no se recorta) */
 }
 .slide.active{opacity:1; transform:translateX(0); z-index:2}
 
@@ -476,6 +476,42 @@ li{font-size:clamp(15px, 1.15vw, 20px); line-height:1.5; margin:6px 0; color:var
 .node.soft{background:#fff; color:var(--ink-soft); border-color:var(--gray-3)}
 .arrow{font-weight:900; color:var(--gray-2)}
 
+/* ===== Mapa conceptual como esquema (nodos + conectores) ===== */
+.cmap{margin-top:20px; display:flex; flex-direction:column; align-items:center}
+.cmap-row{display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px 12px}
+.cmap-node{
+  padding:12px 20px;
+  border-radius:16px;
+  background:#fff;
+  border:1.5px solid var(--gray-3);
+  color:var(--ink);
+  font-family:"Manrope",sans-serif;
+  font-weight:700;
+  font-size:clamp(15px, 1.25vw, 21px);
+  box-shadow:var(--shadow-soft);
+  text-align:center;
+  white-space:nowrap;
+}
+.cmap-node.strong{background:linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; border-color:transparent; box-shadow:0 10px 22px rgba(179,23,89,.22)}
+.cmap-node.soft{background:var(--soft); color:var(--primary-dark); border-color:#e9c6d0; font-weight:600; white-space:normal}
+.cmap-node.qa{background:var(--sage); color:#fff; border-color:transparent}
+.cmap-node.qc{background:var(--primary); color:#fff; border-color:transparent}
+.cmap-rel{display:inline-flex; align-items:center; gap:7px; color:var(--muted); font-size:clamp(13px,1vw,17px); font-weight:600; font-style:italic; white-space:nowrap}
+.cmap-rel::after{content:"→"; font-style:normal; font-weight:900; color:var(--primary-3); font-size:1.2em}
+.cmap-down{position:relative; height:46px; width:2px; background:var(--primary-3); margin:4px auto}
+.cmap-down::after{content:""; position:absolute; left:50%; bottom:-1px; transform:translateX(-50%); width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-top:9px solid var(--primary-3)}
+.cmap-down span{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); white-space:nowrap; background:var(--soft); color:var(--primary-dark); border:1px solid #e9c6d0; border-radius:999px; padding:4px 13px; font-size:clamp(12px,.95vw,15px); font-weight:700; font-style:italic}
+.cmap-band{margin-top:22px; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px 12px; background:#fff; border:1.5px dashed var(--gray-3); border-radius:var(--radius-sm); padding:14px 20px}
+.cmap-band b{color:var(--ink); font-family:"Manrope",sans-serif; font-size:clamp(14px,1.15vw,20px)}
+
+/* ===== Wrapper de tablas (habilita scroll horizontal en mobile) ===== */
+.table-wrap{width:100%}
+.table-wrap .table{margin-top:0}
+
+/* ===== Link inline ===== */
+.inline-link{color:var(--primary); font-weight:700; text-decoration:underline; text-underline-offset:2px}
+.inline-link:hover{color:var(--primary-dark)}
+
 /* ===== Actividad (link a integradora) ===== */
 .activity-card{
   background:linear-gradient(180deg, var(--soft) 0%, #fff 70%);
@@ -729,11 +765,14 @@ li{font-size:clamp(15px, 1.15vw, 20px); line-height:1.5; margin:6px 0; color:var
   background:#fff;
   border:1px solid var(--gray-3);
   border-radius:var(--radius);
-  padding:22px 18px;
+  padding:28px 22px;
   box-shadow:var(--shadow-soft);
   text-align:center;
   position:relative;
   border-top:6px solid var(--primary);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 .closing-node:nth-child(2){border-top-color:var(--primary-2)}
 .closing-node:nth-child(3){border-top-color:var(--primary-3)}
@@ -751,12 +790,12 @@ li{font-size:clamp(15px, 1.15vw, 20px); line-height:1.5; margin:6px 0; color:var
   margin-bottom:10px;
 }
 .closing-node h4{
-  font-size:clamp(16px, 1.3vw, 22px);
-  margin-bottom:6px;
+  font-size:clamp(17px, 1.45vw, 24px);
+  margin-bottom:8px;
   color:var(--ink);
 }
 .closing-node p{
-  font-size:clamp(13px, 1vw, 17px);
+  font-size:clamp(14px, 1.1vw, 18px);
   line-height:1.5;
   color:var(--muted);
   margin:0;
@@ -813,6 +852,36 @@ body.fullscreen-mode .slide{padding:46px 80px 56px}
 
 @keyframes fadeOut{to{opacity:0}}
 
+/* ===== Navegación por puntos (escritorio) ===== */
+.dots{
+  position:fixed;
+  right:16px;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:20;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  align-items:center;
+  max-height:80vh;
+  overflow:auto;
+  padding:6px 2px;
+}
+.dots::-webkit-scrollbar{width:0; height:0}
+.dots button{
+  width:11px;
+  height:11px;
+  flex:0 0 auto;
+  border-radius:50%;
+  border:1.5px solid var(--gray-2);
+  background:transparent;
+  padding:0;
+  cursor:pointer;
+  transition:transform .16s ease, background .16s ease, border-color .16s ease;
+}
+.dots button:hover{border-color:var(--primary); transform:scale(1.25)}
+.dots button.active{background:var(--primary); border-color:var(--primary); transform:scale(1.15)}
+
 /* ===== Controles ===== */
 .controls{
   position:fixed;
@@ -861,13 +930,68 @@ body.fullscreen-mode .slide{padding:46px 80px 56px}
 }
 
 /* ===== Responsive ===== */
+
+/* Red de seguridad: cuando el contenido no entra a lo alto (mobile o pantallas
+   bajas), la slide activa centra de forma segura y habilita scroll interno.
+   Si entra, queda centrada (pie abajo); si no, arranca arriba y scrollea sin recortes. */
+@media (max-width: 980px), (max-height: 760px){
+  .slide{
+    justify-content:safe center;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+}
+
 @media (max-width: 980px){
-  .slide{padding:36px 28px 70px}
+  /* En mobile el deck deja de ser slide-por-slide: se recorre con scroll
+     vertical como un documento. Se ocultan los controles de navegación. */
+  html, body{height:auto; overflow-x:hidden; overflow-y:auto}
+  body{display:block}
+  .deck{position:static; inset:auto; height:auto; min-height:100dvh}
+  .slide{
+    position:relative;
+    inset:auto;
+    opacity:1;
+    transform:none;
+    overflow:visible;
+    min-height:auto;
+    padding:48px 20px 56px;
+    border-bottom:1px solid var(--gray-3);
+  }
+  .controls, .view-toggle, .dots{display:none}
+  .footer{display:none}
+
+  /* Tablas: contenedor con scroll horizontal propio para no romper el ancho */
+  .table-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:22px; border:1px solid var(--gray-3); border-radius:var(--radius-sm)}
+  .table-wrap .table{min-width:560px; box-shadow:none; border:0}
+
   .grid2, .grid3, .grid4, .tf-grid, .meta-grid{grid-template-columns:1fr}
   .flow{grid-template-columns:1fr}
   .flow .step:not(:last-child)::after{transform:rotate(90deg); right:auto; top:auto; bottom:-16px; left:50%}
   .closing-flow{grid-template-columns:repeat(2, 1fr)}
   .roles-grid{grid-template-columns:1fr 1fr}
-  .footer{left:28px; right:28px}
-  .student{right:28px}
+
+  /* Mapa conceptual: en vertical para que entre angosto */
+  .cmap-row{flex-direction:column}
+  .cmap-rel::after{content:"↓"}
+  .cmap-band{flex-direction:column; text-align:center}
+
+  /* La portada deja de usar posicionamiento absoluto para no pisar el título */
+  .student{position:static; align-self:flex-start; margin-bottom:14px; box-shadow:none}
+  .cover-mark{display:none}
+  .cover h1{max-width:none}
+  .cover::before{width:10px}
+}
+
+/* Teléfonos angostos: tipografía y aire más contenidos */
+@media (max-width: 600px){
+  .slide{padding:36px 16px 48px}
+  h1{font-size:clamp(32px, 9vw, 48px)}
+  h2{font-size:clamp(24px, 6.5vw, 34px)}
+  .closing-flow{grid-template-columns:1fr}
+  .roles-grid{grid-template-columns:1fr}
+  .map{padding:18px 16px}
+  .activity-card{padding:20px 18px}
+  .table-wrap .table{min-width:520px}
+  .table th, .table td{padding:11px 12px}
 }

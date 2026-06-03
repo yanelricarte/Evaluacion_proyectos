@@ -12,6 +12,12 @@ let current = 0;
 
 function update(){
   slides.forEach((s, i) => s.classList.toggle('active', i === current));
+  // Al cambiar de slide, arrancar desde arriba (en mobile la slide scrollea internamente)
+  if (slides[current]) slides[current].scrollTop = 0;
+  // Sincronizar los puntos de navegación (escritorio)
+  if (typeof dotsWrap !== 'undefined' && dotsWrap) {
+    [...dotsWrap.children].forEach((d, i) => d.classList.toggle('active', i === current));
+  }
   slides.forEach((s) => {
     const bar = s.querySelector('.bar');
     const num = s.querySelector('.num');
@@ -255,6 +261,18 @@ document.getElementById('btnCopy')?.addEventListener('click', async () => {
     document.body.removeChild(ta);
   }
 });
+
+// ===== Navegación por puntos (escritorio) =====
+const dotsWrap = document.getElementById('dots');
+if (dotsWrap) {
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Ir a la diapositiva ' + (i + 1));
+    b.addEventListener('click', () => { current = i; update(); });
+    dotsWrap.appendChild(b);
+  });
+}
 
 // ===== Restauración: hash > localStorage =====
 const h = location.hash.match(/slide-(\d+)/);

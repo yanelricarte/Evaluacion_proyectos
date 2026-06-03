@@ -69,8 +69,8 @@
       </div>
       <div class="card">
         <div class="label">Ejemplo</div>
-        <h3>Inscripción a talleres</h3>
-        <p>Permite cargar datos, pero algunos estudiantes no encuentran el botón de confirmación y el sistema acepta inscripciones sin cupo.</p>
+        <h3>App de Reservas de Canchas</h3>
+        <p>Permite reservar un turno, pero algunos usuarios no encuentran el botón de confirmación y el sistema acepta reservas sobre un horario ya ocupado.</p>
         <p><b>La calidad está comprometida</b> en usabilidad, funcionalidad y fiabilidad.</p>
       </div>
     </div>
@@ -116,10 +116,10 @@
       <div class="card flat"><span class="badge">Rendimiento</span><p>¿Responde en tiempos adecuados?</p></div>
       <div class="card flat"><span class="badge">Fiabilidad</span><p>¿Registra operaciones sin errores frecuentes?</p></div>
       <div class="card flat"><span class="badge">Mantenibilidad</span><p>¿Puede corregirse o modificarse con claridad?</p></div>
-      <div class="card flat"><span class="badge">Accesibilidad</span><p>¿Puede ser utilizado por distintos perfiles de usuario?</p></div>
+      <div class="card flat"><span class="badge">Accesibilidad</span><p>¿Pueden usarlo personas con distintas capacidades y condiciones?</p></div>
       <div class="card flat"><span class="badge">Funcionalidad</span><p>¿Resuelve lo que realmente se necesita?</p></div>
-      <div class="card flat"><span class="badge">Contexto</span><p>La importancia de cada atributo depende del sistema.</p></div>
     </div>
+    <p class="subtitle">No todos los atributos pesan igual: <b>la importancia de cada uno depende del sistema y su contexto</b>. En un sistema de salud pesa la fiabilidad; en uno de uso público, la accesibilidad.</p>
     <div class="footer"><span>Atributos de calidad</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
@@ -127,7 +127,7 @@
   <section class="slide">
     <div class="kicker">De lo general a lo observable</div>
     <h2>Atributo → Criterio → Evidencia</h2>
-    <table class="table">
+    <div class="table-wrap"><table class="table">
       <thead><tr><th>Atributo</th><th>Criterio observable</th><th>Evidencia posible</th></tr></thead>
       <tbody>
         <tr><td>Usabilidad</td><td>El usuario completa la tarea sin ayuda.</td><td>Observación del recorrido, tiempo y dudas.</td></tr>
@@ -135,8 +135,9 @@
         <tr><td>Rendimiento</td><td>La operación responde en menos de 3 segundos.</td><td>Medición del tiempo de respuesta.</td></tr>
         <tr><td>Fiabilidad</td><td>La operación se registra correctamente.</td><td>Comprobante, fecha, hora o registro generado.</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <p class="lead">La evaluación mejora cuando el atributo se convierte en un criterio que se puede observar, probar o medir.</p>
+    <p class="subtitle">En la materia y en la bibliografía técnica vas a ver a esto llamado también <b>parámetro</b>. Y cuando combinás varios criterios para llegar a una sola conclusión, estás <b>ponderando</b>: definiendo cuánto pesa cada uno.</p>
     <div class="footer"><span>Criterios y evidencias</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
@@ -187,16 +188,16 @@
   <section class="slide">
     <div class="kicker">Casos de prueba</div>
     <h2>La evidencia se obtiene probando situaciones concretas</h2>
-    <table class="table">
+    <div class="table-wrap"><table class="table">
       <thead><tr><th>Caso de prueba</th><th>Técnica</th><th>Atributo</th><th>Resultado esperado</th></tr></thead>
       <tbody>
         <tr><td>Ingresar con contraseña incorrecta</td><td>Conjetura</td><td>Seguridad</td><td>El sistema rechaza el acceso.</td></tr>
-        <tr><td>Inscribirse a un taller con cupo (cupo = 5)</td><td>Equivalencia válida</td><td>Funcionalidad</td><td>El sistema registra la inscripción y confirma.</td></tr>
-        <tr><td>Inscribirse cuando queda <b>1 cupo</b> (último)</td><td>Valor límite</td><td>Regla de negocio</td><td>El sistema acepta y deja el cupo en 0.</td></tr>
-        <tr><td>Inscribirse con cupo en 0</td><td>Valor límite inválido</td><td>Regla de negocio</td><td>El sistema bloquea y explica el motivo.</td></tr>
-        <tr><td>Completar tarea sin ayuda externa</td><td>Observación directa</td><td>Usabilidad</td><td>El usuario finaliza el recorrido con pocas dudas.</td></tr>
+        <tr><td>Reservar una cancha en un horario libre</td><td>Equivalencia válida</td><td>Funcionalidad</td><td>El sistema registra la reserva y confirma.</td></tr>
+        <tr><td>Reservar el <b>último horario</b> disponible del día</td><td>Valor límite</td><td>Funcionalidad</td><td>El sistema acepta y deja el horario sin disponibilidad.</td></tr>
+        <tr><td>Reservar un horario ya ocupado</td><td>Valor límite inválido</td><td>Fiabilidad</td><td>El sistema bloquea y explica el motivo.</td></tr>
+        <tr><td>Completar la reserva sin ayuda externa</td><td>Observación directa</td><td>Usabilidad</td><td>El usuario finaliza el recorrido con pocas dudas.</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <div class="footer"><span>Casos de prueba y evidencias</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
@@ -220,7 +221,7 @@
   <section class="slide">
     <div class="kicker">Decidir el instrumento</div>
     <h2>¿Cuándo conviene usar cada uno?</h2>
-    <table class="table">
+    <div class="table-wrap"><table class="table">
       <thead><tr><th>Propósito de evaluación</th><th>Instrumento</th><th>Ejemplo en App de Reservas</th></tr></thead>
       <tbody>
         <tr><td>Verificar requisitos mínimos (presencia / ausencia)</td><td><b>Lista de cotejo</b></td><td>Verificar que el sistema permita reservar, cancelar y mostrar comprobante.</td></tr>
@@ -228,7 +229,7 @@
         <tr><td>Analizar varias dimensiones a la vez</td><td><b>Rúbrica analítica</b></td><td>Evaluar la app en funcionalidad, usabilidad, rendimiento y seguridad.</td></tr>
         <tr><td>Comparar alternativas</td><td><b>Matriz de comparación</b></td><td>Decidir entre dos apps de reserva similares.</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <p class="subtitle">El instrumento se elige <b>según el propósito de la evaluación</b>, no al revés.</p>
     <div class="footer"><span>Elegir según propósito</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
@@ -267,12 +268,38 @@
   <section class="slide">
     <div class="kicker">Mapa conceptual</div>
     <h2>Cómo se construye una evaluación técnica</h2>
-    <div class="map">
-      <div class="map-line"><span class="node">Calidad del software</span><span class="arrow">se analiza con</span><span class="node">Atributos</span><span class="arrow">que se traducen en</span><span class="node">Criterios</span></div>
-      <div class="map-line"><span class="node">Criterios</span><span class="arrow">se verifican con</span><span class="node">Casos de prueba</span><span class="arrow">aplicando</span><span class="node soft">equivalencia / límites / conjetura</span></div>
-      <div class="map-line"><span class="node">Casos</span><span class="arrow">producen</span><span class="node">Evidencias</span><span class="arrow">que se registran con</span><span class="node">Instrumentos</span></div>
-      <div class="map-line"><span class="node">Instrumentos</span><span class="arrow">permiten elaborar una</span><span class="node">Conclusión técnica</span></div>
-      <div class="map-line"><span class="node">QA</span><span class="arrow">previene</span><span class="node">QC</span><span class="arrow">verifica</span><span class="node soft">Ambos sostienen la calidad</span></div>
+    <div class="cmap">
+      <div class="cmap-row">
+        <span class="cmap-node strong">Calidad del software</span>
+        <span class="cmap-rel">se analiza con</span>
+        <span class="cmap-node">Atributos</span>
+        <span class="cmap-rel">se traducen en</span>
+        <span class="cmap-node">Criterios</span>
+      </div>
+
+      <div class="cmap-down"><span>se verifican con</span></div>
+
+      <div class="cmap-row">
+        <span class="cmap-node">Casos de prueba</span>
+        <span class="cmap-rel">aplicando</span>
+        <span class="cmap-node soft">Equivalencia · Límites · Conjetura</span>
+      </div>
+
+      <div class="cmap-down"><span>producen</span></div>
+
+      <div class="cmap-row">
+        <span class="cmap-node">Evidencias</span>
+        <span class="cmap-rel">se registran con</span>
+        <span class="cmap-node">Instrumentos</span>
+        <span class="cmap-rel">permiten una</span>
+        <span class="cmap-node strong">Conclusión técnica</span>
+      </div>
+    </div>
+
+    <div class="cmap-band">
+      <span class="cmap-node qa">QA</span><span class="cmap-rel">previene</span>
+      <span class="cmap-node qc">QC</span><span class="cmap-rel">verifica</span>
+      <b>Ambos sostienen la calidad</b>
     </div>
     <div class="footer"><span>Mapa conceptual de unidad</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
@@ -282,18 +309,18 @@
     <div class="kicker">Esquema integrador</div>
     <h2>De la tarea a la conclusión técnica en 7 pasos</h2>
     <p class="subtitle">Cuando tengas que evaluar un sistema en la próxima clase, podés seguir este orden para no perder ningún paso.</p>
-    <table class="table compact">
-      <thead><tr><th style="width:6%">#</th><th style="width:42%">Pregunta</th><th style="width:26%">Producto</th><th>Ejemplo (plataforma educativa, entregar TP)</th></tr></thead>
+    <div class="table-wrap"><table class="table compact">
+      <thead><tr><th style="width:6%">#</th><th style="width:42%">Pregunta</th><th style="width:26%">Producto</th><th>Ejemplo (App de Reservas · reservar una cancha)</th></tr></thead>
       <tbody>
-        <tr><td><b>1</b></td><td>¿Qué sistema y qué tarea voy a analizar?</td><td>Tarea concreta</td><td>Plataforma educativa · Entregar un trabajo práctico</td></tr>
+        <tr><td><b>1</b></td><td>¿Qué sistema y qué tarea voy a analizar?</td><td>Tarea concreta</td><td>App de Reservas · Reservar una cancha</td></tr>
         <tr><td><b>2</b></td><td>¿Qué aspecto de calidad me interesa?</td><td>Atributo</td><td>Usabilidad</td></tr>
-        <tr><td><b>3</b></td><td>¿Cómo lo voy a observar?</td><td>Criterio observable</td><td>El estudiante completa la entrega sin asistencia.</td></tr>
-        <tr><td><b>4</b></td><td>¿Cómo lo voy a comprobar?</td><td>Caso de prueba (con técnica)</td><td>Subir un archivo y confirmar la entrega (equivalencia válida).</td></tr>
-        <tr><td><b>5</b></td><td>¿Qué resultado obtengo?</td><td>Evidencia</td><td>Completa en pocos pasos y recibe confirmación.</td></tr>
+        <tr><td><b>3</b></td><td>¿Cómo lo voy a observar?</td><td>Criterio observable</td><td>El usuario completa la reserva sin asistencia.</td></tr>
+        <tr><td><b>4</b></td><td>¿Cómo lo voy a comprobar?</td><td>Caso de prueba (con técnica)</td><td>Reservar una cancha en un horario libre y confirmar (equivalencia válida).</td></tr>
+        <tr><td><b>5</b></td><td>¿Qué resultado obtengo?</td><td>Evidencia</td><td>Completa en pocos pasos y recibe el comprobante.</td></tr>
         <tr><td><b>6</b></td><td>¿Cómo lo voy a registrar?</td><td>Instrumento</td><td>Escala de valoración.</td></tr>
         <tr><td><b>7</b></td><td>¿Qué puedo concluir?</td><td>Conclusión técnica</td><td>El flujo es adecuado si resulta claro, rápido y confirma.</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <p class="subtitle"><b>Tip:</b> si una conclusión no se puede reconstruir desde una evidencia, falta trabajo en algún paso anterior.</p>
     <div class="footer"><span>Esquema de 7 pasos</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
@@ -434,6 +461,7 @@
         <li>¿Otro grupo habría llegado a la misma conclusión?</li>
       </ul></div>
     </div>
+    <p class="subtitle"><b>Honestidad técnica del evaluador:</b> se defiende la conclusión con la evidencia, no con la intuición; y si otro grupo fundamenta mejor, reconocerlo también es parte del oficio. Evaluar con rigor y sin sesgo es una capacidad profesional, no solo un contenido.</p>
     <div class="footer"><span>Revisión colectiva</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
@@ -441,7 +469,7 @@
   <section class="slide">
     <div class="kicker">Próxima clase</div>
     <h2>Evaluación individual de cierre de unidad</h2>
-    <p>La próxima clase resolvés una evaluación individual a partir de un caso entregado por la docente. Todos trabajan sobre la misma situación.</p>
+    <p>La próxima clase resolvés una evaluación individual a partir de un caso entregado por la docente.</p>
     <div class="grid2" style="margin-top:18px">
       <article class="card"><h3>Vas a aplicar</h3><ul>
         <li>Calidad del producto y calidad en uso.</li>
@@ -461,7 +489,7 @@
         <li><b>Fundamentar</b> una conclusión técnica.</li>
       </ul></article>
     </div>
-    <p class="subtitle"><b>Sugerencia:</b> repasen el resumen teórico que les compartí por Drive, revisen los temas donde sacaron menos en el auto-test y vuelvan sobre la actividad integradora.</p>
+    <p class="subtitle"><b>Sugerencia:</b> repasen el <a class="inline-link" href="https://docs.google.com/document/d/1XTzfEE3xpc7zg3f_znniPRMYjOzFiGJhjMDvH4jVgN8/edit?tab=t.0#heading=h.4148xwb12zdt" target="_blank" rel="noopener">resumen teórico</a>, revisen los temas donde sacaron menos en el auto-test y vuelvan sobre la actividad integradora.</p>
     <div class="footer"><span>Anticipo de evaluación</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
@@ -474,9 +502,10 @@
       <div class="closing-node"><span class="cn-num">2</span><h4>Probar con técnica</h4><p>Diseñar casos usando equivalencia, límites y conjetura.</p></div>
       <div class="closing-node"><span class="cn-num">3</span><h4>Registrar con evidencia</h4><p>Capturar datos, mediciones, observaciones reales.</p></div>
       <div class="closing-node"><span class="cn-num">4</span><h4>Interpretar con instrumento</h4><p>Elegir cotejo, escala, rúbrica o matriz según propósito.</p></div>
-      <div class="closing-node"><span class="cn-num">5</span><h4>Concluir con fundamento</h4><p>Tomar y comunicar una decisión técnica defendible.</p></div>
+      <div class="closing-node"><span class="cn-num">5</span><h4>Concluir e informar</h4><p>Tomar una decisión técnica defendible y comunicarla en un informe.</p></div>
     </div>
-    <p class="lead" style="margin-top:28px">Evaluar no es decir "anda" o "no anda". Es <b>construir una decisión que se pueda explicar</b>.</p>
+    <p class="lead" style="margin-top:28px">Evaluar es <b>construir una decisión que se pueda explicar y defender</b>: con criterios claros, evidencias y una conclusión fundamentada.</p>
+    <p class="subtitle">Y se hace con <b>honestidad técnica</b>: con criterio (saber), con método (saber hacer) y con rigor y transparencia (saber estar).</p>
     <div class="footer"><span>Fin de clase · Unidad 1 cerrada</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
@@ -488,6 +517,8 @@
   <span class="vt-label">Pantalla completa</span>
 </button>
 <div class="exit-hint" id="exitHint">Pulsá <b>Esc</b> para salir</div>
+
+<nav class="dots" id="dots" aria-label="Ir a una diapositiva"></nav>
 
 <div class="controls">
   <button class="btn secondary" onclick="prevSlide()">← Anterior</button>
