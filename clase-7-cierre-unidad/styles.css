@@ -69,7 +69,7 @@ p{margin:0}
 /* ===== Deck y slides ===== */
 .deck{
   position:fixed;
-  inset:0;
+  top:0; right:0; bottom:0; left:0;
   background:
     radial-gradient(circle at 92% 10%, rgba(214,41,108,.07), transparent 32%),
     radial-gradient(circle at 4% 92%, rgba(239,125,167,.06), transparent 30%),
@@ -78,14 +78,15 @@ p{margin:0}
 
 .slide{
   position:absolute;
-  inset:0;
+  top:0; right:0; bottom:0; left:0;
   padding:64px 92px 90px;
   opacity:0;
   transform:translateX(34px);
   transition:opacity .32s ease, transform .32s ease;
   display:flex;
   flex-direction:column;
-  justify-content:safe center;
+  justify-content:center;        /* fallback universal */
+  justify-content:safe center;   /* navegadores con soporte: centra y no recorta al desbordar */
   overflow-x:hidden;
   overflow-y:auto;       /* si el contenido no entra a lo alto, la slide scrollea (no se recorta) */
 }
@@ -936,6 +937,7 @@ body.fullscreen-mode .slide{padding:46px 80px 56px}
    Si entra, queda centrada (pie abajo); si no, arranca arriba y scrollea sin recortes. */
 @media (max-width: 980px), (max-height: 760px){
   .slide{
+    justify-content:center;
     justify-content:safe center;
     overflow-y:auto;
     -webkit-overflow-scrolling:touch;
@@ -947,10 +949,10 @@ body.fullscreen-mode .slide{padding:46px 80px 56px}
      vertical como un documento. Se ocultan los controles de navegación. */
   html, body{height:auto; overflow-x:hidden; overflow-y:auto}
   body{display:block}
-  .deck{position:static; inset:auto; height:auto; min-height:100dvh}
+  .deck{position:static; top:auto; right:auto; bottom:auto; left:auto; height:auto; min-height:100vh; min-height:100dvh}
   .slide{
     position:relative;
-    inset:auto;
+    top:auto; right:auto; bottom:auto; left:auto;
     opacity:1;
     transform:none;
     overflow:visible;
