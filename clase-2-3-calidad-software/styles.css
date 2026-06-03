@@ -87,23 +87,22 @@ li{margin:8px 0; line-height:1.55; font-size:clamp(15px, 1.15vw, 21px)}
   min-height:100vh;
   min-height:100dvh;
   flex:0 0 100vw;
-  padding:26px;
+  padding:0;
   display:flex;
-  align-items:center;
+  align-items:stretch;
   justify-content:center;
 }
 
 .frame{
-  width:min(1320px, 97vw);
-  min-height:min(94vh, 900px);
-  background:rgba(255,255,255,.58);
-  border:1px solid rgba(255,255,255,.65);
-  backdrop-filter: blur(10px);
-  border-radius:var(--radius-lg);
-  box-shadow:var(--shadow);
-  padding:34px;
+  width:100%;
+  background:transparent;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  padding:48px 72px;
   display:flex;
   flex-direction:column;
+  justify-content:center;
   gap:22px;
   position:relative;
   overflow:hidden;
