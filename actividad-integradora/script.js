@@ -478,6 +478,14 @@ document.getElementById('btnCopy')?.addEventListener('click', async () => {
   }
 });
 
+// Botón reiniciar (confirma antes de borrar)
+document.getElementById('btnReset')?.addEventListener('click', () => {
+  if (!confirm('¿Estás seguro? Se van a borrar todas tus respuestas y el puntaje.')) return;
+  if (!confirm('Confirmá de nuevo: no hay forma de recuperar lo que respondiste.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+});
+
 // Botón recalcular (sin confirm modal: feedback inline)
 document.getElementById('recompute')?.addEventListener('click', () => {
   updateScores();
