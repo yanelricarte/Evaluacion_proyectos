@@ -8,8 +8,22 @@ const STORAGE_KEY = 'clase1:slide';
 const QUIZ_KEY = 'clase1:quiz';
 let current = 0;
 
+const dotsWrap = document.getElementById('dots');
+if (dotsWrap) {
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Ir a la diapositiva ' + (i + 1));
+    b.addEventListener('click', () => { current = i; update(); });
+    dotsWrap.appendChild(b);
+  });
+}
+
 function update(){
   slides.forEach((s, i) => s.classList.toggle('active', i === current));
+  if (dotsWrap) {
+    [...dotsWrap.children].forEach((d, i) => d.classList.toggle('active', i === current));
+  }
   slides.forEach((s) => {
     const bar = s.querySelector('.bar');
     const num = s.querySelector('.num');

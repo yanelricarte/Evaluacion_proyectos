@@ -1222,6 +1222,36 @@ body.fullscreen-mode .slide-body{padding:46px 80px 56px}
 
 @keyframes fadeOut{to{opacity:0}}
 
+/* ===== Navegación por puntos (escritorio) ===== */
+.dots{
+  position:fixed;
+  right:16px;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:20;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  align-items:center;
+  max-height:80vh;
+  overflow:auto;
+  padding:6px 2px;
+}
+.dots::-webkit-scrollbar{width:0; height:0}
+.dots button{
+  width:11px;
+  height:11px;
+  flex:0 0 auto;
+  border-radius:50%;
+  border:1.5px solid var(--gray-2);
+  background:transparent;
+  padding:0;
+  cursor:pointer;
+  transition:transform .16s ease, background .16s ease, border-color .16s ease;
+}
+.dots button:hover{border-color:var(--primary); transform:scale(1.25)}
+.dots button.active{background:var(--primary); border-color:var(--primary); transform:scale(1.15)}
+
 /* ===== Controles ===== */
 .controls{
   position:fixed;

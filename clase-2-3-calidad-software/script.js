@@ -36,7 +36,7 @@ liveRegion.setAttribute('aria-live', 'polite');
 document.body.appendChild(liveRegion);
 
 function isMobile(){
-  return window.innerWidth <= 768;
+  return window.innerWidth <= 980;
 }
 
 function update(){

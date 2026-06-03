@@ -4,6 +4,10 @@ let current = 0;
 
 function update(){
   slides.forEach((s,i)=>s.classList.toggle('active',i===current));
+  // Sincronizar los puntos de navegación (escritorio)
+  if (typeof dotsWrap !== 'undefined' && dotsWrap) {
+    [...dotsWrap.children].forEach((d, i) => d.classList.toggle('active', i === current));
+  }
   slides.forEach((s)=>{
     const bar=s.querySelector('.bar'); const num=s.querySelector('.num');
     if(bar) bar.style.width = ((current+1)/slides.length*100)+'%';
@@ -86,6 +90,18 @@ document.addEventListener('fullscreenchange', () => {
     setFullscreen(false);
   }
 });
+
+// ===== Navegación por puntos (escritorio) =====
+const dotsWrap = document.getElementById('dots');
+if (dotsWrap) {
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Ir a la diapositiva ' + (i + 1));
+    b.addEventListener('click', () => { current = i; update(); });
+    dotsWrap.appendChild(b);
+  });
+}
 
 // ===== Restauración: hash > localStorage =====
 const h = location.hash.match(/slide-(\d+)/);

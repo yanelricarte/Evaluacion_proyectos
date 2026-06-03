@@ -4,6 +4,7 @@ const progressFill = document.getElementById('progressFill');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const viewToggle = document.getElementById('viewToggle');
+const dotsWrap = document.getElementById('dots');
 const STORAGE_KEY = 'clase4-5:slide';
 let current = 0;
 
@@ -16,7 +17,21 @@ function showSlide(index){
   progressFill.style.width = `${((current + 1) / slides.length) * 100}%`;
   prevBtn.disabled = current === 0;
   nextBtn.disabled = current === slides.length - 1;
+  if (dotsWrap) {
+    [...dotsWrap.children].forEach((d, i) => d.classList.toggle('active', i === current));
+  }
   try { localStorage.setItem(STORAGE_KEY, String(current)); } catch(_) {}
+}
+
+// ===== Navegación por puntos (escritorio) =====
+if (dotsWrap) {
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Ir a la diapositiva ' + (i + 1));
+    b.addEventListener('click', () => showSlide(i));
+    dotsWrap.appendChild(b);
+  });
 }
 
 function next(){ showSlide(current + 1); }

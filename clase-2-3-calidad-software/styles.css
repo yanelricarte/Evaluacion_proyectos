@@ -94,17 +94,17 @@ li{margin:8px 0; line-height:1.55; font-size:clamp(15px, 1.15vw, 21px)}
 }
 
 .frame{
-  width:min(1220px, 96vw);
-  min-height:min(90vh, 760px);
+  width:min(1320px, 97vw);
+  min-height:min(94vh, 900px);
   background:rgba(255,255,255,.58);
   border:1px solid rgba(255,255,255,.65);
   backdrop-filter: blur(10px);
   border-radius:var(--radius-lg);
   box-shadow:var(--shadow);
-  padding:26px;
+  padding:34px;
   display:flex;
   flex-direction:column;
-  gap:18px;
+  gap:22px;
   position:relative;
   overflow:hidden;
 }
@@ -159,7 +159,8 @@ li{margin:8px 0; line-height:1.55; font-size:clamp(15px, 1.15vw, 21px)}
   flex:1;
   min-height:0;
   display:grid;
-  gap:18px;
+  gap:22px;
+  align-content:center;
 }
 
 .hero-grid{
@@ -199,7 +200,7 @@ li{margin:8px 0; line-height:1.55; font-size:clamp(15px, 1.15vw, 21px)}
 
 .grid-2,.grid-3{
   display:grid;
-  gap:18px;
+  gap:22px;
 }
 
 .grid-2{grid-template-columns:1.1fr .9fr}
@@ -332,7 +333,7 @@ li{margin:8px 0; line-height:1.55; font-size:clamp(15px, 1.15vw, 21px)}
   background:linear-gradient(180deg, #fff, var(--paper-2));
   border:1px solid var(--gray-3);
   border-radius:var(--radius);
-  padding:22px;
+  padding:26px;
   box-shadow:var(--shadow-soft);
 }
 
@@ -349,7 +350,7 @@ li{margin:8px 0; line-height:1.55; font-size:clamp(15px, 1.15vw, 21px)}
   background:#fff;
   border:1px solid var(--gray-3);
   border-radius:var(--radius);
-  padding:22px;
+  padding:26px;
   box-shadow:var(--shadow-soft);
   position:relative;
   overflow:hidden;
@@ -957,18 +958,13 @@ body.fullscreen-mode .exit-hint{display:block; animation:fadeOutHint .25s ease 3
     grid-template-columns:1fr !important;
   }
 
-  .frame{
-    min-height:min(92vh, 820px);
-    padding:20px;
-  }
-
   /* Tablas: entran en el ancho (sin scroll horizontal) */
   table{ min-width:0; width:100%; }
   th, td{ padding:9px 8px; font-size:13px; line-height:1.35; }
 }
 
-/* ===== Mobile-first: scroll vertical en lugar de slide deck ===== */
-@media (max-width: 768px){
+/* ===== Mobile/tablet: scroll vertical en lugar de slide deck (≤980px) ===== */
+@media (max-width: 980px){
   html,body{
     overflow-x:hidden;
   }
@@ -1014,28 +1010,8 @@ body.fullscreen-mode .exit-hint{display:block; animation:fadeOutHint .25s ease 3
 
   .ideas-row{ grid-template-columns:1fr; }
 
-  /* Navegación: barra sticky abajo */
-  .nav{
-    position:sticky;
-    bottom:0;
-    left:0;
-    right:0;
-    justify-content:center;
-    padding:8px;
-    gap:8px;
-    background:rgba(246,247,249,.94);
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
-    border-top:1px solid var(--gray-3);
-  }
-  .nav button{
-    padding:10px 18px;
-    min-height:44px;
-    font-size:15px;
-  }
-
-  .dots, .kbd{ display:none; }
-  .view-toggle{ display:none; }
+  /* Navegación oculta en mobile: el recorrido es por scroll vertical */
+  .nav, .dots, .kbd, .view-toggle{ display:none; }
 
   /* Touch targets */
   .option-btn{ min-height:44px; padding:10px 14px; font-size:clamp(14px,4vw,17px); }
