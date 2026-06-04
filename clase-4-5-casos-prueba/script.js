@@ -135,3 +135,75 @@ try {
 } catch(_) {}
 
 showSlide(initial);
+
+// ===== Registro para la carpeta: ficha de caso de prueba =====
+(function () {
+  const list = document.getElementById('fichaReg');
+  if (!list) return;
+  const inputs = Array.from(list.querySelectorAll('.cloze-input'));
+  const checkBtn = document.getElementById('fichaCheck');
+  const resetBtn = document.getElementById('fichaReset');
+  const score = document.getElementById('fichaScore');
+  const hints = Array.from(list.querySelectorAll('.cloze-hint'));
+  const LIMITS = [-1, 0, 10, 11];
+
+  function fbOf(el){ return document.getElementById(el.id.replace('fi', 'ff')); }
+  function num(s){ const n = parseFloat(String(s).replace(',', '.').replace('−','-').trim()); return Number.isNaN(n) ? null : n; }
+  function set(el, ok, msg){
+    const fb = fbOf(el);
+    el.className = 'cloze-input' + (el.classList.contains('wide') ? ' wide' : '') + (ok ? ' ok' : ' no');
+    if (fb){ fb.textContent = msg; fb.className = 'cloze-fb ' + (ok ? 'ok' : 'no') + ' show'; }
+  }
+  function clear(el){
+    const fb = fbOf(el);
+    el.className = 'cloze-input' + (el.classList.contains('wide') ? ' wide' : '');
+    if (fb){ fb.textContent=''; fb.className='cloze-fb'; fb.style.background=''; }
+  }
+
+  function checkAll(){
+    let ok = 0; const total = inputs.length;
+    // límites: cobertura del conjunto
+    const limitEls = inputs.filter(el => el.dataset.kind === 'limit');
+    const limitVals = limitEls.map(el => num(el.value));
+    inputs.forEach(el => {
+      const k = el.dataset.kind, v = el.value.trim();
+      if (!v){ clear(el); return; }
+      if (k === 'num-in'){ const n = num(v); const good = n !== null && n >= 0 && n <= 10; set(el, good, good ? '¡Bien! Está dentro del rango.' : 'Tiene que ser una nota dentro de 0–10.'); if (good) ok++; }
+      else if (k === 'num-out'){ const n = num(v); const good = n !== null && (n < 0 || n > 10); set(el, good, good ? '¡Bien! Queda fuera del rango.' : 'Tiene que ser una nota fuera de 0–10 (menor a 0 o mayor a 10).'); if (good) ok++; }
+      else if (k === 'acepta'){ const good = /acept/i.test(v); set(el, good, good ? '¡Bien!' : 'Una nota válida se debería aceptar.'); if (good) ok++; }
+      else if (k === 'rechaza'){ const good = /rechaz/i.test(v); set(el, good, good ? '¡Bien!' : 'Una nota inválida se debería rechazar.'); if (good) ok++; }
+      else if (k === 'limit'){
+        const n = num(v);
+        const isTarget = n !== null && LIMITS.includes(n);
+        const dup = isTarget && limitVals.filter(x => x === n).length > 1;
+        const good = isTarget && !dup;
+        set(el, good, good ? '¡Bien! Es un valor frontera.' : dup ? 'Repetido: usá los cuatro distintos.' : 'Los bordes son -1, 0, 10 y 11.');
+        if (good) ok++;
+      }
+      else if (k === 'text'){ const good = v.length >= 4 && num(v) === null; set(el, good, good ? '¡Bien! Explora algo no pedido.' : 'Describí una prueba no prevista (no un número del rango).'); if (good) ok++; }
+    });
+    const answered = inputs.some(el => el.value.trim());
+    if (!answered){ score.textContent = 'Completá al menos una técnica.'; score.className = 'dd-score no'; return; }
+    const cls = ok === total ? 'ok' : ok >= Math.ceil(total*0.6) ? 'partial' : 'no';
+    score.textContent = ok + ' / ' + total + ' correctos. Pasá la ficha completa a tu carpeta.';
+    score.className = 'dd-score ' + cls;
+  }
+
+  hints.forEach(h => h.addEventListener('click', () => {
+    const wrap = h.closest('.cloze-wrap'); if (!wrap) return;
+    const input = wrap.querySelector('.cloze-input'); const fb = input ? fbOf(input) : null; if (!fb) return;
+    h.classList.toggle('revealed');
+    if (h.classList.contains('revealed')){ fb.textContent = '💡 ' + (h.dataset.hint || ''); fb.className='cloze-fb show'; fb.style.background='#2f3a4f'; }
+    else { fb.textContent=''; fb.className='cloze-fb'; fb.style.background=''; }
+  }));
+
+  inputs.forEach((el, i) => {
+    el.addEventListener('input', () => { clear(el); score.textContent=''; score.className='dd-score'; });
+    el.addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); checkAll(); const n = inputs[i+1]; if (n) setTimeout(()=>n.focus(),80); } });
+  });
+  checkBtn.addEventListener('click', () => { hints.forEach(h => h.classList.remove('revealed')); checkAll(); });
+  resetBtn.addEventListener('click', () => {
+    inputs.forEach(clear); hints.forEach(h => h.classList.remove('revealed'));
+    score.textContent=''; score.className='dd-score';
+  });
+})();

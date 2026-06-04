@@ -8,14 +8,16 @@ Material didáctico de la materia **Evaluación de Proyectos** (7.º año, orien
 
 | Carpeta | Tema | Slides / secciones |
 |---|---|---|
-| [clase-1/](clase-1/) | Presentación de la materia e introducción a la calidad: atributos, matriz de evaluación ponderada en vivo y mapa anual | 25 slides |
-| [clase-2-3-calidad-software/](clase-2-3-calidad-software/) | Calidad del software (QA/QC, V&V, criterios omisión/excedente/incorrecto, atributos, métricas) | 21 slides (19 base + 2 del TP2 en modo `?presencial`) |
-| [clase-4-5-casos-prueba/](clase-4-5-casos-prueba/) | Diseño de casos de prueba (clases de equivalencia, valores límite, conjetura de errores) | 19 slides |
-| [clase-6-instrumentos-evaluacion/](clase-6-instrumentos-evaluacion/) | Instrumentos de evaluación (lista de cotejo, escala de valoración, rúbrica analítica) | 34 slides |
+| [clase-1/](clase-1/) | Presentación de la materia e introducción a la calidad: atributos, matriz de evaluación ponderada en vivo, mapa anual y registro para la carpeta (glosario "definí con tus palabras") | 26 slides |
+| [clase-2-3-calidad-software/](clase-2-3-calidad-software/) | Calidad del software (QA/QC, V&V, criterios omisión/excedente/incorrecto, atributos, métricas) y registro para la carpeta (síntesis cloze) | 21 slides (19 base + 2 del TP2 en modo `?presencial`) |
+| [clase-4-5-casos-prueba/](clase-4-5-casos-prueba/) | Diseño de casos de prueba (clases de equivalencia, valores límite, conjetura de errores) y registro para la carpeta (ficha de caso de prueba) | 20 slides |
+| [clase-6-instrumentos-evaluacion/](clase-6-instrumentos-evaluacion/) | Instrumentos de evaluación (lista de cotejo, escala de valoración, rúbrica analítica) y registro para la carpeta (tabla "¿qué instrumento uso?") | 35 slides |
 | [clase-7-cierre-unidad/](clase-7-cierre-unidad/) | Cierre integrador de la unidad: repaso, mapa conceptual, esquema de 7 pasos, auto-test, registro para la carpeta, metacognición y lanzamiento de la actividad integradora | 22 slides |
 | [actividad-integradora/](actividad-integradora/) | Actividad integradora de cierre — escenario único "App de Reservas de Canchas" | 5 pasos |
 
 > La actividad integradora es **viva**: se actualiza cuando se agregan conceptos a las clases de la unidad. Cuando empiece la Unidad 2, va a tener su propia carpeta `actividad-integradora-…`.
+
+> **Registro para la carpeta:** cada clase cierra con un registro que el estudiante copia **a mano** en su carpeta física. El formato **varía por clase** para ejercitar distintas operaciones cognitivas: glosario con palabras propias (clase 1), síntesis cloze (clases 2-3 y 7), ficha de caso de prueba (clase 4-5) y tabla de selección de instrumento (clase 6). Todos son interactivos (autochequeo + 💡) pero el entregable es el escrito a mano.
 
 Cada carpeta incluye:
 

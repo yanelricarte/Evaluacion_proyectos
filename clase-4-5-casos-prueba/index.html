@@ -258,7 +258,7 @@
         <span class="cls-result"></span>
       </div>
       <div class="classifier-row" data-correct="EV">
-        <span class="cls-data">"abcdef"</span>
+        <span class="cls-data">"abcdefgh"</span>
         <div class="cls-options">
           <button data-tech="EV">Equivalencia válida</button>
           <button data-tech="EI">Equivalencia inválida</button>
@@ -311,6 +311,43 @@
     <p>Para cada condición de prueba, deberán organizar casos con datos de entrada, tipo de prueba y resultado esperado.</p>
     <div class="example">
       La clave no es escribir muchos casos, sino elegirlos y justificarlos correctamente.
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Para tu carpeta</div>
+    <h2>Ficha de caso de prueba — completá</h2>
+    <p class="subtitle">Para la regla dada, completá un valor (o prueba) por cada técnica e indicá el resultado esperado. Si una técnica no sale, la <span class="cloze-hint-icon" aria-hidden="true">💡</span> da una pista. Después pasala <b>a mano a tu carpeta</b>.</p>
+    <div class="card reg-content">
+      <div class="reg-head">
+        <span><b>Fecha:</b> ____ / ____ / ______</span>
+        <span><b>Clase:</b> 4-5 — Diseño de casos de prueba</span>
+        <span><b>Materia:</b> Evaluación de Proyectos</span>
+      </div>
+      <div class="rule-box">Regla del sistema: el sistema acepta una <b>nota entre 0 y 10</b>.</div>
+      <div class="ficha-list" id="fichaReg">
+        <div class="ficha-row">
+          <span class="ficha-tech">Equivalencia válida</span>
+          <span class="ficha-slots">valor <span class="cloze-wrap"><input class="cloze-input" type="text" id="fi0" data-kind="num-in" autocomplete="off"><span class="cloze-fb" id="ff0"></span><button class="cloze-hint" data-hint="Cualquier nota dentro del rango, p. ej. 5 o 7." aria-label="Pista">💡</button></span> → resultado <span class="cloze-wrap"><input class="cloze-input wide" type="text" id="fi1" data-kind="acepta" placeholder="acepta / rechaza" autocomplete="off"><span class="cloze-fb" id="ff1"></span></span></span>
+        </div>
+        <div class="ficha-row">
+          <span class="ficha-tech">Equivalencia inválida</span>
+          <span class="ficha-slots">valor <span class="cloze-wrap"><input class="cloze-input" type="text" id="fi2" data-kind="num-out" autocomplete="off"><span class="cloze-fb" id="ff2"></span><button class="cloze-hint" data-hint="Una nota fuera del rango, p. ej. 15 o -3." aria-label="Pista">💡</button></span> → resultado <span class="cloze-wrap"><input class="cloze-input wide" type="text" id="fi3" data-kind="rechaza" placeholder="acepta / rechaza" autocomplete="off"><span class="cloze-fb" id="ff3"></span></span></span>
+        </div>
+        <div class="ficha-row">
+          <span class="ficha-tech">Valores límite</span>
+          <span class="ficha-slots"><span class="cloze-wrap"><input class="cloze-input" type="text" id="fi4" data-kind="limit" autocomplete="off"><span class="cloze-fb" id="ff4"></span></span><span class="cloze-wrap"><input class="cloze-input" type="text" id="fi5" data-kind="limit" autocomplete="off"><span class="cloze-fb" id="ff5"></span></span><span class="cloze-wrap"><input class="cloze-input" type="text" id="fi6" data-kind="limit" autocomplete="off"><span class="cloze-fb" id="ff6"></span></span><span class="cloze-wrap"><input class="cloze-input" type="text" id="fi7" data-kind="limit" autocomplete="off"><span class="cloze-fb" id="ff7"></span><button class="cloze-hint" data-hint="Justo afuera y justo adentro de cada borde: -1, 0, 10 y 11." aria-label="Pista">💡</button></span></span>
+        </div>
+        <div class="ficha-row">
+          <span class="ficha-tech">Conjetura de errores</span>
+          <span class="ficha-slots"><span class="cloze-wrap"><input class="cloze-input wide" type="text" id="fi8" data-kind="text" placeholder="ej.: dejar el campo vacío, escribir letras…" autocomplete="off"><span class="cloze-fb" id="ff8"></span><button class="cloze-hint" data-hint="Algo que el enunciado no pide: campo vacío, letras, símbolos, decimales raros." aria-label="Pista">💡</button></span></span>
+        </div>
+      </div>
+      <div class="cloze-bar">
+        <button class="prod-check" id="fichaCheck">Verificar</button>
+        <button class="dd-reset" id="fichaReset">Reiniciar</button>
+        <div class="dd-score" id="fichaScore" aria-live="polite"></div>
+      </div>
     </div>
   </section>
 

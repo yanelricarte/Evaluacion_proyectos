@@ -227,3 +227,79 @@ if (h) {
   } catch (_) {}
 }
 update();
+
+// ===== Registro para la carpeta: glosario con feedback heurístico =====
+(function () {
+  const list = document.getElementById('glossReg');
+  if (!list) return;
+  const inputs = Array.from(list.querySelectorAll('.gloss-input'));
+  const checkBtn = document.getElementById('glossCheck');
+  const resetBtn = document.getElementById('glossReset');
+  const score = document.getElementById('glossScore');
+  const hints = Array.from(list.querySelectorAll('.cloze-hint'));
+
+  const VAGUE = ['bueno','buena','bonito','lindo','fácil','facil','rápido','rapido','cómodo','comodo','agradable','sencillo','amigable','genial','copado','piola'];
+
+  function fbOf(el){ return document.getElementById(el.id.replace('gl', 'gf')); }
+  function clear(el){
+    el.className = 'cloze-input gloss-input';
+    const fb = fbOf(el); if (fb){ fb.textContent=''; fb.className='cloze-fb'; fb.style.background=''; }
+  }
+  function norm(s){ return s.toLowerCase().replace(/[.,;:¿?¡!]/g,'').replace(/\s+/g,' ').trim(); }
+
+  function checkOne(el){
+    const fb = fbOf(el); if (!fb) return false;
+    const val = norm(el.value);
+    if (!val){ clear(el); return false; }
+    const words = val.split(' ');
+    const vagueHits = words.filter(w => VAGUE.includes(w));
+    const onlyVague = words.length <= 3 && vagueHits.length > 0;
+    const tooShort = val.length < 15;
+    if (tooShort || onlyVague){
+      el.className = 'cloze-input gloss-input no';
+      fb.textContent = onlyVague
+        ? 'Evitá palabras vagas («' + vagueHits[0] + '»). Escribí qué HACE el sistema en este atributo.'
+        : 'Ampliá un poco: ¿qué tiene que poder hacer el sistema para cumplir este atributo?';
+      fb.className = 'cloze-fb no show';
+      return false;
+    }
+    el.className = 'cloze-input gloss-input ok';
+    fb.textContent = 'Buena definición. Tocá la 💡 para compararla con la de referencia.';
+    fb.className = 'cloze-fb ok show';
+    return true;
+  }
+
+  hints.forEach(h => h.addEventListener('click', () => {
+    const wrap = h.closest('.cloze-wrap'); if (!wrap) return;
+    const input = wrap.querySelector('.gloss-input');
+    const fb = input ? fbOf(input) : null; if (!fb) return;
+    h.classList.toggle('revealed');
+    if (h.classList.contains('revealed')){
+      fb.textContent = '💡 Referencia: ' + (h.dataset.hint || '');
+      fb.className = 'cloze-fb show'; fb.style.background = '#2f3a4f';
+    } else { fb.textContent=''; fb.className='cloze-fb'; fb.style.background=''; }
+  }));
+
+  inputs.forEach((el, i) => {
+    el.addEventListener('input', () => { clear(el); score.textContent=''; score.className='dd-score'; });
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter'){ e.preventDefault(); checkOne(el); const n = inputs[i+1]; if (n) setTimeout(()=>n.focus(),100); }
+    });
+  });
+
+  checkBtn.addEventListener('click', () => {
+    hints.forEach(h => h.classList.remove('revealed'));
+    let ok = 0, answered = 0;
+    inputs.forEach(el => { if (el.value.trim()) answered++; if (checkOne(el)) ok++; });
+    if (!answered){ score.textContent = 'Escribí al menos una definición.'; score.className = 'dd-score no'; return; }
+    const cls = ok === inputs.length ? 'ok' : ok >= Math.ceil(inputs.length*0.6) ? 'partial' : 'no';
+    score.textContent = ok + ' / ' + inputs.length + ' bien encaminadas. Pasalas a tu carpeta y compará con la 💡.';
+    score.className = 'dd-score ' + cls;
+  });
+
+  resetBtn.addEventListener('click', () => {
+    inputs.forEach(el => { el.value=''; clear(el); });
+    hints.forEach(h => h.classList.remove('revealed'));
+    score.textContent=''; score.className='dd-score';
+  });
+})();

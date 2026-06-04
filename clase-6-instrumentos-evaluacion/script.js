@@ -114,3 +114,71 @@ if (h) {
   } catch(_) {}
 }
 update();
+
+// ===== Registro para la carpeta: tabla "¿qué instrumento uso?" =====
+(function () {
+  const table = document.getElementById('instrReg');
+  if (!table) return;
+  const inputs = Array.from(table.querySelectorAll('.cloze-input'));
+  const instrInputs = inputs.filter(el => el.dataset.answers);
+  const checkBtn = document.getElementById('instrCheck');
+  const resetBtn = document.getElementById('instrReset');
+  const score = document.getElementById('instrScore');
+  const hints = Array.from(table.querySelectorAll('.cloze-hint'));
+
+  function fbOf(el){ return document.getElementById(el.id.replace('in', 'if')); }
+  function norm(s){ return s.toLowerCase().replace(/[.,;:¿?¡!]/g,'').replace(/\s+/g,' ').trim(); }
+  function clear(el){
+    el.className = 'cloze-input';
+    const fb = fbOf(el); if (fb){ fb.textContent=''; fb.className='cloze-fb'; fb.style.background=''; }
+  }
+  function set(el, ok, msg){
+    el.className = 'cloze-input ' + (ok ? 'ok' : 'no');
+    const fb = fbOf(el); if (fb){ fb.textContent = msg; fb.className = 'cloze-fb ' + (ok ? 'ok' : 'no') + ' show'; }
+  }
+  function accepted(el){ return (el.dataset.answers || '').split(',').map(norm).filter(Boolean); }
+
+  function checkOne(el){
+    const val = norm(el.value);
+    if (!val){ clear(el); return false; }
+    if (el.dataset.kind === 'text'){
+      const good = val.length >= 10;
+      set(el, good, good ? '¡Bien! Justificación clara.' : 'Ampliá: ¿por qué ese instrumento y no otro?');
+      return good;
+    }
+    const acc = accepted(el);
+    const good = acc.some(a => val === a || val.startsWith(a) || a.startsWith(val));
+    set(el, good, good ? '¡Bien!' : 'Probá con: ' + (acc[0] || ''));
+    return good;
+  }
+
+  hints.forEach(h => h.addEventListener('click', () => {
+    const wrap = h.closest('.cloze-wrap'); if (!wrap) return;
+    const input = wrap.querySelector('.cloze-input'); const fb = input ? fbOf(input) : null; if (!fb) return;
+    h.classList.toggle('revealed');
+    if (h.classList.contains('revealed')){ fb.textContent = '💡 ' + (h.dataset.hint || ''); fb.className='cloze-fb show'; fb.style.background='#2f3a4f'; }
+    else { fb.textContent=''; fb.className='cloze-fb'; fb.style.background=''; }
+  }));
+
+  inputs.forEach((el, i) => {
+    el.addEventListener('input', () => { clear(el); score.textContent=''; score.className='dd-score'; });
+    el.addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); checkOne(el); const n = inputs[i+1]; if (n) setTimeout(()=>n.focus(),80); } });
+  });
+
+  checkBtn.addEventListener('click', () => {
+    hints.forEach(h => h.classList.remove('revealed'));
+    let ok = 0;
+    inputs.forEach(checkOne);
+    instrInputs.forEach(el => { if (el.className.includes('ok')) ok++; });
+    const answered = inputs.some(el => el.value.trim());
+    if (!answered){ score.textContent = 'Completá al menos una fila.'; score.className = 'dd-score no'; return; }
+    const cls = ok === instrInputs.length ? 'ok' : ok >= Math.ceil(instrInputs.length*0.6) ? 'partial' : 'no';
+    score.textContent = ok + ' / ' + instrInputs.length + ' instrumentos correctos. Pasá la tabla a tu carpeta.';
+    score.className = 'dd-score ' + cls;
+  });
+
+  resetBtn.addEventListener('click', () => {
+    inputs.forEach(clear); hints.forEach(h => h.classList.remove('revealed'));
+    score.textContent=''; score.className='dd-score';
+  });
+})();
