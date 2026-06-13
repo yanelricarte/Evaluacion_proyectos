@@ -10,6 +10,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=3">
+  <style>
+    /* Ejercicio "¿qué métrica para cada caso?" (desplegables) */
+    .metric-match { display:flex; flex-direction:column; gap:14px; margin:14px 0; }
+    .mm-row { display:flex; flex-direction:column; gap:6px; }
+    .mm-row > span { font-weight:600; }
+    .mm-row select { padding:10px 12px; border:1px solid #c7ccd3; border-radius:8px; font-size:1rem; background:#fff; color:#202124; max-width:100%; font-family:inherit; }
+    .mm-row select:focus-visible { outline:3px solid #b31657; outline-offset:2px; }
+    .mm-row select.mm-ok { border-color:#1a7f37; border-width:2px; }
+    .mm-row select.mm-bad { border-color:#d1242f; border-width:2px; }
+    .mm-check { margin-top:14px; cursor:pointer; font-family:inherit; font-weight:700; padding:10px 18px; border:none; border-radius:8px; background:#b31657; color:#fff; font-size:1rem; }
+    .mm-check:hover { background:#8f1145; }
+    .mm-fb { margin-top:12px; font-weight:700; }
+    .mm-fb.mm-allok { color:#1a7f37; }
+    .mm-fb.mm-partial { color:#b06000; }
+  </style>
 </head>
 <body>
   <div class="deck">
@@ -42,7 +57,7 @@
                 </div>
                 <div class="mini-item">
                   <div class="mini-icon" aria-hidden="true">03</div>
-                  <div><b>Escribir</b><span>una métrica concreta para evaluar un caso.</span></div>
+                  <div><b>Asociar</b><span>la métrica que sirve para medir cada caso.</span></div>
                 </div>
               </div>
             </div>
@@ -500,18 +515,18 @@
               <div class="svg-wrap">
                 <svg width="100%" height="250" viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="graf-titulo">
                   <title id="graf-titulo">Errores detectados por día</title>
-                  <text x="255" y="24" text-anchor="middle" font-size="16" font-weight="700" fill="#202124">Errores detectados por día</text>
-                  <text x="22" y="125" text-anchor="middle" font-size="13" fill="#5f6368" transform="rotate(-90 22 125)">Cantidad de errores</text>
+                  <text x="255" y="24" text-anchor="middle" font-size="19" font-weight="700" fill="#202124">Errores detectados por día</text>
+                  <text x="22" y="125" text-anchor="middle" font-size="14" fill="#5f6368" transform="rotate(-90 22 125)">Cantidad de errores</text>
                   <line x1="70" y1="200" x2="460" y2="200" stroke="#8b919a" stroke-width="2"/>
                   <line x1="70" y1="50" x2="70" y2="200" stroke="#8b919a" stroke-width="2"/>
                   <rect x="95" y="140" width="60" height="60" fill="#ffe6ef"/>
                   <rect x="185" y="110" width="60" height="90" fill="#ef7ca6"/>
                   <rect x="275" y="75" width="60" height="125" fill="#b31657"/>
                   <rect x="365" y="158" width="60" height="42" fill="#eceff3"/>
-                  <text x="125" y="222" text-anchor="middle" font-size="14" fill="#202124">Lun</text>
-                  <text x="215" y="222" text-anchor="middle" font-size="14" fill="#202124">Mar</text>
-                  <text x="305" y="222" text-anchor="middle" font-size="14" fill="#202124">Mié</text>
-                  <text x="395" y="222" text-anchor="middle" font-size="14" fill="#202124">Jue</text>
+                  <text x="125" y="223" text-anchor="middle" font-size="16" fill="#202124">Lun</text>
+                  <text x="215" y="223" text-anchor="middle" font-size="16" fill="#202124">Mar</text>
+                  <text x="305" y="223" text-anchor="middle" font-size="16" fill="#202124">Mié</text>
+                  <text x="395" y="223" text-anchor="middle" font-size="16" fill="#202124">Jue</text>
                 </svg>
               </div>
             </article>
@@ -527,6 +542,65 @@
                 <div class="feedback" aria-live="polite"></div>
               </div>
               <div class="callout" style="margin-top:12px;">Una buena métrica dice <b>qué mide</b> y <b>cómo se mide</b>, atada al caso real.</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="frame">
+          <div class="topbar">
+            <h2 class="title">Practiquemos: ¿qué métrica para cada caso?</h2>
+            <div class="slide-count"></div>
+          </div>
+          <div class="content">
+            <article class="card">
+              <p>Para el <b>sistema de turnos</b>, elegí en cada situación la métrica que <b>sí se puede medir</b> y está atada al caso. Después tocá <b>Verificar</b>.</p>
+              <div class="metric-match">
+                <label class="mm-row">
+                  <span>La pantalla de turnos tarda en cargar</span>
+                  <select data-ok="seg">
+                    <option value="">elegí una métrica…</option>
+                    <option value="seg">Segundos promedio en mostrar los turnos</option>
+                    <option value="malg">Turnos mal guardados por semana</option>
+                    <option value="err">Errores al completar el alta</option>
+                    <option value="min">Minutos sin servicio por mes</option>
+                  </select>
+                </label>
+                <label class="mm-row">
+                  <span>A veces los turnos se guardan mal</span>
+                  <select data-ok="malg">
+                    <option value="">elegí una métrica…</option>
+                    <option value="seg">Segundos promedio en mostrar los turnos</option>
+                    <option value="malg">Turnos mal guardados por semana</option>
+                    <option value="err">Errores al completar el alta</option>
+                    <option value="min">Minutos sin servicio por mes</option>
+                  </select>
+                </label>
+                <label class="mm-row">
+                  <span>La gente se equivoca al sacar un turno</span>
+                  <select data-ok="err">
+                    <option value="">elegí una métrica…</option>
+                    <option value="seg">Segundos promedio en mostrar los turnos</option>
+                    <option value="malg">Turnos mal guardados por semana</option>
+                    <option value="err">Errores al completar el alta</option>
+                    <option value="min">Minutos sin servicio por mes</option>
+                  </select>
+                </label>
+                <label class="mm-row">
+                  <span>El sistema se cae seguido</span>
+                  <select data-ok="min">
+                    <option value="">elegí una métrica…</option>
+                    <option value="seg">Segundos promedio en mostrar los turnos</option>
+                    <option value="malg">Turnos mal guardados por semana</option>
+                    <option value="err">Errores al completar el alta</option>
+                    <option value="min">Minutos sin servicio por mes</option>
+                  </select>
+                </label>
+              </div>
+              <button type="button" class="mm-check">Verificar</button>
+              <div class="mm-fb" role="status" aria-live="polite"></div>
+              <div class="callout" style="margin-top:12px;">Todas dicen <b>qué miden</b> y <b>cómo</b>. La clave es elegir la que apunta al problema real de cada caso.</div>
             </article>
           </div>
         </div>
@@ -580,7 +654,7 @@
               <ul>
                 <li>¿Podés <b>distinguir</b> QA de QC y verificación de validación con un ejemplo?</li>
                 <li>¿Sabés <b>clasificar</b> un error en omisión, excedente o incorrecto?</li>
-                <li>¿Podés <b>escribir</b> una métrica concreta para un caso?</li>
+                <li>¿Podés <b>elegir</b> la métrica que sirve para cada caso?</li>
               </ul>
               <a class="doc-link" href="https://docs.google.com/document/d/1r3Rq-rsJJLlwJMtS5AerkzgZYAjJK8AR_kacb_PVmNc/edit" target="_blank" rel="noopener">📘 Material de lectura de la unidad</a>
             </article>
@@ -602,7 +676,7 @@
                 <span><b>Título:</b> Calidad del software</span>
                 <span><b>Materia:</b> Evaluación de Proyectos</span>
               </div>
-              <p>Si las ideas de la clase empiezan a desdibujarse, acá queda el registro. Completá — si alguna no sale, la <span class="cloze-hint-icon" aria-hidden="true">💡</span> puede destrabar. Lo que queda al final, va a tu carpeta.</p>
+              <p>Sintetizá lo trabajado en la clase de hoy completando cada espacio con los conceptos vistos; la <span class="cloze-hint-icon" aria-hidden="true">💡</span> te orientará si lo necesitás. Debe quedar plasmado en tu carpeta como registro.</p>
               <ul class="cloze-list" id="clozeList">
                 <li>La calidad no es solo que «ande»: también es <span class="cloze-wrap"><input class="cloze-input" type="text" id="ci0" data-keywords="útil,confiable,usable,funcional,mantenible,eficiente,accesible,seguro" autocomplete="off"><span class="cloze-fb" id="cf0"></span><button class="cloze-hint" data-hint="Pensá en atributos del software: ¿qué hace que un programa sea valioso para quien lo usa?" aria-label="Pista">💡</button></span></li>
                 <li><b>QA</b> se enfoca en el <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci1" data-answers="proceso" autocomplete="off"><span class="cloze-fb" id="cf1"></span><button class="cloze-hint" data-hint="QA previene: trabaja sobre cómo se construye (el ___)" aria-label="Pista">💡</button></span> (prevenir); <b>QC</b>, en el <span class="cloze-wrap"><input class="cloze-input short" type="text" id="ci2" data-answers="producto" autocomplete="off"><span class="cloze-fb" id="cf2"></span><button class="cloze-hint" data-hint="QC detecta: revisa lo que ya está construido (el ___)" aria-label="Pista">💡</button></span> (detectar).</li>
@@ -791,5 +865,34 @@
     </div>
   </div>
   <script src="script.js?v=3"></script>
+  <script>
+    /* Verificacion del ejercicio de metricas (desplegables) */
+    (function () {
+      document.querySelectorAll('.metric-match').forEach(function (mm) {
+        var card = mm.closest('.card') || mm.parentNode;
+        var selects = Array.prototype.slice.call(mm.querySelectorAll('select'));
+        var btn = card.querySelector('.mm-check');
+        var fb = card.querySelector('.mm-fb');
+        if (!btn || !fb) return;
+        selects.forEach(function (s) {
+          s.addEventListener('change', function () { s.classList.remove('mm-ok', 'mm-bad'); });
+        });
+        btn.addEventListener('click', function () {
+          var ok = 0;
+          selects.forEach(function (s) {
+            var good = s.value !== '' && s.value === s.getAttribute('data-ok');
+            s.classList.toggle('mm-ok', !!good);
+            s.classList.toggle('mm-bad', !good);
+            if (good) ok++;
+          });
+          var all = ok === selects.length;
+          fb.textContent = all
+            ? '¡Perfecto! ' + ok + '/' + selects.length + '. Cada metrica dice que mide y como, atada al caso.'
+            : ok + '/' + selects.length + ' bien. Revisa las marcadas en rojo y volve a elegir.';
+          fb.className = 'mm-fb ' + (all ? 'mm-allok' : 'mm-partial');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
