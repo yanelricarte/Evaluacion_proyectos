@@ -1,5 +1,5 @@
 /* ============================================================
-   Trabajo en clase · El perito informático (Unidad 2)
+   Trabajo en clase · Diagnóstico por capas (Unidad 2)
    Elección única con feedback + puntaje. Persistencia en localStorage.
    Se corrige solo; no hay nada para entregar.
    ============================================================ */
