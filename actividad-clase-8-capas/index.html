@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trabajo en clase · El perito informático — Evaluación de Proyectos</title>
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Trabajo en clase · Unidad 2 · 7.º año</div>
+    <h1>El perito informático: diagnóstico por capas</h1>
+    <p class="lead">Aplicá lo que vimos hoy sobre las capas hardware-firmware-software y los grados de integración. Se corrige solo y se termina en clase: no se entrega nada, el registro final lo copiás a tu carpeta.</p>
+    <div class="track">
+      <a class="track-step" href="#parte-1"><b>1</b><span>¿En qué capa está el problema?</span></a>
+      <a class="track-step" href="#parte-2"><b>2</b><span>Grado de integración</span></a>
+      <a class="track-step" href="#parte-3"><b>3</b><span>Registro para la carpeta</span></a>
+      <a class="track-step" href="#resultado"><b>★</b><span>Resultado</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="scenario" id="consigna">
+  <div class="kicker">Cómo se trabaja</div>
+  <h2>Sos el técnico que diagnostica antes de recomendar</h2>
+  <div class="scenario-grid">
+    <article class="scenario-card">
+      <h3>Las 5 capas (repaso)</h3>
+      <p><b>Aplicación → Sistema operativo → Controlador (driver) → Firmware/BIOS → Hardware.</b></p>
+      <p>Cuanto más abajo, más difícil y caro de cambiar.</p>
+    </article>
+    <article class="scenario-card">
+      <h3>La idea de hoy</h3>
+      <p>Un mismo síntoma («va lento», «se cuelga») puede originarse en cualquier capa. <b>Diagnosticar bien</b> es saber en cuál mirar antes de gastar tiempo o dinero.</p>
+    </article>
+  </div>
+  <p class="hint">En las partes 1 y 2 elegís una opción y aparece la corrección al instante. La parte 3 es de producción: la copiás a mano en tu carpeta (podés ver un ejemplo resuelto para comparar).</p>
+</section>
+
+<!-- ===== PARTE 1: ¿En qué capa está el problema? ===== -->
+<section class="step" id="parte-1">
+  <header class="step-header">
+    <span class="step-num">1</span>
+    <div>
+      <div class="kicker">Diagnóstico</div>
+      <h2>¿En qué capa está el problema?</h2>
+    </div>
+  </header>
+  <p>Para cada síntoma, elegí la <b>capa</b> donde se origina. Al elegir aparece la explicación.</p>
+
+  <div class="match-list" data-section="parte-1">
+
+    <article class="match-item" data-correct="firmware">
+      <p class="match-text">«La PC tarda en encender y, antes de que aparezca Windows, muestra una pantalla de configuración azul con la fecha y el orden de arranque.»</p>
+      <div class="choices" data-field="capa">
+        <button data-value="app">Aplicación</button>
+        <button data-value="so">Sistema operativo</button>
+        <button data-value="driver">Controlador (driver)</button>
+        <button data-value="firmware">Firmware / BIOS</button>
+        <button data-value="hardware">Hardware</button>
+      </div>
+      <div class="match-feedback">
+        <b>Firmware (BIOS/UEFI).</b> Esa pantalla aparece <b>antes</b> de que cargue el sistema operativo: es el software grabado en la placa que arranca el equipo. Para conversar: ¿por qué no puede ser «una aplicación» si todavía no cargó Windows?
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="driver">
+      <p class="match-text">«Todo andaba bien, pero después de una actualización de Windows la placa de video empezó a fallar y se soluciona reinstalando su software específico.»</p>
+      <div class="choices" data-field="capa">
+        <button data-value="app">Aplicación</button>
+        <button data-value="so">Sistema operativo</button>
+        <button data-value="driver">Controlador (driver)</button>
+        <button data-value="firmware">Firmware / BIOS</button>
+        <button data-value="hardware">Hardware</button>
+      </div>
+      <div class="match-feedback">
+        <b>Controlador (driver).</b> El driver es el que traduce las órdenes del sistema operativo a la placa de video. Si se rompe o queda desactualizado, el hardware está bien pero no responde como debería.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="app">
+      <p class="match-text">«El navegador se cierra solo cada tanto, pero el resto del equipo (otros programas, el sistema, el hardware) funciona perfecto.»</p>
+      <div class="choices" data-field="capa">
+        <button data-value="app">Aplicación</button>
+        <button data-value="so">Sistema operativo</button>
+        <button data-value="driver">Controlador (driver)</button>
+        <button data-value="firmware">Firmware / BIOS</button>
+        <button data-value="hardware">Hardware</button>
+      </div>
+      <div class="match-feedback">
+        <b>Aplicación.</b> El problema está aislado en un solo programa; el resto de las capas funciona. Es la capa más alta y la más fácil de reemplazar o reinstalar.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="hardware">
+      <p class="match-text">«El equipo abre todo lento, hace ruidos al leer y la lentitud aparece con cualquier programa, no con uno solo.»</p>
+      <div class="choices" data-field="capa">
+        <button data-value="app">Aplicación</button>
+        <button data-value="so">Sistema operativo</button>
+        <button data-value="driver">Controlador (driver)</button>
+        <button data-value="firmware">Firmware / BIOS</button>
+        <button data-value="hardware">Hardware</button>
+      </div>
+      <div class="match-feedback">
+        <b>Hardware.</b> El ruido y que afecte a todo apuntan al disco físico (probablemente un disco mecánico antiguo). Para conversar: ¿conviene comprar otra PC o alcanza con cambiar el disco por uno de estado sólido?
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="firmware">
+      <p class="match-text">«El router se cuelga seguido y el fabricante recomienda actualizar el programa interno del dispositivo para solucionarlo.»</p>
+      <div class="choices" data-field="capa">
+        <button data-value="app">Aplicación</button>
+        <button data-value="so">Sistema operativo</button>
+        <button data-value="driver">Controlador (driver)</button>
+        <button data-value="firmware">Firmware / BIOS</button>
+        <button data-value="hardware">Hardware</button>
+      </div>
+      <div class="match-feedback">
+        <b>Firmware.</b> El «programa interno» de un router es firmware embebido. Es el mismo concepto que la BIOS de una PC, pero en otro dispositivo. Para conversar: ¿qué riesgo hay si se corta la luz en medio de una actualización de firmware?
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="so">
+      <p class="match-text">«Al iniciar sesión, el equipo tarda muchísimo porque arrancan automáticamente unos veinte programas al mismo tiempo.»</p>
+      <div class="choices" data-field="capa">
+        <button data-value="app">Aplicación</button>
+        <button data-value="so">Sistema operativo</button>
+        <button data-value="driver">Controlador (driver)</button>
+        <button data-value="firmware">Firmware / BIOS</button>
+        <button data-value="hardware">Hardware</button>
+      </div>
+      <div class="match-feedback">
+        <b>Sistema operativo.</b> Qué programas arrancan al iniciar sesión lo administra el sistema operativo. Se resuelve por configuración, sin tocar el hardware. Para conversar: ¿por qué esta sería la mejora más barata de todas?
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== PARTE 2: Grado de integración ===== -->
+<section class="step" id="parte-2">
+  <header class="step-header">
+    <span class="step-num">2</span>
+    <div>
+      <div class="kicker">Clasificación</div>
+      <h2>¿Qué grado de integración tiene cada equipo?</h2>
+    </div>
+  </header>
+  <p>Recordá: <b>baja</b> = cada capa se cambia por separado · <b>media</b> = se actualiza software pero el hardware viene cerrado · <b>alta (embebido)</b> = todo viene como una unidad inseparable.</p>
+
+  <div class="match-list" data-section="parte-2">
+
+    <article class="match-item" data-correct="baja">
+      <p class="match-text">«Una PC de escritorio armada por partes: se le puede sumar memoria, cambiar el disco y reinstalar el sistema operativo.»</p>
+      <div class="choices" data-field="grado">
+        <button data-value="baja">Baja integración</button>
+        <button data-value="media">Integración media</button>
+        <button data-value="alta">Alta integración</button>
+      </div>
+      <div class="match-feedback">
+        <b>Baja integración.</b> Cada capa es independiente y reemplazable. Es la más flexible y reparable, aunque ocupe más espacio y requiera armado.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="media">
+      <p class="match-text">«Una notebook: se puede actualizar el sistema operativo y algunos componentes, pero la mayoría del hardware viene cerrado de fábrica.»</p>
+      <div class="choices" data-field="grado">
+        <button data-value="baja">Baja integración</button>
+        <button data-value="media">Integración media</button>
+        <button data-value="alta">Alta integración</button>
+      </div>
+      <div class="match-feedback">
+        <b>Integración media.</b> Hay margen para actualizar software y algo de hardware, pero menos que en una PC de escritorio. Es el equilibrio típico entre rendimiento y posibilidad de modificación.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="media">
+      <p class="match-text">«Un teléfono celular: se actualizan el sistema y las aplicaciones, pero no se puede cambiar el procesador ni, en general, la batería.»</p>
+      <div class="choices" data-field="grado">
+        <button data-value="baja">Baja integración</button>
+        <button data-value="media">Integración media</button>
+        <button data-value="alta">Alta integración</button>
+      </div>
+      <div class="match-feedback">
+        <b>Integración media.</b> El software se actualiza libremente, pero el hardware viene sellado. Para conversar: ¿en qué se parece y en qué se diferencia de una notebook?
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="alta">
+      <p class="match-text">«Un router hogareño: hardware, firmware y software vienen como una sola unidad cerrada que no se puede abrir ni ampliar por partes.»</p>
+      <div class="choices" data-field="grado">
+        <button data-value="baja">Baja integración</button>
+        <button data-value="media">Integración media</button>
+        <button data-value="alta">Alta integración</button>
+      </div>
+      <div class="match-feedback">
+        <b>Alta integración (embebido).</b> Es un sistema embebido: eficiente y compacto, pero difícil o imposible de modificar por partes. Si algo falla, casi siempre se reemplaza el equipo completo.
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== PARTE 3: Registro para la carpeta (producción, no se entrega) ===== -->
+<section class="step" id="parte-3">
+  <header class="step-header">
+    <span class="step-num">3</span>
+    <div>
+      <div class="kicker">Producción · para tu carpeta</div>
+      <h2>Diagnosticá un equipo real</h2>
+    </div>
+  </header>
+  <p>Elegí <b>un dispositivo que conozcas</b> (la PC del laboratorio, tu celular, una consola, un router) y resolvé en tu carpeta, <b>a mano</b>. Recién cuando termines, con el <b>código dado en clase</b> vas a poder desbloquear un ejemplo resuelto y comparar tu trabajo. Esto no se entrega: es tu registro de la clase.</p>
+
+  <article class="prod-task">
+    <h3>Lo que tenés que producir</h3>
+    <ol>
+      <li><b>Diagrama de las 5 capas</b> del equipo elegido, con un ejemplo concreto en cada capa (qué aplicación, qué sistema operativo, qué hardware tiene).</li>
+      <li><b>Grado de integración</b> del equipo (baja / media / alta) <b>con una justificación</b> de una o dos oraciones.</li>
+      <li>Una mejora que <b>sí</b> le podrías hacer y una que <b>no</b> (y por qué, según su grado de integración).</li>
+    </ol>
+    <p class="lock-hint">🔒 Una vez resuelto en tu carpeta, ingresá el código dado en clase para ver el ejemplo de resolución.</p>
+    <div class="lock-row">
+      <input type="text" id="codeInput" placeholder="Código de la profe" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <button class="prod-check" id="revealBtn">Desbloquear ejemplo</button>
+    </div>
+    <div class="prod-feedback" id="modelFeedback"></div>
+  </article>
+</section>
+
+<!-- ===== RESULTADO ===== -->
+<section class="step result-section" id="resultado">
+  <header class="step-header">
+    <span class="step-num">★</span>
+    <div>
+      <div class="kicker">Resultado</div>
+      <h2>Tu diagnóstico y disparadores para conversar</h2>
+    </div>
+  </header>
+
+  <div class="score-grid">
+    <div class="score-card" data-section="parte-1"><span class="score-label">Capa del problema</span><span class="score-value" id="score-1">— / 6</span></div>
+    <div class="score-card" data-section="parte-2"><span class="score-label">Grado de integración</span><span class="score-value" id="score-2">— / 4</span></div>
+    <div class="score-card total"><span class="score-label">Total</span><span class="score-value" id="score-total">— / 10</span></div>
+  </div>
+
+  <div class="reflection">
+    <h3>Para discutir en clase</h3>
+    <ul>
+      <li>De todos los casos, ¿cuál fue el más difícil de ubicar y por qué?</li>
+      <li>¿Cuál sería siempre la mejora <b>más barata</b> de probar primero, antes de comprar hardware?</li>
+      <li>¿Por qué en un equipo de <b>alta integración</b> muchas veces no se puede reparar una sola parte?</li>
+      <li>Pensando en tu proyecto anual: ¿qué grado de integración tiene el sistema que vas a evaluar?</li>
+    </ul>
+  </div>
+
+  <div class="export-bar">
+    <p class="export-warn"><b>Esto no se entrega.</b> Tus respuestas quedan solo en este navegador. Si querés guardar tu diagnóstico, descargalo o imprimilo.</p>
+    <div class="export-actions">
+      <button class="export-btn danger" id="btnReset">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Reiniciar
+      </button>
+      <button class="export-btn secondary" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Imprimir o guardar PDF
+      </button>
+      <button class="export-btn secondary" id="recompute">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        Recalcular
+      </button>
+      <span class="export-status" id="exportStatus"></span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="modal-overlay" id="resetModal" hidden>
+  <div class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+    <h3 id="modal-title">Reiniciar actividad</h3>
+    <p id="modal-msg">Se van a borrar todas tus respuestas. No hay forma de recuperarlo.</p>
+    <div class="modal-actions">
+      <button class="export-btn secondary modal-cancel" id="modalCancel">Cancelar</button>
+      <button class="export-btn danger" id="modalConfirm">Sí, reiniciar</button>
+    </div>
+  </div>
+</div>
+
+<footer class="page-foot">
+  <span>Trabajo en clase · Evaluación de Proyectos · 7.º año</span>
+  <span>Capas HW/FW/SW · Grados de integración</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -17,7 +17,17 @@ Material didáctico de la materia **Evaluación de Proyectos** (7.º año, orien
 
 > La actividad integradora es **viva**: se actualiza cuando se agregan conceptos a las clases de la unidad. Cuando empiece la Unidad 2, va a tener su propia carpeta `actividad-integradora-…`.
 
-> **Registro para la carpeta:** cada clase cierra con un registro que el estudiante copia **a mano** en su carpeta física. El formato **varía por clase** para ejercitar distintas operaciones cognitivas: glosario con palabras propias (clase 1), síntesis cloze (clases 2-3 y 7), ficha de caso de prueba (clase 4-5) y tabla de selección de instrumento (clase 6). Todos son interactivos (autochequeo + 💡) pero el entregable es el escrito a mano.
+### Unidad 2 — Evaluaciones integrales: top-down y benchmarking
+
+| Carpeta | Tema | Slides / secciones |
+|---|---|---|
+| [clase-8-sistemas-integrales/](clase-8-sistemas-integrales/) | Apertura de la Unidad 2: el sistema como pila de capas (hardware, firmware, software), distintos grados de integración (baja/media/alta) y por qué importan para evaluar. Checkpoint "ubicá la capa" y registro para la carpeta en formato **diagrama de capas** (dibujo a mano) | 11 slides |
+| [actividad-clase-8-capas/](actividad-clase-8-capas/) | Trabajo en clase autocorregible "El perito informático": diagnosticar en qué capa se origina cada problema y clasificar grados de integración. Cierra con un registro para la carpeta (ejemplo resuelto revelable). No se entrega | 3 partes |
+| Material teórico (Google Doc) | Documento teórico de lectura de la unidad (registro formal): capas HW/FW/SW, grados de integración, metodología top-down, benchmarking e informe comparativo de integración. Vive en Drive y se enlaza desde la clase 8 y el inicio | [Doc](https://docs.google.com/document/d/1NsyrpHWfdMPt8uk5dMQejW4oBFA1zizWS-5RNiPhC7M/edit) |
+
+> Próximas clases de la unidad (en preparación): metodología top-down aplicada a la evaluación; benchmarking (qué mide, herramientas, protocolo reproducible); informe comparativo de integración HW/FW/SW.
+
+> **Registro para la carpeta:** cada clase cierra con un registro que el estudiante copia **a mano** en su carpeta física. El formato **varía por clase** para ejercitar distintas operaciones cognitivas: glosario con palabras propias (clase 1), síntesis cloze (clases 2-3 y 7), ficha de caso de prueba (clase 4-5), tabla de selección de instrumento (clase 6) y diagrama de capas dibujado a mano (clase 8). Casi todos son interactivos (autochequeo + 💡) pero el entregable es el escrito a mano.
 
 Cada carpeta incluye:
 

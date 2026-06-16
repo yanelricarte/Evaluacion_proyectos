@@ -1,0 +1,87 @@
+:root{
+  --bg:#f6f7f9; --paper:#ffffff; --ink:#17191d; --ink-soft:#2f2f36; --muted:#6f7681;
+  --primary:#b31759; --primary-2:#d52b70; --primary-3:#ef7da7; --primary-dark:#7f1228;
+  --accent:#2f3a4f; --soft:#fff1f6; --soft-2:#f9eef3;
+  --gray-2:#8d96a3; --gray-3:#dfe3e8; --gray-4:#eef1f4;
+  --ok:#1f7a4d; --ok-soft:#eefaf3; --ok-border:#9ed2b1;
+  --radius:22px; --radius-sm:14px; --shadow:0 14px 38px rgba(20,22,26,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink-soft);
+  font-family:'Inter',system-ui,sans-serif;line-height:1.7;font-size:18px}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px 100px}
+
+header.doc{background:linear-gradient(135deg,var(--primary-dark),var(--primary-2));
+  color:#fff;padding:54px 24px 46px;margin-bottom:0}
+header.doc .inner{max-width:860px;margin:0 auto}
+header.doc .eyebrow{font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  font-size:13px;opacity:.92}
+header.doc h1{font-family:'Manrope',sans-serif;font-weight:800;line-height:1.15;
+  font-size:clamp(28px,4vw,44px);margin:10px 0 14px}
+header.doc p{margin:0;max-width:62ch;opacity:.96;font-size:clamp(15px,1.4vw,19px)}
+header.doc .meta{margin-top:18px;font-size:14px;opacity:.85}
+
+.backbar{max-width:860px;margin:0 auto;padding:16px 24px 0}
+.backbar a{color:var(--primary);text-decoration:none;font-weight:600;font-size:15px;
+  display:inline-flex;align-items:center;gap:7px}
+.backbar a:hover{text-decoration:underline}
+
+nav.toc{background:var(--paper);border:1px solid var(--gray-3);border-radius:var(--radius);
+  padding:22px 26px;margin:28px 0 8px;box-shadow:var(--shadow)}
+nav.toc h2{font-family:'Manrope',sans-serif;margin:0 0 12px;font-size:15px;
+  text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+nav.toc ol{margin:0;padding-left:22px}
+nav.toc li{margin:5px 0}
+nav.toc a{color:var(--ink);text-decoration:none}
+nav.toc a:hover{color:var(--primary);text-decoration:underline}
+
+section.block{background:var(--paper);border:1px solid var(--gray-3);border-radius:var(--radius);
+  padding:30px 34px;margin:22px 0;box-shadow:var(--shadow)}
+h2.sec{font-family:'Manrope',sans-serif;font-weight:800;color:var(--ink);
+  font-size:clamp(22px,2.4vw,30px);margin:0 0 6px;scroll-margin-top:20px}
+h2.sec .nro{color:var(--primary-3);margin-right:10px}
+h3{font-family:'Manrope',sans-serif;font-weight:700;color:var(--primary);
+  font-size:clamp(18px,1.8vw,22px);margin:26px 0 8px}
+p{margin:12px 0}
+ul,ol{margin:12px 0;padding-left:24px}
+li{margin:6px 0}
+b,strong{color:var(--ink)}
+
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.95em}
+th,td{border:1px solid var(--gray-3);padding:10px 13px;text-align:left;vertical-align:top}
+th{background:var(--soft);color:var(--primary-dark);font-weight:700}
+tr:nth-child(even) td{background:var(--gray-4)}
+
+.callout{border-left:4px solid var(--primary-2);background:var(--soft-2);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 20px;margin:18px 0}
+.callout.key{border-left-color:var(--ok);background:var(--ok-soft)}
+.callout .tag{font-weight:700;color:var(--primary-dark);font-size:.85em;
+  text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px}
+.callout.key .tag{color:var(--ok)}
+
+.stack{display:flex;flex-direction:column;gap:8px;margin:16px 0}
+.stack .l{padding:11px 16px;border-radius:var(--radius-sm);border:1px solid var(--gray-3);font-size:.95em}
+.stack .l b{display:block}
+.stack .sw{background:var(--soft);border-color:var(--primary-3)}
+.stack .fw{background:#eef1f6;border-color:#c3ccdb}
+.stack .hw{background:var(--gray-4);border-color:var(--gray-2)}
+
+.gloss dt{font-weight:700;color:var(--primary);margin-top:12px}
+.gloss dd{margin:2px 0 0 0}
+.refs{font-size:.92em}
+.refs li{margin:8px 0}
+
+footer.doc{max-width:860px;margin:30px auto 0;padding:0 24px;color:var(--muted);
+  font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer.doc a{color:var(--primary);text-decoration:none}
+
+@media print{
+  body{background:#fff;font-size:12pt}
+  header.doc{background:none;color:#000;border-bottom:2px solid #000;padding:0 0 12px}
+  header.doc h1{color:#000} header.doc p,header.doc .eyebrow,header.doc .meta{opacity:1;color:#333}
+  .backbar,nav.toc,footer.doc{display:none}
+  section.block{border:none;box-shadow:none;padding:0;margin:14px 0}
+  h2.sec{break-after:avoid} .callout{break-inside:avoid}
+}
+@media (max-width:560px){ body{font-size:16px} section.block{padding:22px 20px} }

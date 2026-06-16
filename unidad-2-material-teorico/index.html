@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Material teórico · Unidad 2 — Evaluaciones integrales: HW/FW/SW, top-down y benchmarking</title>
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="doc">
+  <div class="inner">
+    <span class="eyebrow">Evaluación de Proyectos · 7.º año · Material teórico</span>
+    <h1>Unidad 2 — Evaluaciones integrales de sistemas: hardware, firmware y software</h1>
+    <p>Arquitectura en capas, metodología top-down y benchmarking. Documento de referencia que acompaña las clases de la unidad y prepara el informe comparativo de integración.</p>
+    <div class="meta">Materia: Evaluación de Proyectos · Curso: 7.º año – Tecnicatura en Informática Profesional y Personal.</div>
+  </div>
+</header>
+
+<div class="backbar">
+  <a href="../clase-8-sistemas-integrales/">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Volver a la Clase 8
+  </a>
+</div>
+
+<div class="wrap">
+
+  <nav class="toc">
+    <h2>Contenido</h2>
+    <ol>
+      <li><a href="#s1">De la evaluación del software a la evaluación del sistema integral</a></li>
+      <li><a href="#s2">La arquitectura en capas: hardware, firmware y software</a></li>
+      <li><a href="#s3">Grados de integración</a></li>
+      <li><a href="#s4">La metodología top-down aplicada a la evaluación</a></li>
+      <li><a href="#s5">El benchmarking como técnica de evaluación</a></li>
+      <li><a href="#s6">Ejemplo integrador: comparación de dos configuraciones</a></li>
+      <li><a href="#s7">Del dato a la conclusión: el informe comparativo</a></li>
+      <li><a href="#s8">Relación con los instrumentos y la matriz de evaluación</a></li>
+      <li><a href="#s9">Errores frecuentes al evaluar sistemas integrales</a></li>
+      <li><a href="#s10">Valor profesional</a></li>
+      <li><a href="#s11">Síntesis conceptual</a></li>
+    </ol>
+  </nav>
+
+  <section class="block" id="intro">
+    <h2 class="sec">Introducción</h2>
+    <p>En las clases anteriores construimos progresivamente una forma de evaluar fundamentada. Trabajamos con los atributos de calidad, que permiten reconocer qué aspectos de un producto de software merecen ser analizados; con el diseño de casos de prueba, que permite obtener evidencias sobre el comportamiento del sistema; y con los instrumentos de evaluación —lista de cotejo, escala de valoración y rúbrica analítica—, que permiten organizar esas observaciones y transformarlas en información útil para decidir. Esa secuencia compartía un supuesto: el objeto evaluado era, principalmente, un software.</p>
+    <p>Sin embargo, en la práctica profesional un programa nunca funciona de manera aislada. Toda aplicación se ejecuta sobre un sistema operativo, que se apoya en controladores, que gobiernan un hardware físico cuyo comportamiento, a su vez, depende de un software grabado en sus propios componentes. Evaluar de manera responsable una solución tecnológica exige, entonces, ampliar la mirada: dejar de observar únicamente el programa y pasar a evaluar el sistema en su conjunto. A ese objeto más amplio lo llamamos sistema integral.</p>
+    <p>Esta unidad incorpora tres componentes nuevos y articulados. En primer lugar, una manera de comprender de qué está hecho un sistema: la arquitectura en capas de hardware, firmware y software, y sus distintos grados de integración. En segundo lugar, un método para evaluar ese sistema sin perderse en sus partes: la metodología top-down. Y en tercer lugar, una técnica para obtener evidencia objetiva sobre el rendimiento: el benchmarking. El propósito final es producir un informe comparativo de integración, que retoma la matriz de evaluación trabajada anteriormente, pero la alimenta ahora con mediciones reproducibles.</p>
+    <p>La ingeniería de software sostiene que la medición es central para gestionar y mejorar proyectos: medir permite caracterizar, evaluar, predecir y mejorar procesos, productos y proyectos (Pressman, 2010). Esa misma idea ordena esta unidad. Si en la evaluación de un software pasamos de la impresión general a la evidencia observable, en la evaluación de un sistema integral pasamos de la apreciación subjetiva del rendimiento a la medición controlada y comparable.</p>
+  </section>
+
+  <section class="block" id="s1">
+    <h2 class="sec"><span class="nro">1.</span>De la evaluación del software a la evaluación del sistema integral</h2>
+    <p>Toda evaluación de un equipo comienza, con frecuencia, con una percepción. Un usuario afirma que una computadora «anda lenta», que «se traba» o que «no rinde». Esa percepción es valiosa porque señala una posible dificultad, pero todavía no constituye una evaluación técnica. Para transformarla en juicio fundamentado es necesario preguntarse en qué parte del sistema se origina el problema, qué se puede medir y con qué se compara el resultado.</p>
+    <p>La dificultad es que un mismo síntoma puede tener causas ubicadas en lugares muy distintos del sistema. Una computadora puede resultar lenta por una memoria insuficiente, por un disco mecánico antiguo, por un sistema operativo saturado de programas que se inician automáticamente, por un controlador inadecuado o por una aplicación que exige más recursos de los que el equipo puede ofrecer. Recomendar el reemplazo del procesador cuando el problema real es el disco implica una decisión costosa y equivocada. Por eso, antes de medir o de proponer mejoras, conviene comprender de qué partes se compone el sistema y cómo se relacionan entre sí.</p>
+    <p>Evaluar un sistema integral supone, entonces, sostener simultáneamente dos miradas: una mirada analítica, que distingue las partes y sus funciones, y una mirada de conjunto, que comprende que el rendimiento final no es la suma de componentes aislados, sino el resultado de su integración.</p>
+  </section>
+
+  <section class="block" id="s2">
+    <h2 class="sec"><span class="nro">2.</span>La arquitectura en capas: hardware, firmware y software</h2>
+    <p>Un sistema informático puede comprenderse como una pila de capas, donde cada una se apoya en la inferior y no podría funcionar sin ella. De la más cercana al usuario a la más cercana a lo físico, las capas son las siguientes.</p>
+    <div class="stack">
+      <div class="l sw"><b>Aplicaciones</b>Los programas con los que interactúa la persona usuaria (navegador, sistema de gestión, aplicación de inscripción).</div>
+      <div class="l sw"><b>Sistema operativo</b>El software que coordina el conjunto: administra memoria, procesos y el acceso al hardware (Windows, Linux, Android).</div>
+      <div class="l fw"><b>Controladores (drivers)</b>Programas que traducen las órdenes del sistema operativo al lenguaje de cada componente físico.</div>
+      <div class="l fw"><b>Firmware (BIOS/UEFI)</b>Software grabado dentro del propio hardware que lo gobierna a bajo nivel y permite el arranque.</div>
+      <div class="l hw"><b>Hardware</b>Los componentes físicos sobre los que todo se ejecuta (procesador, memoria, disco, placas).</div>
+    </div>
+    <p>Esta organización explica una regla que tendrá consecuencias en toda la evaluación: cuanto más cercana al usuario es una capa, más fácil resulta modificarla, mientras que cuanto más cercana a lo físico, más difícil y costoso es su cambio. Reemplazar una aplicación es inmediato; reinstalar un sistema operativo es viable; actualizar un controlador es posible aunque dependa del componente; modificar el firmware solo a veces se permite; y cambiar el hardware implica una intervención física.</p>
+    <h3>2.1. El firmware: software dentro del hardware</h3>
+    <p>De todas las capas, la que suele presentar mayor dificultad conceptual es el firmware. Se trata de un programa grabado en un chip del propio dispositivo. A diferencia de una aplicación, no se instala ni se desinstala libremente: viene de fábrica y determina cómo funciona el componente por dentro. Su denominación expresa esta condición intermedia: no es tan modificable como el software de usuario ni tan inalterable como el hardware físico.</p>
+    <p>El firmware está presente en numerosos dispositivos de uso cotidiano. La BIOS o la UEFI que aparece al encender una computadora, antes de que cargue el sistema operativo, es firmware. También lo es el programa interno de un router, de una impresora, de un disco de estado sólido o de un televisor. En algunos casos el fabricante permite su actualización para corregir errores o mejorar el rendimiento; en otros, viene fijo y no se modifica. Esta capa importa en la evaluación porque un firmware desactualizado puede hacer que un hardware adecuado rinda por debajo de sus posibilidades.</p>
+  </section>
+
+  <section class="block" id="s3">
+    <h2 class="sec"><span class="nro">3.</span>Grados de integración</h2>
+    <p>No todos los sistemas se construyen del mismo modo. Según cuánto puedan separarse y reemplazarse sus capas, se distinguen distintos grados de integración. Reconocerlos permite anticipar qué se puede reparar, ampliar o sustituir, y qué viene cerrado de fábrica.</p>
+    <table>
+      <thead><tr><th>Grado</th><th>Características</th><th>Ejemplo</th><th>Ventajas y costos</th></tr></thead>
+      <tbody>
+        <tr><td><b>Baja integración</b></td><td>Cada capa se cambia de manera independiente.</td><td>Computadora de escritorio: se amplía la memoria, se reemplaza el disco, se reinstala el sistema operativo.</td><td>Muy flexible y reparable; requiere mayor espacio y armado.</td></tr>
+        <tr><td><b>Integración media</b></td><td>Algunas capas se actualizan (firmware, controladores, sistema operativo), pero el hardware viene cerrado.</td><td>Notebook, teléfono celular.</td><td>Equilibrio entre rendimiento y posibilidad de modificación.</td></tr>
+        <tr><td><b>Alta integración (embebido)</b></td><td>Hardware, firmware y software se presentan como una unidad inseparable.</td><td>Router, cajero automático, electrodoméstico inteligente.</td><td>Muy eficiente y compacto; difícil o imposible de modificar por partes.</td></tr>
+      </tbody>
+    </table>
+    <p>De esta clasificación se desprende una consideración técnica importante. Un mayor grado de integración suele asociarse con un rendimiento más ajustado y un funcionamiento más estable, pero reduce la posibilidad de reparar, ampliar o reemplazar componentes de manera independiente. El grado de integración no es, por lo tanto, un valor en sí mismo, sino una característica que se evalúa en relación con el propósito y el contexto de uso.</p>
+  </section>
+
+  <section class="block" id="s4">
+    <h2 class="sec"><span class="nro">4.</span>La metodología top-down aplicada a la evaluación</h2>
+    <p>Comprender que un sistema está formado por capas y componentes plantea un riesgo: el de perderse en los detalles y evaluar piezas sueltas sin una visión del conjunto. La metodología top-down, que significa «de arriba hacia abajo», ofrece una manera ordenada de evitar ese riesgo. Consiste en partir del sistema completo y de su finalidad, descomponerlo progresivamente en subsistemas y componentes, y llegar finalmente a parámetros que puedan medirse, sin perder en ningún momento la referencia al objetivo general.</p>
+    <p>Esta lógica se distingue de la aproximación bottom-up, que parte de los componentes individuales y procura construir una conclusión sumándolos. La aproximación bottom-up resulta útil en muchos casos, pero corre el riesgo de validar partes que funcionan correctamente por separado dentro de un sistema que, considerado en conjunto, no cumple su propósito. La metodología top-down conserva el contexto: cada medición se interpreta dentro de la finalidad del sistema.</p>
+    <p>En la práctica, top-down se traduce en un árbol de evaluación. En la raíz se ubica el sistema y su objetivo de uso; en las ramas, los subsistemas (hardware, red, software, datos); y en las hojas, los parámetros medibles. Conviene observar que cada hoja de ese árbol equivale a un criterio de los que trabajamos en la unidad anterior, y que ese criterio puede integrarse luego a una matriz de evaluación, donde se le asigna un peso según su importancia.</p>
+    <div class="callout">
+      <span class="tag">Conexión con la Unidad 1</span>
+      El árbol top-down y la matriz ponderada constituyen dos vistas de una misma herramienta: el árbol ordena qué evaluar; la matriz decide cuánto pesa cada aspecto en la conclusión.
+    </div>
+    <p>A modo de ilustración, la evaluación de un equipo del laboratorio destinado a tareas de programación podría descomponerse del siguiente modo: en el primer nivel, el sistema y su propósito; en el segundo, los subsistemas de hardware, sistema operativo y aplicaciones; en el tercero, dentro del hardware, el procesador, la memoria y el disco; y en el cuarto, parámetros medibles como el tiempo de lectura y escritura del disco, la memoria disponible o el tiempo de respuesta de la aplicación. Solo al alcanzar parámetros medibles tiene sentido recurrir a las herramientas de medición, lo que conduce al benchmarking.</p>
+  </section>
+
+  <section class="block" id="s5">
+    <h2 class="sec"><span class="nro">5.</span>El benchmarking como técnica de evaluación</h2>
+    <p>Un benchmark es una prueba estandarizada que mide el rendimiento de un componente o de un sistema y devuelve un resultado comparable. Constituye la principal técnica para obtener evidencia objetiva en la evaluación integral. En lugar de afirmar que un equipo «parece veloz», el benchmark permite medir cuánto tarda en una tarea definida y contrastar ese valor con el de otra configuración.</p>
+    <p>Suelen distinguirse dos tipos de benchmark. El benchmark sintético ejecuta una prueba artificial diseñada para exigir un componente de manera controlada, por ejemplo realizando un gran número de operaciones para medir el procesador. Ofrece resultados muy comparables, aunque no siempre refleja el uso real. El benchmark real o de aplicación mide el tiempo de una tarea concreta tal como la realizaría la persona usuaria, por ejemplo abrir un proyecto o exportar un archivo. Resulta más representativo del uso cotidiano, pero más difícil de estandarizar.</p>
+    <h3>5.1. La reproducibilidad como condición de validez</h3>
+    <p>Un número aislado no constituye evidencia suficiente. Un benchmark adquiere valor únicamente cuando es reproducible, es decir, cuando otra persona, en las mismas condiciones, obtiene un resultado equivalente. Para alcanzar esa condición es necesario controlar las variables y documentarlas: realizar las mediciones en condiciones comparables, sin otros programas en ejecución; repetir la prueba varias veces y considerar el promedio en lugar de una sola medición; y registrar la herramienta utilizada y su versión, la configuración del equipo, la fecha y las condiciones de la prueba.</p>
+    <div class="callout">
+      <span class="tag">Lectura crítica</span>
+      Las comparativas de hardware que circulan en medios especializados con frecuencia presentan un número sin explicitar en qué condiciones se obtuvo. Parte del oficio del evaluador consiste en desconfiar del dato aislado y preguntar con qué herramienta, cuántas veces y bajo qué condiciones se midió. Sin esa información, el resultado no es evidencia técnica, sino afirmación no verificable.
+    </div>
+    <h3>5.2. Herramientas</h3>
+    <p>La unidad trabaja con un conjunto de herramientas de medición de uso profesional, seleccionadas por ser gratuitas o de acceso libre y por poder ejecutarse en el laboratorio de la institución.</p>
+    <table>
+      <thead><tr><th>Herramienta</th><th>Qué mide</th></tr></thead>
+      <tbody>
+        <tr><td><b>PassMark PerformanceTest</b></td><td>Rendimiento general del equipo y comparación entre componentes (procesador, memoria, disco, gráficos).</td></tr>
+        <tr><td><b>Geekbench</b></td><td>Rendimiento del procesador en cálculo de uno y varios núcleos, comparable entre equipos distintos.</td></tr>
+        <tr><td><b>CrystalDiskMark</b></td><td>Velocidad de lectura y escritura de un disco o unidad de estado sólido.</td></tr>
+        <tr><td><b>iperf3</b></td><td>Rendimiento de una red, medido como ancho de banda real entre dos puntos.</td></tr>
+      </tbody>
+    </table>
+    <p>La elección de herramientas gratuitas o libres no es solo una cuestión de costo: resulta coherente con el criterio de evaluación de software libre frente a privativo que se aborda más adelante en la materia, y evita dependencias de licencias propietarias.</p>
+  </section>
+
+  <section class="block" id="s6">
+    <h2 class="sec"><span class="nro">6.</span>Ejemplo integrador: comparación de dos configuraciones</h2>
+    <p>Supongamos que una institución debe decidir cuál de dos computadoras destinará a una sala de informática orientada a tareas de programación. Ambas tienen un precio similar, pero distintas características: la configuración A posee un procesador más veloz y un disco mecánico tradicional; la configuración B posee un procesador algo más lento y una unidad de estado sólido.</p>
+    <p>La evaluación comienza con la descomposición top-down del sistema: el propósito es el uso para programación; los subsistemas relevantes son el procesador, el almacenamiento y la memoria; y los parámetros medibles son el rendimiento del procesador, la velocidad de lectura y escritura del disco y el tiempo de apertura de un proyecto real. A continuación se diseña el protocolo de benchmark: se mide el procesador con Geekbench, el disco con CrystalDiskMark y el tiempo de apertura del entorno de programación con un cronómetro, repitiendo cada medición tres veces y registrando el promedio en idénticas condiciones.</p>
+    <p>Los resultados podrían mostrar que la configuración A obtiene mejor puntaje en el procesador, pero la configuración B abre los proyectos en menos de la mitad de tiempo gracias a su unidad de estado sólido. Aquí aparece la interpretación: para el propósito definido —un uso en el que la apertura de proyectos y la respuesta del entorno son frecuentes—, la velocidad del almacenamiento pesa más que la diferencia de procesador. La conclusión técnica recomienda la configuración B, no porque sea superior en todos los parámetros, sino porque rinde mejor en aquellos que más importan para el uso previsto. Este razonamiento es el que la matriz de evaluación permite explicitar, asignando un peso mayor a los criterios más relevantes.</p>
+  </section>
+
+  <section class="block" id="s7">
+    <h2 class="sec"><span class="nro">7.</span>Del dato a la conclusión: el informe comparativo de integración</h2>
+    <p>Medir no equivale a evaluar. El benchmark produce datos; la evaluación surge cuando esos datos se interpretan en función de un propósito para sostener una decisión fundamentada. El producto que integra los contenidos de la unidad es el informe comparativo de integración, en el que se comparan dos configuraciones de un sistema y se recomienda una de ellas.</p>
+    <p>Un informe comparativo sólido contiene los siguientes elementos:</p>
+    <ol>
+      <li><b>Objeto y objetivo</b> de la evaluación: qué sistema se evalúa y para qué uso.</li>
+      <li><b>Árbol top-down</b> que muestra cómo se descompuso el sistema en partes y parámetros.</li>
+      <li><b>Protocolo de benchmark</b>: qué se midió, con qué herramienta, cuántas veces y bajo qué condiciones.</li>
+      <li><b>Mediciones</b> obtenidas para ambas configuraciones, presentadas en una tabla clara.</li>
+      <li><b>Matriz ponderada</b> que indica el peso de cada parámetro según el uso buscado.</li>
+      <li><b>Conclusión técnica</b> que señala qué configuración conviene y por qué, sostenida en la evidencia registrada.</li>
+    </ol>
+  </section>
+
+  <section class="block" id="s8">
+    <h2 class="sec"><span class="nro">8.</span>Relación con los instrumentos y la matriz de evaluación</h2>
+    <p>Los contenidos de esta unidad no reemplazan a los anteriores, sino que los integran. Los instrumentos de evaluación trabajados en la clase previa —lista de cotejo, escala de valoración y rúbrica analítica— siguen siendo útiles: una lista de cotejo permite verificar que un equipo cumpla requisitos mínimos antes de medir su rendimiento; una escala permite graduar un desempeño observado; y una rúbrica permite valorar varias dimensiones del sistema. La novedad de la unidad es que muchas de esas observaciones dejan de apoyarse en la apreciación directa para apoyarse en una medición reproducible.</p>
+    <p>La matriz de evaluación, anticipada al cierre de la clase de instrumentos, encuentra aquí su aplicación plena. Si los instrumentos preparan criterios y evidencias, y el árbol top-down ordena qué medir, la matriz reúne todo y permite comparar alternativas asignando un peso a cada criterio. El benchmark aporta a esa matriz la evidencia objetiva que antes podía faltar.</p>
+  </section>
+
+  <section class="block" id="s9">
+    <h2 class="sec"><span class="nro">9.</span>Errores frecuentes al evaluar sistemas integrales</h2>
+    <p>Al evaluar sistemas integrales suelen presentarse algunos errores que conviene anticipar. Un primer error consiste en atribuir un problema a una única capa sin haber analizado las demás, por ejemplo suponer que un equipo lento necesita más procesador cuando la causa real está en el disco o en el sistema operativo. La mirada por capas existe, justamente, para evitar esa conclusión apresurada.</p>
+    <p>Un segundo error habitual es presentar un resultado de benchmark sin documentar las condiciones de la medición. Un número sin contexto no permite comparar ni reproducir, y por lo tanto no constituye evidencia. Conviene registrar siempre la herramienta, la cantidad de corridas y las condiciones de la prueba.</p>
+    <p>Un tercer error consiste en confundir medir con evaluar. Obtener un puntaje elevado no significa, por sí solo, que una configuración sea la más adecuada: el dato debe interpretarse en relación con el propósito de uso. Una configuración con mejor procesador puede resultar menos conveniente que otra para un uso en el que pesa más la velocidad del almacenamiento.</p>
+    <p>Un último error es ignorar el grado de integración al recomendar mejoras. Proponer la ampliación de un componente en un sistema embebido, donde las capas no pueden separarse, es una recomendación inviable. Conocer el grado de integración del sistema evita sugerir intervenciones imposibles.</p>
+  </section>
+
+  <section class="block" id="s10">
+    <h2 class="sec"><span class="nro">10.</span>Valor profesional</h2>
+    <p>En el ejercicio profesional, la evaluación integral de sistemas es una práctica frecuente. Un técnico en informática debe, con cierta regularidad, recomendar la compra de equipamiento, comparar configuraciones, diagnosticar el bajo rendimiento de un equipo, decidir si conviene actualizar una parte o reemplazar el conjunto, o justificar una inversión ante una institución. En todos estos casos, una evaluación apoyada en la comprensión por capas, en la metodología top-down y en mediciones reproducibles ofrece una ventaja decisiva: permite explicar y defender la recomendación con evidencia, y no únicamente con una impresión o una preferencia.</p>
+    <p>Esta capacidad se vincula directamente con el perfil del egresado de la tecnicatura, que incluye la asistencia en la compra y la venta de productos y servicios informáticos, así como el diagnóstico de fallas y la evaluación de productos en un lapso razonable. Evaluar con rigor, con método y con honestidad técnica —reconociendo incluso cuando otra alternativa está mejor fundamentada— forma parte de ese desempeño profesional.</p>
+  </section>
+
+  <section class="block" id="s11">
+    <h2 class="sec"><span class="nro">11.</span>Síntesis conceptual</h2>
+    <p>Evaluar un sistema integral supone ampliar la mirada desde el software hacia el conjunto de capas que lo hacen funcionar: hardware, firmware y software. Comprender esa arquitectura y sus grados de integración permite ubicar dónde se origina un problema y qué intervenciones son posibles. La metodología top-down ofrece un método para descomponer el sistema sin perder la visión del conjunto, traduciendo la finalidad en parámetros medibles. El benchmarking aporta la evidencia objetiva, siempre que se garantice su reproducibilidad. Y el informe comparativo de integración reúne todo en una decisión fundamentada, que la matriz de evaluación permite ponderar.</p>
+    <div class="callout key">
+      <span class="tag">Idea final</span>
+      La evaluación de proyectos tecnológicos confirma el recorrido de toda la materia: mirar con criterios, medir con método, interpretar con fundamento y decidir con responsabilidad.
+    </div>
+  </section>
+
+  <section class="block" id="gloss">
+    <h2 class="sec">Glosario</h2>
+    <dl class="gloss">
+      <dt>Sistema integral</dt><dd>Conjunto de hardware, firmware y software que funcionan juntos para cumplir un fin; se evalúa como un todo.</dd>
+      <dt>Firmware</dt><dd>Software grabado dentro de un componente físico que lo controla a bajo nivel (por ejemplo, la BIOS/UEFI).</dd>
+      <dt>Controlador (driver)</dt><dd>Programa que traduce las órdenes del sistema operativo al lenguaje de un componente de hardware.</dd>
+      <dt>Grado de integración</dt><dd>Medida de cuánto pueden separarse y cambiarse las capas de un sistema (baja, media o alta/embebida).</dd>
+      <dt>Top-down</dt><dd>Método de análisis que parte del sistema completo y lo descompone en partes y parámetros medibles.</dd>
+      <dt>Benchmark</dt><dd>Prueba estandarizada que mide el rendimiento de un componente o sistema y devuelve un resultado comparable.</dd>
+      <dt>Reproducibilidad</dt><dd>Propiedad de una medición que, repetida en las mismas condiciones, da un resultado equivalente; es lo que vuelve confiable a un benchmark.</dd>
+      <dt>Parámetro</dt><dd>Aspecto observable y medible de un sistema; en una matriz de evaluación, cada parámetro recibe un peso.</dd>
+    </dl>
+  </section>
+
+  <section class="block" id="refs">
+    <h2 class="sec">Referencias bibliográficas</h2>
+    <ul class="refs">
+      <li>International Organization for Standardization. (2011). <i>ISO/IEC 25010:2011. Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — System and software quality models</i>. ISO.</li>
+      <li>Pfleeger, S. L., y Kitchenham, B. (2001). <i>Evaluación de productos y procesos de software</i>. Pearson Educación.</li>
+      <li>Pressman, R. S. (2010). <i>Ingeniería del software: un enfoque práctico</i> (7.ª ed.). McGraw-Hill.</li>
+      <li>Sommerville, I. (2011). <i>Ingeniería del software</i> (9.ª ed.). Pearson Addison-Wesley.</li>
+      <li>PassMark Software. (s. f.). <i>PerformanceTest: benchmarks y comparativas de hardware</i>. https://www.passmark.com/</li>
+    </ul>
+  </section>
+
+</div>
+
+<footer class="doc">
+  <span>Yanel Ricarte · Evaluación de Proyectos · 2026</span>
+  <a href="../">Volver al inicio del sitio</a>
+</footer>
+
+</body>
+</html>

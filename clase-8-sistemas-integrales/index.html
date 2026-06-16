@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clase 8 · Sistemas integrales: hardware, firmware y software — Evaluación de Proyectos</title>
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=2" />
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- 1. Cover -->
+  <section class="slide cover active">
+    <div class="cover-mark"></div>
+    <div class="student">Material para estudiantes · 7.º año</div>
+    <div class="kicker">Evaluación de Proyectos · Unidad 2</div>
+    <h1>Sistemas integrales: hardware, firmware y software</h1>
+    <p class="lead">Antes de medir y comparar equipos, hay que entender de qué está hecho un sistema. Hoy abrimos la «caja» en capas.</p>
+    <div class="pill-row">
+      <span class="pill">Capas HW · FW · SW</span>
+      <span class="pill">Grados de integración</span>
+      <span class="pill">Apertura de la Unidad 2</span>
+    </div>
+    <div class="footer"><span>Clase 8 · Unidad 2</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 2. Propósito -->
+  <section class="slide">
+    <div class="kicker">Propósito de la clase</div>
+    <h2>De evaluar el software a evaluar el sistema completo</h2>
+    <div class="grid3">
+      <div class="card accent"><div class="label">Hoy vamos a…</div><h3>Reconocer</h3><p>Que todo sistema informático es una pila de capas: hardware, firmware y software, una sobre otra.</p></div>
+      <div class="card accent"><div class="label">Hoy vamos a…</div><h3>Distinguir</h3><p>Los distintos grados de integración: qué capa se puede cambiar fácil y cuál viene «pegada de fábrica».</p></div>
+      <div class="card accent"><div class="label">Hoy vamos a…</div><h3>Conectar</h3><p>Por qué entender las capas es el primer paso para evaluar un equipo y encontrar dónde está el problema.</p></div>
+    </div>
+    <div class="footer"><span>Propósito</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 3. Puente con la Unidad 1 -->
+  <section class="slide">
+    <div class="kicker">De dónde venimos</div>
+    <h2>En la Unidad 1 evaluamos software. ¿Pero el software corre solo?</h2>
+    <div class="grid2">
+      <div>
+        <p>En la unidad anterior aprendimos a evaluar la <b>calidad de un software</b>: atributos, criterios, casos de prueba, evidencias e instrumentos.</p>
+        <p>Pero un programa no funciona en el aire: corre sobre un <b>sistema operativo</b>, que a su vez usa <b>controladores</b>, que manejan un <b>hardware</b> físico. Evaluar «el sistema» es mirar <b>todas esas capas juntas</b>.</p>
+        <p class="subtitle">En esta unidad subimos un nivel: pasamos de evaluar un producto de software a evaluar un <b>sistema integral</b> y a <b>medirlo con evidencia objetiva</b>.</p>
+      </div>
+      <div class="card">
+        <div class="label">Caso para arrancar</div>
+        <h3>«La PC del laboratorio va lenta»</h3>
+        <p>Un equipo de la EEST tarda en abrir todo. ¿Dónde está el problema?</p>
+        <p class="muted" style="font-size:.95em">¿Es el disco? ¿La memoria? ¿El sistema operativo lleno de programas? ¿Un driver desactualizado? ¿La aplicación en sí?</p>
+        <p><b>No se puede responder sin saber de qué capas está hecho el sistema.</b> Eso es lo que vamos a ver hoy.</p>
+      </div>
+    </div>
+    <div class="footer"><span>Puente con Unidad 1</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 4. Idea central: la pila de capas -->
+  <section class="slide">
+    <div class="kicker">Idea central</div>
+    <h2>Todo sistema informático es una pila de capas</h2>
+    <p class="subtitle">De arriba (lo que ve el usuario) hacia abajo (lo físico). Cada capa se apoya en la de abajo y no podría funcionar sin ella.</p>
+    <div class="layer-stack">
+      <div class="layer sw"><span class="lyr-name">Aplicaciones</span><span class="lyr-desc">Los programas que usás: navegador, editor, sistema de gestión, app de reservas. Es lo que el usuario ve y toca.</span></div>
+      <div class="layer sw"><span class="lyr-name">Sistema operativo</span><span class="lyr-desc">Windows, Linux, Android. Coordina todo: reparte memoria, procesos y acceso al hardware.</span></div>
+      <div class="layer fw"><span class="lyr-name">Controladores (drivers)</span><span class="lyr-desc">Traducen las órdenes del sistema operativo al lenguaje de cada componente físico (placa de video, impresora, red).</span></div>
+      <div class="layer fw"><span class="lyr-name">Firmware · BIOS / UEFI</span><span class="lyr-desc">Software grabado dentro del propio hardware. Arranca el equipo y controla los componentes a bajo nivel.</span></div>
+      <div class="layer hw"><span class="lyr-name">Hardware</span><span class="lyr-desc">Lo físico: procesador, memoria RAM, disco, placas. Sin esto no hay nada que ejecutar.</span></div>
+    </div>
+    <div class="stack-axis"><span>▲ Más cerca del usuario · más fácil de cambiar</span><span>Más cerca de lo físico · más difícil de cambiar ▼</span></div>
+    <div class="footer"><span>La pila de capas</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 5. Qué es el firmware (la capa nueva) -->
+  <section class="slide">
+    <div class="kicker">La capa que no se ve</div>
+    <h2>El firmware: software que vive adentro del hardware</h2>
+    <div class="grid2">
+      <article class="card">
+        <h3>¿Qué es?</h3>
+        <p>Es un <b>programa grabado en un chip</b> del propio dispositivo. No se instala ni se borra como una app: viene de fábrica y controla cómo funciona el componente por dentro.</p>
+        <p class="muted" style="font-size:.95em">Por eso se llama <i>firm</i>-ware: ni tan "blando" como el software que cambiás cuando querés, ni tan "duro" como el hardware físico. Está en el medio.</p>
+      </article>
+      <article class="card accent">
+        <h3>Ejemplos cotidianos</h3>
+        <ul>
+          <li>La <b>BIOS / UEFI</b> que aparece cuando prendés la PC, antes de que cargue Windows.</li>
+          <li>El programa interno de un <b>router</b> o de una <b>impresora</b>.</li>
+          <li>El control de un <b>SSD</b>, de un <b>televisor</b> o de un <b>microondas</b>.</li>
+        </ul>
+        <p class="muted" style="font-size:.95em">A veces se puede <b>actualizar</b> (update de firmware); otras veces viene fijo y no se toca.</p>
+      </article>
+    </div>
+    <p class="subtitle">El firmware es la bisagra entre lo físico y lo lógico. Un firmware desactualizado puede hacer que un buen hardware rinda mal: por eso importa al evaluar.</p>
+    <div class="footer"><span>Firmware</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 6. Grados de integración -->
+  <section class="slide">
+    <div class="kicker">Grados de integración</div>
+    <h2>¿Qué tan «pegadas» están las capas entre sí?</h2>
+    <p class="subtitle">No todos los sistemas se arman igual. Según cuánto se pueda separar y cambiar cada capa, hablamos de distintos <b>grados de integración</b>.</p>
+    <div class="grid3">
+      <article class="card flat"><span class="badge">Baja integración</span><h3>Componentes separables</h3><p>Cada capa se puede cambiar por su cuenta. Una PC de escritorio: cambiás el disco, sumás RAM, reinstalás el SO.</p><p class="muted" style="font-size:.92em">Más flexible y reparable.</p></article>
+      <article class="card flat"><span class="badge">Integración media</span><h3>Parcialmente unido</h3><p>Algunas capas se pueden actualizar (firmware, drivers, SO) pero el hardware viene cerrado. Una notebook o un celular.</p><p class="muted" style="font-size:.92em">Equilibrio entre rendimiento y flexibilidad.</p></article>
+      <article class="card flat"><span class="badge">Alta integración</span><h3>Todo en uno (embebido)</h3><p>Hardware, firmware y software vienen soldados como una unidad. Un router, un cajero, una heladera «smart».</p><p class="muted" style="font-size:.92em">Eficiente, pero difícil o imposible de modificar.</p></article>
+    </div>
+    <p class="subtitle">Cuanto mayor es la integración, <b>mejor suele ser el rendimiento ajustado</b>, pero <b>menor la posibilidad de reparar, ampliar o reemplazar</b> una parte. Es una decisión de diseño con ventajas y costos.</p>
+    <div class="footer"><span>Grados de integración</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 7. Tabla: capa → ejemplo → grado → se puede cambiar -->
+  <section class="slide">
+    <div class="kicker">Poner todo junto</div>
+    <h2>Las capas, con ejemplo y posibilidad de cambio</h2>
+    <div class="table-wrap"><table class="table">
+      <thead><tr><th>Capa</th><th>Ejemplo concreto</th><th>¿Software o hardware?</th><th>¿Se puede cambiar?</th></tr></thead>
+      <tbody>
+        <tr><td><b>Aplicación</b></td><td>Navegador, app de reservas</td><td>Software</td><td>Sí, se instala y desinstala libremente.</td></tr>
+        <tr><td><b>Sistema operativo</b></td><td>Windows, Ubuntu, Android</td><td>Software</td><td>Sí, se puede reinstalar o reemplazar.</td></tr>
+        <tr><td><b>Controlador (driver)</b></td><td>Driver de la placa de video</td><td>Software ligado al hardware</td><td>Se actualiza; depende del componente.</td></tr>
+        <tr><td><b>Firmware · BIOS/UEFI</b></td><td>Firmware del SSD o del router</td><td>Software dentro del hardware</td><td>A veces se actualiza; muchas veces viene fijo.</td></tr>
+        <tr><td><b>Hardware</b></td><td>Procesador, RAM, disco</td><td>Hardware</td><td>Físico: se reemplaza o amplía, según el diseño.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="subtitle"><b>Regla práctica:</b> cuanto más abajo en la pila, más difícil (y más caro) es cambiar esa capa.</p>
+    <div class="footer"><span>Capas y posibilidad de cambio</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 8. Por qué importa para evaluar -->
+  <section class="slide">
+    <div class="kicker">Para qué nos sirve esto</div>
+    <h2>El problema puede estar en cualquier capa</h2>
+    <div class="grid2">
+      <div>
+        <p>Cuando un equipo «anda mal», la causa puede estar en cualquiera de las capas. Evaluar bien es <b>saber en cuál mirar</b> antes de gastar tiempo o dinero.</p>
+        <p>Volviendo a la PC lenta del laboratorio: cambiar el procesador (hardware) no sirve de nada si el problema real es el disco viejo, un driver roto o el sistema operativo saturado de programas.</p>
+        <p class="subtitle">Identificar la capa correcta evita decisiones caras y equivocadas. Esa es una capacidad profesional: <b>diagnosticar antes de recomendar</b>.</p>
+      </div>
+      <div class="card">
+        <div class="label">Mismo síntoma, distintas capas</div>
+        <h3>«El equipo va lento»</h3>
+        <ul>
+          <li><b>Hardware:</b> poca RAM o disco mecánico antiguo.</li>
+          <li><b>Firmware:</b> BIOS o firmware del disco desactualizado.</li>
+          <li><b>Driver:</b> controlador de video genérico, no el oficial.</li>
+          <li><b>Sistema operativo:</b> demasiados programas al inicio.</li>
+          <li><b>Aplicación:</b> el programa en sí pide más de lo que el equipo da.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer"><span>Por qué importa evaluar por capas</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 9. Checkpoint: ubicar la capa -->
+  <section class="slide">
+    <div class="kicker">Activación · Ubicá la capa</div>
+    <h2>Pulso rápido: ubicá la capa (3 preguntas)</h2>
+    <p class="subtitle">Elegí una opción en cada pregunta. Vas a ver si acertaste y la explicación. Después practicamos más en el trabajo en clase.</p>
+
+    <div class="quiz" id="quiz">
+      <article class="quiz-q" data-correct="b">
+        <p>1. Actualizás el navegador a una versión nueva. ¿Qué capa estás cambiando?</p>
+        <div class="quiz-options">
+          <button data-value="a">a) Sistema operativo</button>
+          <button data-value="b">b) Aplicación</button>
+          <button data-value="c">c) Firmware</button>
+        </div>
+        <div class="quiz-feedback"><b>Aplicación.</b> El navegador es un programa que el usuario instala y actualiza libremente: es la capa más alta de la pila.</div>
+      </article>
+
+      <article class="quiz-q" data-correct="c">
+        <p>2. Aparece una pantalla de configuración al prender la PC, antes de que cargue Windows. ¿Qué capa está actuando?</p>
+        <div class="quiz-options">
+          <button data-value="a">a) Una aplicación</button>
+          <button data-value="b">b) Un driver de impresora</button>
+          <button data-value="c">c) El firmware (BIOS/UEFI)</button>
+        </div>
+        <div class="quiz-feedback"><b>Firmware (BIOS/UEFI).</b> Es lo primero que se ejecuta al encender, antes de que cargue el sistema operativo. Vive dentro del hardware.</div>
+      </article>
+
+      <article class="quiz-q" data-correct="b">
+        <p>3. Una notebook permite actualizar el sistema operativo y algo de software, pero el hardware viene cerrado de fábrica. ¿Qué grado de integración tiene?</p>
+        <div class="quiz-options">
+          <button data-value="a">a) Baja integración</button>
+          <button data-value="b">b) Integración media</button>
+          <button data-value="c">c) Alta integración (embebido)</button>
+        </div>
+        <div class="quiz-feedback"><b>Integración media.</b> Se actualiza software y algún componente, pero buena parte del hardware viene cerrado: está entre la PC de escritorio (baja) y un router (alta).</div>
+      </article>
+    </div>
+    <div class="quiz-summary" id="quizSummary"><span id="quizScore">— / 3</span><span style="font-weight:500">Si acertaste las 3, ya distinguís capas e integración. Si menos, repasá el diagrama antes del trabajo en clase.</span></div>
+    <div class="footer"><span>Ubicá la capa</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 10. Trabajo en clase: lanza la actividad (y su Parte 3 = registro) -->
+  <section class="slide">
+    <div class="kicker">Trabajo en clase</div>
+    <h2>Ahora lo trabajan ustedes</h2>
+    <div class="activity-card">
+      <h3>🛠️ El perito informático — diagnóstico por capas</h3>
+      <p style="font-size:clamp(15px,1.15vw,19px); margin:8px 0 0">Ubicá en qué capa está cada problema y clasificá los grados de integración. Las partes 1 y 2 <b>se corrigen solas</b>; la parte 3 es el <b>registro para tu carpeta</b>, que copiás a mano.</p>
+      <a class="activity-cta" href="../actividad-clase-8-capas/" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Abrir el trabajo en clase
+      </a>
+    </div>
+    <div class="grid2" style="margin-top:18px">
+      <div class="card cloze-content">
+        <div class="reg-head">
+          <span><b>Fecha:</b> ____ / ____ / ______</span>
+          <span><b>Título:</b> Sistemas integrales — capas HW/FW/SW</span>
+          <span><b>Materia:</b> Evaluación de Proyectos</span>
+        </div>
+        <p style="margin:6px 0 0"><b>Registro (Parte 3, en tu carpeta):</b> dibujá la pila de 5 capas de un equipo real y, por capa, anotá un ejemplo concreto; abajo, el <b>grado de integración</b> y qué mejora <b>sí</b> podrías hacerle y cuál <b>no</b>.</p>
+      </div>
+      <div>
+        <p class="muted" style="font-size:.95em;margin:0 0 8px">Modelo de referencia (adaptalo a tu equipo):</p>
+        <div class="draw-box">
+          Aplicaciones → Sistema operativo → Controladores → Firmware/BIOS → Hardware<br><br>
+          (5 cajas apiladas, con tus ejemplos al costado)
+        </div>
+        <p class="muted" style="font-size:.92em;margin-top:8px">Colores:
+          <span class="legend-chip"><span class="sw-dot"></span>Software</span>
+          <span class="legend-chip"><span class="fw-dot"></span>Firmware</span>
+          <span class="legend-chip"><span class="hw-dot"></span>Hardware</span>
+        </p>
+      </div>
+    </div>
+    <div class="footer"><span>Trabajo en clase · registro</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 11. Próxima clase -->
+  <section class="slide">
+    <div class="kicker">Próxima clase</div>
+    <h2>Metodología top-down: evaluar de lo general a lo particular</h2>
+    <div class="grid2">
+      <article class="card"><h3>Lo que viene</h3><p>Ya sabemos que un sistema es una pila de capas. La próxima clase vamos a aprender a <b>descomponerlo ordenadamente</b> para evaluarlo: del conjunto a las partes, sin perder la mirada del todo. Eso es la metodología <b>top-down</b>.</p></article>
+      <article class="card accent"><h3>Llevá pensado</h3><ul>
+        <li>El diagrama de capas que dibujaste en tu carpeta.</li>
+        <li>Un equipo o sistema real que te interese evaluar (puede ser el objeto de tu proyecto anual).</li>
+        <li>Una pregunta: ¿por dónde empezarías a revisarlo si tuvieras que decir si «sirve o no sirve»?</li>
+      </ul></article>
+    </div>
+    <p class="subtitle">Con las capas claras y la metodología top-down vamos a estar listos para lo que viene en las próximas clases: <b>medir con benchmarks</b> y comparar configuraciones con evidencia.</p>
+    <p class="subtitle">📄 Para repasar y ampliar: <a class="inline-link" href="https://docs.google.com/document/d/1NsyrpHWfdMPt8uk5dMQejW4oBFA1zizWS-5RNiPhC7M/edit" target="_blank" rel="noopener">Material teórico de la Unidad 2</a>.</p>
+    <div class="footer"><span>Anticipo · Top-down</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+</div>
+
+<button class="view-toggle" id="viewToggle" aria-pressed="false" title="Ver en pantalla completa, sin navegación visible">
+  <svg class="vt-icon vt-expand" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6"/></svg>
+  <svg class="vt-icon vt-compress" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6"/></svg>
+  <span class="vt-label">Pantalla completa</span>
+</button>
+<div class="exit-hint" id="exitHint">Pulsá <b>Esc</b> para salir</div>
+
+<nav class="dots" id="dots" aria-label="Ir a una diapositiva"></nav>
+
+<div class="controls">
+  <button class="btn secondary" onclick="prevSlide()">← Anterior</button>
+  <button class="btn" onclick="nextSlide()">Siguiente →</button>
+</div>
+
+<script src="script.js?v=1"></script>
+</body>
+</html>
