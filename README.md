@@ -27,8 +27,6 @@ Material didáctico de la materia **Evaluación de Proyectos** (7.º año, orien
 
 > Próximas clases de la unidad (en preparación): metodología top-down aplicada a la evaluación; benchmarking (qué mide, herramientas, protocolo reproducible); informe comparativo de integración HW/FW/SW.
 
-> **Registro para la carpeta:** cada clase cierra con un registro que el estudiante copia **a mano** en su carpeta física. El formato **varía por clase** para ejercitar distintas operaciones cognitivas: glosario con palabras propias (clase 1), síntesis cloze (clases 2-3 y 7), ficha de caso de prueba (clase 4-5), tabla de selección de instrumento (clase 6) y diagrama de capas dibujado a mano (clase 8). Casi todos son interactivos (autochequeo + 💡) pero el entregable es el escrito a mano.
-
 Cada carpeta incluye:
 
 - `index.html` — contenido principal.
@@ -37,7 +35,7 @@ Cada carpeta incluye:
 
 ## Características
 
-**Interactividad con feedback explicativo.** Los ejercicios no devuelven solo "correcto/incorrecto": cada respuesta dispara una explicación pensada para conversar en clase. Patrones validados:
+**Interactividad con feedback explicativo.** Cada respuesta dispara una explicación pensada para conversar en clase.
 
 - Checkpoints de opción múltiple (Clase 2-3 y 4-5).
 - Tarjetas Verdadero/Falso validadoras (Clase 6).
