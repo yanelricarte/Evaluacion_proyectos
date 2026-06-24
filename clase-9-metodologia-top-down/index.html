@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clase 9 · Metodología top-down: del todo a las partes — Evaluación de Proyectos</title>
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1" />
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- 1. Cover -->
+  <section class="slide cover active">
+    <div class="cover-mark"></div>
+    <div class="student">Material para estudiantes · 7.º año</div>
+    <div class="kicker">Evaluación de Proyectos · Unidad 2</div>
+    <h1>Metodología top-down: del todo a las partes</h1>
+    <p class="lead">Ya sabemos que un sistema es una pila de capas. Hoy aprendemos a recorrerlo con orden para evaluarlo: del conjunto a los componentes, sin perder de vista el todo.</p>
+    <div class="pill-row">
+      <span class="pill">Del todo a las partes</span>
+      <span class="pill">Descomponer para evaluar</span>
+      <span class="pill">Top-down vs bottom-up</span>
+    </div>
+    <div class="footer"><span>Clase 9 · Unidad 2</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 2. Propósito -->
+  <section class="slide">
+    <div class="kicker">Propósito de la clase</div>
+    <h2>Una forma ordenada de mirar un sistema completo</h2>
+    <div class="grid3">
+      <div class="card accent"><div class="label">Hoy vamos a…</div><h3>Reconocer</h3><p>Qué es la metodología top-down: empezar por el sistema entero y su propósito, e ir bajando a las partes.</p></div>
+      <div class="card accent"><div class="label">Hoy vamos a…</div><h3>Aplicar</h3><p>Descomponer un equipo real en niveles, formulando en cada uno la pregunta de evaluación correcta.</p></div>
+      <div class="card accent"><div class="label">Hoy vamos a…</div><h3>Conectar</h3><p>Por qué este orden evita decisiones caras y prepara el terreno para medir con benchmarks.</p></div>
+    </div>
+    <div class="footer"><span>Propósito</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 3. Puente con la Clase 8 -->
+  <section class="slide">
+    <div class="kicker">De dónde venimos</div>
+    <h2>Tenemos las capas. ¿Por dónde se empieza a mirarlas?</h2>
+    <div class="grid2">
+      <div>
+        <p>En la clase anterior abrimos el sistema en capas: <b>aplicación, sistema operativo, controladores, firmware y hardware</b>. Y vimos que un mismo síntoma puede originarse en cualquiera de ellas.</p>
+        <p>Pero saber que hay capas no alcanza: hay que <b>recorrerlas con un método</b>. Si empezás cambiando piezas al azar, gastás tiempo y dinero sin diagnosticar.</p>
+        <p class="subtitle">La metodología <b>top-down</b> da ese orden: se mira primero el todo y recién después se baja a las partes.</p>
+      </div>
+      <div class="card">
+        <div class="label">Caso para arrancar</div>
+        <h3>«¿La PC del laboratorio sirve o no sirve?»</h3>
+        <p>Tu jefe te pide una respuesta. No pregunta por el disco ni por la RAM: pregunta por el <b>equipo entero</b> cumpliendo su función.</p>
+        <p class="muted" style="font-size:.95em">¿Empezarías abriendo el gabinete… o primero entendiendo para qué se usa esa PC y qué se le exige?</p>
+      </div>
+    </div>
+    <div class="footer"><span>Puente con la Clase 8</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 4. Idea central: top-down -->
+  <section class="slide">
+    <div class="kicker">Idea central</div>
+    <h2>Top-down: del sistema completo hacia los componentes</h2>
+    <p class="subtitle">«Top-down» significa «de arriba hacia abajo». Se parte del <b>sistema entero y su propósito</b> y se va descomponiendo en partes cada vez más chicas, sin perder de vista cómo cada parte aporta al todo.</p>
+    <div class="layer-stack">
+      <div class="layer sw"><span class="lyr-name">1 · El sistema completo</span><span class="lyr-desc">¿Para qué sirve este equipo? ¿Cumple su propósito? Es la mirada del usuario y del objetivo, antes de abrir nada.</span></div>
+      <div class="layer sw"><span class="lyr-name">2 · Los subsistemas</span><span class="lyr-desc">Lo dividimos en grandes bloques: software (aplicaciones + sistema operativo) y la parte física (hardware + firmware).</span></div>
+      <div class="layer fw"><span class="lyr-name">3 · Los componentes</span><span class="lyr-desc">Bajamos a las piezas concretas: el disco, la memoria, un driver, una aplicación puntual.</span></div>
+      <div class="layer hw"><span class="lyr-name">4 · El detalle a medir</span><span class="lyr-desc">Recién acá medimos lo específico: cuánto tarda el disco, cuánta memoria queda libre. (Eso son los benchmarks de la próxima clase.)</span></div>
+    </div>
+    <div class="stack-axis"><span>▲ Empezamos por el todo y su propósito</span><span>Bajamos al detalle solo cuando hace falta ▼</span></div>
+    <div class="footer"><span>Idea central · top-down</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 5. Los pasos -->
+  <section class="slide">
+    <div class="kicker">Cómo se aplica</div>
+    <h2>Cuatro pasos para evaluar de arriba hacia abajo</h2>
+    <p class="subtitle">No es una receta rígida, sino un orden que evita perderse en los detalles antes de entender el conjunto.</p>
+    <div class="grid2">
+      <article class="card flat"><span class="badge">Paso 1</span><h3>Mirar el todo</h3><p>Definir qué es el sistema y <b>qué se espera de él</b>. ¿Para qué se usa? ¿Qué significaría que «funciona bien»?</p></article>
+      <article class="card flat"><span class="badge">Paso 2</span><h3>Descomponer en bloques</h3><p>Partir el sistema en sus grandes partes (las capas de la clase 8). Mirar el mapa antes que el tornillo.</p></article>
+      <article class="card flat"><span class="badge">Paso 3</span><h3>Bajar al componente</h3><p>Dentro del bloque sospechoso, identificar la parte concreta a revisar. Solo se profundiza donde hay indicios.</p></article>
+      <article class="card flat"><span class="badge">Paso 4</span><h3>Integrar el diagnóstico</h3><p>Volver a subir: ¿qué dice ese detalle sobre <b>el sistema completo</b> y la pregunta inicial?</p></article>
+    </div>
+    <p class="subtitle"><b>Clave:</b> cada vez que bajás un nivel, no perdés de vista la pregunta del nivel de arriba. Por eso se «integra» al final.</p>
+    <div class="footer"><span>Los pasos</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 6. Top-down vs bottom-up -->
+  <section class="slide">
+    <div class="kicker">Dos caminos opuestos</div>
+    <h2>Top-down y bottom-up: ¿por dónde empezás?</h2>
+    <p class="subtitle">Son dos formas de recorrer el mismo sistema. La diferencia está en <b>dónde se arranca</b>.</p>
+    <div class="grid2">
+      <article class="card accent">
+        <h3>Top-down (del todo a las partes)</h3>
+        <p>Arranca del <b>propósito del sistema</b> y baja a las piezas. Útil para <b>evaluar y diagnosticar</b>: primero entendés qué se pide, después dónde falla.</p>
+        <p class="muted" style="font-size:.92em">Ejemplo: «¿La PC sirve para editar video? Veamos… el cuello de botella está en la memoria».</p>
+      </article>
+      <article class="card">
+        <h3>Bottom-up (de las partes al todo)</h3>
+        <p>Arranca de los <b>componentes</b> y los va combinando hasta llegar al sistema. Útil para <b>construir o armar</b>: juntás piezas que ya funcionan.</p>
+        <p class="muted" style="font-size:.92em">Ejemplo: «Tengo este procesador y esta placa… ¿qué equipo puedo armar con ellos?».</p>
+      </article>
+    </div>
+    <p class="subtitle">Para <b>evaluar</b> un sistema que ya existe, top-down suele ser el mejor punto de partida: evita gastar en una pieza antes de saber si es la que importa.</p>
+    <div class="footer"><span>Top-down vs bottom-up</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 7. Aplicado a evaluar: el caso PC del lab -->
+  <section class="slide">
+    <div class="kicker">Para qué nos sirve esto</div>
+    <h2>El caso de la PC del laboratorio, paso a paso</h2>
+    <div class="grid2">
+      <div>
+        <p>Volvamos a la pregunta del jefe: <b>«¿esta PC sirve para el laboratorio o la cambiamos?»</b>. Aplicando top-down:</p>
+        <ol>
+          <li><b>Todo:</b> se usa para programar y abrir varios navegadores. «Funciona bien» = no trabar con eso.</li>
+          <li><b>Bloques:</b> el software parece sano; sospechamos de la parte física.</li>
+          <li><b>Componente:</b> al revisar, el disco es mecánico y viejo.</li>
+          <li><b>Integración:</b> no hace falta cambiar la PC: con un disco de estado sólido alcanza.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <div class="label">Lo que se evita</div>
+        <h3>Diagnosticar antes de recomendar</h3>
+        <p>Sin método, alguien habría comprado una PC nueva (caro) o cambiado el procesador (inútil acá).</p>
+        <p class="subtitle">Top-down convierte un «no anda» difuso en una <b>recomendación concreta y justificada</b>. Esa es una capacidad profesional.</p>
+      </div>
+    </div>
+    <div class="footer"><span>Caso aplicado</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 8. Tabla integradora: nivel → pregunta → qué observar -->
+  <section class="slide">
+    <div class="kicker">Poner todo junto</div>
+    <h2>Cada nivel, con su pregunta de evaluación</h2>
+    <div class="table-wrap"><table class="table">
+      <thead><tr><th>Nivel (top-down)</th><th>Pregunta de evaluación</th><th>Qué observar</th></tr></thead>
+      <tbody>
+        <tr><td><b>Sistema completo</b></td><td>¿Cumple su propósito para el usuario?</td><td>Para qué se usa y si responde a esa necesidad.</td></tr>
+        <tr><td><b>Software (app + SO)</b></td><td>¿El problema está en los programas o el sistema?</td><td>Qué arranca al inicio, qué app falla, versiones.</td></tr>
+        <tr><td><b>Parte física (HW + FW)</b></td><td>¿El hardware o su firmware limitan al sistema?</td><td>Estado del disco, RAM disponible, firmware al día.</td></tr>
+        <tr><td><b>Componente puntual</b></td><td>¿Qué pieza concreta es el cuello de botella?</td><td>El dato medible: tiempos, espacio libre, temperatura.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="subtitle"><b>Regla práctica:</b> no se baja de nivel hasta tener una sospecha del nivel de arriba. Primero el mapa, después la lupa.</p>
+    <div class="footer"><span>Niveles y preguntas</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 9. Checkpoint -->
+  <section class="slide">
+    <div class="kicker">Activación · Pensá en top-down</div>
+    <h2>Pulso rápido: ¿estás pensando de arriba hacia abajo? (3 preguntas)</h2>
+    <p class="subtitle">Elegí una opción en cada pregunta. Vas a ver si acertaste y la explicación. Después practicamos más en el trabajo en clase.</p>
+
+    <div class="quiz" id="quiz">
+      <article class="quiz-q" data-correct="b">
+        <p>1. Te piden evaluar si una notebook «sirve» para el aula. ¿Cuál es el primer paso top-down?</p>
+        <div class="quiz-options">
+          <button data-value="a">a) Abrirla y medir la velocidad del disco</button>
+          <button data-value="b">b) Definir para qué se va a usar y qué se le exige</button>
+          <button data-value="c">c) Cambiar la memoria por las dudas</button>
+        </div>
+        <div class="quiz-feedback"><b>Definir el propósito.</b> Top-down empieza por el todo: sin saber qué se le pide al equipo, cualquier medición de detalle es ciega. Primero el mapa, después la lupa.</div>
+      </article>
+
+      <article class="quiz-q" data-correct="c">
+        <p>2. Un técnico arranca probando cada componente por separado y recién al final arma una conclusión del equipo. ¿Qué enfoque usó?</p>
+        <div class="quiz-options">
+          <button data-value="a">a) Top-down</button>
+          <button data-value="b">b) Ninguno: no hay método</button>
+          <button data-value="c">c) Bottom-up (de las partes al todo)</button>
+        </div>
+        <div class="quiz-feedback"><b>Bottom-up.</b> Empezó por las partes y subió hacia el sistema. Es válido para construir o armar; para evaluar algo que ya existe, top-down suele evitar gastos innecesarios.</div>
+      </article>
+
+      <article class="quiz-q" data-correct="a">
+        <p>3. Diagnosticaste que el cuello de botella es el disco. ¿Qué falta para cerrar bien el análisis top-down?</p>
+        <div class="quiz-options">
+          <button data-value="a">a) Volver al todo: ¿qué significa eso para «sirve o no sirve»?</button>
+          <button data-value="b">b) Nada, ya encontré la pieza</button>
+          <button data-value="c">c) Revisar también todos los demás componentes igual</button>
+        </div>
+        <div class="quiz-feedback"><b>Integrar el diagnóstico.</b> El último paso es subir de nuevo: ese detalle tiene que responder la pregunta inicial. «El disco es el límite → con cambiarlo, la PC sirve» es una recomendación, no solo un dato.</div>
+      </article>
+    </div>
+    <div class="quiz-summary" id="quizSummary"><span id="quizScore">— / 3</span><span style="font-weight:500">Si acertaste las 3, ya razonás en top-down. Si menos, repasá los cuatro pasos antes del trabajo en clase.</span></div>
+    <div class="footer"><span>Pensá en top-down</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 10. Trabajo en clase + registro -->
+  <section class="slide">
+    <div class="kicker">Trabajo en clase</div>
+    <h2>Ahora lo trabajan ustedes</h2>
+    <div class="activity-card">
+      <h3>Evaluar un sistema con top-down</h3>
+      <p style="font-size:clamp(15px,1.15vw,19px); margin:8px 0 0">Ordená los pasos de un diagnóstico y aplicá top-down a un caso, conectándolo con las capas de la clase 8. Las partes 1 y 2 <b>se corrigen solas</b>; la parte 3 es el <b>registro para tu carpeta</b>, que copiás a mano.</p>
+      <a class="activity-cta" href="../actividad-clase-9-top-down/" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Abrir el trabajo en clase
+      </a>
+    </div>
+    <div class="grid2" style="margin-top:18px">
+      <div class="card cloze-content">
+        <div class="reg-head">
+          <span><b>Fecha:</b> ____ / ____ / ______</span>
+          <span><b>Título:</b> Metodología top-down — del todo a las partes</span>
+          <span><b>Materia:</b> Evaluación de Proyectos</span>
+        </div>
+        <p style="margin:6px 0 0"><b>Registro (Parte 3, en tu carpeta):</b> elegí un sistema real y aplicá los <b>cuatro pasos</b> top-down. Escribí, por paso, la pregunta que te hacés y la respuesta; cerrá con la recomendación («sirve / no sirve / qué mejorar»).</p>
+      </div>
+      <div>
+        <p class="muted" style="font-size:.95em;margin:0 0 8px">Modelo de referencia (adaptalo a tu sistema):</p>
+        <div class="draw-box">
+          1. El todo (propósito) → 2. Bloques (SW / parte física) → 3. Componente sospechoso → 4. Integración (recomendación)
+        </div>
+        <p class="muted" style="font-size:.92em;margin-top:8px">Conectá cada paso con la <b>capa</b> de la clase 8 que estás mirando.</p>
+      </div>
+    </div>
+    <div class="footer"><span>Trabajo en clase · registro</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 11. Trabajo Práctico N.º 4 -->
+  <section class="slide">
+    <div class="kicker">Trabajo Práctico N.º 4</div>
+    <h2>Evaluación comparativa: elegir entre dos alternativas</h2>
+    <div class="activity-card">
+      <h3>Evaluar y decidir con top-down</h3>
+      <p style="font-size:clamp(15px,1.15vw,19px); margin:8px 0 0">En grupo, evalúan <b>dos alternativas</b> de sistema o equipo para un mismo propósito y recomiendan una, fundamentando con la mirada por capas. Cierra con una <b>puesta en común</b> donde cada grupo banca su decisión.</p>
+      <a class="activity-cta" href="https://docs.google.com/document/d/1YDhYgYG_Pq4wrlQSVnclDFiur1IbUCcKdqqhinmE1jY/edit" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Abrir la consigna del TP 4
+      </a>
+    </div>
+    <div class="grid2" style="margin-top:18px">
+      <article class="card"><h3>De qué va</h3><ul>
+        <li><b>Opción A:</b> una decisión real de su proyecto anual.</li>
+        <li><b>Opción B:</b> caso provisto (la cooperativa que elige entre una PC armada y una mini-PC cerrada).</li>
+        <li>Recorren las dos opciones <b>por capas</b> (clase 8) con el método top-down y deciden con un criterio propio.</li>
+      </ul></article>
+      <article class="card accent"><h3>Cómo se evalúa</h3><ul>
+        <li>Definen <b>criterios</b> de decisión claros.</li>
+        <li>Comparan por capas y ubican fortalezas y límites.</li>
+        <li>Recomiendan una opción, dicen <b>qué se resigna</b> y bajo qué condición cambiarían.</li>
+        <li>Sostienen la decisión del grupo en la puesta en común.</li>
+      </ul></article>
+    </div>
+    <div class="footer"><span>Trabajo Práctico N.º 4</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 12. Próxima clase -->
+  <section class="slide">
+    <div class="kicker">Próxima clase</div>
+    <h2>Benchmarking: medir con evidencia objetiva</h2>
+    <div class="grid2">
+      <article class="card"><h3>Lo que viene</h3><p>Ya sabemos descomponer un sistema con top-down. Cuando bajamos al detalle, necesitamos <b>medir</b> para no opinar «a ojo». La próxima clase vemos <b>benchmarking</b>: qué mide, con qué herramientas y cómo hacerlo de forma <b>reproducible</b> para poder comparar.</p></article>
+      <article class="card accent"><h3>Llevá pensado</h3><ul>
+        <li>El análisis top-down que escribiste en tu carpeta.</li>
+        <li>El sistema de tu proyecto anual: ¿qué te gustaría poder <b>medir</b> de él?</li>
+        <li>Una pregunta: si dos equipos parecen iguales, ¿cómo demostrarías con números cuál es mejor?</li>
+      </ul></article>
+    </div>
+    <p class="subtitle">Con las capas, el método top-down y los benchmarks vamos a estar listos para el cierre de la unidad: el <b>informe comparativo de integración</b> HW/FW/SW.</p>
+    <p class="subtitle">Para repasar y ampliar: <a class="inline-link" href="https://docs.google.com/document/d/1NsyrpHWfdMPt8uk5dMQejW4oBFA1zizWS-5RNiPhC7M/edit" target="_blank" rel="noopener">Material teórico de la Unidad 2</a>.</p>
+    <div class="footer"><span>Anticipo · Benchmarking</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+</div>
+
+<button class="view-toggle" id="viewToggle" aria-pressed="false" title="Ver en pantalla completa, sin navegación visible">
+  <svg class="vt-icon vt-expand" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6"/></svg>
+  <svg class="vt-icon vt-compress" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6"/></svg>
+  <span class="vt-label">Pantalla completa</span>
+</button>
+<div class="exit-hint" id="exitHint">Pulsá <b>Esc</b> para salir</div>
+
+<nav class="dots" id="dots" aria-label="Ir a una diapositiva"></nav>
+
+<div class="controls">
+  <button class="btn secondary" onclick="prevSlide()">← Anterior</button>
+  <button class="btn" onclick="nextSlide()">Siguiente →</button>
+</div>
+
+<script src="script.js?v=1"></script>
+</body>
+</html>

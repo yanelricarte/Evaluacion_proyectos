@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trabajo en clase · Evaluar con top-down — Evaluación de Proyectos</title>
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Trabajo en clase · Unidad 2 · 7.º año</div>
+    <h1>Evaluar con top-down</h1>
+    <p class="lead">Aplicá la metodología top-down (clase 9) sin perder de vista las capas hardware-firmware-software (clase 8). Se corrige solo y se termina en clase: no se entrega nada, el registro final lo copiás a tu carpeta.</p>
+    <div class="track">
+      <a class="track-step" href="#parte-1"><b>1</b><span>¿A qué paso top-down corresponde?</span></a>
+      <a class="track-step" href="#parte-2"><b>2</b><span>¿En qué capa aterriza el diagnóstico?</span></a>
+      <a class="track-step" href="#parte-3"><b>3</b><span>Registro para la carpeta</span></a>
+      <a class="track-step" href="#resultado"><b>★</b><span>Resultado</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="scenario" id="consigna">
+  <div class="kicker">Cómo se trabaja</div>
+  <h2>Diagnosticás un sistema de arriba hacia abajo</h2>
+  <div class="scenario-grid">
+    <article class="scenario-card">
+      <h3>Los 4 pasos del top-down (repaso)</h3>
+      <p><b>1. Mirar el todo</b> (propósito) → <b>2. Descomponer en bloques</b> → <b>3. Bajar al componente</b> → <b>4. Integrar el diagnóstico</b>.</p>
+      <p>Primero el mapa, después la lupa.</p>
+    </article>
+    <article class="scenario-card">
+      <h3>La conexión con la clase 8</h3>
+      <p>Cuando el top-down te lleva a un componente, ese componente <b>vive en una capa</b>: aplicación, sistema operativo, driver, firmware o hardware. Ubicar la capa es parte del diagnóstico.</p>
+    </article>
+  </div>
+  <p class="hint">En las partes 1 y 2 elegís una opción y aparece la corrección al instante. La parte 3 es de producción: la copiás a mano en tu carpeta (podés ver un ejemplo resuelto con el código dado en clase).</p>
+</section>
+
+<!-- ===== PARTE 1: ¿A qué paso del top-down corresponde? ===== -->
+<section class="step" id="parte-1">
+  <header class="step-header">
+    <span class="step-num">1</span>
+    <div>
+      <div class="kicker">Método</div>
+      <h2>¿A qué paso del top-down corresponde cada acción?</h2>
+    </div>
+  </header>
+  <p>Para cada acción de un diagnóstico, elegí a qué <b>paso</b> del top-down pertenece. Al elegir aparece la explicación.</p>
+
+  <div class="match-list" data-section="parte-1">
+
+    <article class="match-item" data-correct="paso1">
+      <p class="match-text">«Antes de abrir nada, anotás para qué se usa el equipo y qué significaría que “funciona bien” en ese uso.»</p>
+      <div class="choices" data-field="paso">
+        <button data-value="paso1">Paso 1 · Mirar el todo</button>
+        <button data-value="paso2">Paso 2 · Descomponer en bloques</button>
+        <button data-value="paso3">Paso 3 · Bajar al componente</button>
+        <button data-value="paso4">Paso 4 · Integrar el diagnóstico</button>
+      </div>
+      <div class="match-feedback">
+        <b>Paso 1 · Mirar el todo.</b> Top-down arranca por el propósito del sistema, no por las piezas. Sin saber qué se le pide al equipo, cualquier medición de detalle es ciega.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="paso2">
+      <p class="match-text">«Dividís el sistema en dos grandes partes: el software (apps + sistema operativo) y la parte física (hardware + firmware).»</p>
+      <div class="choices" data-field="paso">
+        <button data-value="paso1">Paso 1 · Mirar el todo</button>
+        <button data-value="paso2">Paso 2 · Descomponer en bloques</button>
+        <button data-value="paso3">Paso 3 · Bajar al componente</button>
+        <button data-value="paso4">Paso 4 · Integrar el diagnóstico</button>
+      </div>
+      <div class="match-feedback">
+        <b>Paso 2 · Descomponer en bloques.</b> Mirás el mapa antes que el tornillo: partís el sistema en sus grandes bloques (las capas de la clase 8) para saber por dónde seguir.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="paso3">
+      <p class="match-text">«Dentro de la parte física, revisás puntualmente el disco porque hace ruido y la lentitud aparece con cualquier programa.»</p>
+      <div class="choices" data-field="paso">
+        <button data-value="paso1">Paso 1 · Mirar el todo</button>
+        <button data-value="paso2">Paso 2 · Descomponer en bloques</button>
+        <button data-value="paso3">Paso 3 · Bajar al componente</button>
+        <button data-value="paso4">Paso 4 · Integrar el diagnóstico</button>
+      </div>
+      <div class="match-feedback">
+        <b>Paso 3 · Bajar al componente.</b> Ya tenés una sospecha (la parte física), así que recién ahí profundizás en una pieza concreta. No se baja de nivel sin indicios del nivel de arriba.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="paso4">
+      <p class="match-text">«Con el dato del disco, volvés a la pregunta inicial y escribís la recomendación: “la PC sirve, solo hay que cambiar el disco”.»</p>
+      <div class="choices" data-field="paso">
+        <button data-value="paso1">Paso 1 · Mirar el todo</button>
+        <button data-value="paso2">Paso 2 · Descomponer en bloques</button>
+        <button data-value="paso3">Paso 3 · Bajar al componente</button>
+        <button data-value="paso4">Paso 4 · Integrar el diagnóstico</button>
+      </div>
+      <div class="match-feedback">
+        <b>Paso 4 · Integrar el diagnóstico.</b> Subís de nuevo al todo: el detalle tiene que responder la pregunta inicial. Un dato suelto no es una recomendación.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="paso1">
+      <p class="match-text">«Listás qué se le exige al equipo según quién lo usa: el del laboratorio tiene que compilar y abrir varios navegadores.»</p>
+      <div class="choices" data-field="paso">
+        <button data-value="paso1">Paso 1 · Mirar el todo</button>
+        <button data-value="paso2">Paso 2 · Descomponer en bloques</button>
+        <button data-value="paso3">Paso 3 · Bajar al componente</button>
+        <button data-value="paso4">Paso 4 · Integrar el diagnóstico</button>
+      </div>
+      <div class="match-feedback">
+        <b>Paso 1 · Mirar el todo.</b> Definir qué se le exige al sistema es parte de entender el todo y su propósito. Es lo que después te deja decir si «sirve o no sirve».
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="paso3">
+      <p class="match-text">«De todo el software, identificás que el problema es una sola aplicación que consume muchísima memoria.»</p>
+      <div class="choices" data-field="paso">
+        <button data-value="paso1">Paso 1 · Mirar el todo</button>
+        <button data-value="paso2">Paso 2 · Descomponer en bloques</button>
+        <button data-value="paso3">Paso 3 · Bajar al componente</button>
+        <button data-value="paso4">Paso 4 · Integrar el diagnóstico</button>
+      </div>
+      <div class="match-feedback">
+        <b>Paso 3 · Bajar al componente.</b> Pasaste del bloque «software» a una pieza concreta (una app puntual). Para conversar: ¿en qué capa de la clase 8 está esa app?
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== PARTE 2: ¿En qué capa aterriza el diagnóstico? (repaso clase 8) ===== -->
+<section class="step" id="parte-2">
+  <header class="step-header">
+    <span class="step-num">2</span>
+    <div>
+      <div class="kicker">Conexión con la clase 8</div>
+      <h2>¿En qué capa aterriza el diagnóstico?</h2>
+    </div>
+  </header>
+  <p>El top-down te llevó hasta un componente concreto. Decí <b>en qué capa</b> está, como en la clase 8. Al elegir aparece la explicación.</p>
+
+  <div class="match-list" data-section="parte-2">
+
+    <article class="match-item" data-correct="hardware">
+      <p class="match-text">«El recorrido top-down terminó en el disco mecánico, que hace ruido y vuelve lento a todo el equipo.»</p>
+      <div class="choices" data-field="capa">
+        <button data-value="app">Aplicación</button>
+        <button data-value="so">Sistema operativo</button>
+        <button data-value="driver">Controlador (driver)</button>
+        <button data-value="firmware">Firmware / BIOS</button>
+        <button data-value="hardware">Hardware</button>
+      </div>
+      <div class="match-feedback">
+        <b>Hardware.</b> El disco es un componente físico. Que afecte a todo y haga ruido apunta a la capa más baja: la más cara y difícil de cambiar, pero acá la solución (un SSD) es barata.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="firmware">
+      <p class="match-text">«Bajando por el sistema llegaste a la pantalla de configuración que aparece al prender, antes de que cargue Windows.»</p>
+      <div class="choices" data-field="capa">
+        <button data-value="app">Aplicación</button>
+        <button data-value="so">Sistema operativo</button>
+        <button data-value="driver">Controlador (driver)</button>
+        <button data-value="firmware">Firmware / BIOS</button>
+        <button data-value="hardware">Hardware</button>
+      </div>
+      <div class="match-feedback">
+        <b>Firmware (BIOS/UEFI).</b> Es lo primero que se ejecuta al encender, antes del sistema operativo, y vive dentro del hardware. Es la «bisagra» entre lo físico y lo lógico.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="so">
+      <p class="match-text">«El cuello de botella resultó ser que arrancan automáticamente unos veinte programas al iniciar sesión.»</p>
+      <div class="choices" data-field="capa">
+        <button data-value="app">Aplicación</button>
+        <button data-value="so">Sistema operativo</button>
+        <button data-value="driver">Controlador (driver)</button>
+        <button data-value="firmware">Firmware / BIOS</button>
+        <button data-value="hardware">Hardware</button>
+      </div>
+      <div class="match-feedback">
+        <b>Sistema operativo.</b> Qué programas arrancan al iniciar sesión lo administra el sistema operativo. Se resuelve por configuración, sin tocar el hardware: suele ser la mejora más barata.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="app">
+      <p class="match-text">«El diagnóstico cerró en que solo el navegador se cierra solo; el resto del equipo (sistema, hardware, otros programas) anda perfecto.»</p>
+      <div class="choices" data-field="capa">
+        <button data-value="app">Aplicación</button>
+        <button data-value="so">Sistema operativo</button>
+        <button data-value="driver">Controlador (driver)</button>
+        <button data-value="firmware">Firmware / BIOS</button>
+        <button data-value="hardware">Hardware</button>
+      </div>
+      <div class="match-feedback">
+        <b>Aplicación.</b> El problema está aislado en un solo programa y el resto de las capas funciona. Es la capa más alta y la más fácil de reinstalar o reemplazar.
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== PARTE 3: Registro para la carpeta (producción, no se entrega) ===== -->
+<section class="step" id="parte-3">
+  <header class="step-header">
+    <span class="step-num">3</span>
+    <div>
+      <div class="kicker">Producción · para tu carpeta</div>
+      <h2>Aplicá top-down a un sistema real</h2>
+    </div>
+  </header>
+  <p>Elegí <b>un sistema que conozcas</b> (la PC del laboratorio, tu celular, una consola, un router) y resolvé en tu carpeta, <b>a mano</b>, aplicando los cuatro pasos. Recién cuando termines, con el <b>código dado en clase</b> vas a poder desbloquear un ejemplo resuelto y comparar tu trabajo. Esto no se entrega: es tu registro de la clase.</p>
+
+  <article class="prod-task">
+    <h3>Lo que tenés que producir</h3>
+    <ol>
+      <li><b>Paso 1 · El todo:</b> qué es el sistema, para qué se usa y qué significaría que «funciona bien».</li>
+      <li><b>Paso 2 · Bloques:</b> separalo en software y parte física, e indicá en qué bloque sospechás el problema.</li>
+      <li><b>Paso 3 · Componente:</b> el componente concreto a revisar y <b>en qué capa</b> está (clase 8).</li>
+      <li><b>Paso 4 · Integración:</b> la <b>recomendación final</b> respondiendo «sirve / no sirve / qué mejorar», con una justificación.</li>
+    </ol>
+    <p class="lock-hint">🔒 Una vez resuelto en tu carpeta, ingresá el código dado en clase para ver el ejemplo de resolución.</p>
+    <div class="lock-row">
+      <input type="text" id="codeInput" placeholder="Código de la profe" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <button class="prod-check" id="revealBtn">Desbloquear ejemplo</button>
+    </div>
+    <div class="prod-feedback" id="modelFeedback"></div>
+  </article>
+</section>
+
+<!-- ===== RESULTADO ===== -->
+<section class="step result-section" id="resultado">
+  <header class="step-header">
+    <span class="step-num">★</span>
+    <div>
+      <div class="kicker">Resultado</div>
+      <h2>Tu diagnóstico y disparadores para conversar</h2>
+    </div>
+  </header>
+
+  <div class="score-grid">
+    <div class="score-card" data-section="parte-1"><span class="score-label">Pasos del top-down</span><span class="score-value" id="score-1">— / 6</span></div>
+    <div class="score-card" data-section="parte-2"><span class="score-label">Capa del diagnóstico</span><span class="score-value" id="score-2">— / 4</span></div>
+    <div class="score-card total"><span class="score-label">Total</span><span class="score-value" id="score-total">— / 10</span></div>
+  </div>
+
+  <div class="reflection">
+    <h3>Para discutir en clase</h3>
+    <ul>
+      <li>¿Por qué top-down conviene <b>empezar por el propósito</b> y no por abrir el equipo?</li>
+      <li>¿En qué caso usarías <b>bottom-up</b> en lugar de top-down?</li>
+      <li>De los diagnósticos de la parte 2, ¿cuál tiene la solución <b>más barata</b> y por qué?</li>
+      <li>Pensando en tu proyecto anual: ¿cuál sería el «todo» y cuáles los bloques a evaluar?</li>
+    </ul>
+  </div>
+
+  <div class="export-bar">
+    <p class="export-warn"><b>Esto no se entrega.</b> Tus respuestas quedan solo en este navegador. Si querés guardar tu diagnóstico, descargalo o imprimilo.</p>
+    <div class="export-actions">
+      <button class="export-btn danger" id="btnReset">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Reiniciar
+      </button>
+      <button class="export-btn secondary" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Imprimir o guardar PDF
+      </button>
+      <button class="export-btn secondary" id="recompute">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        Recalcular
+      </button>
+      <span class="export-status" id="exportStatus"></span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="modal-overlay" id="resetModal" hidden>
+  <div class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+    <h3 id="modal-title">Reiniciar actividad</h3>
+    <p id="modal-msg">Se van a borrar todas tus respuestas. No hay forma de recuperarlo.</p>
+    <div class="modal-actions">
+      <button class="export-btn secondary modal-cancel" id="modalCancel">Cancelar</button>
+      <button class="export-btn danger" id="modalConfirm">Sí, reiniciar</button>
+    </div>
+  </div>
+</div>
+
+<footer class="page-foot">
+  <span>Trabajo en clase · Evaluación de Proyectos · 7.º año</span>
+  <span>Metodología top-down · Capas HW/FW/SW</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
