@@ -1054,3 +1054,24 @@ body.fullscreen-mode .exit-hint{display:block; animation:fadeOutHint .25s ease 3
   .icon-card{ padding:14px 10px; }
   .icon-bubble{ width:46px; height:46px; font-size:1.1rem; }
 }
+
+/* ===== Ejercicio "¿qué métrica para cada caso?" (desplegables) ===== */
+/* (movido desde <style> inline en index.html) */
+.metric-match{ display:flex; flex-direction:column; gap:14px; margin:14px 0; }
+.mm-row{ display:flex; flex-direction:column; gap:6px; }
+.mm-row > span{ font-weight:600; }
+.mm-row select{ padding:10px 12px; border:1px solid #c7ccd3; border-radius:8px; font-size:1rem; background:#fff; color:#202124; max-width:100%; font-family:inherit; }
+.mm-row select:focus-visible{ outline:3px solid #b31657; outline-offset:2px; }
+.mm-row select.mm-ok{ border-color:#1a7f37; border-width:2px; }
+.mm-row select.mm-bad{ border-color:#d1242f; border-width:2px; }
+.mm-check{ margin-top:14px; cursor:pointer; font-family:inherit; font-weight:700; padding:10px 18px; border:none; border-radius:8px; background:#b31657; color:#fff; font-size:1rem; }
+.mm-check:hover{ background:#8f1145; }
+.mm-fb{ margin-top:12px; font-weight:700; }
+.mm-fb.mm-allok{ color:#1a7f37; }
+.mm-fb.mm-partial{ color:#b06000; }
+
+/* ===== Modificadores de layout (reemplazan style="" inline) ===== */
+.icon-grid--3{ grid-template-columns:repeat(3,1fr); }
+.flow--mt{ margin-top:18px; }
+.legend--center{ text-align:center; }
+.callout--spaced{ margin-top:12px; }
