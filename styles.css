@@ -89,14 +89,56 @@ h1.hero-title{
   margin:0;
 }
 
+/* ===== Título de sección ===== */
+.section-title{
+  font-size:clamp(22px,2vw,28px);
+  font-weight:800;
+  margin:0 0 clamp(18px,2vw,24px);
+}
+
+/* ===== Banner del programa ===== */
+.programa-banner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  padding:clamp(22px,2.6vw,32px);
+  margin:0 0 clamp(40px,5vw,56px);
+  background:var(--soft);
+  border:1px solid var(--primary-3);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-soft);
+}
+.programa-banner h2{font-size:clamp(22px,1.8vw,28px); font-weight:800; margin:0 0 6px;}
+.programa-banner p{margin:0; color:var(--ink-soft); max-width:620px; line-height:1.5;}
+.btn-programa{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 22px;
+  border-radius:999px;
+  background:var(--primary);
+  color:#fff;
+  font-weight:700;
+  font-size:15px;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:background .2s ease, transform .2s ease;
+}
+.btn-programa:hover{background:var(--primary-dark); transform:translateY(-2px);}
+.btn-programa svg{transition:transform .2s ease}
+.btn-programa:hover svg{transform:translateX(3px)}
+
 /* ===== Grilla de tarjetas ===== */
 .grid{
   display:grid;
   gap:clamp(18px,2vw,28px);
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  align-items:start;
 }
 
-a.card{
+.card{
   display:block;
   padding:clamp(24px,2.4vw,32px);
   background:rgba(255,255,255,.62);
@@ -105,26 +147,14 @@ a.card{
   border-radius:var(--radius);
   box-shadow:var(--shadow-soft);
   color:inherit;
-  text-decoration:none;
-  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  transition:box-shadow .25s ease, border-color .25s ease;
   position:relative;
   overflow:hidden;
 }
-a.card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg, rgba(239,125,167,.08), transparent 60%);
-  opacity:0;
-  transition:opacity .25s ease;
-  pointer-events:none;
-}
-a.card:hover{
-  transform:translateY(-3px);
+.card:hover{
   box-shadow:var(--shadow);
   border-color:var(--primary-3);
 }
-a.card:hover::before{opacity:1}
 
 .card-tag{
   display:inline-block;
@@ -147,7 +177,6 @@ a.card:hover::before{opacity:1}
   font-size:clamp(15px,1.05vw,17px);
 }
 .card .arrow{
-  margin-top:18px;
   display:inline-flex;
   align-items:center;
   gap:6px;
@@ -155,9 +184,64 @@ a.card:hover::before{opacity:1}
   font-weight:600;
   font-size:14px;
   letter-spacing:.02em;
+  text-decoration:none;
 }
 .card .arrow svg{transition:transform .25s ease}
-a.card:hover .arrow svg{transform:translateX(4px)}
+.card .arrow:hover svg{transform:translateX(4px)}
+
+/* ===== Acciones + previsualización ===== */
+.card-actions{
+  margin-top:18px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.preview{
+  border-top:1px solid var(--line);
+  padding-top:12px;
+}
+.preview > summary{
+  cursor:pointer;
+  list-style:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:600;
+  font-size:14px;
+  color:var(--ink-soft);
+}
+.preview > summary::-webkit-details-marker{display:none}
+.preview > summary::before{
+  content:"▸";
+  color:var(--primary);
+  font-size:.9em;
+  transition:transform .2s ease;
+}
+.preview[open] > summary::before{transform:rotate(90deg)}
+.preview[open] > summary{color:var(--primary)}
+
+.preview-body{
+  margin-top:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.preview-body iframe{
+  width:100%;
+  height:min(60vh,540px);
+  border:1px solid var(--line);
+  border-radius:var(--radius-sm);
+  background:#fff;
+}
+.preview-open{
+  align-self:flex-start;
+  color:var(--primary);
+  font-weight:600;
+  font-size:13px;
+  text-decoration:none;
+}
+.preview-open:hover{text-decoration:underline}
 
 /* ===== Footer ===== */
 footer{

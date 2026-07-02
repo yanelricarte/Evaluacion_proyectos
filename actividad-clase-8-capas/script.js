@@ -89,7 +89,11 @@ function descifrar(b64, clave) {
   if (!key.length) return '';
   const out = new Uint8Array(bytes.length);
   for (let i = 0; i < bytes.length; i++) out[i] = bytes[i] ^ key[i % key.length];
-  try { return new TextDecoder('utf-8', { fatal: false }).decode(out); }
+  // fatal:true rechaza UTF-8 inválido. El sentinel OK:: solo valida los primeros
+  // bytes de la clave, así que un código con typo que comparta el prefijo lo pasaría
+  // y mostraría basura; el descifrado con clave errónea produce bytes UTF-8 inválidos,
+  // que acá tiran y devuelven '' → se trata como código incorrecto.
+  try { return new TextDecoder('utf-8', { fatal: true }).decode(out); }
   catch { return ''; }
 }
 
