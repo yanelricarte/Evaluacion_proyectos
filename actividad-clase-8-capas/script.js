@@ -102,7 +102,7 @@ function intentarDesbloquear(codigo) {
   if (txt.startsWith('OK::')) {
     modelFb.innerHTML = txt.slice(4);
     modelFb.classList.remove('no');
-    modelFb.classList.add('shown', 'ok');
+    modelFb.classList.add('shown', 'revealed');
     if (codeInput) { codeInput.disabled = true; codeInput.value = '✔ desbloqueado'; }
     if (revealBtn) revealBtn.disabled = true;
     state.code = (codigo || '').trim();   // el código solo queda en ESTE navegador (no en el repo)

@@ -488,6 +488,7 @@ textarea:focus, input:focus, select:focus{
 }
 .prod-feedback.shown{display:block}
 .prod-feedback.ok{border-color:var(--ok-border); background:var(--ok-soft)}
+.prod-feedback.revealed{border-color:var(--gray-3); background:var(--soft); border-left:4px solid var(--primary-dark)}
 .prod-feedback.partial{border-color:#f1c994; background:#fff8ec}
 .prod-feedback.no{border-color:var(--no-border); background:var(--no-soft)}
 .prod-feedback ul{margin:8px 0 0; padding-left:20px}
