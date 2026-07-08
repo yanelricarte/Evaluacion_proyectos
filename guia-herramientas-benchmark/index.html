@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guía de herramientas de benchmarking — Evaluación de Proyectos</title>
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Guía práctica · Unidad 2 · 7.º año</div>
+    <h1>Herramientas de benchmarking: uso y lectura de resultados</h1>
+    <p class="lead">Cuatro herramientas <b>libres o gratuitas</b> para medir con evidencia: qué mide cada una, cómo se usa paso a paso y qué muestra el resultado. Todas se pueden ejecutar en el laboratorio.</p>
+    <div class="track">
+      <a class="track-step" href="#crystaldiskmark"><b>1</b><span>CrystalDiskMark · disco</span></a>
+      <a class="track-step" href="#geekbench"><b>2</b><span>Geekbench · procesador</span></a>
+      <a class="track-step" href="#sietezip"><b>3</b><span>7-Zip · procesador</span></a>
+      <a class="track-step" href="#iperf3"><b>4</b><span>iperf3 · red</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="scenario">
+  <div class="kicker">Antes de empezar</div>
+  <h2>Medir bien: siempre igual, siempre repetido</h2>
+  <div class="scenario-grid">
+    <article class="scenario-card">
+      <h3>La regla de reproducibilidad</h3>
+      <p>Cerrá los otros programas, enchufá el equipo, <b>repetí cada prueba 3–5 veces</b> y tomá el promedio. Anotá la herramienta y su versión, la fecha y las condiciones. Sin eso, el número no es evidencia.</p>
+    </article>
+    <article class="scenario-card">
+      <h3>Sobre las capturas de esta guía</h3>
+      <p>La de <b>7-Zip es una salida real</b> (corrida en un equipo concreto). Las de CrystalDiskMark y Geekbench —apps de escritorio— son representaciones fieles del formato real: la captura definitiva se toma en el laboratorio con tus propios números.</p>
+    </article>
+  </div>
+  <div class="capture-label" style="margin-top:20px">Qué herramienta para qué parámetro (la «hoja» del top-down)</div>
+  <div class="toolmap">
+    <span><b>Disco / SSD</b> → CrystalDiskMark</span>
+    <span><b>Procesador</b> → Geekbench · 7-Zip</span>
+    <span><b>Red</b> → iperf3</span>
+    <span><b>Tarea real</b> (abrir, exportar) → cronómetro</span>
+  </div>
+</section>
+
+<!-- ===== 1. CrystalDiskMark ===== -->
+<section class="step tool-block" id="crystaldiskmark">
+  <header class="step-header">
+    <span class="step-num">1</span>
+    <div>
+      <div class="kicker">Disco / SSD</div>
+      <h2>CrystalDiskMark — velocidad de lectura y escritura</h2>
+    </div>
+  </header>
+  <div class="tool-head">
+    <span class="tool-badge">Código abierto · gratuita</span>
+    <span class="tool-meta">Windows · <a class="inline-link" href="https://crystalmark.info/en/software/crystaldiskmark/" target="_blank" rel="noopener">crystalmark.info</a></span>
+  </div>
+  <p><b>Qué mide:</b> la velocidad a la que un disco o SSD lee y escribe datos, en MB/s. Es la herramienta ideal para la «hoja» del árbol cuando el cuello de botella parece el almacenamiento.</p>
+  <p><b>Para qué te sirve en una evaluación:</b> decidir si conviene un SSD frente a un disco mecánico, o comprobar si un disco viejo es el que vuelve lento a un equipo.</p>
+
+  <h3 style="margin-top:18px">Cómo se usa</h3>
+  <ol class="howto">
+    <li>Descargá e instalá CrystalDiskMark desde el sitio oficial (o usá la versión portable).</li>
+    <li>Arriba, elegí la <b>unidad</b> a medir (C:, D:, un pen drive…).</li>
+    <li>Dejá el tamaño de prueba en <b>1 GiB</b> y el número de vueltas en <b>5</b>.</li>
+    <li>Cerrá otros programas y hacé clic en <b>All</b> para correr todas las pruebas.</li>
+    <li>Esperá a que termine y leé la columna de <b>Read</b> (lectura) y <b>Write</b> (escritura).</li>
+  </ol>
+
+  <div class="capture-label">Representación del panel · la captura real se toma en el laboratorio</div>
+  <div class="cdm">
+    <h4>CrystalDiskMark 9.0.3 · 1 GiB · Unidad C: (SSD)</h4>
+    <table>
+      <thead><tr><th>Prueba</th><th>Read (MB/s)</th><th>Write (MB/s)</th></tr></thead>
+      <tbody>
+        <tr><td>SEQ1M Q8T1</td><td class="val">3210.5</td><td class="val">2980.1</td></tr>
+        <tr><td>SEQ1M Q1T1</td><td class="val">2450.3</td><td class="val">2100.8</td></tr>
+        <tr><td>RND4K Q32T1</td><td class="val">620.4</td><td class="val">540.2</td></tr>
+        <tr><td>RND4K Q1T1</td><td class="val">72.1</td><td class="val">180.6</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-top:14px"><b>Cómo leerlo:</b> la fila SEQ1M (secuencial) es la velocidad para archivos grandes; la RND4K (aleatoria) pesa más en el uso diario del sistema. Un SSD da miles de MB/s en secuencial; un disco mecánico, ~100–160.</p>
+</section>
+
+<!-- ===== 2. Geekbench ===== -->
+<section class="step tool-block" id="geekbench">
+  <header class="step-header">
+    <span class="step-num">2</span>
+    <div>
+      <div class="kicker">Procesador</div>
+      <h2>Geekbench — rendimiento del procesador</h2>
+    </div>
+  </header>
+  <div class="tool-head">
+    <span class="tool-badge">Versión gratuita</span>
+    <span class="tool-meta">Windows / macOS / Linux / Android · <a class="inline-link" href="https://www.geekbench.com/" target="_blank" rel="noopener">geekbench.com</a></span>
+  </div>
+  <p><b>Qué mide:</b> la potencia del procesador en un puntaje comparable entre equipos distintos, separando un núcleo (Single-Core) de varios núcleos (Multi-Core).</p>
+  <p><b>Para qué te sirve en una evaluación:</b> comparar el procesador de dos equipos con un puntaje estándar, aunque sean de marcas o sistemas operativos distintos.</p>
+
+  <h3 style="margin-top:18px">Cómo se usa</h3>
+  <ol class="howto">
+    <li>Descargá Geekbench e instalalo (la versión gratuita alcanza para correr la prueba).</li>
+    <li>Cerrá otros programas para no falsear la medición.</li>
+    <li>Hacé clic en <b>Run CPU Benchmark</b> y esperá un par de minutos.</li>
+    <li>Al terminar muestra dos puntajes: <b>Single-Core</b> y <b>Multi-Core</b>.</li>
+    <li>Repetí 3 veces y promediá; anotá el modelo de procesador.</li>
+  </ol>
+
+  <div class="capture-label">Representación del panel · la captura real se toma en el laboratorio</div>
+  <div class="gb">
+    <div class="gb-card"><div class="gb-label">Single-Core Score</div><div class="gb-score">1 480</div></div>
+    <div class="gb-card"><div class="gb-label">Multi-Core Score</div><div class="gb-score">7 400</div></div>
+  </div>
+  <p style="margin-top:14px"><b>Cómo leerlo:</b> a mayor puntaje, mejor rendimiento. Single-Core importa para tareas que usan un solo núcleo (muchas apps de escritorio); Multi-Core, para trabajo pesado y paralelo (edición, compilación). Compará contra el otro equipo con el mismo criterio.</p>
+</section>
+
+<!-- ===== 3. 7-Zip ===== -->
+<section class="step tool-block" id="sietezip">
+  <header class="step-header">
+    <span class="step-num">3</span>
+    <div>
+      <div class="kicker">Procesador / memoria</div>
+      <h2>7-Zip — benchmark integrado (sin instalar nada extra)</h2>
+    </div>
+  </header>
+  <div class="tool-head">
+    <span class="tool-badge">Código abierto · gratuita</span>
+    <span class="tool-meta">Windows / Linux · <a class="inline-link" href="https://www.7-zip.org/" target="_blank" rel="noopener">7-zip.org</a></span>
+  </div>
+  <p><b>Qué mide:</b> la velocidad del procesador y la memoria comprimiendo y descomprimiendo datos, en MIPS (millones de instrucciones por segundo). La ventaja: si ya tenés 7-Zip, no instalás nada más.</p>
+  <p><b>Para qué te sirve en una evaluación:</b> medir el procesador en el laboratorio cuando no se pueden instalar programas nuevos, porque 7-Zip suele estar disponible.</p>
+
+  <h3 style="margin-top:18px">Cómo se usa</h3>
+  <ol class="howto">
+    <li><b>Opción visual:</b> abrí 7-Zip File Manager → menú <b>Herramientas → Benchmark</b>.</li>
+    <li><b>Opción consola:</b> abrí la terminal y escribí <span class="tool-meta"><code>7z b</code></span> (en Windows, <code>"C:\Program Files\7-Zip\7z.exe" b</code>).</li>
+    <li>Dejá que complete varias pasadas y mirá la fila <b>Tot:</b> (total).</li>
+    <li>Repetí 3 veces con el equipo sin otra carga y promediá los MIPS.</li>
+  </ol>
+
+  <div class="capture-label">Salida real (corrida con <code>7z b</code> en un equipo con Core i5-1334U)</div>
+  <div class="terminal">
+    <div class="bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <pre><span class="cmd">$ 7z b</span>
+<span class="dim">7-Zip 23.01 (x64) : 13th Gen Intel(R) Core(TM) i5-1334U</span>
+<span class="dim">RAM size: 11584 MB,  # CPU hardware threads: 12</span>
+
+<span class="dim">                       Compressing  |     Decompressing</span>
+<span class="dim">Dict     Speed Usage  R/U Rating   |   Speed Usage  R/U Rating</span>
+<span class="dim">         KiB/s   %    MIPS  MIPS   |   KiB/s   %    MIPS  MIPS</span>
+22:      32378  1013  3109  31498   |  384675 1079  3040  32801
+23:      29745   987  3072  30307   |  393987 1125  3031  34082
+24:      28009  1008  2989  30116   |  366081 1058  3037  32121
+25:      25141   980  2928  28706   |  363067 1086  2975  32304
+<span class="dim">---------------------------------  |  ---------------------------</span>
+Avr:     28818   997  3025  30157   |  376953 1087  3021  32827
+<span class="hi">Tot:            1042  3023  31492</span>
+</pre>
+  </div>
+  <p style="margin-top:14px"><b>Cómo leerlo:</b> la columna Rating (MIPS) es el rendimiento; la fila Tot: resume compresión y descompresión (acá, 31.492 MIPS). A mayor MIPS, más rápido el procesador. Compará el «Tot» de un equipo contra el otro. <span class="tool-meta">(El formato es el mismo en la versión actual.)</span></p>
+</section>
+
+<!-- ===== 4. iperf3 ===== -->
+<section class="step tool-block" id="iperf3">
+  <header class="step-header">
+    <span class="step-num">4</span>
+    <div>
+      <div class="kicker">Red</div>
+      <h2>iperf3 — ancho de banda real de la red</h2>
+    </div>
+  </header>
+  <div class="tool-head">
+    <span class="tool-badge">Código abierto · gratuita</span>
+    <span class="tool-meta">Windows / Linux / macOS · <a class="inline-link" href="https://iperf.fr/" target="_blank" rel="noopener">iperf.fr</a></span>
+  </div>
+  <p><b>Qué mide:</b> cuántos datos por segundo pasan realmente entre dos equipos de la red (en Mbits/sec). Necesitás dos máquinas: una hace de servidor y la otra de cliente.</p>
+  <p><b>Para qué te sirve en una evaluación:</b> comprobar si la red del laboratorio entrega la velocidad esperada, o comparar el rendimiento por cable frente al wifi.</p>
+
+  <h3 style="margin-top:18px">Cómo se usa</h3>
+  <ol class="howto">
+    <li>En la primera máquina (servidor), abrí la terminal y escribí <code>iperf3 -s</code> (queda esperando).</li>
+    <li>Averiguá la IP del servidor (por ejemplo, <code>192.168.1.10</code>).</li>
+    <li>En la segunda máquina (cliente), escribí <code>iperf3 -c 192.168.1.10</code>.</li>
+    <li>La prueba dura 10 segundos; leé la fila final <b>receiver</b>.</li>
+    <li>Repetí 3 veces y promediá; anotá si fue por cable o wifi.</li>
+  </ol>
+
+  <div class="capture-label">Ejemplo con el formato real de iperf3 · se ejecuta en el laboratorio</div>
+  <div class="terminal">
+    <div class="bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <pre><span class="cmd">$ iperf3 -c 192.168.1.10</span>
+<span class="dim">Connecting to host 192.168.1.10, port 5201</span>
+<span class="dim">[ ID] Interval           Transfer     Bitrate</span>
+[  5] 0.00-1.00  sec   112 MBytes   941 Mbits/sec
+[  5] 1.00-2.00  sec   113 MBytes   946 Mbits/sec
+[  5] 2.00-3.00  sec   112 MBytes   940 Mbits/sec
+<span class="dim">          ...            ...          ...</span>
+- - - - - - - - - - - - - - - - - - - - - - - - -
+<span class="dim">[ ID] Interval           Transfer     Bitrate</span>
+[  5] 0.00-10.00 sec   1.10 GBytes  942 Mbits/sec  <span class="dim">sender</span>
+<span class="hi">[  5] 0.00-10.00 sec   1.10 GBytes  941 Mbits/sec  receiver</span>
+<span class="dim">iperf Done.</span>
+</pre>
+  </div>
+  <p style="margin-top:14px"><b>Cómo leerlo:</b> la fila receiver es el ancho de banda real recibido. ~941 Mbits/sec es una red cableada de 1 Gb funcionando bien; por wifi el número suele ser bastante menor y más variable.</p>
+</section>
+
+</main>
+
+<footer class="page-foot">
+  <span>Guía de herramientas · Evaluación de Proyectos · 7.º año</span>
+  <span><a href="../clase-10-benchmarking/">Volver a la Clase 10</a> · <a href="../">Inicio del sitio</a></span>
+</footer>
+
+</body>
+</html>
