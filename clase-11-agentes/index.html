@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clase 11 · Evaluar con agentes — Evaluación de Proyectos</title>
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1" />
+
+  <style>
+    /* ===== Expediente de sesión (caso incrustado) ===== */
+    .session{display:flex;flex-direction:column;gap:7px;font-size:clamp(13px,1vw,15px)}
+    .session-line{border-radius:10px;padding:8px 12px;line-height:1.45;position:relative}
+    .session-label{display:inline-block;font-size:.7em;font-weight:700;text-transform:uppercase;letter-spacing:.06em;opacity:.6;margin-right:8px}
+    .session-user{background:#eef0f5;border-left:3px solid #8a94a6}
+    .session-agent{background:#fdf2f7;border-left:3px solid var(--primary,#b31759)}
+    .session-tool{background:#1f2733;color:#c9d4e3;font-family:ui-monospace,Consolas,monospace;font-size:.92em;border-left:3px solid #58a6ff}
+    .session-tool b{color:#fff}
+    .session-result{background:#e9f4ee;border-left:3px solid #2f9e63}
+    .session-alert{background:#fdeeee;border-left:3px solid #d64545}
+    .session-alert .session-label{opacity:.85}
+    /* ===== Etiquetas de auditoría ===== */
+    .audit-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+    .ev-tag{flex:0 0 auto;font-size:.72em;font-weight:800;padding:3px 9px;border-radius:999px;letter-spacing:.03em;line-height:1.4}
+    .ev-ev{background:#e2f3ea;color:#1e7a4f;border:1px solid #bcddcf}
+    .ev-plau{background:#fdeeee;color:#c0392b;border:1px solid #efc3c3}
+    .ev-text{min-width:0}
+    .ev-text b{display:block;font-size:.78em;text-transform:uppercase;letter-spacing:.04em;opacity:.7;margin-bottom:2px}
+  </style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- 1. Cover -->
+  <section class="slide cover active">
+    <div class="cover-mark"></div>
+    <div class="student">Material para estudiantes · 7.º año</div>
+    <div class="kicker">Evaluación de Proyectos · Unidad 2 · Cierre</div>
+    <h1>Evaluar con agentes: cuando la IA no solo dice, hace</h1>
+    <p class="lead">En la clase 10 aprendiste a desconfiar de lo que una IA <b>dice</b>. Hoy el desafío es mayor: hay agentes que también <b>hacen</b> — ejecutan pruebas, corren benchmarks, redactan informes. Aprender a auditar lo que hacen es el oficio de esta clase.</p>
+    <div class="pill-row">
+      <span class="pill">De la palabra a la acción</span>
+      <span class="pill">Auditar lo que hace</span>
+      <span class="pill">El informe como caso</span>
+    </div>
+    <div class="footer"><span>Cierre de Unidad 2</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 2. Propósito -->
+  <section class="slide">
+    <div class="kicker">Objetivos de la clase</div>
+    <h2>Al terminar la clase vas a poder…</h2>
+    <div class="grid3">
+      <div class="card accent"><div class="label">Objetivo</div><h3>Reconocer</h3><p>Qué es un agente de IA y en qué se diferencia de un chat: puede ejecutar acciones y mirar sus resultados.</p></div>
+      <div class="card accent"><div class="label">Objetivo</div><h3>Distinguir</h3><p>Lo que un agente <b>dice</b> que hizo de lo que realmente <b>dejó verificado</b> (con salida, log o archivo).</p></div>
+      <div class="card accent"><div class="label">Objetivo</div><h3>Auditar</h3><p>Una sesión de agente que arma el informe comparativo, aplicando el criterio de la clase 10.</p></div>
+    </div>
+    <div class="footer"><span>Propósito</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 3. Puente con la Clase 10 -->
+  <section class="slide">
+    <div class="kicker">De dónde venimos</div>
+    <h2>La clase 10 te dejó un criterio. Hoy lo llevamos un paso más allá</h2>
+    <div class="grid2">
+      <div>
+        <p>En la clase 10 vimos que una IA genera <b>texto plausible</b>: predice lo más probable y puede inventar datos que suenan reales. Por eso aprendiste a <b>verificar</b> antes de decidir.</p>
+        <p>Ahora esa misma IA puede <b>ejecutar</b>: correr un comando, abrir un archivo, hacer una prueba y reportar el resultado. El problema no cambia — se agrava: ya no tenés que auditar solo lo que <b>dice</b>, sino lo que <b>dice que hizo</b>.</p>
+        <p class="subtitle">Cuanta más autonomía le damos, más importante es saber auditar su trabajo.</p>
+      </div>
+      <div class="card accent">
+        <div class="label">La regla de la clase 10</div>
+        <h3>Usar, sí; delegar la decisión, no</h3>
+        <p>La IA propone un borrador. <b>Toda respuesta se comprueba antes de usarla</b> y la decisión queda de tu lado. Con los agentes, la regla es la misma — solo que ahora también se comprueba lo que hicieron.</p>
+      </div>
+    </div>
+    <div class="footer"><span>Puente con la Clase 10</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 4. ¿Qué es un agente? -->
+  <section class="slide">
+    <div class="kicker">Idea central</div>
+    <h2>Un agente es un modelo de lenguaje con herramientas y autonomía</h2>
+    <p class="subtitle">El agente no se limita a responder: <b>puede ejecutar acciones, leer el resultado y seguir trabajando</b> según lo que encuentre. Por eso se lo llama agente: actúa, no solo conversa.</p>
+    <div class="table-wrap"><table class="table compact">
+      <thead><tr><th></th><th>Chat (lo que viste en la clase 10)</th><th>Agente</th></tr></thead>
+      <tbody>
+        <tr><td><b>Qué hace</b></td><td>Responde texto.</td><td>Responde <b>y actúa</b>: usa herramientas.</td></tr>
+        <tr><td><b>Su palabra</b></td><td>Dice.</td><td>Dice <b>y muestra lo que hizo</b> (o no lo muestra).</td></tr>
+        <tr><td><b>Iteración</b></td><td>Un turno: vos seguís preguntando.</td><td>Encadena pasos: ejecuta, lee el resultado, corrige y continúa.</td></tr>
+        <tr><td><b>Autonomía</b></td><td>Nula: no toca tu equipo.</td><td>Puede correr programas, abrir y editar archivos, correr pruebas.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="subtitle"><b>Importante:</b> autonomía no es garantía de verdad. Que un agente pueda hacer cosas no significa que lo que haga sea correcto ni que lo que reporte sea real.</p>
+    <div class="footer"><span>Qué es un agente</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 5. Qué puede hacer un agente en evaluación -->
+  <section class="slide">
+    <div class="kicker">Agentes en evaluación</div>
+    <h2>Qué puede hacer un agente en nuestra materia</h2>
+    <p class="subtitle">Todas tareas útiles — y todas con el mismo límite: <b>puede reportar que las hizo sin haberlas hecho</b>.</p>
+    <div class="grid3">
+      <div class="card flat"><span class="badge">Generar</span><h3>Casos de prueba</h3><p>Propone casos con clases de equivalencia, valores límite y conjetura de errores sobre un sistema.</p><p class="muted" style="font-size:.9em">Límite: los casos pueden ser inventados o no aplicar al sistema real.</p></div>
+      <div class="card flat"><span class="badge">Ejecutar</span><h3>Pruebas y benchmarks</h3><p>Corre un script, cronometra una tarea, ejecuta una suite de pruebas y te reporta los resultados.</p><p class="muted" style="font-size:.9em">Límite: el reporte puede no corresponder a una ejecución real.</p></div>
+      <div class="card accent"><span class="badge">Redactar</span><h3>El informe</h3><p>Ordena el informe comparativo de integración: protocolo, tabla, matriz y conclusión.</p><p class="muted" style="font-size:.9em">Límite: decide por vos si se lo permitís. La conclusión es tuya.</p></div>
+    </div>
+    <p class="subtitle">La clase 11 no enseña a «usar agentes»: enseña a <b>auditar lo que un agente hace</b> cuando se lo usa para evaluar.</p>
+    <div class="footer"><span>Agentes en evaluación</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 6. El riesgo nuevo -->
+  <section class="slide">
+    <div class="kicker">El riesgo nuevo</div>
+    <h2>La alucinación se vuelve acción</h2>
+    <p class="subtitle">En el chat, una IA inventaba un dato. Un agente puede ir más lejos: <b>afirmar que ejecutó algo y mostrar un log que parece real, sin haberlo corrido</b>.</p>
+    <div class="grid2">
+      <article class="card">
+        <div class="label">Antes (clase 10)</div>
+        <h3>Un texto plausible</h3>
+        <p>«Este disco rinde 5.000 MB/s» — suena real, puede ser falso, se verifica.</p>
+        <p class="muted" style="font-size:.92em">El único material a auditar era la palabra de la IA.</p>
+      </article>
+      <article class="card accent">
+        <div class="label">Ahora</div>
+        <h3>Una acción plausible</h3>
+        <p>«Corrí las 12 pruebas y todas pasan» — acompañado de un log que <i>parece</i> una salida real.</p>
+        <p class="muted" style="font-size:.92em">Ahora hay que auditar también si la acción ocurrió y si el log es suyo.</p>
+      </article>
+    </div>
+    <p class="subtitle"><b>Consecuencia:</b> un agente puede darte evidencia que parece sólida pero no existe. La diferencia entre un <b>log real</b> y uno <b>plausible</b> es lo que hoy vas a aprender a ver.</p>
+    <div class="footer"><span>Riesgo nuevo</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 7. El oficio del evaluador -->
+  <section class="slide">
+    <div class="kicker">Oficio de evaluador</div>
+    <h2>Auditar a un agente: cuatro preguntas</h2>
+    <div class="grid2">
+      <div>
+        <p>La evaluación de un agente no se hace sobre lo que <b>dice</b>, sino sobre lo que <b>deja</b>. Un agente bien auditado deja rastros: salidas de comandos, archivos modificados, registros de ejecución.</p>
+        <p class="subtitle">Si no hay rastro, no hay evidencia: hay una afirmación plausible.</p>
+      </div>
+      <div class="card">
+        <div class="label">Preguntas que hace un auditor</div>
+        <ul>
+          <li>¿<b>Ejecutó</b> realmente o solo lo afirma? ¿Hay salida, log o archivo?</li>
+          <li>¿La <b>evidencia que muestra</b> es de esta corrida o pudo ser inventada / copiada?</li>
+          <li>¿La prueba es <b>válida y reproducible</b> (mismas condiciones, repetida, promediada)?</li>
+          <li>¿Decidió por vos o te dio el <b>material para que decidas vos</b>?</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer"><span>Auditar a un agente</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 8. El caso -->
+  <section class="slide">
+    <div class="kicker">El caso de trabajo</div>
+    <h2>El agente arma el informe comparativo de integración</h2>
+    <div class="grid2">
+      <article class="card">
+        <div class="label">Escenario</div>
+        <h3>La sala de edición de fotos</h3>
+        <p>Una sala que <b>abre y guarda archivos grandes todo el tiempo</b> evalúa dos PC de precio similar: la <b>Config. A</b> (procesador más veloz, disco mecánico) y la <b>Config. B</b> (procesador menor, SSD). Es el mismo caso de la clase 10.</p>
+        <p class="muted" style="font-size:.92em">Le pedimos a un agente que arme el informe comparativo con capas, top-down, protocolo de benchmark y matriz ponderada.</p>
+      </article>
+      <article class="card accent">
+        <div class="label">Cómo lo trabajamos</div>
+        <h3>Primero leés, después auditás</h3>
+        <p>Vamos a leer la <b>sesión completa</b> (sus prompts, sus acciones y sus reportes) y a clasificar cada afirmación: <b>¿es evidencia o es una afirmación plausible?</b></p>
+        <p class="muted" style="font-size:.92em">Al final, aplicás el mismo esquema de auditoría a la decisión de tu proyecto anual.</p>
+      </article>
+    </div>
+    <div class="footer"><span>El caso</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 9. Auditar la sesión (I): el inicio con evidencia -->
+  <section class="slide">
+    <div class="kicker">Auditá la sesión · 1 de 2</div>
+    <h2>El inicio: el agente mide el disco — con evidencia</h2>
+    <p class="subtitle">Acá el agente muestra la salida real de cada medición. Fijate cómo se ve un <b>log real</b>: herramienta, versión, corridas y números.</p>
+    <div class="session">
+      <div class="session-line session-user"><span class="session-label">Prompt</span>Actuá como evaluador técnico. Contexto: PC para sala de edición de fotos en alta resolución, dos configs de precio similar (A: procesador mejor + disco mecánico; B: procesador menor + SSD). Tarea: armá el informe comparativo de integración: top-down, protocolo reproducible, mediciones y matriz ponderada. No inventes mediciones: si no podés medir, decí qué te falta. Formato: informe por secciones.</div>
+      <div class="session-line session-agent"><span class="session-label">Agente</span>Perfecto. Empiezo midiendo el almacenamiento de ambas configs con CrystalDiskMark 9.0, 3 corridas cada una, sin otros programas abiertos.</div>
+      <div class="session-line session-tool"><b>Herramienta</b> · crystaldiskmark 9.0 — quick · Config. A<br>$ cdm --quick config-A · 3 corridas</div>
+      <div class="session-line session-result"><span class="session-label">Salida</span>Lectura: 138 / 142 / 140 MB/s · Escritura: 120 / 122 / 121 MB/s</div>
+      <div class="session-line session-tool"><b>Herramienta</b> · crystaldiskmark 9.0 — quick · Config. B<br>$ cdm --quick config-B · 3 corridas</div>
+      <div class="session-line session-result"><span class="session-label">Salida</span>Lectura: 3.200 / 3.240 / 3.160 MB/s · Escritura: 2.950 / 2.980 / 2.940 MB/s</div>
+    </div>
+    <p class="subtitle" style="margin-top:10px"><b>Hasta acá, todo tiene respaldo:</b> cada medición muestra su salida con corridas repetidas. Eso es evidencia reproducible.</p>
+    <div class="footer"><span>Auditar (I)</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 10. Auditar la sesión (II): afirmaciones sin respaldo -->
+  <section class="slide">
+    <div class="kicker">Auditá la sesión · 2 de 2</div>
+    <h2>Después, el agente afirma cosas sin mostrar nada</h2>
+    <p class="subtitle">Mirá el mismo tono seguro en estas afirmaciones. La diferencia: <b>ninguna tiene salida, log ni archivo en el expediente</b>.</p>
+    <div class="session">
+      <div class="session-line session-alert"><span class="session-label">Agente</span>Corrí Geekbench en ambas configs: la Config. A promedia 8.900 puntos y la B 7.400.</div>
+      <div class="session-line session-alert"><span class="session-label">Agente</span>Cronometré la apertura de un archivo de 500 MB: la Config. A tarda 12 segundos y la B, 6.</div>
+      <div class="session-line session-alert"><span class="session-label">Agente</span>Además ejecuté 12 casos de prueba de la App de Reservas: los 12 pasan, la app funciona.</div>
+    </div>
+    <div class="audit-row" style="margin-top:12px">
+      <span class="ev-tag ev-ev">Evidencia</span>
+      <div class="ev-text"><b>Dejó rastro verificable</b>Salida de herramienta con corridas, o archivo que se puede inspeccionar.</div>
+    </div>
+    <div class="audit-row">
+      <span class="ev-tag ev-plau">Afirmación plausible</span>
+      <div class="ev-text"><b>A verificar</b>Sin salida, o con un dato que contradice lo medido (¿un disco mecánico abre 500 MB en 12 s?), o fuera del protocolo (¿quién pidió probar la App?).</div>
+    </div>
+    <div class="footer"><span>Auditar (II)</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 11. Checkpoint -->
+  <section class="slide">
+    <div class="kicker">Activación · Pensá como auditor</div>
+    <h2>Pulso rápido: ¿qué sabés con esto? (3 preguntas)</h2>
+    <p class="subtitle">Elegí una opción en cada pregunta. Vas a ver si acertaste y la explicación. Después auditás la sesión completa en el trabajo en clase.</p>
+
+    <div class="quiz" id="quiz">
+      <article class="quiz-q" data-correct="b">
+        <p>1. Un agente te muestra un archivo llamado «resultado.log» que dice: 12/12 pruebas OK. ¿Qué sabés con eso?</p>
+        <div class="quiz-options">
+          <button data-value="a">a) Que las 12 pruebas corrieron de verdad y el sistema funciona</button>
+          <button data-value="b">b) Que hay un archivo que dice eso — el agente pudo crearlo o copiarlo; hay que ver de dónde sale</button>
+          <button data-value="c">c) Nada: un archivo nunca sirve como evidencia</button>
+        </div>
+        <div class="quiz-feedback"><b>Que hay un archivo que dice eso.</b> Un log puede ser inventado, copiado o de otra corrida. El archivo es un punto de partida a verificar, no una prueba en sí: hay que poder repetir la ejecución y comparar.</div>
+      </article>
+
+      <article class="quiz-q" data-correct="a">
+        <p>2. ¿Cuál es la diferencia clave entre un chat y un agente?</p>
+        <div class="quiz-options">
+          <button data-value="a">a) El chat solo responde; el agente puede ejecutar acciones, leer sus resultados y seguir trabajando</button>
+          <button data-value="b">b) El agente nunca se equivoca; el chat sí</button>
+          <button data-value="c">c) Son lo mismo, solo cambia el nombre</button>
+        </div>
+        <div class="quiz-feedback"><b>El agente ejecuta.</b> Esa autonomía es útil y a la vez amplifica el problema: ahora también hay que auditar acciones, no solo textos. Que pueda hacer no significa que haga bien.</div>
+      </article>
+
+      <article class="quiz-q" data-correct="b">
+        <p>3. El agente te entrega el informe terminado y te dice «la decisión es la Config. B». ¿Qué hacés?</p>
+        <div class="quiz-options">
+          <button data-value="a">a) Lo entrego tal cual: para eso le pedí el informe</button>
+          <button data-value="b">b) Verifico la evidencia de cada afirmación y fundamento yo la decisión según el propósito</button>
+          <button data-value="c">c) Le pido que rehaga el informe hasta que diga la Config. A</button>
+        </div>
+        <div class="quiz-feedback"><b>Verificar y decidir vos.</b> El agente da el borrador; la evidencia y la decisión son tuyas. «Rehacer hasta que diga A» también es una tontería: no se elige la respuesta que querés, se decide con evidencia.</div>
+      </article>
+    </div>
+    <div class="quiz-summary" id="quizSummary"><span id="quizScore">— / 3</span><span style="font-weight:500">Si acertaste las 3, ya distinguís una acción real de una afirmada. Si menos, repasá antes del trabajo en clase.</span></div>
+    <div class="footer"><span>Pensá como auditor</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 12. Trabajo en clase -->
+  <section class="slide">
+    <div class="kicker">Trabajo en clase</div>
+    <h2>Ahora lo trabajan ustedes: auditar al agente</h2>
+    <div class="activity-card">
+      <h3>Parte 2 · El expediente completo para auditar</h3>
+      <p style="font-size:clamp(15px,1.15vw,19px); margin:8px 0 0">Leen la sesión completa del agente que arma el informe, clasifican cada afirmación como evidencia o afirmación plausible (con corrección automática), detectan las alucinaciones de acción y cierran con la decisión y su fundamento. Es la Parte 2 que se anunció en la clase 10.</p>
+      <a class="activity-cta" href="../actividad-clase-11/" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Abrir el trabajo en clase
+      </a>
+    </div>
+    <div class="grid2" style="margin-top:18px">
+      <article class="card">
+        <div class="label">Con acceso o sin acceso</div>
+        <p style="margin:6px 0 0">El expediente va <b>incrustado en la actividad</b>: podés auditar la sesión completa aunque no tengas cuenta en ninguna herramienta. Si tenés acceso, <b>replicá los prompts</b> y compará con el expediente: verás qué tan parecido (o distinto) es lo que hace tu agente.</p>
+      </article>
+      <article class="card accent">
+        <div class="label">Para tu proyecto anual</div>
+        <p style="margin:6px 0 0">El mismo esquema de auditoría se aplica a la decisión de tu proyecto: si un agente te ayudara a evaluar tus dos alternativas, ¿qué le harías mostrar como evidencia antes de decidir?</p>
+      </article>
+    </div>
+    <div class="footer"><span>Trabajo en clase</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 13. Registro para la carpeta -->
+  <section class="slide">
+    <div class="kicker">Registro para la carpeta</div>
+    <h2>La síntesis de la clase, para tu carpeta</h2>
+    <p class="subtitle">Completá el resumen con lo que aprendiste. Después copialo <b>a mano en tu carpeta</b>.</p>
+    <div class="card cloze-content">
+      <div class="reg-head">
+        <span><b>Fecha:</b> ____ / ____ / ______</span>
+        <span><b>Título:</b> Evaluar con agentes — auditoría de sesión</span>
+        <span><b>Materia:</b> Evaluación de Proyectos</span>
+      </div>
+      <ul class="cloze-list" id="clozeList">
+        <li>Una IA que no solo responde sino que también ejecuta acciones y mira sus resultados se llama <span class="cloze-wrap"><input class="cloze-input" type="text" id="ci0" data-answers="agente" data-keywords="agente" autocomplete="off"><span class="cloze-fb" id="cf0"></span><button class="cloze-hint" data-hint="Empieza con «a»." aria-label="Pista">💡</button></span>.</li>
+        <li>Cuando el agente reporta una medición sin mostrar su salida, es una <span class="cloze-wrap"><input class="cloze-input" type="text" id="ci1" data-answers="afirmación,afirmacion" data-keywords="afirmación,plausible" autocomplete="off"><span class="cloze-fb" id="cf1"></span><button class="cloze-hint" data-hint="Lo opuesto a evidencia verificada." aria-label="Pista">💡</button></span> plausible: suena real pero no está comprobada.</li>
+        <li>Lo que convierte una afirmación en evidencia es que el agente <span class="cloze-wrap"><input class="cloze-input" type="text" id="ci2" data-answers="deje,deja,deje una salida" data-keywords="salida,log,rastro,archivo" autocomplete="off"><span class="cloze-fb" id="cf2"></span><button class="cloze-hint" data-hint="Salida de herramienta, log, archivo…" aria-label="Pista">💡</button></span> verificable (salida, log o archivo).</li>
+        <li>Medir no es evaluar: el dato se interpreta según el <span class="cloze-wrap"><input class="cloze-input" type="text" id="ci3" data-answers="propósito,proposito" data-keywords="propósito,uso" autocomplete="off"><span class="cloze-fb" id="cf3"></span><button class="cloze-hint" data-hint="La clase 10 lo decía con estas palabras." aria-label="Pista">💡</button></span> del sistema.</li>
+        <li>La decisión final y su fundamentación quedan en <span class="cloze-wrap"><input class="cloze-input" type="text" id="ci4" data-answers="tus manos,tuyas,mía,mio,mi" data-keywords="manos,criterio,decisión" autocomplete="off"><span class="cloze-fb" id="cf4"></span><button class="cloze-hint" data-hint="Nunca se delegan en la IA." aria-label="Pista">💡</button></span>: el agente da el borrador, no decide.</li>
+      </ul>
+      <div class="cloze-bar">
+        <button class="prod-check" id="clozeCheck">Verificar</button>
+        <button class="dd-reset" id="clozeReset">Reiniciar</button>
+        <div class="dd-score" id="clozeScore" aria-live="polite"></div>
+      </div>
+    </div>
+    <div class="footer"><span>Registro</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 14. Cierre de unidad: marco integrador -->
+  <section class="slide">
+    <div class="kicker">Cierre de la Unidad 2</div>
+    <h2>Una sola lógica en toda la unidad</h2>
+    <p class="subtitle">Cada herramienta de la unidad responde a lo mismo: <b>una afirmación vale como prueba cuando se verifica y se interpreta según el propósito</b>. Con los agentes, la regla no cambia: lo que se verifica es la acción.</p>
+    <div class="cmap">
+      <div class="cmap-row">
+        <span class="cmap-node soft">Afirmación plausible</span>
+        <span class="cmap-rel">verificar</span>
+        <span class="cmap-node strong">Evidencia</span>
+        <span class="cmap-rel">según el propósito</span>
+        <span class="cmap-node strong">Decisión fundamentada</span>
+      </div>
+      <div class="cmap-down"><span>y las herramientas de la Unidad 2</span></div>
+      <div class="cmap-band">
+        <b>Capas</b> <span class="arrow">→</span> <b>Top-down</b> <span class="arrow">→</span> <b>Benchmark</b> <span class="arrow">→</span> <b>Informe</b> <span class="arrow">→</span> <b>Auditoría</b>
+      </div>
+    </div>
+    <p class="subtitle">La <b>IA y los agentes acompañan cualquier paso</b> —sugieren, ejecutan, redactan— y su aporte entra como afirmación plausible: la verificación y la decisión, que lo convierten en evidencia, siguen a tu cargo.</p>
+    <p class="subtitle"><b>Con esto se cierra la Unidad 2.</b> Quedan las piezas: mirar por capas, descomponer con top-down, medir con evidencia, armar el informe y auditar el trabajo de un agente.</p>
+    <div class="footer"><span>Cierre de unidad</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 15. Bibliografía y herramientas -->
+  <section class="slide">
+    <div class="kicker">Para seguir · referencias</div>
+    <h2>Bibliografía y herramientas</h2>
+    <div class="grid2">
+      <article class="card">
+        <div class="label">Bibliografía</div>
+        <ul style="font-size:clamp(13px,1.05vw,18px)">
+          <li>Pressman, R. S. (2010). <i>Ingeniería del software: un enfoque práctico</i> (7.ª ed.). McGraw-Hill. <span class="muted">— Medición y verificación como base de la evaluación objetiva.</span></li>
+          <li>ISO/IEC 25010:2011. <i>Modelos de calidad de producto de software</i>.</li>
+          <li><span class="muted">Sobre agentes de IA (fuentes oficiales de herramientas):</span> documentación de agentes de OpenAI y de Claude (Anthropic).</li>
+        </ul>
+      </article>
+      <article class="card accent">
+        <div class="label">Herramientas y cómo se ve una sesión</div>
+        <ul style="font-size:clamp(13px,1.05vw,18px)">
+          <li><b>Agentes conversacionales con acceso a herramientas</b> (Claude, ChatGPT) — modo en el que la IA puede ejecutar acciones.</li>
+          <li><b>CrystalDiskMark · Geekbench · iperf3 · 7-Zip</b> — las herramientas de benchmark de la clase 10, que un agente puede intentar ejecutar.</li>
+          <li><span class="muted">El expediente de la actividad reproduce cómo se ve una sesión real (prompts, acciones, salidas).</span></li>
+        </ul>
+        <p class="muted" style="font-size:.92em;margin-top:8px">Material de la unidad: <a class="inline-link" href="../unidad-2-material-teorico/" target="_blank" rel="noopener">Evaluaciones integrales (teoría)</a>.</p>
+      </article>
+    </div>
+    <div class="footer"><span>Bibliografía</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 16. Próximo paso -->
+  <section class="slide">
+    <div class="kicker">Próximo paso · el mapa anual</div>
+    <h2>Auditar: la mirada externa y sistemática</h2>
+    <div class="grid2">
+      <article class="card"><h3>Lo que viene</h3><p>Con la Unidad 2 cerrada, el recorrido anual (clase 1) deja un bloque que retoma todo con una mirada nueva: <b>Auditoría</b> — la evaluación externa y sistemática de un proceso o producto tecnológico. Los agentes serán parte natural de lo que se audita.</p></article>
+      <article class="card accent"><h3>Llevá pensado</h3><ul>
+        <li>La conclusión de tu auditoría de la sesión (qué se verificó y qué se descartó).</li>
+        <li>Una pregunta: en tu proyecto anual, ¿qué le harías <b>mostrar como evidencia</b> a un agente antes de confiarle una medición?</li>
+      </ul></article>
+    </div>
+    <p class="subtitle">Recordá el hilo de la materia: <b>mirar con criterio, medir con método, interpretar con fundamento y decidir con responsabilidad</b> — sea sobre un sistema, un número o un agente.</p>
+    <div class="footer"><span>Próximo paso</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+</div>
+
+<button class="view-toggle" id="viewToggle" aria-pressed="false" title="Ver en pantalla completa, sin navegación visible">
+  <svg class="vt-icon vt-expand" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6"/></svg>
+  <svg class="vt-icon vt-compress" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6"/></svg>
+  <span class="vt-label">Pantalla completa</span>
+</button>
+<div class="exit-hint" id="exitHint">Pulsá <b>Esc</b> para salir</div>
+
+<nav class="dots" id="dots" aria-label="Ir a una diapositiva"></nav>
+
+<div class="controls">
+  <button class="btn secondary" onclick="prevSlide()">← Anterior</button>
+  <button class="btn" onclick="nextSlide()">Siguiente →</button>
+</div>
+
+<script src="script.js?v=1"></script>
+</body>
+</html>
