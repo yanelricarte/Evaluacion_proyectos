@@ -21,7 +21,7 @@
       Volver a la clase (teoría)
     </a>
     <h1>Benchmarking y uso crítico de IA</h1>
-    <p class="lead">Vas a practicar tres cosas: revisar si una medición sirve como prueba, leer una tabla de datos y decidir según el propósito, y evaluar lo que responde una IA en lugar de copiarlo. Cada respuesta te muestra al instante si acertaste y por qué; la resolvés en clase y al final copiás un registro en tu carpeta. <b>Es la Parte 1;</b> la Parte 2 —el informe comparativo— se trabaja la próxima clase.</p>
+    <p class="lead">Vas a practicar tres cosas: revisar si una medición sirve como prueba, leer una tabla de datos y decidir según el propósito, y evaluar lo que responde una IA en lugar de copiarlo. Cada respuesta te muestra al instante si acertaste y por qué; la resolvés en clase y al final adjuntás en Classroom tu protocolo completo y corregido. <b>Es la Parte 1;</b> la Parte 2 —el informe comparativo— se trabaja la próxima clase.</p>
     <div class="track">
       <a class="track-step" href="#parte-1"><b>1</b><span>Auditar mediciones</span></a>
       <a class="track-step" href="#parte-2"><b>2</b><span>Leer los datos y decidir</span></a>
@@ -47,7 +47,7 @@
       <p>Una IA genera texto plausible prediciendo lo más probable; puede inventar datos que parecen reales. Por eso su respuesta se audita igual que un benchmark: la IA propone un borrador, y <b>la evidencia y la decisión son tuyas</b>.</p>
     </article>
   </div>
-  <p class="hint">En los puntos 1, 2 y 3 elegís una opción y la corrección aparece al instante; el punto 3 suma un ejercicio de arrastre. En el punto 2 dejás un registro en tu carpeta. El punto 4 es de producción: la resolvés en la carpeta y desbloqueás un ejemplo con el código dado en clase.</p>
+  <p class="hint">En los puntos 1, 2 y 3 elegís una opción y la corrección aparece al instante; el punto 3 suma un ejercicio de arrastre. En el punto 2 dejás un registro en tu carpeta. El punto 4 es de producción: redactás los 4 puntos (prompt inicial, auditoría, protocolo corregido y correcciones) y adjuntás el trabajo completo en Classroom.</p>
 </section>
 
 <!-- ===== PARTE 1: Auditar mediciones ===== -->
@@ -232,7 +232,7 @@
 
   <div class="rule-card" style="margin-top:22px">
     <span class="rule-tag">En tu carpeta</span>
-    <p>Con lo que resolviste en las preguntas de arriba, redactá a mano la <b>interpretación de la tabla</b>: el promedio de lectura de A y de B, cuál fue el dato raro (outlier) y qué hacés con él, y qué configuración elegís para esta sala y por qué (el dato que más pesó).</p>
+    <p>Con lo que resolviste en las preguntas de arriba, redactá la <b>interpretación de la tabla</b>: el promedio de lectura de A y de B, cuál fue el dato raro (outlier) y qué hacés con él, y qué configuración elegís para esta sala y por qué (el dato que más pesó).</p>
   </div>
 </section>
 
@@ -348,16 +348,16 @@
   </div>
 </section>
 
-<!-- ===== PARTE 4: Tu protocolo (producción, no se entrega) ===== -->
+<!-- ===== PARTE 4: Tu protocolo (se adjunta en Classroom) ===== -->
 <section class="step" id="parte-4">
   <header class="step-header">
     <span class="step-num">4</span>
     <div>
-      <div class="kicker">Producción · para tu carpeta</div>
+      <div class="kicker">Producción · para Classroom</div>
       <h2>Tu protocolo, tu decisión</h2>
     </div>
   </header>
-  <p>Elegí algo que quieras medir de un equipo que uses —tu compu, el celular, la consola— o de tu proyecto anual: cuánto tarda en abrir un programa, cuánta memoria ocupa, cuánto demora una consulta. La meta es dejar un protocolo que un compañero pueda repetir y obtener lo mismo. Se hace en la carpeta, a mano; es tu registro de la clase.</p>
+  <p>Elegí algo que quieras medir de un equipo que uses —tu compu, el celular, la consola— o de tu proyecto anual: cuánto tarda en abrir un programa, cuánta memoria ocupa, cuánto demora una consulta. La meta es dejar un protocolo que un compañero pueda repetir y obtener lo mismo. Adjuntá en Classroom los 4 puntos del punto 4: el prompt inicial, la auditoría, el protocolo corregido y las correcciones que hiciste. Es tu registro de la clase.</p>
 
   <article class="prod-task">
     <h3>Lo que tenés que producir</h3>
@@ -365,14 +365,57 @@
       <li><b>Escribí el prompt</b> que le darías a una IA para que te proponga cómo medirlo: contexto, rol, tarea, restricciones y formato; que te dé el método, no la decisión.</li>
       <li><b>Auditá esta respuesta.</b> Una IA contestó: «Bajá CrystalDiskMark, corré la prueba una vez y ese número es la velocidad de tu disco». Anotá todo lo que le falta para ser confiable.</li>
       <li><b>Escribí tu protocolo corregido:</b> qué medís, con qué herramienta, cuántas veces, en qué condiciones y contra qué lo comparás para saber si el resultado alcanza.</li>
-      <li><b>Cuando termines,</b> pedí el código y compará con el ejemplo: si ves algo que se te pasó, anotalo.</li>
+      <li><b>Cuando termines,</b> compará tu versión con el ejemplo de abajo y anotá las correcciones que hiciste; ese ajuste también se adjunta en Classroom.</li>
     </ol>
-    <p class="lock-hint">🔒 Una vez resuelto en tu carpeta, ingresá el código dado en clase para ver el ejemplo de resolución.</p>
-    <div class="lock-row">
-      <input type="text" id="codeInput" placeholder="Código de la profe" autocomplete="off" autocapitalize="off" spellcheck="false">
-      <button class="prod-check" id="revealBtn">Desbloquear ejemplo</button>
+    <p class="lock-hint">Acá tenés el ejemplo de resolución completo; comparalo con tu protocolo antes de adjuntarlo en Classroom.</p>
+    <div class="prod-feedback shown revealed">
+      <b>Ejemplo resuelto</b><br><br>
+      <b>Qué elegí medir:</b> cuánto tarda en abrir un programa pesado en la PC del laboratorio.<br><br>
+
+      <b>1) Prompt (contexto + rol + tarea + restricciones + formato)</b><br>
+      «Actuá como evaluador técnico (rol). Contexto: PC del laboratorio, se usa para editar fotos y abrir programas pesados (contexto). Quiero medir el tiempo de apertura de un programa. Proponé un protocolo de benchmark reproducible con herramientas libres: qué medir, cuántas corridas, qué condiciones anotar (tarea). No elijas la PC por mí ni fijes el criterio de “bueno”: dame el método para que yo mida y decida (restricciones). Respondé en pasos numerados (formato).»<br><br>
+
+      <b>2) Auditoría de la respuesta de la IA</b><br>
+      La IA contestó: «Bajá CrystalDiskMark, corré la prueba una vez y ese número es la velocidad de tu disco». Le falta casi todo para ser evidencia:<br>
+      <ul>
+        <li><b>Herramienta mal elegida y sin versión:</b> CrystalDiskMark mide el disco; no sirve para medir el tiempo de apertura de un programa.</li>
+        <li><b>Una sola corrida</b> no controla el azar: hay que repetir y promediar.</li>
+        <li><b>No documenta condiciones:</b> ¿con otros programas abiertos?, ¿recién prendida?, ¿enchufada o con batería?</li>
+        <li><b>Toma el número como conclusión</b> sin compararlo contra nada ni relacionarlo con el propósito de uso.</li>
+      </ul>
+      Conclusión: la respuesta es un punto de partida, no evidencia.<br><br>
+
+      <b>3) Mi protocolo corregido</b><br>
+      <ul>
+        <li><b>Qué mido:</b> tiempo de apertura del programa, con cronómetro, desde el clic hasta que queda usable.</li>
+        <li><b>Herramienta:</b> cronómetro manual y captura de pantalla como registro; anoto el método y la versión del programa para que otro lo repita.</li>
+        <li><b>Cuántas veces:</b> 5 corridas; descarto la más rara (outlier) si no coincide con el resto y promedio las que quedan.</li>
+        <li><b>Condiciones que documento:</b> equipo recién reiniciado, sin otros programas abiertos, enchufado; fecha, hora, versión del programa y del sistema operativo.</li>
+        <li><b>Contra qué comparo:</b> la otra PC candidata con el mismo protocolo, y un máximo aceptable acordado antes de medir (por ejemplo, abrir en menos de 10 s).</li>
+        <li><b>Cómo decido:</b> elijo la configuración cuyo promedio cumple el máximo aceptable; si ambas lo cumplen, la más rápida; si ninguna, reviso requisitos o presupuesto.</li>
+      </ul><br>
+
+      <b>Protocolo escrito (ejemplo de cómo redactarlo para que otro lo repita)</b><br>
+      <i>Objetivo:</i> medir el tiempo que tarda en abrir el programa en la PC del laboratorio, para comparar dos configuraciones y elegir según el uso real (editar fotos y abrir programas pesados).<br>
+      <ol>
+        <li><b>Preparación:</b> reiniciá el equipo, cerrá todos los programas salvo el que vas a medir y conectalo a la corriente.</li>
+        <li><b>Contexto que anotás antes de empezar:</b> fecha, hora, versión del programa, sistema operativo y qué configuración se mide.</li>
+        <li><b>Medición:</b> iniciá el cronómetro al hacer clic en el ícono y detenelo cuando el programa quede listo para usar.</li>
+        <li><b>Repetición:</b> hacé 5 corridas, con un descanso breve entre una y otra, y anotá cada tiempo en una tabla.</li>
+        <li><b>Outlier:</b> si un valor se aleja mucho de los demás, repetí esa corrida y descartá el valor sospechoso.</li>
+        <li><b>Promedio:</b> sumá los tiempos válidos y dividí por la cantidad de corridas.</li>
+        <li><b>Comparación:</b> corré el mismo protocolo en la otra configuración y compará los promedios.</li>
+        <li><b>Decisión:</b> compará contra el máximo aceptable acordado antes de medir (por ejemplo, abrir en menos de 10 s) y elegí según el propósito.</li>
+        <li><b>Entrega:</b> adjuntá en Classroom el protocolo completo: objetivo, condiciones, tabla de corridas, promedio, outlier y decisión.</li>
+      </ol><br>
+
+      <b>4) Interpretación (lo que trabajamos en la Parte 2)</b><br>
+      <ul>
+        <li><b>Promedio:</b> se calcula sumando las corridas y dividiendo por la cantidad.</li>
+        <li><b>Outlier:</b> si una corrida no coincide con las demás, no se promedia: se repite esa corrida y se descarta la sospechosa.</li>
+        <li><b>Decisión según el propósito:</b> el dato que pesa es el más relevante para el uso real —para este caso, el tiempo de apertura, no el puntaje de CPU.</li>
+      </ul>
     </div>
-    <div class="prod-feedback" id="modelFeedback"></div>
   </article>
 </section>
 
@@ -431,7 +474,7 @@
       <h2>Lo que viene: el informe comparativo de integración</h2>
     </div>
   </header>
-  <p>Con lo de esta Parte 1 —benchmark reproducible y uso crítico de IA— quedás lista/o para la <b>Parte 2</b>: un <b>informe comparativo</b> que junta las capas (clase 8), el top-down (clase 9) y el benchmark (esta clase) en una <b>matriz ponderada</b> para recomendar entre dos alternativas. Llevá el <b>protocolo que escribiste en tu carpeta</b>: es el punto de partida.</p>
+  <p>Con lo de esta Parte 1 —benchmark reproducible y uso crítico de IA— quedás lista/o para la <b>Parte 2</b>: un <b>informe comparativo</b> que junta las capas (clase 8), el top-down (clase 9) y el benchmark (esta clase) en una <b>matriz ponderada</b> para recomendar entre dos alternativas. El <b>protocolo que adjuntaste en Classroom</b> es el punto de partida.</p>
 </section>
 
 </main>

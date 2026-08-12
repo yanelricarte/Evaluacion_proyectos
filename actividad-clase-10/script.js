@@ -1,7 +1,7 @@
 /* ============================================================
    Trabajo en clase · Benchmarking y uso crítico de IA (Unidad 2)
    Elección única con feedback + puntaje por sección. Persistencia en localStorage.
-   Se corrige solo; no hay nada para entregar.
+   El protocolo final se adjunta en Classroom para su corrección.
    ============================================================ */
 
 const STORAGE_KEY = 'bench-ia-eval:state';
@@ -70,68 +70,6 @@ function updateScores() {
   if (t) t.textContent = `${totOk} / ${totN}`;
 }
 updateScores();
-
-// ============================================================
-//  EJEMPLO RESUELTO — bloqueado con código
-// ============================================================
-// SEGURIDAD: el código NO está guardado en este archivo. El ejemplo viaja CIFRADO
-// usando el propio código como clave; lo de abajo es solo el texto cifrado (inútil
-// sin el código). El alumno escribe el código —que se da en clase— y recién ahí se
-// descifra. Así puede vivir en un repo público sin filtrar ni el código ni el ejemplo.
-//
-// Para crear/cambiar el cifrado (otro código u otro texto), usá el generador
-// local, fuera del repo: _local/generador-codigo-actividad.html
-const EJEMPLO_CIFRADO =
-  'BA52bHUsD3UhICEmJSERQi42OTMlOl4MZCdyais8DwwpN3JcdSwPYT6G5XYsIlRXiOhsOywqWEJxeWM0d25SRYjkIiImbkVROSEtdiwgEVEpNyUkaTtfEDs3IzE7L1xRazUpJSgqXhAuK2w6KG5hc2shKTppIlBSJDctIiY8WF9leS4kd3JTQnVPcDR3fxgQGzcjOzk6DR8pe3A0O3A78uAELyI8jZAQKCohOWkrR1EnMC0yJjwRRIjsLzggLV4eawYjOD0rSUQkf2wGCm5VVSdlIDcrIUNRPyo+PyZiEUMuZTklKG5BUTkkbDMtJ0VROWUqOT0hQhAyZS00OydDEDs3IzE7L1xROGU8MzovVV84a2wHPCdUQiRlITMtJ0MQLilsIiArXEAkZSgzaS9BVTkxOSQoblVVazAidjk8Xlc5JCE3Z251USYgbCMnbkFCJDEjNSYiXhA5IDwkJipEUyInIDNpLV5eay0pJDsvXFkuKzg3Om5dWSk3KSVzbkBFiOxsOywqWEJnZS8jiu9fRCo2bDUmPENZLyQ/emk/RPPiZS85JypYUyIqIjM6blBeJDEtJGduf19rICA/Iy9CECckbAYKbkFfOWUhleR1EVQqKCl2LCIRXYjsODktIRFAKjctdiQrVVk5ZTU5Z250Xms1LSUmPRFePigpJCgqXkNlh/dqKzwPDCk3clx1LA8CYmUNIy0nRV85huE3aSpUECckbCQsPUFFLjY4N2mMmlMkNz6V4G5dUWs1PiMsLFAQPistdj8rS9LL447tdWFTDncnPmhDAlQQLSQgIihuUlE4LGwiJipeEDskPjdpPVRCayYjOC8nUFInIHZ2PCBQEDgqIDdpLV5COSwoN2kgXhAoKiIiOyFdUWsgIHYoNFBCa20kNzBuQEUuZT4zOStFWTllNXY5PF5dLiElNztnChAlKmwyIC1UEC4rbCc8jZgQKCoiMiAtWF8lID92OisRXSIhKXZhjI5TJCtsOT08XkNrNT45LjxQXSo2bDcrJ1RCPyo/aWVu8485IC8/iudfEDs3KTgtJ1VRdGx3dichEVEoKS0kKG5ZVTk3LTsgK19EKmUiP2k4VEI4LI/lJ3URSWsxIzsoblRcayuP7CQrQ19rJiM7Jm5SXyUmICM6J/KDJWU/PyduUl8mNS0kKDxdX2smIzhpIFBUKmtsAyduR1EnKj52KD3ynWsrI3Y6KxFAPiAoM2k8VEAuMSUkaSBYECgqISYoPFBCZXkuJHdyU0J1T3A0d30YEAYsbCY7IUVfKCogOWktXkI5ICs/LSENHyl7cDQ7cDvSy+dsBzyNmBAmLCg5c25FWS4oPDlpKlQQKjUpJD07Q1FrISk6aT5DXyw3LTsoYhFTJCtsNTshX/P4KCkiOyEdEC8gPzIsblRcayYgPypuWVE4MS12ODtUEDowKTIobkRDKicgM2dyU0J1T67W625yRYjkIiIoPRFGLiYpJXNuBBAoKj4kICpQQ3BlKDM6LVBCPypsOihuXPPqNmwkKDxQEDJlPCQmI1RUIipsMyVuQ1U4MSN4dSxDDkGnzPRpDV5eLywvPyYgVENxZSknPCdBX2s3KTUgjZheazcpPycnUlkqISN6aT1YXmsqOCQmPRFAOSorJCgjUENrJC4/LDxFXzhpbDMnLVlFLSQoOXJuUF4kMSN2LytSWCplNXY/K0NDIob/OGkqVFxrNT45LjxQXSprcDQ7cDvSy+dsFSYgRUIqZT0jiucRUyQoPDc7IQsQJyRsOT08UBAbBmw1KCBVWS8kODdpLV5eayAgdiQnQl0kZTwkJjpeUyQpI3ppNxFFJWUhleg2WF0kZS01LD5FUSkpKXYoLV5CLyQoOWlmQV85ZSk8LCNBXCRpbDcrPFhCayAidiQrX184ZSgzaX8BEDhsYg==';
-
-function descifrar(b64, clave) {
-  let bin;
-  try { bin = atob(b64); } catch { return ''; }
-  const bytes = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-  const key = new TextEncoder().encode(clave);
-  if (!key.length) return '';
-  const out = new Uint8Array(bytes.length);
-  for (let i = 0; i < bytes.length; i++) out[i] = bytes[i] ^ key[i % key.length];
-  // fatal:true rechaza UTF-8 inválido: si la clave está mal, el descifrado da bytes
-  // inválidos y devuelve '' → se trata como código incorrecto.
-  try { return new TextDecoder('utf-8', { fatal: true }).decode(out); }
-  catch { return ''; }
-}
-
-const revealBtn = document.getElementById('revealBtn');
-const codeInput = document.getElementById('codeInput');
-const modelFb = document.getElementById('modelFeedback');
-
-function intentarDesbloquear(codigo) {
-  const txt = descifrar(EJEMPLO_CIFRADO, (codigo || '').trim());
-  if (txt.startsWith('OK::')) {
-    modelFb.innerHTML = txt.slice(4);
-    modelFb.classList.remove('no');
-    modelFb.classList.add('shown', 'revealed');
-    if (codeInput) { codeInput.disabled = true; codeInput.value = '✔ desbloqueado'; }
-    if (revealBtn) revealBtn.disabled = true;
-    state.code = (codigo || '').trim();   // el código solo queda en ESTE navegador (no en el repo)
-    saveState(state);
-    return true;
-  }
-  return false;
-}
-
-if (revealBtn && modelFb) {
-  revealBtn.addEventListener('click', () => {
-    if (!intentarDesbloquear(codeInput ? codeInput.value : '')) {
-      modelFb.classList.remove('ok');
-      modelFb.classList.add('shown', 'no');
-      modelFb.innerHTML = '<b>Código incorrecto.</b> Usá el código dado en clase (se da al final, cuando ya resolviste tu protocolo en la carpeta).';
-    }
-  });
-  if (codeInput) {
-    codeInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') revealBtn.click(); });
-  }
-  // Restaurar si ya se desbloqueó en este navegador
-  if (state.code) intentarDesbloquear(state.code);
-}
 
 // ===== Reiniciar (modal) =====
 const resetModal = document.getElementById('resetModal');

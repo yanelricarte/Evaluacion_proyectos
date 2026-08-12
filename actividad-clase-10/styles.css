@@ -739,16 +739,8 @@ textarea:focus, input:focus, select:focus{
   .step-header{flex-direction:column; gap:12px}
 }
 
-/* ===== Candado del ejemplo resuelto (Parte 3) ===== */
+/* ===== Nota introductoria del ejemplo resuelto (Parte 4) ===== */
 .lock-hint{font-size:.78em; color:var(--muted); margin:4px 0 10px; line-height:1.5}
-.lock-row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
-.lock-row #codeInput{
-  flex:1 1 220px; min-width:0; padding:11px 14px; font-size:1em; font-family:inherit;
-  border:1.5px solid var(--gray-3); border-radius:12px; background:var(--paper); color:var(--ink);
-}
-.lock-row #codeInput:focus{outline:none; border-color:var(--primary-3); box-shadow:0 0 0 3px var(--soft)}
-.lock-row #codeInput:disabled{border-color:var(--ok-border); background:var(--ok-soft); color:var(--ok); font-weight:600}
-.lock-row .prod-check{margin:0; flex:0 0 auto}
 
 /* ===== Tabla de datos embebida (Parte 2) ===== */
 .table-embed{margin:22px 0 6px; overflow-x:auto}
