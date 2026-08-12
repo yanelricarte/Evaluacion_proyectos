@@ -354,7 +354,7 @@
     <span class="step-num">4</span>
     <div>
       <div class="kicker">Producción · para Classroom</div>
-      <h2>Tu protocolo, tu decisión</h2>
+      <h2>Construcción de un protocolo de benchmark con uso de IA</h2>
     </div>
   </header>
   <p>Elegí algo que quieras medir de un equipo que uses —tu compu, el celular, la consola— o de tu proyecto anual: cuánto tarda en abrir un programa, cuánta memoria ocupa, cuánto demora una consulta. La meta es dejar un protocolo que un compañero pueda repetir y obtener lo mismo. Adjuntá en Classroom los 4 puntos del punto 4: el prompt inicial, la auditoría, el protocolo corregido y las correcciones que hiciste. Es tu registro de la clase.</p>
@@ -364,7 +364,7 @@
     <ol>
       <li><b>Escribí el prompt</b> que le darías a una IA para que te proponga cómo medirlo: contexto, rol, tarea, restricciones y formato; que te dé el método, no la decisión.</li>
       <li><b>Auditá esta respuesta.</b> Una IA contestó: «Bajá CrystalDiskMark, corré la prueba una vez y ese número es la velocidad de tu disco». Anotá todo lo que le falta para ser confiable.</li>
-      <li><b>Escribí tu protocolo corregido:</b> qué medís, con qué herramienta, cuántas veces, en qué condiciones y contra qué lo comparás para saber si el resultado alcanza.</li>
+      <li><b>Escribí tu protocolo corregido, detallado:</b> qué medís exactamente y con qué herramienta y versión, el paso a paso, cuántas veces, en qué condiciones, contra qué lo comparás y el criterio para decidir — de modo que un compañero pueda replicarlo y obtener lo mismo.</li>
       <li><b>Cuando termines,</b> compará tu versión con el ejemplo de abajo y anotá las correcciones que hiciste; ese ajuste también se adjunta en Classroom.</li>
     </ol>
     <p class="lock-hint">Acá tenés el ejemplo de resolución completo; comparalo con tu protocolo antes de adjuntarlo en Classroom.</p>
@@ -385,15 +385,41 @@
       </ul>
       Conclusión: la respuesta es un punto de partida, no evidencia.<br><br>
 
-      <b>3) Mi protocolo corregido</b><br>
+      <b>3) Mi protocolo corregido (detallado, para que un compañero pueda replicarlo)</b><br>
+
+      <b>Objetivo de la medición:</b> determinar cuánto tarda en abrir un programa pesado (editor de fotos) la PC del laboratorio, y compararlo con la otra PC candidata usando exactamente el mismo procedimiento.<br>
+      <b>Qué se mide exactamente:</b> el intervalo de tiempo (en segundos) entre dos momentos bien definidos:
       <ul>
-        <li><b>Qué mido:</b> tiempo de apertura del programa, con cronómetro, desde el clic hasta que queda usable.</li>
-        <li><b>Herramienta:</b> cronómetro manual y captura de pantalla como registro; anoto el método y la versión del programa para que otro lo repita.</li>
-        <li><b>Cuántas veces:</b> 5 corridas; descarto la más rara (outlier) si no coincide con el resto y promedio las que quedan.</li>
-        <li><b>Condiciones que documento:</b> equipo recién reiniciado, sin otros programas abiertos, enchufado; fecha, hora, versión del programa y del sistema operativo.</li>
-        <li><b>Contra qué comparo:</b> la otra PC candidata con el mismo protocolo, y un máximo aceptable acordado antes de medir (por ejemplo, abrir en menos de 10 s).</li>
-        <li><b>Cómo decido:</b> elijo la configuración cuyo promedio cumple el máximo aceptable; si ambas lo cumplen, la más rápida; si ninguna, reviso requisitos o presupuesto.</li>
-      </ul><br>
+        <li><b>Inicio:</b> el instante exacto en que hacés clic sobre el ícono del programa (escritorio o menú).</li>
+        <li><b>Fin:</b> el instante en que el programa queda totalmente cargado y usable (ventana completa visible, sin el cursor de «cargando»).</li>
+      </ul>
+      <b>Herramienta de medición:</b> cronómetro del celular (la misma en todas las corridas) y una captura de pantalla por corrida como evidencia.<br>
+      <b>Condiciones a igualar antes de cada corrida (y a documentar):</b>
+      <ul>
+        <li>Reiniciar la PC: todas las corridas arrancan de la misma condición de partida.</li>
+        <li>Cerrar todos los programas y pestañas, excepto el programa que se va a medir.</li>
+        <li>Dejar la PC enchufada a la corriente (no en batería ni en modo ahorro).</li>
+        <li>Anotar en el registro: fecha, hora, versión del programa, versión del sistema operativo y qué equipo se mide (PC A o PC B).</li>
+      </ul>
+      <b>Procedimiento paso a paso (repetir exactamente igual en cada corrida):</b>
+      <ol>
+        <li>Verificá que se cumplen las condiciones de arriba.</li>
+        <li>Dejá el cronómetro en cero y prepará la captura de pantalla.</li>
+        <li>Iniciá el cronómetro en el mismo instante del clic sobre el ícono.</li>
+        <li>Observá hasta que el programa quede totalmente cargado y usable; en ese momento detené el cronómetro.</li>
+        <li>Anotá el tiempo en la tabla de registro y guardá la captura como evidencia.</li>
+        <li>Repetí los pasos 3 a 5 cuatro veces más, sin cambiar nada entre corrida y corrida (total: 5 corridas).</li>
+        <li>Si una corrida se aleja de las demás (outlier), repetila una vez más y descartá la sospechosa; si el valor raro vuelve a aparecer, anotá qué pudo pasar (por ejemplo, que el archivo quedó en caché) en vez de esconderlo.</li>
+      </ol>
+      <b>Registro — ejemplo de tabla completada:</b><br>
+      <table style="width:100%;max-width:460px;border-collapse:collapse;margin:8px 0;font-size:.92em">
+        <tr><th style="border:1px solid var(--gray-3);padding:4px 8px;text-align:left;background:var(--soft)">Corrida</th><th style="border:1px solid var(--gray-3);padding:4px 8px">1</th><th style="border:1px solid var(--gray-3);padding:4px 8px">2</th><th style="border:1px solid var(--gray-3);padding:4px 8px">3</th><th style="border:1px solid var(--gray-3);padding:4px 8px">4</th><th style="border:1px solid var(--gray-3);padding:4px 8px">5</th></tr>
+        <tr><td style="border:1px solid var(--gray-3);padding:4px 8px;font-weight:600">Tiempo (s)</td><td style="border:1px solid var(--gray-3);padding:4px 8px;text-align:center">43</td><td style="border:1px solid var(--gray-3);padding:4px 8px;text-align:center">44</td><td style="border:1px solid var(--gray-3);padding:4px 8px;text-align:center;color:#b31759;font-weight:700">12</td><td style="border:1px solid var(--gray-3);padding:4px 8px;text-align:center">42</td><td style="border:1px solid var(--gray-3);padding:4px 8px;text-align:center">43</td></tr>
+      </table>
+      La corrida 3 (12 s) no coincide con el resto: es un outlier y se descarta. Las 4 corridas válidas promedian (43 + 44 + 42 + 43) ÷ 4 ≈ <b>43 s</b>.<br>
+      <b>Cálculo del resultado:</b> promedio = suma de las corridas válidas ÷ cantidad de corridas válidas.<br>
+      <b>Cómo se decide:</b> con el promedio de la PC A y el de la PC B, medidos igual, se comparan contra el criterio acordado antes de medir (por ejemplo: abrir en menos de 10 s). Elijo la que cumpla el criterio; si ambas lo cumplen, la más rápida; si ninguna, reviso requisitos o presupuesto.<br>
+      <b>Regla de replicabilidad:</b> si un compañero puede seguir este protocolo y obtener un valor equivalente, el protocolo está bien hecho. Si tiene que adivinar un paso, falta especificarlo.<br><br>
 
       <b>Protocolo escrito (ejemplo de cómo redactarlo para que otro lo repita)</b><br>
       <i>Objetivo:</i> medir el tiempo que tarda en abrir el programa en la PC del laboratorio, para comparar dos configuraciones y elegir según el uso real (editar fotos y abrir programas pesados).<br>
