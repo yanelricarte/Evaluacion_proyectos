@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Clase 11 · Evaluar con agentes — Evaluación de Proyectos</title>
+  <title>Clases 12-13 · Agentes de IA en la evaluación de proyectos — Evaluación de Proyectos</title>
 
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,8 +40,8 @@
     <div class="cover-mark"></div>
     <div class="student">Material para estudiantes · 7.º año</div>
     <div class="kicker">Evaluación de Proyectos · Unidad 2 · Cierre</div>
-    <h1>Evaluar con agentes: cuando la IA no solo dice, hace</h1>
-    <p class="lead">En la clase 10 aprendiste a desconfiar de lo que una IA <b>dice</b>. Hoy el desafío es mayor: hay agentes que también <b>hacen</b> — ejecutan pruebas, corren benchmarks, redactan informes. Aprender a auditar lo que hacen es el oficio de esta clase.</p>
+    <h1>Agentes de IA en la evaluación de proyectos</h1>
+    <p class="lead">En las clases 10-11 aprendiste a desconfiar de lo que una IA <b>dice</b>. En las clases 12-13 el desafío es mayor: hay agentes que también <b>hacen</b> —ejecutan pruebas, corren benchmarks, redactan informes— y aprender a auditar lo que hacen es el oficio de estas clases.</p>
     <div class="pill-row">
       <span class="pill">De la palabra a la acción</span>
       <span class="pill">Auditar lo que hace</span>
@@ -57,37 +57,37 @@
     <div class="grid3">
       <div class="card accent"><div class="label">Objetivo</div><h3>Reconocer</h3><p>Qué es un agente de IA y en qué se diferencia de un chat: puede ejecutar acciones y mirar sus resultados.</p></div>
       <div class="card accent"><div class="label">Objetivo</div><h3>Distinguir</h3><p>Lo que un agente <b>dice</b> que hizo de lo que realmente <b>dejó verificado</b> (con salida, log o archivo).</p></div>
-      <div class="card accent"><div class="label">Objetivo</div><h3>Auditar</h3><p>Una sesión de agente que arma el informe comparativo, aplicando el criterio de la clase 10.</p></div>
+      <div class="card accent"><div class="label">Objetivo</div><h3>Auditar</h3><p>Una sesión de agente que arma el informe comparativo, aplicando el criterio de las clases 10-11.</p></div>
     </div>
     <div class="footer"><span>Propósito</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
-  <!-- 3. Puente con la Clase 10 -->
+  <!-- 3. Puente con las Clases 10-11 -->
   <section class="slide">
     <div class="kicker">De dónde venimos</div>
-    <h2>La clase 10 te dejó un criterio. Hoy lo llevamos un paso más allá</h2>
+    <h2>El criterio de las clases 10-11 y las acciones del agente</h2>
     <div class="grid2">
       <div>
-        <p>En la clase 10 vimos que una IA genera <b>texto plausible</b>: predice lo más probable y puede inventar datos que suenan reales. Por eso aprendiste a <b>verificar</b> antes de decidir.</p>
+        <p>En las clases 10-11 vimos que una IA genera <b>texto plausible</b>: predice lo más probable y puede inventar datos que suenan reales. Por eso aprendiste a <b>verificar</b> antes de decidir.</p>
         <p>Ahora esa misma IA puede <b>ejecutar</b>: correr un comando, abrir un archivo, hacer una prueba y reportar el resultado. El problema no cambia — se agrava: ya no tenés que auditar solo lo que <b>dice</b>, sino lo que <b>dice que hizo</b>.</p>
         <p class="subtitle">Cuanta más autonomía le damos, más importante es saber auditar su trabajo.</p>
       </div>
       <div class="card accent">
-        <div class="label">La regla de la clase 10</div>
-        <h3>Usar, sí; delegar la decisión, no</h3>
+        <div class="label">La regla de las clases 10-11</div>
+        <h3>Comprobar toda respuesta antes de usarla</h3>
         <p>La IA propone un borrador. <b>Toda respuesta se comprueba antes de usarla</b> y la decisión queda de tu lado. Con los agentes, la regla es la misma — solo que ahora también se comprueba lo que hicieron.</p>
       </div>
     </div>
-    <div class="footer"><span>Puente con la Clase 10</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+    <div class="footer"><span>Puente con las Clases 10-11</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
   <!-- 4. ¿Qué es un agente? -->
   <section class="slide">
     <div class="kicker">Idea central</div>
     <h2>Un agente es un modelo de lenguaje con herramientas y autonomía</h2>
-    <p class="subtitle">El agente no se limita a responder: <b>puede ejecutar acciones, leer el resultado y seguir trabajando</b> según lo que encuentre. Por eso se lo llama agente: actúa, no solo conversa.</p>
+    <p class="subtitle">El agente responde y además <b>puede ejecutar acciones, leer el resultado y seguir trabajando</b> según lo que encuentre. Por eso se lo llama agente: actúa y también conversa.</p>
     <div class="table-wrap"><table class="table compact">
-      <thead><tr><th></th><th>Chat (lo que viste en la clase 10)</th><th>Agente</th></tr></thead>
+      <thead><tr><th></th><th>Chat (lo que viste en las clases 10-11)</th><th>Agente</th></tr></thead>
       <tbody>
         <tr><td><b>Qué hace</b></td><td>Responde texto.</td><td>Responde <b>y actúa</b>: usa herramientas.</td></tr>
         <tr><td><b>Su palabra</b></td><td>Dice.</td><td>Dice <b>y muestra lo que hizo</b> (o no lo muestra).</td></tr>
@@ -95,21 +95,21 @@
         <tr><td><b>Autonomía</b></td><td>Nula: no toca tu equipo.</td><td>Puede correr programas, abrir y editar archivos, correr pruebas.</td></tr>
       </tbody>
     </table></div>
-    <p class="subtitle"><b>Importante:</b> autonomía no es garantía de verdad. Que un agente pueda hacer cosas no significa que lo que haga sea correcto ni que lo que reporte sea real.</p>
+    <p class="subtitle"><b>Importante:</b> la autonomía amplía lo que el agente puede hacer; la verificación de su trabajo decide si lo que hizo es correcto y si lo que reporta es real.</p>
     <div class="footer"><span>Qué es un agente</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
   <!-- 5. Qué puede hacer un agente en evaluación -->
   <section class="slide">
     <div class="kicker">Agentes en evaluación</div>
-    <h2>Qué puede hacer un agente en nuestra materia</h2>
-    <p class="subtitle">Todas tareas útiles — y todas con el mismo límite: <b>puede reportar que las hizo sin haberlas hecho</b>.</p>
+    <h2>Lo que un agente puede hacer en la evaluación de proyectos</h2>
+    <p class="subtitle">Son tareas útiles, todas con el mismo límite: <b>puede reportar que las hizo sin haberlas hecho</b>.</p>
     <div class="grid3">
       <div class="card flat"><span class="badge">Generar</span><h3>Casos de prueba</h3><p>Propone casos con clases de equivalencia, valores límite y conjetura de errores sobre un sistema.</p><p class="muted" style="font-size:.9em">Límite: los casos pueden ser inventados o no aplicar al sistema real.</p></div>
       <div class="card flat"><span class="badge">Ejecutar</span><h3>Pruebas y benchmarks</h3><p>Corre un script, cronometra una tarea, ejecuta una suite de pruebas y te reporta los resultados.</p><p class="muted" style="font-size:.9em">Límite: el reporte puede no corresponder a una ejecución real.</p></div>
       <div class="card accent"><span class="badge">Redactar</span><h3>El informe</h3><p>Ordena el informe comparativo de integración: protocolo, tabla, matriz y conclusión.</p><p class="muted" style="font-size:.9em">Límite: decide por vos si se lo permitís. La conclusión es tuya.</p></div>
     </div>
-    <p class="subtitle">La clase 11 no enseña a «usar agentes»: enseña a <b>auditar lo que un agente hace</b> cuando se lo usa para evaluar.</p>
+    <p class="subtitle">En las clases 12-13 se aprende a <b>auditar lo que un agente hace</b> cuando se lo usa para evaluar.</p>
     <div class="footer"><span>Agentes en evaluación</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
@@ -120,7 +120,7 @@
     <p class="subtitle">En el chat, una IA inventaba un dato. Un agente puede ir más lejos: <b>afirmar que ejecutó algo y mostrar un log que parece real, sin haberlo corrido</b>.</p>
     <div class="grid2">
       <article class="card">
-        <div class="label">Antes (clase 10)</div>
+        <div class="label">Antes (clases 10-11)</div>
         <h3>Un texto plausible</h3>
         <p>«Este disco rinde 5.000 MB/s» — suena real, puede ser falso, se verifica.</p>
         <p class="muted" style="font-size:.92em">El único material a auditar era la palabra de la IA.</p>
@@ -132,7 +132,7 @@
         <p class="muted" style="font-size:.92em">Ahora hay que auditar también si la acción ocurrió y si el log es suyo.</p>
       </article>
     </div>
-    <p class="subtitle"><b>Consecuencia:</b> un agente puede darte evidencia que parece sólida pero no existe. La diferencia entre un <b>log real</b> y uno <b>plausible</b> es lo que hoy vas a aprender a ver.</p>
+    <p class="subtitle"><b>Consecuencia:</b> un agente puede darte evidencia que parece sólida pero no existe. La diferencia entre un <b>log real</b> y uno <b>plausible</b> es lo que vas a aprender a distinguir.</p>
     <div class="footer"><span>Riesgo nuevo</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
@@ -142,8 +142,8 @@
     <h2>Auditar a un agente: cuatro preguntas</h2>
     <div class="grid2">
       <div>
-        <p>La evaluación de un agente no se hace sobre lo que <b>dice</b>, sino sobre lo que <b>deja</b>. Un agente bien auditado deja rastros: salidas de comandos, archivos modificados, registros de ejecución.</p>
-        <p class="subtitle">Si no hay rastro, no hay evidencia: hay una afirmación plausible.</p>
+        <p>La evaluación de un agente se hace sobre lo que <b>deja</b>: salidas de comandos, archivos modificados, registros de ejecución. Un agente bien auditado deja esos rastros.</p>
+        <p class="subtitle">La evidencia exige un rastro verificable: una salida, un log o un archivo. Sin ese rastro, lo que queda es una afirmación plausible.</p>
       </div>
       <div class="card">
         <div class="label">Preguntas que hace un auditor</div>
@@ -166,7 +166,7 @@
       <article class="card">
         <div class="label">Escenario</div>
         <h3>La sala de edición de fotos</h3>
-        <p>Una sala que <b>abre y guarda archivos grandes todo el tiempo</b> evalúa dos PC de precio similar: la <b>Config. A</b> (procesador más veloz, disco mecánico) y la <b>Config. B</b> (procesador menor, SSD). Es el mismo caso de la clase 10.</p>
+        <p>Una sala que <b>abre y guarda archivos grandes todo el tiempo</b> evalúa dos PC de precio similar: la <b>Config. A</b> (procesador más veloz, disco mecánico) y la <b>Config. B</b> (procesador menor, SSD). Es el mismo caso de las clases 10-11.</p>
         <p class="muted" style="font-size:.92em">Le pedimos a un agente que arme el informe comparativo con capas, top-down, protocolo de benchmark y matriz ponderada.</p>
       </article>
       <article class="card accent">
@@ -220,7 +220,7 @@
   <!-- 11. Checkpoint -->
   <section class="slide">
     <div class="kicker">Activación · Pensá como auditor</div>
-    <h2>Pulso rápido: ¿qué sabés con esto? (3 preguntas)</h2>
+    <h2>Pulso rápido: tres preguntas</h2>
     <p class="subtitle">Elegí una opción en cada pregunta. Vas a ver si acertaste y la explicación. Después auditás la sesión completa en el trabajo en clase.</p>
 
     <div class="quiz" id="quiz">
@@ -251,7 +251,7 @@
           <button data-value="b">b) Verifico la evidencia de cada afirmación y fundamento yo la decisión según el propósito</button>
           <button data-value="c">c) Le pido que rehaga el informe hasta que diga la Config. A</button>
         </div>
-        <div class="quiz-feedback"><b>Verificar y decidir vos.</b> El agente da el borrador; la evidencia y la decisión son tuyas. «Rehacer hasta que diga A» también es una tontería: no se elige la respuesta que querés, se decide con evidencia.</div>
+        <div class="quiz-feedback"><b>Verificar y decidir vos.</b> El agente da el borrador; la evidencia y la decisión son tuyas. Rehacer el pedido hasta obtener la respuesta esperada invierte el orden: se decide con lo verificado.</div>
       </article>
     </div>
     <div class="quiz-summary" id="quizSummary"><span id="quizScore">— / 3</span><span style="font-weight:500">Si acertaste las 3, ya distinguís una acción real de una afirmada. Si menos, repasá antes del trabajo en clase.</span></div>
@@ -261,11 +261,11 @@
   <!-- 12. Trabajo en clase -->
   <section class="slide">
     <div class="kicker">Trabajo en clase</div>
-    <h2>Ahora lo trabajan ustedes: auditar al agente</h2>
+    <h2>Trabajo en clase: auditar al agente</h2>
     <div class="activity-card">
       <h3>Parte 2 · El expediente completo para auditar</h3>
-      <p style="font-size:clamp(15px,1.15vw,19px); margin:8px 0 0">Leen la sesión completa del agente que arma el informe, clasifican cada afirmación como evidencia o afirmación plausible (con corrección automática), detectan las alucinaciones de acción y cierran con la decisión y su fundamento. Es la Parte 2 que se anunció en la clase 10.</p>
-      <a class="activity-cta" href="../actividad-clase-11/" target="_blank" rel="noopener">
+      <p style="font-size:clamp(15px,1.15vw,19px); margin:8px 0 0">Leen la sesión completa del agente que arma el informe, clasifican cada afirmación como evidencia o afirmación plausible (con corrección automática), detectan las alucinaciones de acción y cierran con la decisión y su fundamento. Es la Parte 2 que se anunció en las clases 10-11.</p>
+      <a class="activity-cta" href="../actividad-clase-12-13/" target="_blank" rel="noopener">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         Abrir el trabajo en clase
       </a>
@@ -291,14 +291,14 @@
     <div class="card cloze-content">
       <div class="reg-head">
         <span><b>Fecha:</b> ____ / ____ / ______</span>
-        <span><b>Título:</b> Evaluar con agentes — auditoría de sesión</span>
+        <span><b>Título:</b> Agentes de IA en la evaluación de proyectos — auditoría de sesión</span>
         <span><b>Materia:</b> Evaluación de Proyectos</span>
       </div>
       <ul class="cloze-list" id="clozeList">
-        <li>Una IA que no solo responde sino que también ejecuta acciones y mira sus resultados se llama <span class="cloze-wrap"><input class="cloze-input" type="text" id="ci0" data-answers="agente" data-keywords="agente" autocomplete="off"><span class="cloze-fb" id="cf0"></span><button class="cloze-hint" data-hint="Empieza con «a»." aria-label="Pista">💡</button></span>.</li>
+        <li>Una IA que responde, ejecuta acciones y mira sus resultados se llama <span class="cloze-wrap"><input class="cloze-input" type="text" id="ci0" data-answers="agente" data-keywords="agente" autocomplete="off"><span class="cloze-fb" id="cf0"></span><button class="cloze-hint" data-hint="Empieza con «a»." aria-label="Pista">💡</button></span>.</li>
         <li>Cuando el agente reporta una medición sin mostrar su salida, es una <span class="cloze-wrap"><input class="cloze-input" type="text" id="ci1" data-answers="afirmación,afirmacion" data-keywords="afirmación,plausible" autocomplete="off"><span class="cloze-fb" id="cf1"></span><button class="cloze-hint" data-hint="Lo opuesto a evidencia verificada." aria-label="Pista">💡</button></span> plausible: suena real pero no está comprobada.</li>
         <li>Lo que convierte una afirmación en evidencia es que el agente <span class="cloze-wrap"><input class="cloze-input" type="text" id="ci2" data-answers="deje,deja,deje una salida" data-keywords="salida,log,rastro,archivo" autocomplete="off"><span class="cloze-fb" id="cf2"></span><button class="cloze-hint" data-hint="Salida de herramienta, log, archivo…" aria-label="Pista">💡</button></span> verificable (salida, log o archivo).</li>
-        <li>Medir no es evaluar: el dato se interpreta según el <span class="cloze-wrap"><input class="cloze-input" type="text" id="ci3" data-answers="propósito,proposito" data-keywords="propósito,uso" autocomplete="off"><span class="cloze-fb" id="cf3"></span><button class="cloze-hint" data-hint="La clase 10 lo decía con estas palabras." aria-label="Pista">💡</button></span> del sistema.</li>
+        <li>La medición se completa con la interpretación: el dato se interpreta según el <span class="cloze-wrap"><input class="cloze-input" type="text" id="ci3" data-answers="propósito,proposito" data-keywords="propósito,uso" autocomplete="off"><span class="cloze-fb" id="cf3"></span><button class="cloze-hint" data-hint="Las clases 10-11 lo decían con estas palabras." aria-label="Pista">💡</button></span> del sistema.</li>
         <li>La decisión final y su fundamentación quedan en <span class="cloze-wrap"><input class="cloze-input" type="text" id="ci4" data-answers="tus manos,tuyas,mía,mio,mi" data-keywords="manos,criterio,decisión" autocomplete="off"><span class="cloze-fb" id="cf4"></span><button class="cloze-hint" data-hint="Nunca se delegan en la IA." aria-label="Pista">💡</button></span>: el agente da el borrador, no decide.</li>
       </ul>
       <div class="cloze-bar">
@@ -350,7 +350,7 @@
         <div class="label">Herramientas y cómo se ve una sesión</div>
         <ul style="font-size:clamp(13px,1.05vw,18px)">
           <li><b>Agentes conversacionales con acceso a herramientas</b> (Claude, ChatGPT) — modo en el que la IA puede ejecutar acciones.</li>
-          <li><b>CrystalDiskMark · Geekbench · iperf3 · 7-Zip</b> — las herramientas de benchmark de la clase 10, que un agente puede intentar ejecutar.</li>
+          <li><b>CrystalDiskMark · Geekbench · iperf3 · 7-Zip</b> — las herramientas de benchmark de las clases 10-11, que un agente puede intentar ejecutar.</li>
           <li><span class="muted">El expediente de la actividad reproduce cómo se ve una sesión real (prompts, acciones, salidas).</span></li>
         </ul>
         <p class="muted" style="font-size:.92em;margin-top:8px">Material de la unidad: <a class="inline-link" href="../unidad-2-material-teorico/" target="_blank" rel="noopener">Evaluaciones integrales (teoría)</a>.</p>

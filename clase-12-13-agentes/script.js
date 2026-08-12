@@ -1,5 +1,5 @@
 /* ============================================================
-   Clase 11 · Evaluar con agentes (cierre de Unidad 2)
+   Clases 12-13 · Agentes de IA en la evaluación de proyectos (cierre de Unidad 2)
    Navegación + Pantalla completa + V/F validadoras
    Auto-test + cloze con persistencia en localStorage
    ============================================================ */
