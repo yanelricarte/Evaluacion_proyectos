@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trabajo en clase · Auditar y pedir bien — Evaluación de Proyectos</title>
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Trabajo en clase · Unidad 2 · 7.º año</div>
+    <a href="../clase-11-agentes/" style="display:inline-flex;align-items:center;gap:6px;margin:2px 0 6px;font-size:.9em;font-weight:600;color:inherit;opacity:.75;text-decoration:none;border-bottom:1px solid currentColor">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      Volver a la clase (teoría)
+    </a>
+    <h1>Auditar un informe y escribir el pedido que faltaba</h1>
+    <p class="lead">Un caso nuevo, con la misma estructura que vimos en clase. Vas a auditar el rastro de un agente, rehacer sus cuentas, escribir el pedido que habría evitado los errores y decidir con fundamento. Los puntos 1 y 2 se corrigen solos; los puntos 3 y 4 los escribís vos y después los comparás con el ejemplo.</p>
+    <div class="track">
+      <a class="track-step" href="#parte-1"><b>1</b><span>Auditar el rastro</span></a>
+      <a class="track-step" href="#parte-2"><b>2</b><span>Rehacer las cuentas</span></a>
+      <a class="track-step" href="#parte-3"><b>3</b><span>Escribir el pedido</span></a>
+      <a class="track-step" href="#parte-4"><b>4</b><span>Decidir</span></a>
+      <a class="track-step" href="#resultado"><b>★</b><span>Resultado</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== EL CASO ===== -->
+<section class="scenario" id="consigna">
+  <div class="kicker">El caso</div>
+  <h2>La escuela tiene que elegir una conexión a internet</h2>
+  <div class="scenario-grid">
+    <article class="scenario-card">
+      <h3>Para qué se va a usar</h3>
+      <p>Para sostener <b>clases por videollamada</b> en el laboratorio: varias personas conectadas al mismo tiempo, hablando y viéndose sin cortes.</p>
+      <p>Hay dos ofertas: <b>A</b>, satelital <b>geoestacionario</b>, y <b>B</b>, fibra óptica. Un agente midió las dos con iperf3 y produjo un informe.</p>
+    </article>
+    <article class="scenario-card">
+      <h3>Lo que tenés que hacer</h3>
+      <p>Auditar ese informe con la rúbrica de la clase, rehacer las cuentas que hicieron falta, y escribir el pedido que habría evitado los errores.</p>
+      <p><b>La decisión es tuya</b>, y hay que fundamentarla con un dato.</p>
+    </article>
+  </div>
+  <p class="hint">Los datos de este caso están armados para el ejercicio: no son mediciones reales de un proveedor. Las herramientas y la forma de medir sí son las que usarías de verdad. Y una precisión que importa: «satelital» no dice todo. Un satélite <b>geoestacionario</b> está a unos 36.000 km y su demora ronda los 600 ms por la distancia que recorre la señal; las constelaciones de <b>órbita baja</b> están a unos 550 km y bajan esa demora a unas decenas de milisegundos. La palabra es la misma y la tecnología no.</p>
+
+  <div class="caso-datos">
+    <h3>El informe que produjo el agente</h3>
+    <div class="table-embed">
+      <table class="data-table">
+      <thead><tr><th>Promedio de 3 corridas</th><th>A · satelital geoestacionario</th><th>B · fibra</th></tr></thead>
+      <tbody>
+        <tr><td>Ancho de banda (Mbps)</td><td>80</td><td>35</td></tr>
+        <tr><td>Latencia (ms)</td><td>445</td><td>12</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p><b>Conclusión del informe.</b> «Se recomienda la opción A. Ofrece 80 Mbps contra 35, más del doble de ancho de banda, lo que la vuelve superior para el uso institucional. Además, el servicio satelital tiene una disponibilidad del 99,9 % y es más estable que la fibra.»</p>
+
+    <h3>El rastro: qué hizo el agente, paso por paso</h3>
+    <ol>
+      <li>Leí la consigna: comparar dos conexiones para la escuela.</li>
+      <li>Ejecuté iperf3 en la conexión A, ancho de banda → <b>80 / 78 / 82</b> Mbps</li>
+      <li>Ejecuté iperf3 en la conexión B, ancho de banda → <b>35 / 34 / 36</b> Mbps</li>
+      <li>Medí la latencia de la conexión A → <b>610 / 630 / 95</b> ms</li>
+      <li>Medí la latencia de la conexión B → <b>12 / 11 / 13</b> ms</li>
+      <li>Calculé los promedios de las cuatro series.</li>
+      <li>Redacté el informe con la recomendación.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== PARTE 1 ===== -->
+<section class="step" id="parte-1">
+  <header class="step-header">
+    <span class="step-num">1</span>
+    <div>
+      <div class="kicker">Auditar el rastro</div>
+      <h2>¿De dónde sale cada afirmación del informe?</h2>
+    </div>
+  </header>
+  <p>Para cada afirmación, buscala en los siete pasos del rastro y decidí. Al elegir aparece la explicación.</p>
+
+  <div class="match-list" data-section="parte-1">
+
+    <article class="match-item" data-correct="respaldo">
+      <p class="match-text">«La conexión A ofrece 80 Mbps de ancho de banda.»</p>
+      <div class="choices" data-field="rastro">
+        <button data-value="respaldo">Sale de un paso del rastro</button>
+        <button data-value="mal-calculada">Sale de un paso, pero está mal calculada</button>
+        <button data-value="sin-rastro">No sale de ningún paso</button>
+      </div>
+      <div class="match-feedback">
+        <b>Sale del paso 2.</b> Tres corridas —80, 78 y 82— cuyo promedio es 80. Tiene respaldo y la cuenta está bien, así que no es una cifra inventada ni un promedio que esconda algo: es el tipo de número que sí se puede usar para decidir.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="mal-calculada">
+      <p class="match-text">«La latencia de la conexión A es de 445 ms.»</p>
+      <div class="choices" data-field="rastro">
+        <button data-value="respaldo">Sale de un paso del rastro</button>
+        <button data-value="sin-rastro">No sale de ningún paso</button>
+        <button data-value="mal-calculada">Sale de un paso, pero está mal calculada</button>
+      </div>
+      <div class="match-feedback">
+        <b>Sale del paso 4, y el promedio esconde algo.</b> Las corridas fueron 610, 630 y 95. El promedio de las tres da 445, y la cuenta es correcta; el problema es que la tercera corrida no se parece a las otras dos y el informe no lo dice. En el punto 2 lo calculás.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="sin-rastro">
+      <p class="match-text">«El servicio satelital tiene una disponibilidad del 99,9 %.»</p>
+      <div class="choices" data-field="rastro">
+        <button data-value="respaldo">Sale de un paso del rastro</button>
+        <button data-value="sin-rastro">No sale de ningún paso</button>
+        <button data-value="mal-calculada">Sale de un paso, pero está mal calculada</button>
+      </div>
+      <div class="match-feedback">
+        <b>No aparece en ningún paso.</b> Ninguno de los siete midió disponibilidad. Es una cifra plausible, bien escrita y sin origen: el mismo caso del 40 % de ahorro eléctrico que vimos en clase.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="sin-rastro">
+      <p class="match-text">«El servicio satelital es más estable que la fibra.»</p>
+      <div class="choices" data-field="rastro">
+        <button data-value="respaldo">Sale de un paso del rastro</button>
+        <button data-value="mal-calculada">Sale de un paso, pero está mal calculada</button>
+        <button data-value="sin-rastro">No sale de ningún paso</button>
+      </div>
+      <div class="match-feedback">
+        <b>Tampoco.</b> No se midió estabilidad. Y las mediciones que sí están apuntan al revés: la latencia de A varió entre 95 y 630 ms, mientras la de B se movió entre 11 y 13.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="respaldo">
+      <p class="match-text">«La latencia de la conexión B es de 12 ms.»</p>
+      <div class="choices" data-field="rastro">
+        <button data-value="respaldo">Sale de un paso del rastro</button>
+        <button data-value="sin-rastro">No sale de ningún paso</button>
+        <button data-value="mal-calculada">Sale de un paso, pero está mal calculada</button>
+      </div>
+      <div class="match-feedback">
+        <b>Sale del paso 5.</b> Corridas de 12, 11 y 13, promedio 12, y las tres se parecen entre sí. Es el número más confiable del informe.
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== PARTE 2 ===== -->
+<section class="step" id="parte-2">
+  <header class="step-header">
+    <span class="step-num">2</span>
+    <div>
+      <div class="kicker">Rehacer las cuentas</div>
+      <h2>Qué pasa con la latencia de A si se mira de cerca</h2>
+    </div>
+  </header>
+  <p>Las tres corridas de latencia de la conexión A fueron <b>610, 630 y 95</b> ms. Hacé las cuentas en tu carpeta y después elegí.</p>
+
+  <div class="match-list" data-section="parte-2">
+
+    <article class="match-item" data-correct="620">
+      <p class="match-text">Si se aparta la corrida que no se parece a las otras dos, ¿cuál es la latencia promedio de A?</p>
+      <div class="choices" data-field="cuenta">
+        <button data-value="445">445 ms</button>
+        <button data-value="620">620 ms</button>
+        <button data-value="352">352 ms</button>
+      </div>
+      <div class="match-feedback">
+        <b>620 ms.</b> El promedio de 610 y 630. Los 445 son el promedio de las tres, que es lo que publicó el informe; y 352 no sale de ninguna cuenta de estas corridas.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="mejor">
+      <p class="match-text">Promediar las tres corridas sin aclarar nada, ¿qué efecto tuvo sobre la conexión A?</p>
+      <div class="choices" data-field="cuenta">
+        <button data-value="mejor">La hizo parecer 175 ms mejor de lo que es</button>
+        <button data-value="ninguno">Ninguno: el promedio es el promedio</button>
+        <button data-value="peor">La hizo parecer peor de lo que es</button>
+      </div>
+      <div class="match-feedback">
+        <b>La favoreció en 175 ms.</b> 620 menos 445. Y no es una cuestión de opinión sobre el promedio: es que una de las tres corridas mide algo distinto de las otras dos, así que promediarlas mezcla dos situaciones diferentes.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="latencia">
+      <p class="match-text">Para sostener una videollamada, ¿cuál de las dos mediciones decide?</p>
+      <div class="choices" data-field="cuenta">
+        <button data-value="banda">El ancho de banda: 80 contra 35 Mbps</button>
+        <button data-value="ambas">Las dos por igual</button>
+        <button data-value="latencia">La latencia: 620 contra 12 ms</button>
+      </div>
+      <div class="match-feedback">
+        <b>La latencia.</b> En una videollamada la voz y la imagen tienen que llegar en el momento; con 620 ms de demora la conversación se pisa y se corta. El ancho de banda importa, y 35 Mbps alcanzan para varias videollamadas: por eso no pesan igual. <b>Cuál decide depende del propósito</b>, y acá el propósito está escrito en la consigna.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="una">
+      <p class="match-text">¿Qué habría que hacer con la corrida de 95 ms antes de cerrar el informe?</p>
+      <div class="choices" data-field="cuenta">
+        <button data-value="borrar">Borrarla, porque está mal</button>
+        <button data-value="una">Señalarla, repetir la medición y documentar qué pasó</button>
+        <button data-value="dejar">Dejarla en el promedio, porque es una medición real</button>
+      </div>
+      <div class="match-feedback">
+        <b>Señalarla y repetir.</b> Borrar un dato sin decirlo es lo mismo que promediarlo sin decirlo: en los dos casos se pierde el rastro. Y dejarla adentro mezcla dos situaciones distintas. Un valor que se aparta es información, y acá dice bastante: <b>por un satélite geoestacionario, 95 ms no puede ser.</b> La órbita está a 35.786 km, así que la señal recorre unos 143.000 km entre ir y volver, y a la velocidad de la luz eso ya son 477 ms antes de cualquier procesamiento. Esa corrida midió otro camino: lo más probable es que apuntara a un servidor de la red de la escuela y no haya salido al satélite. Repetirla anotando contra qué servidor se mide lo resuelve.
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== PARTE 3 ===== -->
+<section class="step" id="parte-3">
+  <header class="step-header">
+    <span class="step-num">3</span>
+    <div>
+      <div class="kicker">Escribir el pedido</div>
+      <h2>El pedido que habría evitado los tres errores</h2>
+    </div>
+  </header>
+  <p>Tres partes del pedido ya están escritas. Faltan las tres que, si hubieran estado, evitaban cada uno de los errores que encontraste. Escribilas con tus palabras.</p>
+
+  <div class="pedido-dado">
+    <p class="dado"><b>Rol.</b> «Actuá como evaluador técnico.»</p>
+    <p class="dado"><b>Tarea.</b> «Compará las dos conexiones con las mediciones que te adjunto y recomendá una.»</p>
+    <p class="dado"><b>Formato.</b> «Primero la tabla de promedios, después la recomendación.»</p>
+  </div>
+
+  <div class="escrito">
+    <label for="txtContexto"><b>Contexto.</b> Para qué se va a usar la conexión. Sin esto, el agente comparó el número más grande.</label>
+    <textarea id="txtContexto" rows="2" placeholder="«…»"></textarea>
+
+    <label for="txtRestricciones"><b>Restricciones.</b> Qué puede usar, y que marque «sin dato» cuando un dato no esté en lugar de completarlo. Sin esto, apareció la disponibilidad del 99,9 %.</label>
+    <textarea id="txtRestricciones" rows="2" placeholder="«…»"></textarea>
+
+    <label for="txtVerificacion"><b>Verificación.</b> Qué tiene que mostrar de cada número. Sin esto, la corrida de 95 ms pasó sin aviso.</label>
+    <textarea id="txtVerificacion" rows="2" placeholder="«…»"></textarea>
+  </div>
+
+  <p class="hint">Lo que escribís queda solo en este navegador. Copialo también a mano en tu carpeta, y usá el botón de imprimir si querés guardarlo.</p>
+</section>
+
+<!-- ===== PARTE 4 ===== -->
+<section class="step" id="parte-4">
+  <header class="step-header">
+    <span class="step-num">4</span>
+    <div>
+      <div class="kicker">Decidir</div>
+      <h2>Tu recomendación, fundamentada</h2>
+    </div>
+  </header>
+  <p>Tres renglones, con la rúbrica de la clase al lado. Es la forma que tiene la parte crítica de la evaluación escrita.</p>
+
+  <div class="escrito">
+    <label for="txtDecision"><b>Qué conexión recomendás</b>, y con qué dato lo sostenés.</label>
+    <textarea id="txtDecision" rows="3" placeholder="Recomiendo la conexión… porque…"></textarea>
+
+    <label for="txtResigna"><b>Qué se resigna</b> al elegir esa.</label>
+    <textarea id="txtResigna" rows="2" placeholder="Al elegirla se resigna…"></textarea>
+
+    <label for="txtCambio"><b>Y una más, para pensar:</b> si el propósito fuera bajar archivos muy grandes en lugar de sostener videollamadas, ¿cambiaría tu recomendación? ¿Por qué?</label>
+    <textarea id="txtCambio" rows="3" placeholder="Con ese otro propósito…"></textarea>
+  </div>
+</section>
+
+<!-- ===== EL EJEMPLO, CON CANDADO ===== -->
+<section class="step" id="ejemplo">
+  <header class="step-header">
+    <span class="step-num">✔</span>
+    <div>
+      <div class="kicker">Para comparar</div>
+      <h2>El ejemplo de resolución</h2>
+    </div>
+  </header>
+  <article>
+    <p class="lock-hint">🔒 Una vez resuelto en tu carpeta, ingresá el código de la clase para ver el ejemplo de resolución.</p>
+    <div class="lock-row">
+      <input type="text" id="codeInput" placeholder="Código de la clase" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <button class="prod-check" id="revealBtn">Desbloquear ejemplo</button>
+    </div>
+    <div class="prod-feedback" id="modelFeedback"></div>
+  </article>
+</section>
+
+<!-- ===== RESULTADO ===== -->
+<section class="step result-section" id="resultado">
+  <header class="step-header">
+    <span class="step-num">★</span>
+    <div>
+      <div class="kicker">Resultado</div>
+      <h2>Tu puntaje y disparadores para conversar</h2>
+    </div>
+  </header>
+
+  <div class="score-grid">
+    <div class="score-card" data-section="parte-1"><span class="score-label">Auditar el rastro</span><span class="score-value" id="score-1">0 / 5</span></div>
+    <div class="score-card" data-section="parte-2"><span class="score-label">Rehacer las cuentas</span><span class="score-value" id="score-2">0 / 4</span></div>
+    <div class="score-card total"><span class="score-label">Total autocorregido</span><span class="score-value" id="score-total">0 / 9</span></div>
+  </div>
+
+  <div class="reflection">
+    <h3>Para discutir en clase</h3>
+    <ul>
+      <li>El informe no tenía ningún error de cuentas y su recomendación era inservible. ¿Dónde estuvo la falla?</li>
+      <li>¿Qué parte del pedido te costó más escribir, y por qué?</li>
+      <li>Pensando en tu proyecto anual: ¿cuál es el número grande que podría hacerte elegir mal?</li>
+    </ul>
+  </div>
+
+  <div class="export-bar">
+    <p class="export-warn"><b>Es solo para trabajar en clase.</b> Tus respuestas quedan solo en este navegador. Si querés guardar tu trabajo, imprimílo o guardalo en PDF.</p>
+    <div class="export-actions">
+      <button class="export-btn danger" id="btnReset">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Reiniciar
+      </button>
+      <button class="export-btn secondary" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Imprimir o guardar PDF
+      </button>
+      <button class="export-btn secondary" id="recompute">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        Recalcular
+      </button>
+      <span class="export-status" id="exportStatus"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LO QUE QUEDA EN LA CARPETA ===== -->
+<section class="step" id="carpeta" style="background:linear-gradient(180deg,#fff,var(--soft))">
+  <header class="step-header">
+    <span class="step-num">✎</span>
+    <div>
+      <div class="kicker">Registro</div>
+      <h2>Lo que copiás a mano en tu carpeta</h2>
+    </div>
+  </header>
+  <ul>
+    <li>Las dos afirmaciones del informe que no salían de ningún paso.</li>
+    <li>La latencia de A con las tres corridas y sin la que se aparta, y la diferencia entre las dos.</li>
+    <li>Las tres partes del pedido que escribiste.</li>
+    <li>Tu recomendación, con el dato que la sostiene y lo que se resigna.</li>
+  </ul>
+</section>
+
+</main>
+
+<div class="modal-overlay" id="resetModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h3 id="modalTitle">¿Reiniciar la actividad?</h3>
+    <p>Se borran todas tus respuestas y lo que escribiste, en este navegador. No se puede deshacer.</p>
+    <div class="modal-actions">
+      <button class="export-btn secondary" id="modalCancel">Cancelar</button>
+      <button class="export-btn danger" id="modalConfirm">Sí, reiniciar</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
