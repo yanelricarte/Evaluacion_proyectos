@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Organizar el trabajo del equipo — Olimpíadas de ETP 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7f9; --bg-soft:#fbfbfc; --paper:#fff; --paper-2:#fcfbfc;
+  --ink:#17191d; --ink-soft:#2f2f36; --muted:#6f7681;
+  --primary:#b31759; --primary-2:#d52b70; --soft:#fff1f6;
+  --gray-2:#8d96a3; --gray-3:#dfe3e8; --gray-4:#eef1f4;
+  --ok:#1f7a4d; --ok-soft:#eefaf3; --ok-border:#9ed2b1;
+  --no:#a8214b; --no-soft:#fff1f6; --no-border:#f2b4ca;
+  --shadow:0 18px 48px rgba(20,22,26,.08);
+  --shadow-soft:0 12px 28px rgba(20,22,26,.06);
+  --radius:24px; --radius-sm:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:"Inter",system-ui,sans-serif; color:var(--ink);
+  background:
+    radial-gradient(circle at 92% 0%, rgba(214,41,108,.06), transparent 22%),
+    radial-gradient(circle at 0% 100%, rgba(89,90,96,.05), transparent 24%),
+    linear-gradient(180deg, var(--bg-soft), var(--bg));
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:"Manrope","Inter",sans-serif; letter-spacing:-.02em; margin:0; color:var(--ink)}
+p{margin:0; line-height:1.58}
+a{color:var(--primary)}
+
+.hero{padding:56px 28px 40px; background:radial-gradient(circle at 8% 16%, rgba(214,41,108,.10), transparent 30%), linear-gradient(180deg,#fff,var(--bg-soft)); border-bottom:1px solid var(--gray-3)}
+.hero-inner{max-width:1060px; margin:0 auto}
+.kicker{font-size:.74em; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--primary); margin-bottom:10px}
+.hero h1{font-size:clamp(2rem,4.4vw,3rem); line-height:1.06; margin-bottom:14px}
+.lead{font-size:1.06em; color:var(--ink-soft); max-width:78ch}
+.track{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px}
+.track-step{display:flex; align-items:center; gap:9px; padding:9px 13px; background:var(--paper); border:1px solid var(--gray-3); border-radius:12px}
+.track-step b{width:26px; height:26px; flex:0 0 26px; border-radius:9px; background:var(--soft); color:var(--primary); display:grid; place-items:center; font-size:.86em}
+.track-step span{font-size:.85em; font-weight:600; line-height:1.25}
+
+main{max-width:1060px; margin:0 auto; padding:34px 28px 60px; display:flex; flex-direction:column; gap:26px}
+section{background:var(--paper); border:1px solid var(--gray-3); border-radius:var(--radius); padding:30px; box-shadow:var(--shadow-soft)}
+section h2{font-size:1.5em; margin-bottom:8px}
+section > p{color:var(--ink-soft); margin-bottom:14px}
+section h3.sub{font-size:1.1em; margin:26px 0 8px; padding-top:18px; border-top:1px solid var(--gray-4)}
+section h3.sub:first-of-type{border-top:0; padding-top:0}
+.step-header{display:flex; align-items:flex-start; gap:14px; margin-bottom:14px}
+.step-num{width:44px; height:44px; flex:0 0 44px; border-radius:14px; background:linear-gradient(160deg,var(--primary),var(--primary-2)); color:#fff; display:grid; place-items:center; font-family:"Manrope",sans-serif; font-weight:800; font-size:1.15em}
+.hint{font-size:.9em; color:var(--muted); margin-top:12px}
+
+.table-wrap{overflow-x:auto; margin:16px 0 6px}
+table{width:100%; border-collapse:collapse; font-size:.94em; min-width:0}
+th{text-align:left; background:var(--gray-4); color:var(--ink); font-weight:700; padding:10px 12px; border-bottom:1px solid var(--gray-3); font-size:.9em}
+td{padding:10px 12px; border-bottom:1px solid var(--gray-4); color:var(--ink-soft); vertical-align:top}
+tr:nth-child(even) td{background:var(--paper-2)}
+td b{color:var(--ink)}
+.num{text-align:right; white-space:nowrap}
+tfoot td{background:var(--gray-4); font-weight:700; color:var(--ink); border-bottom:0}
+.peso{display:inline-block; min-width:34px; padding:3px 8px; border-radius:8px; background:var(--soft); color:var(--primary); font-weight:800; font-size:.9em; text-align:center}
+.peso.alto{background:#f7d9e5}
+
+.pasos{list-style:none; padding:0; margin:6px 0 0; display:flex; flex-direction:column; gap:12px; counter-reset:p}
+.pasos li{counter-increment:p; display:flex; gap:13px; align-items:flex-start; padding:13px 15px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:var(--radius-sm)}
+.pasos li::before{content:counter(p); flex:0 0 26px; width:26px; height:26px; border-radius:8px; background:var(--soft); color:var(--primary); display:grid; place-items:center; font-weight:800; font-size:.85em; font-family:"Manrope",sans-serif}
+.pasos b{display:block; margin-bottom:2px}
+.pasos span{color:var(--ink-soft); font-size:.95em; line-height:1.5}
+ul.limpia{margin:8px 0 0; padding-left:20px; color:var(--ink-soft); font-size:.95em; line-height:1.6}
+ul.limpia li{margin-bottom:6px}
+ul.limpia b{color:var(--ink)}
+
+.cards{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:6px}
+.card{padding:15px 16px; background:var(--no-soft); border:1px solid var(--no-border); border-radius:var(--radius-sm)}
+.card h3{font-size:.98em; margin-bottom:5px; color:var(--no)}
+.card p{font-size:.9em; color:var(--ink-soft)}
+
+.rule-card{background:var(--ok-soft); border:1px solid var(--ok-border); border-radius:var(--radius-sm); padding:16px 18px; margin-top:18px}
+.rule-tag{display:inline-block; font-size:.72em; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ok); margin-bottom:6px}
+.rule-card p{font-size:.95em; color:var(--ink-soft)}
+.rule-card p + p{margin-top:8px}
+.aviso{background:var(--soft); border:1px solid var(--no-border); border-radius:var(--radius-sm); padding:16px 18px; margin-top:18px}
+.aviso .rule-tag{color:var(--primary)}
+.aviso p{font-size:.95em; color:var(--ink-soft)}
+.aviso p + p{margin-top:8px}
+.neutro{background:var(--gray-4); border:1px solid var(--gray-3); border-radius:var(--radius-sm); padding:16px 18px; margin-top:18px}
+.neutro .rule-tag{color:var(--ink-soft)}
+.neutro p{font-size:.95em; color:var(--ink-soft)}
+
+code.inline{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.9em; background:var(--gray-4); padding:2px 6px; border-radius:6px; color:var(--ink)}
+
+input[type="text"], textarea{width:100%; padding:8px 10px; font-family:inherit; font-size:.94em; color:var(--ink); background:var(--paper); border:1.5px solid var(--gray-3); border-radius:10px}
+input:focus, textarea:focus{outline:none; border-color:var(--primary-2); box-shadow:0 0 0 3px rgba(213,43,112,.12)}
+textarea{min-height:88px; line-height:1.5; resize:vertical}
+.campo-label{display:block; font-size:.88em; font-weight:600; color:var(--ink); margin:16px 0 6px}
+.plantilla td{vertical-align:middle}
+.plantilla input[type="text"]{font-size:.9em; padding:7px 9px}
+
+.cotejo{list-style:none; padding:0; margin:8px 0 0; display:flex; flex-direction:column; gap:9px}
+.cotejo li{display:flex; gap:11px; align-items:flex-start; padding:11px 14px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:12px}
+.cotejo li.hecho{background:var(--ok-soft); border-color:var(--ok-border)}
+.cotejo input[type="checkbox"]{margin-top:3px; width:17px; height:17px; flex:0 0 17px; accent-color:var(--primary)}
+.cotejo label{font-size:.94em; color:var(--ink-soft); line-height:1.5; cursor:pointer}
+.cotejo b{color:var(--ink)}
+.cotejo-grupo{font-size:.78em; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:20px 0 4px}
+
+.q{padding:16px 17px; border:1px solid var(--gray-3); border-radius:var(--radius-sm); background:var(--paper-2); margin-bottom:12px}
+.q.ok{background:var(--ok-soft); border-color:var(--ok-border)}
+.q.no{background:var(--no-soft); border-color:var(--no-border)}
+.q-text{font-weight:600; margin-bottom:11px}
+.choices{display:flex; flex-direction:column; gap:8px}
+.choices button{text-align:left; padding:10px 13px; font-family:inherit; font-size:.93em; color:var(--ink); background:var(--paper); border:1.5px solid var(--gray-3); border-radius:11px; cursor:pointer}
+.choices button:hover:not(:disabled){border-color:var(--primary-2)}
+.choices button.right{background:var(--ok-soft); border-color:var(--ok); color:var(--ok); font-weight:600}
+.choices button.wrong{background:var(--no-soft); border-color:var(--no); color:var(--no)}
+.choices button:disabled{cursor:default}
+.fb{display:none; margin-top:11px; padding:11px 13px; background:var(--paper); border-left:3px solid var(--primary); border-radius:0 10px 10px 0; font-size:.92em; color:var(--ink-soft); line-height:1.5}
+.q.answered .fb{display:block}
+.score{display:inline-block; margin-top:6px; padding:9px 15px; background:var(--soft); border:1px solid var(--no-border); border-radius:11px; font-weight:700; color:var(--primary)}
+
+.export-bar{margin-top:18px; padding-top:16px; border-top:1px solid var(--gray-3)}
+.export-warn{font-size:.88em; color:var(--muted); margin-bottom:12px}
+.export-actions{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:10px 16px; font-family:inherit; font-size:.93em; font-weight:600; border-radius:11px; cursor:pointer; background:var(--paper); color:var(--ink); border:1.5px solid var(--gray-3)}
+.btn:hover{border-color:var(--primary-2)}
+.btn.danger{color:var(--no); border-color:var(--no-border)}
+.estado{font-size:.86em; color:var(--ok); opacity:0; transition:opacity .2s}
+.estado.show{opacity:1}
+.page-foot{max-width:1060px; margin:0 auto; padding:20px 28px 40px; display:flex; flex-wrap:wrap; gap:8px; justify-content:space-between; font-size:.84em; color:var(--muted); border-top:1px solid var(--gray-3)}
+
+.modal-ov[hidden]{display:none}
+.modal-ov{position:fixed; inset:0; background:rgba(20,22,26,.45); display:grid; place-items:center; padding:20px; z-index:50}
+.modal{background:var(--paper); border-radius:var(--radius); padding:26px; max-width:420px; box-shadow:var(--shadow)}
+.modal h3{margin-bottom:8px}
+.modal p{font-size:.94em; color:var(--ink-soft); margin-bottom:18px}
+.modal-actions{display:flex; gap:10px; justify-content:flex-end}
+
+@media (max-width:880px){
+  section{padding:22px}
+  .hero{padding:40px 20px 30px}
+  main{padding:24px 18px 40px}
+  table{font-size:.82em}
+  th,td{padding:7px 7px}
+  .cards{grid-template-columns:1fr}
+  /* las tablas de cuatro y cinco columnas se apilan: en pantalla angosta no entran */
+  .plantilla thead, .stack thead{display:none}
+  .plantilla, .plantilla tbody, .plantilla tr, .plantilla td,
+  .stack, .stack tbody, .stack tr, .stack td{display:block; width:auto}
+  .plantilla tr, .stack tr{border:1px solid var(--gray-3); border-radius:12px; padding:10px 12px; margin-bottom:10px; background:var(--paper-2)}
+  .plantilla tr:nth-child(even) td, .stack tr:nth-child(even) td{background:transparent}
+  .plantilla td, .stack td{border:0; padding:5px 0}
+  .plantilla td::before, .stack td::before{content:attr(data-label); display:block; font-size:.78em; font-weight:700; color:var(--muted); margin-bottom:3px}
+  .plantilla input[type="text"]{font-size:.9em}
+}
+@media print{
+  body{background:#fff}
+  .hero, section{box-shadow:none; border:1px solid #ccc; page-break-inside:avoid}
+  .track, .export-actions, .modal-ov{display:none}
+  .fb{display:block !important}
+  input, textarea{border:1px dashed #999}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="kicker">Olimpíadas de ETP 2026 · Modalidad Informática</p>
+    <h1>Organizar el trabajo del equipo</h1>
+    <p class="lead">La consigna se resuelve en pocos días y en equipo de cuatro. Esta clase no agrega contenido técnico: arma el andamiaje con el que se trabaja cualquiera de las situaciones. Se sale de acá con cuatro cosas empezadas: la lista de entregables verificables, el cronograma con responsables, la bitácora abierta y la lista de cotejo de entrega.</p>
+    <div class="track">
+      <div class="track-step"><b>1</b><span>Cómo se evalúa</span></div>
+      <div class="track-step"><b>2</b><span>Qué se entrega</span></div>
+      <div class="track-step"><b>3</b><span>De la consigna a los entregables</span></div>
+      <div class="track-step"><b>4</b><span>El cronograma</span></div>
+      <div class="track-step"><b>5</b><span>La bitácora</span></div>
+      <div class="track-step"><b>6</b><span>Antes de entregar</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- 1 -->
+<section id="grilla">
+  <div class="step-header">
+    <span class="step-num">1</span>
+    <div>
+      <p class="kicker">Punto 1</p>
+      <h2>Con qué grilla se evalúa el trabajo</h2>
+    </div>
+  </div>
+  <p>El reglamento de la Olimpíada establece que la evaluación se hace con instrumentos elaborados por el INET, y que la escuela tiene que dar a conocer los criterios antes de que los equipos empiecen. Esta es la grilla que se usó en Informática y en Programación en las dos últimas ediciones: seis criterios, cien puntos.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Criterio</th><th class="num">Puntos</th><th>Qué mira el equipo evaluador</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Competencias de trabajo en equipo</b></td>
+          <td class="num"><span class="peso">6</span></td>
+          <td>Que los roles y las tareas estén repartidos de forma equitativa, que las propuestas se hayan discutido antes de decidir, y que la presentación sea prolija y en lenguaje claro.</td>
+        </tr>
+        <tr>
+          <td><b>Pensamiento combinatorio</b></td>
+          <td class="num"><span class="peso">10</span></td>
+          <td>Que el equipo haya considerado alternativas de solución y haya elegido una <b>en forma fundamentada</b>. Sin comparación escrita, este criterio queda en cero.</td>
+        </tr>
+        <tr>
+          <td><b>Autorregulación</b></td>
+          <td class="num"><span class="peso">12</span></td>
+          <td>Que se respeten las consignas y las pautas dadas, y que el equipo registre y referencie la información para volver a usarla. Acá viven la bitácora y las citas.</td>
+        </tr>
+        <tr>
+          <td><b>Planificación y organización de la actividad</b></td>
+          <td class="num"><span class="peso alto">20</span></td>
+          <td>Que el equipo haya planificado <b>en función del tiempo fijado</b>, y que las acciones propuestas sean pertinentes al problema.</td>
+        </tr>
+        <tr>
+          <td><b>Resolución de la situación problema</b></td>
+          <td class="num"><span class="peso alto">32</span></td>
+          <td>Que lo técnico esté bien: la solución, el diagrama, la configuración, el modelo, el diagnóstico o el prototipo que pida la consigna.</td>
+        </tr>
+        <tr>
+          <td><b>Producto final</b></td>
+          <td class="num"><span class="peso alto">20</span></td>
+          <td>Que se cumplan las condiciones de presentación y que el producto se adecue técnicamente a lo pedido.</td>
+        </tr>
+      </tbody>
+      <tfoot><tr><td>Total</td><td class="num">100</td><td></td></tr></tfoot>
+    </table>
+  </div>
+
+  <div class="aviso">
+    <span class="rule-tag">La cuenta que conviene hacer una sola vez</span>
+    <p>La solución técnica vale <b>32 de 100</b>. Los otros <b>68 puntos</b> se reparten entre organizarse, comparar alternativas, registrar el proceso y presentar. Un equipo que resuelve perfecto y no documenta nada tiene un techo de 32; un equipo que resuelve razonable y organiza bien el trabajo llega mucho más arriba.</p>
+    <p>No significa que lo técnico importe poco: es el criterio de mayor peso individual. Significa que los cuatro integrantes tienen trabajo valioso incluso mientras uno resuelve la parte técnica.</p>
+  </div>
+
+  <h3 class="sub">Dónde se ve cada criterio</h3>
+  <p>Un criterio se evalúa sobre algo que se puede leer en el documento. Si no está escrito, no existe para quien evalúa.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Criterio</th><th>Evidencia concreta en el documento</th></tr></thead>
+      <tbody>
+        <tr><td>Trabajo en equipo</td><td>La planilla de distribución de responsabilidades, con el criterio con que se repartió</td></tr>
+        <tr><td>Pensamiento combinatorio</td><td>La comparación entre dos alternativas y el párrafo de justificación de la elegida</td></tr>
+        <tr><td>Autorregulación</td><td>El registro de dificultades y errores, y las referencias a las fuentes consultadas</td></tr>
+        <tr><td>Planificación</td><td>El cronograma con tareas, responsables y fechas, ajustado a los días disponibles</td></tr>
+        <tr><td>Resolución</td><td>El diagrama, modelo, código, configuración o prototipo que pide la situación</td></tr>
+        <tr><td>Producto final</td><td>El PDF armado según las pautas: extensión, tipografía, anexos, citas</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="entregables">
+  <div class="step-header">
+    <span class="step-num">2</span>
+    <div>
+      <p class="kicker">Punto 2</p>
+      <h2>Qué se entrega, y en qué formato</h2>
+    </div>
+  </div>
+  <p>Sea cual sea la situación asignada, el encabezado pide siempre las mismas siete cosas. Cuatro de las siete se pueden empezar hoy, porque no dependen de resolver la parte técnica.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Lo que pide el encabezado</th><th>Depende del tema</th><th>Criterio de la grilla que alimenta</th></tr></thead>
+      <tbody>
+        <tr><td>Una solución técnica a la situación asignada</td><td><b>Sí</b></td><td>Resolución</td></tr>
+        <tr><td>Un documento de 5 a 10 páginas, sin contar anexos</td><td>No</td><td>Producto final</td></tr>
+        <tr><td>Un esquema, diagrama, modelo, código o prototipo</td><td><b>Sí</b></td><td>Resolución</td></tr>
+        <tr><td>Una comparación entre al menos dos alternativas</td><td>No</td><td>Pensamiento combinatorio</td></tr>
+        <tr><td>La explicación de por qué eligieron esa solución</td><td>No</td><td>Pensamiento combinatorio</td></tr>
+        <tr><td>Un registro de dificultades o errores y cómo se resolvieron</td><td>No</td><td>Autorregulación</td></tr>
+        <tr><td>La distribución de responsabilidades entre los cuatro</td><td>No</td><td>Trabajo en equipo · Planificación</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">Las pautas de presentación</h3>
+  <p>En la instancia nacional el formato es de cumplimiento obligatorio y se controla antes de leer el contenido. Conviene trabajar con esas mismas pautas desde ahora, porque son parte de los 20 puntos de producto final.</p>
+  <ul class="limpia">
+    <li><b>Un único archivo PDF.</b> Las imágenes, capturas, croquis y planillas van en un anexo dentro del mismo documento, no en archivos aparte.</li>
+    <li><b>Tipografía y párrafo:</b> Arial 12, interlineado sencillo.</li>
+    <li><b>Citas y referencias</b> de todo lo consultado, en normas APA 7. Una captura de precios también se referencia: sitio y fecha de consulta.</li>
+    <li><b>El nombre del archivo identifica al equipo</b>, no a las personas. En la instancia nacional el formato es jurisdicción, especialidad, CUE y número de equipo.</li>
+    <li><b>Redacción y ortografía</b> se evalúan de forma explícita, igual que la presencia de todos los puntos pedidos.</li>
+  </ul>
+  <p class="hint">Si algún punto del encabezado no se puede completar, se escribe igual el título de esa sección y se explica en dos líneas qué falta y por qué. Un apartado ausente se lee como olvido; un apartado con su límite explicado se lee como decisión técnica.</p>
+</section>
+
+<!-- 3 -->
+<section id="descomponer">
+  <div class="step-header">
+    <span class="step-num">3</span>
+    <div>
+      <p class="kicker">Punto 3</p>
+      <h2>De la consigna a una lista de entregables verificables</h2>
+    </div>
+  </div>
+  <p>La consigna está escrita en prosa y en modo general. El primer trabajo del equipo es convertirla en una lista donde cada línea se pueda revisar con un sí o un no. Es la misma metodología que veníamos usando: se baja del sistema completo a las partes, sin saltar niveles.</p>
+
+  <ol class="pasos">
+    <li><b>Subrayar cada verbo que pide un producto.</b><span>«Realizar un diagrama», «indicar dónde», «establecer al menos tres», «justificar». Cada verbo de esos es un entregable, no una idea general.</span></li>
+    <li><b>Escribir cada entregable como algo que se puede revisar.</b><span>No «hablar de seguridad», sino «tres medidas de seguridad, cada una con qué riesgo evita». La segunda forma se puede controlar; la primera no.</span></li>
+    <li><b>Marcar los mínimos numéricos.</b><span>Cuando la consigna dice «al menos tres» o «al menos cinco», ese número es un umbral de la evaluación. Quedar por debajo se detecta en diez segundos.</span></li>
+    <li><b>Sumar los cuatro entregables del encabezado.</b><span>Comparación, justificación, registro de dificultades y distribución de responsabilidades. No están en el texto de la situación, pero se piden igual.</span></li>
+    <li><b>Ordenar por dependencia.</b><span>Qué no se puede empezar hasta que otra cosa esté lista. Eso ya es el borrador del cronograma del punto siguiente.</span></li>
+  </ol>
+
+  <h3 class="sub">Un ejemplo desarrollado</h3>
+  <p>Sobre la situación del plan de mantenimiento preventivo del laboratorio, para ver la diferencia entre las dos columnas.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Lo que dice la consigna</th><th>Escrito como entregable verificable</th></tr></thead>
+      <tbody>
+        <tr><td>Inventario modelo</td><td>Planilla con una fila por equipo del laboratorio y las columnas tipo, año, último mantenimiento, próximo y observaciones</td></tr>
+        <tr><td>Tareas de mantenimiento y periodicidad</td><td>Lista de tareas donde cada una dice cada cuánto se hace y quién la hace</td></tr>
+        <tr><td>Herramientas necesarias</td><td>Lista de herramientas e insumos, con la tarea a la que corresponde cada uno</td></tr>
+        <tr><td>Precauciones de seguridad</td><td>Precauciones antes, durante y después de abrir un equipo, incluida la descarga electrostática</td></tr>
+        <tr><td>Registro del mantenimiento</td><td>Planilla de registro en blanco, más una copia completada con el equipo real que intervinieron</td></tr>
+        <tr><td>Criterios de reemplazo de un componente</td><td>Cada criterio con un umbral medible: años de uso, cantidad de fallas, temperatura, ruido, costo de la reparación contra el del reemplazo</td></tr>
+        <tr><td>Demostración sobre una computadora</td><td>Mantenimiento hecho y documentado en una máquina: estado inicial, tareas realizadas, estado final, evidencia fotográfica en el anexo</td></tr>
+        <tr><td><i>(del encabezado)</i></td><td>Comparación entre dos planes posibles con su justificación · registro de dificultades · distribución de responsabilidades</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hint">Quedaron diez entregables de una consigna de siete renglones. Eso es lo normal: la consigna es corta porque supone que el equipo la desarma.</p>
+
+  <div class="rule-card">
+    <span class="rule-tag">Ahora con la consigna del equipo</span>
+    <p>Escriban los entregables de su propia situación, uno por línea, en la forma verificable. Cuando terminen, cuenten cuántos son: ese número es lo que hay que repartir en el cronograma del punto 4.</p>
+  </div>
+  <label class="campo-label" for="c-consigna">Número y título de la situación que les tocó</label>
+  <input type="text" id="c-consigna" data-k="consigna" placeholder="Por ejemplo: 5 · Base de datos para préstamos de equipamiento" />
+  <label class="campo-label" for="c-entregables">Los entregables, uno por línea</label>
+  <textarea id="c-entregables" data-k="entregables" placeholder="1. &#10;2. &#10;3. "></textarea>
+</section>
+
+<!-- 4 -->
+<section id="cronograma">
+  <div class="step-header">
+    <span class="step-num">4</span>
+    <div>
+      <p class="kicker">Punto 4</p>
+      <h2>El cronograma: tareas, responsables y días</h2>
+    </div>
+  </div>
+  <p>La grilla no pide un cronograma bonito: pide que el equipo haya planificado <b>en función del tiempo fijado</b>. Son 20 puntos, el segundo criterio más pesado, y se demuestra con una tabla. En la instancia nacional se pide de forma explícita la planificación de los tiempos con tareas, fecha de inicio, cantidad de días y responsable.</p>
+
+  <h3 class="sub">Cuatro reglas para que el cronograma sea real</h3>
+  <div class="cards">
+    <div class="card">
+      <h3>El último día no se produce</h3>
+      <p>El día final es para armar el PDF, controlar con la lista de cotejo y cargar las referencias. Si ese día todavía se está resolviendo algo, la entrega sale sin control.</p>
+    </div>
+    <div class="card">
+      <h3>Nadie con dos tareas al mismo tiempo</h3>
+      <p>Si dos tareas del mismo día tienen el mismo responsable, una de las dos se va a hacer mal. Se corre una o se cambia el responsable.</p>
+    </div>
+    <div class="card">
+      <h3>Las dependencias van antes</h3>
+      <p>No se puede escribir la justificación de la elección antes de tener la comparación. El orden de la tabla tiene que respetar eso.</p>
+    </div>
+    <div class="card">
+      <h3>El criterio de reparto se escribe</h3>
+      <p>Por qué cada uno tomó esa tarea: quien tiene la máquina disponible, quien sabe del tema, quien tiene menos carga. Eso es parte de lo que se evalúa.</p>
+    </div>
+  </div>
+
+  <h3 class="sub">Un cronograma de cinco días, como ejemplo</h3>
+  <p>Sobre la misma situación de mantenimiento preventivo. Sirve como forma, no como contenido: las tareas de cada equipo salen de su propia lista de entregables.</p>
+  <div class="table-wrap">
+    <table class="stack">
+      <thead><tr><th>Día</th><th>Tarea</th><th>Entregable que produce</th><th>Depende de</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Día"><b>1</b></td><td data-label="Tarea">Leer la consigna completa y armar la lista de entregables. Repartir y escribir el criterio de reparto</td><td data-label="Entregable que produce">Lista de entregables · planilla de responsabilidades</td><td data-label="Depende de">—</td></tr>
+        <tr><td data-label="Día"><b>1</b></td><td data-label="Tarea">Relevar el laboratorio y armar el inventario modelo</td><td data-label="Entregable que produce">Planilla de inventario</td><td data-label="Depende de">—</td></tr>
+        <tr><td data-label="Día"><b>2</b></td><td data-label="Tarea">Tareas de mantenimiento, periodicidad, herramientas y precauciones</td><td data-label="Entregable que produce">Cuatro apartados del plan</td><td data-label="Depende de">Inventario</td></tr>
+        <tr><td data-label="Día"><b>2</b></td><td data-label="Tarea">Comparar los dos planes posibles y elegir con criterios</td><td data-label="Entregable que produce">Comparación y justificación</td><td data-label="Depende de">Tareas definidas</td></tr>
+        <tr><td data-label="Día"><b>3</b></td><td data-label="Tarea">Mantenimiento real de una computadora, con registro y fotos</td><td data-label="Entregable que produce">Demostración documentada</td><td data-label="Depende de">Plan y precauciones</td></tr>
+        <tr><td data-label="Día"><b>4</b></td><td data-label="Tarea">Criterios de reemplazo con umbrales y planilla de registro</td><td data-label="Entregable que produce">Dos apartados del plan</td><td data-label="Depende de">Demostración</td></tr>
+        <tr><td data-label="Día"><b>4</b></td><td data-label="Tarea">Redactar el documento completo con los apartados en orden</td><td data-label="Entregable que produce">Borrador del documento</td><td data-label="Depende de">Todo lo anterior</td></tr>
+        <tr><td data-label="Día"><b>5</b></td><td data-label="Tarea">Armar el PDF, cargar referencias APA, controlar con la lista de cotejo</td><td data-label="Entregable que produce">Entrega final</td><td data-label="Depende de">Borrador</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hint">La bitácora no aparece como tarea de un día porque se completa todos los días, a medida que pasan las cosas.</p>
+
+  <div class="rule-card">
+    <span class="rule-tag">El cronograma del equipo</span>
+    <p>Completen las filas que necesiten. Si les sobran, se dejan vacías; si les faltan, siguen en la carpeta con la misma estructura de columnas.</p>
+  </div>
+  <div class="table-wrap">
+    <table class="plantilla">
+      <thead><tr><th style="width:9%">Día</th><th style="width:34%">Tarea</th><th style="width:26%">Entregable que produce</th><th style="width:16%">Responsable</th><th style="width:15%">Depende de</th></tr></thead>
+      <tbody id="cronoBody"></tbody>
+    </table>
+  </div>
+  <label class="campo-label" for="c-criterio">Con qué criterio repartieron las tareas</label>
+  <textarea id="c-criterio" data-k="criterio" placeholder="Por ejemplo: las tareas que necesitan una máquina quedaron para quien tiene el laboratorio disponible en su turno; la redacción se dividió por apartados para que ninguno escriba solo."></textarea>
+</section>
+
+<!-- 5 -->
+<section id="bitacora">
+  <div class="step-header">
+    <span class="step-num">5</span>
+    <div>
+      <p class="kicker">Punto 5</p>
+      <h2>La bitácora de dificultades</h2>
+    </div>
+  </div>
+  <p>El encabezado pide «un registro breve de dificultades o errores encontrados y cómo los solucionaron», y la grilla lo evalúa dentro de autorregulación: registrar y referenciar la información para poder volver a usarla. Son 12 puntos que se pierden completos cuando el equipo lo deja para el final y ya no se acuerda de nada.</p>
+
+  <div class="neutro">
+    <span class="rule-tag">Qué es una dificultad que vale la pena registrar</span>
+    <p>Cualquier cosa que los hizo cambiar de plan, volver atrás o buscar información: un comando que no funcionó, un cálculo que no cerraba, una configuración que rompió otra, un dato de precio que no coincidía entre dos sitios, un integrante que no pudo entrar al laboratorio. No hace falta que sea grave. Hace falta que sea real.</p>
+  </div>
+
+  <h3 class="sub">Las cinco columnas de una entrada</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Campo</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td><b>Día</b></td><td>Día 2</td></tr>
+        <tr><td><b>Qué pasó</b></td><td>La consulta traía los equipos prestados y también los ya devueltos</td></tr>
+        <tr><td><b>Qué probamos</b></td><td>Primero filtrar por el estado del equipo; después revisar cómo quedaba la fecha de devolución al registrar el regreso</td></tr>
+        <tr><td><b>Qué lo resolvió</b></td><td>La condición sobre la fecha de devolución vacía. El estado del equipo servía para otra cosa</td></tr>
+        <tr><td><b>Dónde lo buscamos</b></td><td>Documentación del gestor, apartado de valores nulos, consultado el 12 de mayo</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hint">La última columna es la que engancha con las referencias del documento. Si lo anotan cuando pasa, la bibliografía se arma sola al final.</p>
+
+  <div class="rule-card">
+    <span class="rule-tag">Primera entrada, hoy</span>
+    <p>Escriban ahora una dificultad que ya tuvieron: entender qué pide la consigna, ponerse de acuerdo en cómo repartir, conseguir una máquina. Sirve igual. La bitácora que arranca el primer día es la que después está completa.</p>
+  </div>
+  <label class="campo-label" for="c-bit1">Entrada 1</label>
+  <textarea id="c-bit1" data-k="bit1" placeholder="Día · qué pasó · qué probamos · qué lo resolvió · dónde lo buscamos"></textarea>
+  <label class="campo-label" for="c-bit2">Entrada 2</label>
+  <textarea id="c-bit2" data-k="bit2" placeholder="Día · qué pasó · qué probamos · qué lo resolvió · dónde lo buscamos"></textarea>
+</section>
+
+<!-- 6 -->
+<section id="cotejo">
+  <div class="step-header">
+    <span class="step-num">6</span>
+    <div>
+      <p class="kicker">Punto 6</p>
+      <h2>Lista de cotejo antes de entregar</h2>
+    </div>
+  </div>
+  <p>Una lista de cotejo se responde por presencia o ausencia, sin grados: está o no está. Se usa el último día, en equipo y en voz alta, sobre el PDF ya armado. Cada línea corresponde a algo que el equipo evaluador va a buscar.</p>
+
+  <p class="cotejo-grupo">Contenido</p>
+  <ul class="cotejo">
+    <li><input type="checkbox" id="k1" data-c="k1"><label for="k1">Están <b>todos</b> los puntos que enumera la consigna, cada uno con su título visible en el documento</label></li>
+    <li><input type="checkbox" id="k2" data-c="k2"><label for="k2">Se cumplen los <b>mínimos numéricos</b> pedidos: «al menos tres», «al menos cinco»</label></li>
+    <li><input type="checkbox" id="k3" data-c="k3"><label for="k3">Está el <b>esquema, diagrama, modelo, código o prototipo</b> que corresponde a la situación</label></li>
+    <li><input type="checkbox" id="k4" data-c="k4"><label for="k4">Está la <b>comparación entre dos alternativas</b>, con criterios visibles</label></li>
+    <li><input type="checkbox" id="k5" data-c="k5"><label for="k5">Está la <b>justificación</b> de la elegida: qué criterio definió la diferencia y qué se resigna</label></li>
+    <li><input type="checkbox" id="k6" data-c="k6"><label for="k6">Está el <b>registro de dificultades</b> con más de una entrada</label></li>
+    <li><input type="checkbox" id="k7" data-c="k7"><label for="k7">Está la <b>distribución de responsabilidades</b> de los cuatro integrantes, con el criterio de reparto</label></li>
+    <li><input type="checkbox" id="k8" data-c="k8"><label for="k8">Está el <b>cronograma</b> con tareas, responsables y días</label></li>
+  </ul>
+
+  <p class="cotejo-grupo">Formato</p>
+  <ul class="cotejo">
+    <li><input type="checkbox" id="k9" data-c="k9"><label for="k9">Es <b>un único PDF</b>, con los anexos adentro del mismo archivo</label></li>
+    <li><input type="checkbox" id="k10" data-c="k10"><label for="k10">El cuerpo tiene entre <b>5 y 10 páginas</b> sin contar anexos</label></li>
+    <li><input type="checkbox" id="k11" data-c="k11"><label for="k11"><b>Arial 12, interlineado sencillo</b></label></li>
+    <li><input type="checkbox" id="k12" data-c="k12"><label for="k12">Las <b>referencias</b> están en APA 7, y las capturas de precios indican sitio y fecha</label></li>
+    <li><input type="checkbox" id="k13" data-c="k13"><label for="k13">El <b>nombre del archivo</b> identifica al equipo según lo que indicó la escuela</label></li>
+    <li><input type="checkbox" id="k14" data-c="k14"><label for="k14">Se leyó completo <b>en voz alta</b> buscando errores de ortografía y frases cortadas</label></li>
+  </ul>
+
+  <p class="cotejo-grupo">Equipo</p>
+  <ul class="cotejo">
+    <li><input type="checkbox" id="k15" data-c="k15"><label for="k15">Los <b>cuatro</b> integrantes pueden explicar cualquier parte del documento, no solo la propia</label></li>
+    <li><input type="checkbox" id="k16" data-c="k16"><label for="k16">Cada uno sabe <b>cuál fue la decisión más discutida</b> del trabajo y por qué se resolvió así</label></li>
+  </ul>
+
+  <div class="aviso">
+    <span class="rule-tag">Cómo se usa</span>
+    <p>Si una línea no se puede marcar, no se discute: se arregla o se escribe en el documento por qué queda así. Una lista de cotejo con casilleros vacíos y sin explicación es la forma más rápida de perder puntos de producto final.</p>
+  </div>
+</section>
+
+<!-- chequeo -->
+<section id="chequeo">
+  <div class="step-header">
+    <span class="step-num">7</span>
+    <div>
+      <p class="kicker">Cierre</p>
+      <h2>Cuatro preguntas de control</h2>
+    </div>
+  </div>
+  <p>Una sola respuesta correcta por pregunta. Después de responder aparece la explicación.</p>
+
+  <div id="qs">
+    <div class="q" data-ok="a">
+      <p class="q-text">1. En la grilla de cien puntos, ¿cuánto pesa que la solución técnica esté bien resuelta?</p>
+      <div class="choices">
+        <button data-v="a">32 puntos: es el criterio más pesado, pero no llega a un tercio del total</button>
+        <button data-v="b">60 puntos: la mayor parte de la evaluación es técnica</button>
+        <button data-v="c">Los 100: el resto de los criterios se deduce de la solución</button>
+      </div>
+      <div class="fb"><b>32 puntos.</b> Es el criterio individual más pesado, y por eso hay que resolverlo bien. Pero planificación, producto final, autorregulación, pensamiento combinatorio y trabajo en equipo suman 68, y todos se demuestran por escrito. Por eso hay trabajo en paralelo para los cuatro desde el primer día.</div>
+    </div>
+
+    <div class="q" data-ok="b">
+      <p class="q-text">2. El equipo resolvió todo sin problemas serios, así que deja el registro de dificultades vacío. ¿Qué pasa?</p>
+      <div class="choices">
+        <button data-v="a">No pasa nada: el registro solo se completa si hubo errores graves</button>
+        <button data-v="b">Se pierden puntos dos veces: por autorregulación y por faltar un ítem pedido</button>
+        <button data-v="c">Se pierde el criterio de trabajo en equipo, porque no se ve quién hizo cada cosa</button>
+      </div>
+      <div class="fb"><b>Se pierde dos veces.</b> El registro es uno de los siete entregables del encabezado, así que su ausencia cuenta como ítem faltante en producto final, y además es la evidencia principal de autorregulación. Y siempre hay algo que registrar: ponerse de acuerdo, conseguir una máquina o encontrar dos precios distintos para lo mismo ya son entradas válidas.</div>
+    </div>
+
+    <div class="q" data-ok="c">
+      <p class="q-text">3. Cada integrante hizo la parte que mejor le salía y funcionó bien, pero no lo escribieron en ninguna parte. ¿Qué falta?</p>
+      <div class="choices">
+        <button data-v="a">Nada, si el resultado está bien el reparto es asunto interno del equipo</button>
+        <button data-v="b">Falta que cada uno firme la parte que hizo, para que se pueda calificar individual</button>
+        <button data-v="c">Falta la planilla de distribución con el criterio de reparto, que es un entregable</button>
+      </div>
+      <div class="fb"><b>Falta la planilla con el criterio.</b> No se pide para calificar por separado a cada uno: se pide porque el reparto de tareas es parte de lo que se evalúa como capacidad de organización. Que salió bien no se puede leer si no está escrito cómo se organizaron.</div>
+    </div>
+
+    <div class="q" data-ok="a">
+      <p class="q-text">4. El documento tiene 8 páginas y las capturas de pantalla van en un segundo archivo, para no pasar el límite. ¿Está bien?</p>
+      <div class="choices">
+        <button data-v="a">No: los anexos van en el mismo PDF, y no cuentan para las 5 a 10 páginas</button>
+        <button data-v="b">Sí: separar los anexos es la forma correcta de respetar la extensión</button>
+        <button data-v="c">Sí, siempre que el segundo archivo tenga el mismo nombre con el sufijo «anexo»</button>
+      </div>
+      <div class="fb"><b>No.</b> La entrega es un único PDF y el material complementario se incorpora en un anexo dentro de ese mismo documento. Además, el límite de 5 a 10 páginas es del cuerpo del trabajo: los anexos no cuentan, así que no hacía falta sacarlos.</div>
+    </div>
+  </div>
+
+  <p><span class="score" id="score">0 de 4</span></p>
+
+  <div class="rule-card">
+    <span class="rule-tag">Registro para la carpeta</span>
+    <p>Cada estudiante copia a mano: la lista de entregables de su consigna, la fila del cronograma que le corresponde como responsable, y la primera entrada de la bitácora. Ese registro es el borrador de tres de los siete apartados del documento que entrega el equipo.</p>
+  </div>
+
+  <div class="export-bar">
+    <p class="export-warn"><b>Es material de trabajo en clase.</b> Lo que escriban queda solamente en este navegador. Para conservarlo, imprímanlo o guárdenlo en PDF.</p>
+    <div class="export-actions">
+      <button class="btn danger" id="btnReset">Reiniciar</button>
+      <button class="btn" onclick="window.print()">Imprimir o guardar PDF</button>
+      <span class="estado" id="estado"></span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="modal-ov" id="modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
+    <h3 id="mt">Reiniciar la actividad</h3>
+    <p>Se borran los entregables, el cronograma, la bitácora, la lista de cotejo y las respuestas del control. No hay forma de recuperarlo.</p>
+    <div class="modal-actions">
+      <button class="btn" id="mCancel">Cancelar</button>
+      <button class="btn danger" id="mOk">Sí, reiniciar</button>
+    </div>
+  </div>
+</div>
+
+<footer class="page-foot">
+  <span>Evaluación de Proyectos · E.E.S.T. N.º 5 · 7.º año</span>
+  <span>Olimpíadas de ETP 2026 · Modalidad Informática</span>
+</footer>
+
+<script>
+const KEY = 'olimpiadas-organizar-equipo:v1';
+const state = (() => { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch { return {}; } })();
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} };
+
+/* filas del cronograma */
+const FILAS = 10;
+const COLS = [
+  ['dia', 'Día'],
+  ['tarea', 'Tarea'],
+  ['entregable', 'Entregable que produce'],
+  ['resp', 'Responsable'],
+  ['dep', 'Depende de'],
+];
+const body = document.getElementById('cronoBody');
+for (let i = 0; i < FILAS; i++) {
+  const tr = document.createElement('tr');
+  COLS.forEach(([col, rotulo]) => {
+    const td = document.createElement('td');
+    td.dataset.label = rotulo;
+    const inp = document.createElement('input');
+    inp.type = 'text';
+    inp.dataset.k = 'crono-' + i + '-' + col;
+    inp.setAttribute('aria-label', rotulo + ', fila ' + (i + 1));
+    td.appendChild(inp);
+    tr.appendChild(td);
+  });
+  body.appendChild(tr);
+}
+
+/* campos de texto */
+document.querySelectorAll('[data-k]').forEach(el => {
+  if (state[el.dataset.k] !== undefined) el.value = state[el.dataset.k];
+  el.addEventListener('input', () => {
+    state[el.dataset.k] = el.value;
+    save();
+    flash();
+  });
+});
+
+/* lista de cotejo */
+document.querySelectorAll('[data-c]').forEach(cb => {
+  const k = 'cotejo-' + cb.dataset.c;
+  if (state[k]) { cb.checked = true; cb.closest('li').classList.add('hecho'); }
+  cb.addEventListener('change', () => {
+    state[k] = cb.checked;
+    cb.closest('li').classList.toggle('hecho', cb.checked);
+    save();
+    flash();
+  });
+});
+
+/* preguntas de control */
+const scoreEl = document.getElementById('score');
+const qs = [...document.querySelectorAll('#qs .q')];
+const pintar = (q, elegida) => {
+  const ok = q.dataset.ok;
+  q.classList.add('answered', elegida === ok ? 'ok' : 'no');
+  q.querySelectorAll('.choices button').forEach(b => {
+    b.disabled = true;
+    if (b.dataset.v === ok) b.classList.add('right');
+    else if (b.dataset.v === elegida) b.classList.add('wrong');
+  });
+};
+const puntaje = () => {
+  const bien = qs.filter((q, i) => state['q' + i] === q.dataset.ok).length;
+  scoreEl.textContent = bien + ' de ' + qs.length;
+};
+qs.forEach((q, i) => {
+  if (state['q' + i]) pintar(q, state['q' + i]);
+  q.querySelectorAll('.choices button').forEach(b => {
+    b.addEventListener('click', () => {
+      state['q' + i] = b.dataset.v;
+      save();
+      pintar(q, b.dataset.v);
+      puntaje();
+      flash();
+    });
+  });
+});
+puntaje();
+
+/* aviso de guardado */
+const estado = document.getElementById('estado');
+let t = null;
+function flash() {
+  estado.textContent = 'Guardado en este navegador';
+  estado.classList.add('show');
+  clearTimeout(t);
+  t = setTimeout(() => estado.classList.remove('show'), 1600);
+}
+
+/* reinicio */
+const modal = document.getElementById('modal');
+document.getElementById('btnReset').addEventListener('click', () => { modal.hidden = false; });
+document.getElementById('mCancel').addEventListener('click', () => { modal.hidden = true; });
+document.getElementById('mOk').addEventListener('click', () => {
+  try { localStorage.removeItem(KEY); } catch {}
+  location.reload();
+});
+</script>
+</body>
+</html>

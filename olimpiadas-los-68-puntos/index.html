@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Los 68 puntos · Qué aporta la materia — Olimpíadas de ETP 2026</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7f9; --bg-soft:#fbfbfc; --paper:#fff; --paper-2:#fcfbfc;
+  --ink:#17191d; --ink-soft:#2f2f36; --muted:#6f7681;
+  --primary:#b31759; --primary-2:#d52b70; --soft:#fff1f6;
+  --gray-2:#8d96a3; --gray-3:#dfe3e8; --gray-4:#eef1f4;
+  --ok:#1f7a4d; --ok-soft:#eefaf3; --ok-border:#9ed2b1;
+  --no:#a8214b; --no-soft:#fff1f6; --no-border:#f2b4ca;
+  --shadow:0 18px 48px rgba(20,22,26,.08);
+  --shadow-soft:0 12px 28px rgba(20,22,26,.06);
+  --radius:24px; --radius-sm:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:"Inter",system-ui,sans-serif; color:var(--ink);
+  background:
+    radial-gradient(circle at 92% 0%, rgba(214,41,108,.06), transparent 22%),
+    radial-gradient(circle at 0% 100%, rgba(89,90,96,.05), transparent 24%),
+    linear-gradient(180deg, var(--bg-soft), var(--bg));
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:"Manrope","Inter",sans-serif; letter-spacing:-.02em; margin:0; color:var(--ink)}
+p{margin:0; line-height:1.58}
+a{color:var(--primary)}
+
+.hero{padding:56px 28px 40px; background:radial-gradient(circle at 8% 16%, rgba(214,41,108,.10), transparent 30%), linear-gradient(180deg,#fff,var(--bg-soft)); border-bottom:1px solid var(--gray-3)}
+.hero-inner{max-width:1060px; margin:0 auto}
+.kicker{font-size:.74em; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--primary); margin-bottom:10px}
+.hero h1{font-size:clamp(2rem,4.4vw,3rem); line-height:1.06; margin-bottom:14px}
+.hero .lead{max-width:840px; color:var(--ink-soft); font-size:1.06em}
+.hero .lead + .lead{margin-top:10px}
+
+.cuenta{display:flex; flex-wrap:wrap; gap:12px; margin-top:26px}
+.cuenta-box{flex:1 1 190px; padding:16px 18px; background:var(--paper); border:1px solid var(--gray-3); border-radius:var(--radius-sm); box-shadow:var(--shadow-soft)}
+.cuenta-box.destacada{border-color:var(--primary-2); background:var(--soft)}
+.cuenta-n{font-family:"Manrope",sans-serif; font-weight:800; font-size:2.1em; line-height:1; color:var(--primary)}
+.cuenta-box.gris .cuenta-n{color:var(--gray-2)}
+.cuenta-l{margin-top:6px; font-size:.88em; color:var(--ink-soft); line-height:1.4}
+
+.track{display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:10px; margin-top:26px}
+.track-step{display:flex; align-items:center; gap:10px; padding:11px 13px; background:var(--paper); border:1px solid var(--gray-3); border-radius:var(--radius-sm); text-decoration:none; color:var(--ink); box-shadow:var(--shadow-soft)}
+.track-step b{width:26px; height:26px; flex:0 0 26px; border-radius:9px; background:var(--soft); color:var(--primary); display:grid; place-items:center; font-size:.86em}
+.track-step span{font-size:.85em; font-weight:600; line-height:1.25}
+
+main{max-width:1060px; margin:0 auto; padding:34px 28px 60px; display:flex; flex-direction:column; gap:26px}
+section{background:var(--paper); border:1px solid var(--gray-3); border-radius:var(--radius); padding:30px; box-shadow:var(--shadow-soft)}
+section h2{font-size:1.5em; margin-bottom:8px}
+section > p{color:var(--ink-soft); margin-bottom:14px}
+section h3.sub{font-size:1.1em; margin:26px 0 8px; padding-top:18px; border-top:1px solid var(--gray-4)}
+section h3.sub:first-of-type{border-top:0; padding-top:0}
+.hint{font-size:.9em; color:var(--muted); margin-top:12px}
+
+.table-wrap{overflow-x:auto; margin:16px 0 6px}
+table{width:100%; border-collapse:collapse; font-size:.94em}
+th{text-align:left; background:var(--gray-4); color:var(--ink); font-weight:700; padding:10px 12px; border-bottom:1px solid var(--gray-3); font-size:.9em}
+td{padding:10px 12px; border-bottom:1px solid var(--gray-4); color:var(--ink-soft); vertical-align:top}
+tr:nth-child(even) td{background:var(--paper-2)}
+td b{color:var(--ink)}
+.num{text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums}
+tr.fila-total td{background:var(--soft); border-top:2px solid var(--primary-2); font-weight:700; color:var(--ink)}
+.pts{display:inline-block; min-width:34px; padding:2px 7px; border-radius:8px; background:var(--soft); color:var(--primary); font-weight:700; font-size:.9em; text-align:center; font-variant-numeric:tabular-nums}
+.pts.grande{background:linear-gradient(160deg,var(--primary),var(--primary-2)); color:#fff}
+
+.pasos{list-style:none; padding:0; margin:6px 0 0; display:flex; flex-direction:column; gap:12px; counter-reset:p}
+.pasos li{counter-increment:p; display:flex; gap:13px; align-items:flex-start; padding:13px 15px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:var(--radius-sm)}
+.pasos li::before{content:counter(p); flex:0 0 26px; width:26px; height:26px; border-radius:8px; background:var(--soft); color:var(--primary); display:grid; place-items:center; font-weight:800; font-size:.85em; font-family:"Manrope",sans-serif}
+.pasos b{display:block; margin-bottom:2px}
+.pasos span{color:var(--ink-soft); font-size:.95em; line-height:1.5}
+
+ul.limpia{margin:8px 0 0; padding-left:20px; color:var(--ink-soft); font-size:.95em; line-height:1.6}
+ul.limpia li{margin-bottom:6px}
+ul.limpia b{color:var(--ink)}
+
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:14px; margin-top:6px}
+.tool{padding:16px 17px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:var(--radius-sm)}
+.tool h3{font-size:1em; margin-bottom:6px}
+.tool .de{font-size:.72em; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:var(--primary); margin-bottom:8px}
+.tool p{font-size:.92em; color:var(--ink-soft)}
+.tool .cadena{margin-top:9px; padding:9px 11px; background:var(--paper); border:1px solid var(--gray-3); border-radius:10px; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.79em; line-height:1.6; color:var(--ink)}
+
+.rule-card{background:var(--ok-soft); border:1px solid var(--ok-border); border-radius:var(--radius-sm); padding:16px 18px; margin-top:18px}
+.rule-tag{display:inline-block; font-size:.72em; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ok); margin-bottom:6px}
+.rule-card p{font-size:.95em; color:var(--ink-soft)}
+.rule-card p + p{margin-top:8px}
+.aviso{background:var(--soft); border:1px solid var(--no-border); border-radius:var(--radius-sm); padding:16px 18px; margin-top:18px}
+.aviso .rule-tag{color:var(--primary)}
+.aviso p{font-size:.95em; color:var(--ink-soft)}
+.aviso p + p{margin-top:8px}
+
+code.inline{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.9em; background:var(--gray-4); padding:2px 6px; border-radius:6px; color:var(--ink)}
+
+/* ===== selector de escuela ===== */
+.selector{display:flex; flex-wrap:wrap; gap:10px; margin:6px 0 4px}
+.sel-btn{flex:1 1 230px; text-align:left; padding:14px 16px; font-family:inherit; font-size:.95em; cursor:pointer; background:var(--paper-2); color:var(--ink); border:1.5px solid var(--gray-3); border-radius:var(--radius-sm)}
+.sel-btn b{display:block; font-family:"Manrope",sans-serif; font-weight:700; margin-bottom:3px}
+.sel-btn span{font-size:.88em; color:var(--muted); line-height:1.4}
+.sel-btn:hover{border-color:var(--primary-2)}
+.sel-btn[aria-pressed="true"]{background:var(--soft); border-color:var(--primary-2)}
+.sel-btn[aria-pressed="true"] span{color:var(--ink-soft)}
+
+.consigna-panel{display:none}
+body.esc-t3 .consigna-panel.t3{display:block}
+body.esc-t5 .consigna-panel.t5{display:block}
+.elegi{display:none; padding:18px 20px; background:var(--paper-2); border:1px dashed var(--gray-2); border-radius:var(--radius-sm); color:var(--muted); font-size:.95em; margin-top:14px}
+body.esc-none .elegi{display:block}
+
+.btn{display:inline-flex; align-items:center; gap:8px; padding:10px 16px; font-family:inherit; font-size:.93em; font-weight:600; border-radius:11px; cursor:pointer; background:var(--paper); color:var(--ink); border:1.5px solid var(--gray-3)}
+.btn:hover{border-color:var(--primary-2)}
+.acciones{display:flex; flex-wrap:wrap; gap:10px; margin-top:6px}
+
+/* ===== quiz ===== */
+.q{padding:16px 18px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:var(--radius-sm); margin-top:12px}
+.q > p{color:var(--ink); font-weight:600; margin-bottom:10px}
+.opts{display:flex; flex-wrap:wrap; gap:8px}
+.opt{padding:8px 13px; font-family:inherit; font-size:.92em; cursor:pointer; background:var(--paper); color:var(--ink); border:1.5px solid var(--gray-3); border-radius:10px}
+.opt:hover{border-color:var(--primary-2)}
+.q.answered .opt{cursor:default}
+.q.answered .opt[data-v="ok"]{background:var(--ok-soft); border-color:var(--ok-border); color:var(--ok); font-weight:700}
+.q.answered .opt.elegida[data-v="no"]{background:var(--no-soft); border-color:var(--no-border); color:var(--no)}
+.expl{display:none; margin-top:11px; padding-top:11px; border-top:1px solid var(--gray-4); font-size:.93em; color:var(--ink-soft)}
+.q.answered .expl{display:block}
+.score{margin-top:14px; font-size:.93em; color:var(--muted)}
+.score b{color:var(--primary)}
+
+footer{max-width:1060px; margin:0 auto; padding:0 28px 56px; color:var(--muted); font-size:.88em; line-height:1.6}
+footer p + p{margin-top:8px}
+
+@media print{
+  body{background:#fff}
+  .hero{padding:0 0 18px; background:none; border-bottom:2px solid #000}
+  .track, .acciones, .selector, .elegi{display:none !important}
+  main{padding:14px 0 0; gap:14px; max-width:none}
+  section{break-inside:avoid; box-shadow:none; border:1px solid #bbb; padding:16px}
+  .consigna-panel{display:block !important}
+  .expl{display:block !important}
+  .cuenta-box{box-shadow:none}
+  a{color:#000; text-decoration:none}
+}
+@media (max-width:640px){
+  .hero{padding:38px 20px 30px}
+  main{padding:22px 20px 44px}
+  section{padding:22px 18px}
+  footer{padding:0 20px 40px}
+}
+</style>
+</head>
+<body class="esc-none">
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="kicker">Olimpíadas de ETP 2026 · Evaluación de Proyectos</p>
+    <h1>Los 68 puntos que no son la solución técnica</h1>
+    <p class="lead">La grilla con la que el INET evalúa el trabajo tiene 100 puntos. Que la solución técnica esté bien vale 32. Los otros 68 miran cómo trabajaron, cómo lo planificaron, cómo lo registraron y cómo lo escribieron.</p>
+    <p class="lead">Eso es exactamente lo que venimos haciendo en la materia. Esta página no trae tema nuevo: dice, criterio por criterio, cuál de los instrumentos que ya usamos produce la evidencia que cada uno pide.</p>
+
+    <div class="cuenta">
+      <div class="cuenta-box gris">
+        <div class="cuenta-n">32</div>
+        <div class="cuenta-l">Resolución: que la solución funcione y esté fundamentada</div>
+      </div>
+      <div class="cuenta-box destacada">
+        <div class="cuenta-n">68</div>
+        <div class="cuenta-l">Planificación, producto final, autorregulación, pensamiento combinatorio y equipo</div>
+      </div>
+      <div class="cuenta-box">
+        <div class="cuenta-n">100</div>
+        <div class="cuenta-l">Total de la grilla, igual para las dos escuelas</div>
+      </div>
+    </div>
+
+    <nav class="track" aria-label="Contenido">
+      <a class="track-step" href="#grilla"><b>1</b><span>La grilla y la cuenta</span></a>
+      <a class="track-step" href="#aporte"><b>2</b><span>Qué instrumento produce cada criterio</span></a>
+      <a class="track-step" href="#consigna"><b>3</b><span>Tu consigna, punto por punto</span></a>
+      <a class="track-step" href="#bolsillo"><b>4</b><span>Los cuatro instrumentos</span></a>
+      <a class="track-step" href="#formato"><b>5</b><span>El formato de entrega</span></a>
+      <a class="track-step" href="#control"><b>6</b><span>Preguntas de control</span></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section id="grilla">
+    <h2>1 · La grilla, y por qué conviene leerla antes de empezar</h2>
+    <p>El reglamento obliga a la institución a darles a conocer los criterios de evaluación antes de que empiecen a trabajar. Estos son. La estructura se repite sin cambios desde las ediciones anteriores.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Criterio</th>
+            <th scope="col" class="num">Puntos</th>
+            <th scope="col">Qué evidencia mira en el documento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Resolución</b></td>
+            <td class="num"><span class="pts grande">32</span></td>
+            <td>Que la solución responda a lo que pedía la situación, y que cada decisión esté fundamentada y no simplemente afirmada.</td>
+          </tr>
+          <tr>
+            <td><b>Planificación</b></td>
+            <td class="num"><span class="pts">20</span></td>
+            <td>Que haya un plan escrito antes de la solución: tareas, en qué orden, quién y para cuándo.</td>
+          </tr>
+          <tr>
+            <td><b>Producto final</b></td>
+            <td class="num"><span class="pts">20</span></td>
+            <td>El documento como objeto: formato, ortografía, anexos en su lugar, citas, y que se entienda leyéndolo sin ustedes al lado.</td>
+          </tr>
+          <tr>
+            <td><b>Autorregulación</b></td>
+            <td class="num"><span class="pts">12</span></td>
+            <td>Que se vea el proceso: qué se trabó, qué probaron, qué lo resolvió. Un trabajo sin errores registrados parece un trabajo sin proceso.</td>
+          </tr>
+          <tr>
+            <td><b>Pensamiento combinatorio</b></td>
+            <td class="num"><span class="pts">10</span></td>
+            <td>Que hayan considerado más de un camino y explicado por qué eligieron uno.</td>
+          </tr>
+          <tr>
+            <td><b>Trabajo en equipo</b></td>
+            <td class="num"><span class="pts">6</span></td>
+            <td>Reparto de responsabilidades con un criterio explícito, no una lista de nombres.</td>
+          </tr>
+          <tr class="fila-total">
+            <td>Total</td>
+            <td class="num">100</td>
+            <td>De los cuales 68 no dependen de que la solución técnica esté bien</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule-card">
+      <span class="rule-tag">La consecuencia práctica</span>
+      <p>Un equipo puede resolver el problema técnico de manera impecable y perder hasta 32 puntos solo por no haber planificado ni registrado nada: son los 20 de planificación más los 12 de autorregulación. Es la misma cantidad que vale toda la solución.</p>
+      <p>Y al revés: nada de esos 68 puntos requiere saber más de lo que ya saben. Requiere escribirlo mientras trabajan, no después.</p>
+    </div>
+  </section>
+
+  <section id="aporte">
+    <h2>2 · Qué instrumento de la materia produce cada criterio</h2>
+    <p>Esta es la tabla del aporte. A la izquierda, lo que pide la grilla; a la derecha, el instrumento que ya vimos y que genera exactamente esa evidencia.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Criterio</th>
+            <th scope="col" class="num">Pts</th>
+            <th scope="col">El instrumento que lo produce</th>
+            <th scope="col">De dónde sale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Resolución</b></td>
+            <td class="num">32</td>
+            <td><b>Metodología top-down</b> para partir el problema en pedazos que se puedan resolver de a uno, <b>benchmarking</b> cuando hay que medir en lugar de opinar —mismas condiciones, varias corridas, fuente y fecha— y <b>auditoría de sistemas</b> para que cada control que propongan sea verificable y no una declaración de buenas intenciones.</td>
+            <td>Top-down · Benchmarking · Auditoría de sistemas</td>
+          </tr>
+          <tr>
+            <td><b>Planificación</b></td>
+            <td class="num">20</td>
+            <td>La <b>descomposición en entregables verificables</b> y el <b>cronograma</b> con tarea, responsable, día y dependencia. Un entregable es verificable cuando se puede decir si está cumplido sin discutir.</td>
+            <td>Top-down · Organizar el trabajo del equipo</td>
+          </tr>
+          <tr>
+            <td><b>Producto final</b></td>
+            <td class="num">20</td>
+            <td>La <b>lista de cotejo</b> como instrumento de autocontrol antes de entregar, y los criterios de <b>calidad</b> aplicados al documento y no solo al producto.</td>
+            <td>Instrumentos de evaluación · Calidad de software</td>
+          </tr>
+          <tr>
+            <td><b>Autorregulación</b></td>
+            <td class="num">12</td>
+            <td>La <b>bitácora</b> de dificultades, cargada al día, con la última columna guardando la fuente. Esa columna es después la lista de referencias en APA.</td>
+            <td>Organizar el trabajo del equipo</td>
+          </tr>
+          <tr>
+            <td><b>Pensamiento combinatorio</b></td>
+            <td class="num">10</td>
+            <td>La <b>matriz de comparación ponderada</b>: propósito, criterios, pesos, escala, y una decisión escrita que nombra qué se resigna al elegir.</td>
+            <td>Comparar y decidir · TP 4</td>
+          </tr>
+          <tr>
+            <td><b>Trabajo en equipo</b></td>
+            <td class="num">6</td>
+            <td>El <b>reparto por tarea</b> del cronograma, con el criterio de reparto escrito. Que los cuatro puedan decir cuál es su tarea y de qué depende.</td>
+            <td>Organizar el trabajo del equipo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="aviso">
+      <span class="rule-tag">Leer la grilla es contenido de la materia</span>
+      <p>La grilla del INET es una <b>rúbrica con puntaje</b>: cada criterio tiene niveles y vale una cantidad. La lista con la que ustedes controlan su propio documento antes de entregar es una <b>lista de cotejo</b>: cada línea se marca o no se marca. Son dos instrumentos distintos, con usos distintos, y esa distinción la trabajamos en la materia.</p>
+      <p>Sirve para algo concreto: si saben qué evidencia busca cada criterio, saben qué tiene que estar escrito en el documento. Un criterio que no encuentra su evidencia no puntúa, aunque el trabajo se haya hecho.</p>
+    </div>
+  </section>
+
+  <section id="consigna">
+    <h2>3 · Tu consigna, punto por punto</h2>
+    <p>Elegí tu escuela. El método es el mismo para las dos; cambia la consigna sobre la que se aplica.</p>
+
+    <div class="selector" role="group" aria-label="Elegí tu escuela">
+      <button class="sel-btn" type="button" data-esc="t3" aria-pressed="false">
+        <b>E.E.S.T. N.º 3 · Domingo F. Sarmiento</b>
+        <span>Una sola situación problemática, con seis entregables obligatorios</span>
+      </button>
+      <button class="sel-btn" type="button" data-esc="t5" aria-pressed="false">
+        <b>E.E.S.T. N.º 5 · Amancio Williams</b>
+        <span>Diez situaciones a elegir, con siete requisitos comunes</span>
+      </button>
+    </div>
+
+    <p class="elegi">Elegí una de las dos escuelas para ver la tabla de tu consigna. Al imprimir salen las dos.</p>
+
+    <div class="consigna-panel t3">
+      <h3 class="sub">Los seis entregables, y con qué se resuelve cada uno</h3>
+      <p>La situación es una empresa con cuatro gerencias y alrededor de cien empleados. Los seis entregables son obligatorios: no se elige.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">Entregable</th><th scope="col">El instrumento que lo resuelve</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>1 · Plan de mantenimiento preventivo</b><br>Planilla con el parque, año de fabricación, último mantenimiento, observaciones y próxima fecha. Mínimo tres equipos por gerencia.</td>
+              <td>Top-down para inventariar el parque por gerencia sin que se escape nada, y el registro de mantenimiento como instrumento: si una fila no se puede completar, falta relevamiento.</td>
+            </tr>
+            <tr>
+              <td><b>2 · Plan de copias de seguridad</b><br>Planilla por gerencia, servidores y equipos, mínimo tres equipos.</td>
+              <td>Definición de criterios y parámetros: qué se copia, cada cuánto, dónde queda, quién es responsable y cómo se recupera. Cada columna de la planilla es un parámetro decidido, no un dato copiado.</td>
+            </tr>
+            <tr>
+              <td><b>3 · Equipos según el perfil del usuario</b><br>Dos perfiles por gerencia, ocho en total, con costos de tres sitios de empresas del rubro.</td>
+              <td><b>Matriz de comparación ponderada.</b> Los pesos salen del perfil: acá se juega la decisión, no en los datos del mercado. Si hay que comparar prestaciones y no solo fichas técnicas, benchmarking.</td>
+            </tr>
+            <tr>
+              <td><b>4 · Gestión de compra</b><br>Pedido de cotización a tres empresas, con los mails y los presupuestos adjuntos al documento.</td>
+              <td>La especificación técnica sale del entregable 3. Los tres presupuestos <b>no van a venir comparables</b>: distinta configuración, distinto plazo, distinta garantía. Se homogeneiza igual que en la matriz, y el plazo y la garantía entran como criterios propios.</td>
+            </tr>
+            <tr>
+              <td><b>5 · Carpeta con el código</b><br>Frontend, backend y base de datos.</td>
+              <td>Gestión de la configuración: qué versión se entrega, qué queda afuera, cómo se identifica. Una carpeta comprimida sin criterio de qué entra es una entrega sin control de versiones.</td>
+            </tr>
+            <tr>
+              <td><b>6 · Sitio web dinámico</b><br>Vista de usuario con el listado desde base de datos, vista de administrador con la carga de artículos, rubros y marcas, y registro con contraseña.</td>
+              <td>Casos de prueba y criterios de calidad. Lo que se evalúa acá no es que el sitio ande en la máquina de ustedes: es que hayan escrito qué probaron y con qué resultado.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="aviso">
+        <span class="rule-tag">El entregable 4 tiene su propio reloj</span>
+        <p>Es el único que depende de que respondan terceros. Una empresa tarda entre dos y cinco días hábiles en contestar un pedido de cotización, y no todas contestan. Conviene pedirle a cinco o seis para asegurar tres respuestas, y mandar los pedidos al principio y no al final.</p>
+        <p>Y no hay que esperar a tener la matriz terminada para pedirlos: el presupuesto se pide sobre una especificación, y la matriz explica después por qué esa especificación y no otra. Son dos cosas distintas. Si una empresa no contesta, se documenta el pedido enviado y la falta de respuesta — eso también es evidencia del proceso.</p>
+      </div>
+    </div>
+
+    <div class="consigna-panel t5">
+      <h3 class="sub">Las diez situaciones, agrupadas por el instrumento que piden</h3>
+      <p>Además de la situación que les toque, las diez comparten los mismos requisitos de encabezado: comparar al menos dos alternativas, explicar la elegida, registrar las dificultades y repartir responsabilidades. Esos cuatro se pueden preparar antes de saber el tema.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">Situaciones</th><th scope="col">El instrumento que lo resuelve</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>1 · Diseñar la red</b><br><b>10 · Informatizar una oficina</b></td>
+              <td>Top-down para bajar del sistema completo a los componentes, y matriz ponderada para la topología y para las dos alternativas que pide la 10, la económica y la recomendada.</td>
+            </tr>
+            <tr>
+              <td><b>3 · Seleccionar computadoras</b></td>
+              <td><b>Matriz de comparación ponderada</b>, con un peso distinto por puesto: el mismo candidato gana o pierde según el perfil. Benchmarking si comparan prestaciones y no fichas.</td>
+            </tr>
+            <tr>
+              <td><b>2 · Copias de seguridad</b><br><b>9 · Mantenimiento preventivo</b></td>
+              <td>Definición de criterios y periodicidad, y el registro como instrumento. En la 9, además, los criterios para decidir cuándo un componente se reemplaza: eso es un umbral, y hay que escribirlo.</td>
+            </tr>
+            <tr>
+              <td><b>4 · Diagnosticar una PC</b></td>
+              <td>Top-down puro: el orden de comprobación es una descomposición, de lo general a lo particular. Las herramientas de diagnóstico son la parte de medición, con la reproducibilidad del benchmarking.</td>
+            </tr>
+            <tr>
+              <td><b>5 · Base de datos de préstamos</b><br><b>6 · Prototipo de reservas</b></td>
+              <td>Casos de prueba y criterios de calidad. En la 6, impedir la doble reserva del mismo espacio y horario es un caso de prueba, y hay que mostrarlo probado, no afirmado.</td>
+            </tr>
+            <tr>
+              <td><b>7 · Incidente de seguridad</b></td>
+              <td>La pieza de capacitación que piden es un instrumento: tiene destinatario, criterio y evidencia de que se entendió. Se diseña con lo mismo que usamos para diseñar instrumentos de evaluación.</td>
+            </tr>
+            <tr>
+              <td><b>8 · Servidor de archivos</b></td>
+              <td>Casos de prueba, incluido el negativo: demostrar que el usuario no autorizado <b>no</b> accede vale tanto como demostrar que el autorizado sí. Y el restore desde la copia es la prueba del plan de backup.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="rule-card">
+        <span class="rule-tag">Si la consigna no pide comparar</span>
+        <p>Varias de las diez no dicen «comparen dos alternativas» en su propio texto. Igual hay que hacerlo: son 10 puntos de la grilla y se leen en el documento. En toda consigna hay una decisión que sirve como par de alternativas — la topología, el tipo de copia, la herramienta, el motor de base de datos. Elijan una y compárenla en serio.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="bolsillo">
+    <h2>4 · Los cuatro instrumentos, en versión de bolsillo</h2>
+    <p>No es tema nuevo: es el recordatorio operativo de lo que ya trabajamos, para tenerlo al lado mientras escriben.</p>
+
+    <div class="cards">
+      <div class="tool">
+        <div class="de">Comparar y decidir</div>
+        <h3>Matriz ponderada</h3>
+        <p>Los pesos se definen <b>antes</b> de mirar los candidatos y salen del propósito. Si se arman después, la matriz solo justifica lo que ya habían elegido.</p>
+        <div class="cadena">propósito → criterios → pesos → escala → medición → cálculo → decisión escrita</div>
+        <div class="cadena">elegimos X · la diferencia la definió Y · resignamos Z</div>
+      </div>
+
+      <div class="tool">
+        <div class="de">Metodología top-down</div>
+        <h3>Del todo a las partes</h3>
+        <p>Se baja un nivel por vez, hasta que cada parte se pueda resolver o medir por separado. Sirve para el problema y también para la consigna: partirla en entregables es el mismo movimiento.</p>
+        <div class="cadena">sistema → subsistemas → componentes → parámetro medible</div>
+      </div>
+
+      <div class="tool">
+        <div class="de">Autorregulación</div>
+        <h3>Bitácora</h3>
+        <p>Se carga el día que pasa, no la noche antes de entregar. La última columna es la que después se convierte en las referencias en APA.</p>
+        <div class="cadena">día · qué pasó · qué probamos · qué lo resolvió · dónde lo buscamos</div>
+      </div>
+
+      <div class="tool">
+        <div class="de">Instrumentos de evaluación</div>
+        <h3>Lista de cotejo</h3>
+        <p>Se usa el último día, sobre el documento terminado. La regla de uso es una sola: si una línea no se puede marcar, se arregla o se explica en el documento.</p>
+        <div class="cadena">cada línea se marca o no se marca — no hay medio punto</div>
+      </div>
+    </div>
+
+    <div class="aviso">
+      <span class="rule-tag">Lo que la materia no les da</span>
+      <p>Dos cosas quedan afuera y las van a tener que resolver igual. La primera es <b>cómo se redacta un pedido de cotización</b>: qué especificación mandar, qué preguntar además del precio, y cómo comparar tres presupuestos que llegan con configuraciones distintas. Lo más cerca que estamos es la homogeneización de la matriz, y sirve: el plazo de entrega y la garantía se tratan como dos criterios más.</p>
+      <p>La segunda es el <b>código</b> del sitio o del prototipo, que es de otras materias. Lo que sí aporta esta materia es cómo se prueba y cómo se documenta que se probó.</p>
+    </div>
+  </section>
+
+  <section id="formato">
+    <h2>5 · El formato, que se controla antes de leer el contenido</h2>
+    <p>Vale 20 puntos y es lo único de la grilla que se puede tener perfecto sin saber nada del tema. También es lo primero que se pierde cuando se entrega apurado.</p>
+    <ul class="limpia">
+      <li><b>Un único archivo PDF.</b> Los anexos van adentro del mismo documento, no aparte.</li>
+      <li><b>Arial 12, interlineado sencillo.</b></li>
+      <li><b>Las imágenes, capturas, croquis y planillas</b> van en un anexo específico dentro del mismo PDF.</li>
+      <li><b>Citas y referencias en APA 7.</b> Todo lo consultado en internet necesita al menos título, fecha de acceso y URL.</li>
+      <li><b>El nombre del archivo identifica al equipo</b>, con el mismo dato que cargaron en la plataforma.</li>
+    </ul>
+    <div class="consigna-panel t3">
+      <div class="rule-card">
+        <span class="rule-tag">Nombre del archivo · E.E.S.T. N.º 3</span>
+        <p>El patrón es <code class="inline">BNS-INFO-060597100-00X</code>: tres primeras consonantes de la jurisdicción, especialidad, CUE de la escuela y número de equipo. El CUE de la Técnica 3 es <b>060597100</b>; reemplacen <code class="inline">00X</code> por el número que les asignaron.</p>
+      </div>
+    </div>
+    <div class="consigna-panel t5">
+      <div class="rule-card">
+        <span class="rule-tag">Nombre del archivo · E.E.S.T. N.º 5</span>
+        <p>El patrón del INET es el mismo: <code class="inline">BNS-INFO-CUE-00X</code>, con las consonantes de la jurisdicción, la especialidad, el CUE de la escuela y el número de equipo. Para la Técnica 5 los directorios educativos indican el CUE <b>060622400</b>: confírmenlo en la escuela junto con el número de equipo antes de armar el PDF, porque el archivo se identifica con el dato que quedó cargado en la plataforma.</p>
+      </div>
+    </div>
+    <p class="hint">Detalle que cuesta puntos gratis: la ortografía es criterio explícito de evaluación. Un pase de corrector sobre el documento terminado es diez minutos.</p>
+  </section>
+
+  <section id="control">
+    <h2>6 · Cuatro preguntas de control</h2>
+    <p>Para responder ahora, antes de empezar a trabajar.</p>
+
+    <div id="quiz">
+      <div class="q" data-ok="b">
+        <p>De los 100 puntos de la grilla, ¿cuántos dependen de que la solución técnica esté bien?</p>
+        <div class="opts">
+          <button class="opt" type="button" data-i="a">Los 100</button>
+          <button class="opt" type="button" data-i="b">32</button>
+          <button class="opt" type="button" data-i="c">68</button>
+        </div>
+        <div class="expl">32. Los otros 68 miran el proceso, la planificación, el registro y el documento. Es la razón por la que esta materia aporta más a la Olimpíada que cualquier otra.</div>
+      </div>
+
+      <div class="q" data-ok="c">
+        <p>Un equipo resuelve el problema técnico impecablemente, pero no armó cronograma ni registró ninguna dificultad. ¿Cuánto puede perder?</p>
+        <div class="opts">
+          <button class="opt" type="button" data-i="a">6 puntos</button>
+          <button class="opt" type="button" data-i="b">20 puntos</button>
+          <button class="opt" type="button" data-i="c">Hasta 32 puntos</button>
+        </div>
+        <div class="expl">Hasta 32: los 20 de planificación más los 12 de autorregulación. Exactamente lo mismo que vale toda la solución técnica.</div>
+      </div>
+
+      <div class="q" data-ok="a">
+        <p>Su consigna no dice en ninguna parte «comparen dos alternativas». ¿Comparan igual?</p>
+        <div class="opts">
+          <button class="opt" type="button" data-i="a">Sí, y se explica en el documento</button>
+          <button class="opt" type="button" data-i="b">No, solo si lo piden</button>
+          <button class="opt" type="button" data-i="c">Solo si sobra tiempo</button>
+        </div>
+        <div class="expl">Sí. Son 10 puntos de pensamiento combinatorio y se leen en el documento. En toda consigna hay una decisión que sirve como par de alternativas: elijan una y compárenla en serio.</div>
+      </div>
+
+      <div class="q" data-ok="b">
+        <p>El último día, una línea de la lista de cotejo no se puede marcar. ¿Qué hacen?</p>
+        <div class="opts">
+          <button class="opt" type="button" data-i="a">Se marca igual para no perder puntos</button>
+          <button class="opt" type="button" data-i="b">Se arregla, o se explica en el documento</button>
+          <button class="opt" type="button" data-i="c">Se saca la línea de la lista</button>
+        </div>
+        <div class="expl">Se arregla si hay tiempo, y si no se explica. Un pendiente reconocido y justificado es autorregulación; un pendiente tapado es un hallazgo del equipo evaluador.</div>
+      </div>
+
+      <p class="score">Respondidas correctamente: <b id="score">0 de 4</b></p>
+    </div>
+
+    <div class="acciones">
+      <button class="btn" type="button" onclick="window.print()">Imprimir o guardar PDF</button>
+      <button class="btn" type="button" id="btnReset">Reiniciar respuestas</button>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Evaluación de Proyectos · 7.º año · E.E.S.T. N.º 3 y N.º 5. Material de cátedra para la instancia institucional de las Olimpíadas Nacionales de ETP 2026, modalidad Informática.</p>
+  <p>La estructura y los puntajes de la grilla se corresponden con las grillas de evaluación de las ediciones anteriores, que se mantienen sin cambios de estructura. Las fechas y la consigna oficial de esta edición las informa la escuela.</p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var KEY = "olimpiadas-68-puntos";
+  var state = {};
+
+  try {
+    var guardado = localStorage.getItem(KEY);
+    if (guardado) state = JSON.parse(guardado) || {};
+  } catch (e) { state = {}; }
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  /* ---------- selector de escuela ---------- */
+  var botones = Array.prototype.slice.call(document.querySelectorAll(".sel-btn"));
+
+  function aplicarEscuela(esc) {
+    document.body.classList.remove("esc-none", "esc-t3", "esc-t5");
+    document.body.classList.add(esc ? "esc-" + esc : "esc-none");
+    botones.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.esc === esc));
+    });
+  }
+
+  botones.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var esc = b.dataset.esc;
+      if (state.escuela === esc) { esc = null; }
+      state.escuela = esc;
+      save();
+      aplicarEscuela(esc);
+    });
+  });
+
+  aplicarEscuela(state.escuela || null);
+
+  /* ---------- preguntas de control ---------- */
+  var preguntas = Array.prototype.slice.call(document.querySelectorAll("#quiz .q"));
+
+  function puntaje() {
+    var ok = 0;
+    preguntas.forEach(function (q, i) {
+      if (state["q" + i] && state["q" + i] === q.dataset.ok) ok++;
+    });
+    document.getElementById("score").textContent = ok + " de " + preguntas.length;
+  }
+
+  preguntas.forEach(function (q, i) {
+    var opts = Array.prototype.slice.call(q.querySelectorAll(".opt"));
+
+    function cerrar(elegida) {
+      q.classList.add("answered");
+      opts.forEach(function (o) {
+        o.dataset.v = (o.dataset.i === q.dataset.ok) ? "ok" : "no";
+        if (o.dataset.i === elegida) o.classList.add("elegida");
+        o.disabled = true;
+      });
+    }
+
+    opts.forEach(function (o) {
+      o.addEventListener("click", function () {
+        if (q.classList.contains("answered")) return;
+        state["q" + i] = o.dataset.i;
+        save();
+        cerrar(o.dataset.i);
+        puntaje();
+      });
+    });
+
+    if (state["q" + i]) cerrar(state["q" + i]);
+  });
+
+  puntaje();
+
+  /* ---------- reiniciar ---------- */
+  document.getElementById("btnReset").addEventListener("click", function () {
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    location.reload();
+  });
+})();
+</script>
+</body>
+</html>

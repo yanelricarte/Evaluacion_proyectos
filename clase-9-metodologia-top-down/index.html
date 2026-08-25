@@ -20,7 +20,7 @@
     <div class="student">Material para estudiantes · 7.º año</div>
     <div class="kicker">Evaluación de Proyectos · Unidad 2</div>
     <h1>Metodología top-down: del todo a las partes</h1>
-    <p class="lead">Ya sabemos que un sistema es una pila de capas. En esta clase aprendemos a recorrerlo con orden para evaluarlo: del conjunto a los componentes, sin perder de vista el todo.</p>
+    <p class="lead">Ya sabemos que un sistema es una pila de capas. En esta clase aprendemos a recorrerlo con orden para evaluarlo: del conjunto a los componentes, y de vuelta al conjunto para decidir.</p>
     <div class="pill-row">
       <span class="pill">Del todo a las partes</span>
       <span class="pill">Descomponer para evaluar</span>
@@ -48,13 +48,13 @@
     <div class="grid2">
       <div>
         <p>En la clase anterior abrimos el sistema en capas: <b>aplicación, sistema operativo, controladores, firmware y hardware</b>. Y vimos que un mismo síntoma puede originarse en cualquiera de ellas.</p>
-        <p>Pero saber que hay capas no alcanza: hay que <b>recorrerlas con un método</b>. Si empezás cambiando piezas al azar, gastás tiempo y dinero sin diagnosticar.</p>
+        <p>Esas capas se recorren <b>con un método</b>. Si empezás cambiando piezas al azar, gastás tiempo y dinero sin diagnosticar.</p>
         <p class="subtitle">La metodología <b>top-down</b> da ese orden: se mira primero el todo y recién después se baja a las partes.</p>
       </div>
       <div class="card">
         <div class="label">Caso para arrancar</div>
-        <h3>La pregunta del jefe</h3>
-        <p>Tu jefe te pide una respuesta. No pregunta por el disco ni por la RAM: pregunta por el <b>equipo entero</b> cumpliendo su función.</p>
+        <h3>La consulta del responsable del laboratorio</h3>
+        <p>Quien está a cargo del laboratorio pregunta por el <b>equipo entero</b> cumpliendo su función. La respuesta que espera es «sirve» o «no sirve», con un motivo.</p>
         <p class="muted" style="font-size:.95em">¿Empezarías abriendo el gabinete… o primero entendiendo para qué se usa esa PC y qué se le exige?</p>
       </div>
     </div>
@@ -65,33 +65,113 @@
   <section class="slide">
     <div class="kicker">Idea central</div>
     <h2>Top-down: del sistema completo hacia los componentes</h2>
-    <p class="subtitle">«Top-down» significa «de arriba hacia abajo». Se parte del <b>sistema entero y su propósito</b> y se va descomponiendo en partes cada vez más chicas, sin perder de vista cómo cada parte aporta al todo.</p>
+    <p class="subtitle">«Top-down» significa «de arriba hacia abajo». Se parte del <b>sistema entero y su propósito</b> y se lo descompone en partes cada vez más chicas. Ese recorrido se dibuja como un <b>árbol de evaluación</b>: en la raíz va el sistema con su objetivo de uso, las ramas son los subsistemas y cada hoja es un parámetro que se puede medir.</p>
     <div class="layer-stack">
-      <div class="layer sw"><span class="lyr-name">1 · El sistema completo</span><span class="lyr-desc">¿Para qué sirve este equipo? ¿Cumple su propósito? Es la mirada del usuario y del objetivo, antes de abrir nada.</span></div>
-      <div class="layer sw"><span class="lyr-name">2 · Los subsistemas</span><span class="lyr-desc">Lo dividimos en grandes bloques: software (aplicaciones + sistema operativo) y la parte física (hardware + firmware).</span></div>
-      <div class="layer fw"><span class="lyr-name">3 · Los componentes</span><span class="lyr-desc">Bajamos a las piezas concretas: el disco, la memoria, un driver, una aplicación puntual.</span></div>
-      <div class="layer hw"><span class="lyr-name">4 · El detalle a medir</span><span class="lyr-desc">Recién acá medimos lo específico: cuánto tarda el disco, cuánta memoria queda libre. (Eso son los benchmarks de la próxima clase.)</span></div>
+      <div class="layer sw"><span class="lyr-name">1 · El sistema completo (raíz)</span><span class="lyr-desc">¿Para qué sirve este equipo? ¿Cumple su propósito? Es la mirada del usuario y del objetivo, antes de abrir nada.</span></div>
+      <div class="layer sw"><span class="lyr-name">2 · Los subsistemas (ramas)</span><span class="lyr-desc">Lo dividimos en grandes bloques: software (aplicaciones + sistema operativo) y la parte física (hardware + firmware). En un sistema con red o con base de datos, esas también son ramas.</span></div>
+      <div class="layer fw"><span class="lyr-name">3 · Los componentes (ramas menores)</span><span class="lyr-desc">Bajamos a las piezas concretas: el disco, la memoria, un driver, una aplicación puntual.</span></div>
+      <div class="layer hw"><span class="lyr-name">4 · El detalle a medir (hojas)</span><span class="lyr-desc">Recién acá medimos lo específico: cuánto tarda el disco, cuánta memoria queda libre. (Eso son los benchmarks de la próxima clase.)</span></div>
     </div>
     <div class="stack-axis"><span>▲ Empezamos por el todo y su propósito</span><span>Bajamos al detalle solo cuando hace falta ▼</span></div>
     <div class="footer"><span>Idea central · top-down</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
-  <!-- 5. Los pasos -->
+  <!-- 5. El árbol de evaluación, con el caso del laboratorio -->
   <section class="slide">
-    <div class="kicker">Cómo se aplica</div>
+    <div class="kicker">El árbol, con un ejemplo</div>
+    <h2>El árbol de evaluación de la PC del laboratorio</h2>
+    <p class="subtitle">El mismo recorrido, aplicado al equipo del laboratorio. Se usa para <b>programar</b>, y esa finalidad es la raíz de todo lo que se evalúa después. Las ramas se abren según lo que tenga el sistema: acá el software se separa en sistema operativo y aplicaciones.</p>
+
+    <div class="eval-tree">
+      <svg viewBox="0 0 1200 440" role="img" aria-label="Árbol de evaluación: en la raíz, la PC del laboratorio para programar; ramas de hardware, sistema operativo y aplicaciones; dentro del hardware, procesador, memoria y disco; y las hojas medibles de cada uno.">
+        <path class="tr-link" d="M490 72 V96 H160 V120 M490 72 V96 H490 V120 M490 72 V96 H820 V120"/>
+        <path class="tr-link" d="M160 178 V202 H60 V228 M160 178 V202 H160 V228 M160 178 V202 H260 V228"/>
+        <path class="tr-link" d="M60 280 V330 M160 280 V330 M260 280 V330"/>
+        <path class="tr-link" d="M820 178 V228 M820 280 V330"/>
+
+        <rect class="tr-root" x="320" y="8" width="340" height="64" rx="14"/>
+        <text class="tr-t on-root" x="490" y="46">PC del laboratorio · programar</text>
+
+        <rect class="tr-branch" x="40" y="120" width="240" height="58" rx="12"/>
+        <text class="tr-t" x="160" y="156">Hardware</text>
+        <rect class="tr-branch" x="370" y="120" width="240" height="58" rx="12"/>
+        <text class="tr-t" x="490" y="156">Sistema operativo</text>
+        <rect class="tr-branch" x="700" y="120" width="240" height="58" rx="12"/>
+        <text class="tr-t" x="820" y="156">Aplicaciones</text>
+
+        <rect class="tr-box" x="14" y="228" width="92" height="52" rx="10"/>
+        <text class="tr-t" x="60" y="259" font-size="14">Procesador</text>
+        <rect class="tr-box" x="114" y="228" width="92" height="52" rx="10"/>
+        <text class="tr-t" x="160" y="259" font-size="14">Memoria</text>
+        <rect class="tr-box" x="214" y="228" width="92" height="52" rx="10"/>
+        <text class="tr-t" x="260" y="259" font-size="14">Disco</text>
+        <rect class="tr-box" x="710" y="228" width="220" height="52" rx="10"/>
+        <text class="tr-t" x="820" y="259" font-size="14">Entorno de programación</text>
+
+        <rect class="tr-leaf" x="13" y="330" width="94" height="66" rx="10"/>
+        <text class="tr-t leaf" x="60" y="358">rendimiento</text>
+        <text class="tr-t leaf" x="60" y="378">en cálculo</text>
+        <rect class="tr-leaf" x="113" y="330" width="94" height="66" rx="10"/>
+        <text class="tr-t leaf" x="160" y="358">memoria</text>
+        <text class="tr-t leaf" x="160" y="378">disponible</text>
+        <rect class="tr-leaf" x="213" y="330" width="94" height="66" rx="10"/>
+        <text class="tr-t leaf" x="260" y="358">lectura y</text>
+        <text class="tr-t leaf" x="260" y="378">escritura</text>
+        <rect class="tr-leaf" x="710" y="330" width="220" height="66" rx="10"/>
+        <text class="tr-t leaf" x="820" y="358">tiempo de apertura</text>
+        <text class="tr-t leaf" x="820" y="378">del proyecto</text>
+
+        <text class="tr-lvl" x="980" y="34">RAÍZ</text>
+        <text class="tr-lvl sub" x="980" y="54">el sistema y su propósito</text>
+        <text class="tr-lvl" x="980" y="146">RAMAS</text>
+        <text class="tr-lvl sub" x="980" y="166">los subsistemas</text>
+        <text class="tr-lvl" x="980" y="250">RAMAS MENORES</text>
+        <text class="tr-lvl sub" x="980" y="270">los componentes</text>
+        <text class="tr-lvl" x="980" y="356">HOJAS</text>
+        <text class="tr-lvl sub" x="980" y="376">lo que se puede medir</text>
+      </svg>
+
+      <ul class="tree-mob">
+        <li class="t-root"><span class="t-lvl">Raíz</span>PC del laboratorio · programar
+          <ul>
+            <li class="t-branch"><span class="t-lvl">Rama</span>Hardware
+              <ul>
+                <li><span class="t-lvl">Componente</span>Procesador<span class="t-leaf">hoja · rendimiento en cálculo</span></li>
+                <li><span class="t-lvl">Componente</span>Memoria<span class="t-leaf">hoja · memoria disponible</span></li>
+                <li><span class="t-lvl">Componente</span>Disco<span class="t-leaf">hoja · lectura y escritura</span></li>
+              </ul>
+            </li>
+            <li class="t-branch"><span class="t-lvl">Rama</span>Sistema operativo<span class="t-note">rama sin abrir · no había indicios</span></li>
+            <li class="t-branch"><span class="t-lvl">Rama</span>Aplicaciones
+              <ul>
+                <li><span class="t-lvl">Componente</span>Entorno de programación<span class="t-leaf">hoja · tiempo de apertura del proyecto</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <p class="subtitle">La rama del sistema operativo quedó sin abrir porque no había indicios ahí. Se profundiza donde aparece la sospecha y se baja hasta la hoja, que es el único nivel donde hay algo para medir.</p>
+    <div class="footer"><span>El árbol de evaluación</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
+  </section>
+
+  <!-- 6. Los pasos -->
+  <section class="slide">
+    <div class="kicker">Los cuatro pasos</div>
     <h2>Cuatro pasos para evaluar de arriba hacia abajo</h2>
     <p class="subtitle">Es un orden flexible que evita perderse en los detalles antes de entender el conjunto.</p>
     <div class="grid2">
       <article class="card flat"><span class="badge">Paso 1</span><h3>Mirar el todo</h3><p>Definir qué es el sistema y <b>qué se espera de él</b>. ¿Para qué se usa? ¿Qué significaría que «funciona bien»?</p></article>
-      <article class="card flat"><span class="badge">Paso 2</span><h3>Descomponer en bloques</h3><p>Partir el sistema en sus grandes partes (las capas de la clase 8). Mirar el mapa antes que el tornillo.</p></article>
-      <article class="card flat"><span class="badge">Paso 3</span><h3>Bajar al componente</h3><p>Dentro del bloque sospechoso, identificar la parte concreta a revisar. Solo se profundiza donde hay indicios.</p></article>
+      <article class="card flat"><span class="badge">Paso 2</span><h3>Descomponer en bloques</h3><p>Partir el sistema en sus grandes partes (las capas de la clase 8) para saber por dónde seguir.</p></article>
+      <article class="card flat"><span class="badge">Paso 3</span><h3>Bajar al componente</h3><p>Dentro del bloque sospechoso, identificar la pieza concreta y el dato que habría que medir. Solo se profundiza donde hay indicios.</p></article>
       <article class="card flat"><span class="badge">Paso 4</span><h3>Integrar el diagnóstico</h3><p>Volver a subir: ¿qué dice ese detalle sobre <b>el sistema completo</b> y la pregunta inicial?</p></article>
     </div>
-    <p class="subtitle"><b>Clave:</b> cada vez que bajás un nivel, no perdés de vista la pregunta del nivel de arriba. Por eso se «integra» al final.</p>
+    <p class="subtitle">Cada vez que bajás un nivel, seguís respondiendo la pregunta del nivel de arriba. Por eso el último paso «integra».</p>
     <div class="footer"><span>Los pasos</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
-  <!-- 6. Top-down vs bottom-up -->
+  <!-- 7. Top-down vs bottom-up -->
   <section class="slide">
     <div class="kicker">Dos caminos opuestos</div>
     <h2>Top-down y bottom-up: dos puntos de partida</h2>
@@ -106,19 +186,20 @@
         <h3>Bottom-up (de las partes al todo)</h3>
         <p>Arranca de los <b>componentes</b> y los va combinando hasta llegar al sistema. Útil para <b>construir o armar</b>: juntás piezas que ya funcionan.</p>
         <p class="muted" style="font-size:.92em">Ejemplo: «Tengo este procesador y esta placa… ¿qué equipo puedo armar con ellos?».</p>
+        <p class="muted" style="font-size:.92em">Su riesgo al evaluar: dar por buenas partes que andan bien por separado dentro de un sistema que, en conjunto, no cumple su propósito.</p>
       </article>
     </div>
-    <p class="subtitle">Para <b>evaluar</b> un sistema que ya existe, top-down suele ser el mejor punto de partida: evita gastar en una pieza antes de saber si es la que importa.</p>
+    <p class="subtitle">Para <b>evaluar</b> un sistema que ya existe se arranca por top-down, que evita gastar en una pieza antes de saber si es la que importa.</p>
     <div class="footer"><span>Top-down vs bottom-up</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
-  <!-- 7. Aplicado a evaluar: el caso PC del lab -->
+  <!-- 8. Aplicado a evaluar: el caso PC del lab -->
   <section class="slide">
     <div class="kicker">Para qué nos sirve esto</div>
     <h2>El caso de la PC del laboratorio, paso a paso</h2>
     <div class="grid2">
       <div>
-        <p>Volvamos a la pregunta del jefe: <b>«¿esta PC sirve para el laboratorio o la cambiamos?»</b>. Aplicando top-down:</p>
+        <p>Volvamos a la consulta del responsable del laboratorio: <b>«¿esta PC sirve para el laboratorio o la cambiamos?»</b>. Aplicando top-down:</p>
         <ol>
           <li><b>Todo:</b> se usa para programar y abrir varios navegadores. «Funciona bien» = no trabar con eso.</li>
           <li><b>Bloques:</b> el software parece sano; sospechamos de la parte física.</li>
@@ -130,30 +211,32 @@
         <div class="label">Lo que se evita</div>
         <h3>Diagnosticar antes de recomendar</h3>
         <p>Sin método, alguien habría comprado una PC nueva (caro) o cambiado el procesador (inútil acá).</p>
-        <p class="subtitle">Top-down convierte un «no anda» difuso en una <b>recomendación concreta y justificada</b>. Esa es una capacidad profesional.</p>
+        <p class="subtitle">Top-down convierte un «no anda» difuso en una <b>recomendación que se puede fundamentar</b> ante quien decide la compra.</p>
       </div>
     </div>
     <div class="footer"><span>Caso aplicado</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
-  <!-- 8. Tabla integradora: nivel → pregunta → qué observar -->
+  <!-- 9. Tabla integradora: nivel → pregunta → qué observar -->
   <section class="slide">
     <div class="kicker">Poner todo junto</div>
     <h2>Cada nivel, con su pregunta de evaluación</h2>
     <div class="table-wrap"><table class="table">
       <thead><tr><th>Nivel (top-down)</th><th>Pregunta de evaluación</th><th>Qué observar</th></tr></thead>
       <tbody>
-        <tr><td><b>Sistema completo</b></td><td>¿Cumple su propósito para el usuario?</td><td>Para qué se usa y si responde a esa necesidad.</td></tr>
-        <tr><td><b>Software (app + SO)</b></td><td>¿El problema está en los programas o el sistema?</td><td>Qué arranca al inicio, qué app falla, versiones.</td></tr>
-        <tr><td><b>Parte física (HW + FW)</b></td><td>¿El hardware o su firmware limitan al sistema?</td><td>Estado del disco, RAM disponible, firmware al día.</td></tr>
-        <tr><td><b>Componente puntual</b></td><td>¿Qué pieza concreta es el cuello de botella?</td><td>El dato medible: tiempos, espacio libre, temperatura.</td></tr>
+        <tr><td><b>Sistema completo</b> (raíz)</td><td>¿Cumple su propósito para el usuario?</td><td>Para qué se usa y si responde a esa necesidad.</td></tr>
+        <tr><td><b>Subsistema: software</b> (app + SO)</td><td>¿El problema está en los programas o en el sistema?</td><td>Qué arranca al inicio, qué app falla, versiones.</td></tr>
+        <tr><td><b>Subsistema: parte física</b> (HW + FW)</td><td>¿El hardware o su firmware limitan al sistema?</td><td>Estado del disco, RAM disponible, firmware al día.</td></tr>
+        <tr><td><b>Componente puntual</b></td><td>¿Qué pieza concreta es el cuello de botella?</td><td>La pieza sospechosa dentro del subsistema.</td></tr>
+        <tr><td><b>Detalle medible</b> (hoja)</td><td>¿Qué número lo demuestra?</td><td>Tiempos, espacio libre, temperatura.</td></tr>
       </tbody>
     </table></div>
-    <p class="subtitle"><b>Regla práctica:</b> no se baja de nivel hasta tener una sospecha del nivel de arriba. Primero el mapa, después la lupa.</p>
+    <p class="subtitle"><b>Regla práctica:</b> no se baja de nivel hasta tener una sospecha del nivel de arriba.</p>
+    <p class="subtitle">Cada hoja del árbol es uno de los <b>criterios</b> de evaluación de la Unidad 1. En el TP 4 esos criterios son la vara con la que se comparan las dos alternativas; en una <b>matriz de evaluación</b> cada uno lleva además un peso según cuánto importa para el propósito.</p>
     <div class="footer"><span>Niveles y preguntas</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
-  <!-- 9. Checkpoint -->
+  <!-- 10. Checkpoint -->
   <section class="slide">
     <div class="kicker">Activación · Pensá en top-down</div>
     <h2>Pulso rápido: tres preguntas</h2>
@@ -163,38 +246,38 @@
       <article class="quiz-q" data-correct="b">
         <p>1. Te piden evaluar si una notebook «sirve» para el aula. ¿Cuál es el primer paso top-down?</p>
         <div class="quiz-options">
-          <button data-value="a">a) Abrirla y medir la velocidad del disco</button>
+          <button data-value="a">a) Medir la velocidad del disco con una herramienta</button>
           <button data-value="b">b) Definir para qué se va a usar y qué se le exige</button>
-          <button data-value="c">c) Cambiar la memoria por las dudas</button>
+          <button data-value="c">c) Compararla con otra notebook del aula</button>
         </div>
-        <div class="quiz-feedback"><b>Definir el propósito.</b> Top-down empieza por el todo: sin saber qué se le pide al equipo, cualquier medición de detalle es ciega. Primero el mapa, después la lupa.</div>
+        <div class="quiz-feedback"><b>Definir el propósito.</b> Top-down empieza por el sistema entero y lo que se espera de él. Medir o comparar antes de eso da números que después no se pueden interpretar: rápida o lenta, ¿para qué uso?</div>
       </article>
 
       <article class="quiz-q" data-correct="c">
         <p>2. Un técnico arranca probando cada componente por separado y recién al final arma una conclusión del equipo. ¿Qué enfoque usó?</p>
         <div class="quiz-options">
           <button data-value="a">a) Top-down</button>
-          <button data-value="b">b) Ninguno: no hay método</button>
+          <button data-value="b">b) Análisis por capas</button>
           <button data-value="c">c) Bottom-up (de las partes al todo)</button>
         </div>
-        <div class="quiz-feedback"><b>Bottom-up.</b> Empezó por las partes y subió hacia el sistema. Es válido para construir o armar; para evaluar algo que ya existe, top-down suele evitar gastos innecesarios.</div>
+        <div class="quiz-feedback"><b>Bottom-up.</b> Empezó por las partes y subió hacia el sistema. Las capas de la clase 8 dicen <i>dónde</i> puede estar el problema; el sentido del recorrido es otra cosa. Bottom-up sirve para armar o construir; para evaluar algo que ya existe, top-down evita gastos innecesarios.</div>
       </article>
 
       <article class="quiz-q" data-correct="a">
         <p>3. Diagnosticaste que el cuello de botella es el disco. ¿Qué falta para cerrar bien el análisis top-down?</p>
         <div class="quiz-options">
           <button data-value="a">a) Volver al todo: ¿qué significa eso para «sirve o no sirve»?</button>
-          <button data-value="b">b) Nada, ya encontré la pieza</button>
-          <button data-value="c">c) Revisar también todos los demás componentes igual</button>
+          <button data-value="b">b) Repetir la medición del disco para confirmar el número</button>
+          <button data-value="c">c) Cotizar el repuesto y pasar el presupuesto</button>
         </div>
-        <div class="quiz-feedback"><b>Integrar el diagnóstico.</b> El último paso es subir de nuevo: ese detalle tiene que responder la pregunta inicial. «El disco es el límite → con cambiarlo, la PC sirve» es una recomendación, no solo un dato.</div>
+        <div class="quiz-feedback"><b>Integrar el diagnóstico.</b> El último paso sube de nuevo al todo: ese detalle tiene que responder la pregunta inicial. Repetir la medición y cotizar el repuesto vienen después. «El disco es el límite → con cambiarlo, la PC sirve» ya es la recomendación que te pidieron.</div>
       </article>
     </div>
     <div class="quiz-summary" id="quizSummary"><span id="quizScore">— / 3</span><span style="font-weight:500">Si acertaste las 3, ya razonás en top-down. Si menos, repasá los cuatro pasos antes del trabajo en clase.</span></div>
     <div class="footer"><span>Pensá en top-down</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
-  <!-- 10. Trabajo en clase + registro -->
+  <!-- 11. Trabajo en clase + registro -->
   <section class="slide">
     <div class="kicker">Trabajo en clase</div>
     <h2>Ahora lo trabajan ustedes</h2>
@@ -226,7 +309,7 @@
     <div class="footer"><span>Trabajo en clase · registro</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
-  <!-- 11. Trabajo Práctico N.º 4 -->
+  <!-- 12. Trabajo Práctico N.º 4 -->
   <section class="slide">
     <div class="kicker">Trabajo Práctico N.º 4</div>
     <h2>Evaluación comparativa: elegir entre dos alternativas</h2>
@@ -239,12 +322,12 @@
       </a>
     </div>
     <div class="grid2" style="margin-top:18px">
-      <article class="card"><h3>De qué va</h3><ul>
+      <article class="card"><h3>El encargo del TP</h3><ul>
         <li><b>Opción A:</b> una decisión real de su proyecto anual.</li>
         <li><b>Opción B:</b> caso provisto (la cooperativa que elige entre una PC armada y una mini-PC cerrada).</li>
         <li>Recorren las dos opciones <b>por capas</b> (clase 8) con el método top-down y deciden con un criterio propio.</li>
       </ul></article>
-      <article class="card accent"><h3>Cómo se evalúa</h3><ul>
+      <article class="card accent"><h3>Criterios de evaluación</h3><ul>
         <li>Definen <b>criterios</b> de decisión claros.</li>
         <li>Comparan por capas y ubican fortalezas y límites.</li>
         <li>Recomiendan una opción, dicen <b>qué se resigna</b> y bajo qué condición cambiarían.</li>
@@ -254,7 +337,7 @@
     <div class="footer"><span>Trabajo Práctico N.º 4</span><div class="progress"><div class="bar"></div></div><span class="num"></span></div>
   </section>
 
-  <!-- 12. Próxima clase -->
+  <!-- 13. Próxima clase -->
   <section class="slide">
     <div class="kicker">Próxima clase</div>
     <h2>Benchmarking: medir con evidencia objetiva</h2>
