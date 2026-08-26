@@ -725,8 +725,8 @@ p,.body{
 /* ===== Botón pantalla completa ===== */
 .view-toggle{
   position:fixed;
-  left:20px;
-  bottom:24px;
+  left:18px;
+  top:18px;
   z-index:25;
   display:inline-flex;
   align-items:center;

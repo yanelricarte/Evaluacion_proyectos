@@ -96,6 +96,10 @@ h1.hero-title{
   margin:0 0 clamp(18px,2vw,24px);
 }
 
+.grid + .section-title{
+  margin-top:clamp(40px,5vw,56px);
+}
+
 /* ===== Banner del programa ===== */
 .programa-banner{
   display:flex;
@@ -119,7 +123,7 @@ h1.hero-title{
   padding:12px 22px;
   border-radius:999px;
   background:var(--primary);
-  color:#fff;
+  color:var(--sobre-color);
   font-weight:700;
   font-size:15px;
   text-decoration:none;
@@ -135,15 +139,15 @@ h1.hero-title{
   display:grid;
   gap:clamp(18px,2vw,28px);
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  align-items:start;
+  align-items:stretch;
 }
 
 .card{
-  display:block;
+  display:flex;
+  flex-direction:column;
   padding:clamp(24px,2.4vw,32px);
-  background:rgba(255,255,255,.62);
-  border:1px solid rgba(255,255,255,.7);
-  backdrop-filter:blur(10px);
+  background:var(--paper);
+  border:1px solid var(--line);
   border-radius:var(--radius);
   box-shadow:var(--shadow-soft);
   color:inherit;
@@ -191,7 +195,8 @@ h1.hero-title{
 
 /* ===== Acciones + previsualización ===== */
 .card-actions{
-  margin-top:18px;
+  margin-top:auto;
+  padding-top:18px;
   display:flex;
   flex-direction:column;
   gap:14px;
@@ -232,7 +237,7 @@ h1.hero-title{
   height:min(60vh,540px);
   border:1px solid var(--line);
   border-radius:var(--radius-sm);
-  background:#fff;
+  background:var(--paper);
 }
 .preview-open{
   align-self:flex-start;
@@ -257,3 +262,18 @@ footer{
 }
 footer a{color:var(--primary);text-decoration:none;font-weight:600}
 footer a:hover{text-decoration:underline}
+
+/* ===== foco visible para quien navega con teclado ===== */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible{
+  outline:2px solid var(--primary);
+  outline-offset:3px;
+  border-radius:6px;
+}
+
+/* ===== quien pidió menos movimiento no recibe transiciones ===== */
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important; animation:none !important}
+  .btn-programa:hover{transform:none}
+}

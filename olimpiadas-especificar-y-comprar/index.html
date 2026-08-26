@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>De la necesidad al presupuesto · Olimpíadas de ETP 2026 — Evaluación de Proyectos</title>
+<title>La especificación técnica y su presupuesto · Olimpíadas de ETP 2026 — Evaluación de Proyectos</title>
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
 <style>
 :root{
   --bg:#f6f7f9; --bg-soft:#fbfbfc; --paper:#fff; --paper-2:#fcfbfc;
-  --ink:#17191d; --ink-soft:#2f2f36; --muted:#6f7681;
+  --ink:#17191d; --ink-soft:#2f2f36; --muted:#6a717b;
   --primary:#b31759; --primary-2:#d52b70; --soft:#fff1f6;
   --gray-2:#8d96a3; --gray-3:#dfe3e8; --gray-4:#eef1f4;
   --ok:#1f7a4d; --ok-soft:#eefaf3; --ok-border:#9ed2b1;
@@ -33,7 +33,7 @@ h1,h2,h3,h4{font-family:"Manrope","Inter",sans-serif; letter-spacing:-.02em; mar
 p{margin:0; line-height:1.58}
 a{color:var(--primary)}
 
-.hero{padding:56px 28px 40px; background:radial-gradient(circle at 8% 16%, rgba(214,41,108,.10), transparent 30%), linear-gradient(180deg,#fff,var(--bg-soft)); border-bottom:1px solid var(--gray-3)}
+.hero{padding:56px 28px 40px; background:radial-gradient(circle at 8% 16%, rgba(214,41,108,.10), transparent 30%), linear-gradient(180deg,var(--paper),var(--bg-soft)); border-bottom:1px solid var(--gray-3)}
 .hero-inner{max-width:1060px; margin:0 auto}
 .kicker{font-size:.74em; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--primary); margin-bottom:10px}
 .hero h1{font-size:clamp(2rem,4.4vw,3rem); line-height:1.06; margin-bottom:14px}
@@ -81,7 +81,7 @@ ul.limpia{margin:8px 0 0; padding-left:20px; color:var(--ink-soft); font-size:.9
 ul.limpia li{margin-bottom:6px}
 ul.limpia b{color:var(--ink)}
 
-.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:14px; margin-top:6px}
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(255px,100%),1fr)); gap:14px; margin-top:6px}
 .tool{padding:16px 17px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:var(--radius-sm)}
 .tool h3{font-size:1em; margin-bottom:6px}
 .tool .de{font-size:.72em; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:var(--primary); margin-bottom:8px}
@@ -106,13 +106,14 @@ code.inline{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.9em;
 .sel-btn:hover{border-color:var(--primary-2)}
 .sel-btn[aria-pressed="true"]{background:var(--soft); border-color:var(--primary-2)}
 .sel-btn[aria-pressed="true"] span{color:var(--ink-soft)}
+section a, .rule-card a, .aviso a, .modelo a{overflow-wrap:anywhere}
 .solo{display:none}
 body.esc-t3 .solo.t3{display:block}
 body.esc-t5 .solo.t5{display:block}
-body.esc-none 
+body.esc-none .solo{display:block}
 /* ===== plantillas para completar ===== */
 .fill{background:#fffdf7; border:1px dashed var(--gray-2); border-radius:8px; padding:8px 10px; min-height:38px; font-size:.95em; color:var(--ink); line-height:1.5; outline:none; overflow-wrap:break-word}
-.fill:focus{border-style:solid; border-color:var(--primary-2); background:#fff}
+.fill:focus{border-style:solid; border-color:var(--primary-2); background:var(--paper)}
 .fill.vacio::before{content:attr(data-ph); color:var(--gray-2); font-style:italic}
 td .fill{margin:0}
 .plantilla th{background:var(--soft); color:var(--primary)}
@@ -187,7 +188,7 @@ footer p + p{margin-top:8px}
 }
 /* ===== calculadora de matriz ===== */
 .matriz input[type="number"]{width:74px; padding:6px 8px; font-family:inherit; font-size:.92em; border:1px solid var(--gray-3); border-radius:8px; text-align:right; background:#fffdf7; color:var(--ink)}
-.matriz input[type="number"]:focus{outline:none; border-color:var(--primary-2); background:#fff}
+.matriz input[type="number"]:focus{outline:none; border-color:var(--primary-2); background:var(--paper)}
 .matriz td.res{font-variant-numeric:tabular-nums; font-weight:600; color:var(--ink)}
 .matriz tfoot td{background:var(--soft) !important; border-top:2px solid var(--primary-2); font-weight:700; color:var(--ink)}
 .alerta{margin-top:10px; padding:10px 13px; border-radius:10px; font-size:.9em; background:var(--no-soft); border:1px solid var(--no-border); color:var(--no)}
@@ -200,8 +201,8 @@ footer p + p{margin-top:8px}
 .campo{flex:1 1 150px; min-width:0}
 .campo label{display:block; font-size:.8em; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:5px}
 .campo input{width:100%; padding:9px 11px; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.95em; border:1px solid var(--gray-3); border-radius:9px; background:#fffdf7; color:var(--ink)}
-.campo input:focus{outline:none; border-color:var(--primary-2); background:#fff}
-.salida{margin-top:14px; padding:14px 16px; background:var(--ink); color:#fff; border-radius:11px; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:1em; overflow-wrap:anywhere}
+.campo input:focus{outline:none; border-color:var(--primary-2); background:var(--paper)}
+.salida{margin-top:14px; padding:14px 16px; background:var(--ink); color:var(--sobre-color); border-radius:11px; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:1em; overflow-wrap:anywhere}
 
 /* ===== mail modelo ===== */
 .mail{margin-top:14px; border:1px solid var(--gray-3); border-radius:var(--radius-sm); overflow:hidden}
@@ -217,13 +218,14 @@ footer p + p{margin-top:8px}
 .modelo p + p{margin-top:9px}
 .modelo em{color:var(--ink); font-style:normal; background:var(--soft); padding:1px 4px; border-radius:4px}
 </style>
+  <link rel="stylesheet" href="../css/comun.css" />
 </head>
 <body class="esc-t3">
 
 <header class="hero">
   <div class="hero-inner">
     <p class="kicker">Olimpíadas de ETP 2026 · Evaluación de Proyectos</p>
-    <h1>De la necesidad al presupuesto</h1>
+    <h1>La especificación técnica y su presupuesto</h1>
     <p class="lead">Elegir una computadora no se decide mirando fichas técnicas: se decide desde la tarea que va a hacer quien la usa. Esta clase recorre el camino completo —perfil, especificación, comparación, cotización— y termina en las pautas formales con las que se entrega el trabajo.</p>
     <p class="lead">El instrumento central es la matriz de evaluación ponderada de la clase 1, con la homogeneización de parámetros que es contenido del programa. Lo nuevo es que acá los datos los ponen empresas reales, y llegan desordenados.</p>
 
@@ -555,7 +557,7 @@ footer p + p{margin-top:8px}
     <div class="solo t3">
       <p>Es el entregable con el reloj más largo, porque depende de que respondan terceros. Se manda el primer día, no el último.</p>
 
-      <h3 class="sub">Qué mandar</h3>
+      <h3 class="sub">El contenido del pedido</h3>
       <ul class="limpia">
         <li>La <b>especificación técnica</b> del equipo, con los parámetros mínimos: procesador, memoria, almacenamiento, placa de video si hace falta, y si incluye o no monitor y sistema operativo.</li>
         <li>La <b>cantidad</b> y el destino, en una línea. Un pedido institucional se responde distinto que una consulta suelta.</li>
@@ -867,7 +869,7 @@ Desde ya, muchas gracias.
 </main>
 
 <footer>
-  <p>Evaluación de Proyectos · 7.º año · E.E.S.T. N.º 3 y N.º 5. Material de cátedra para la instancia institucional de las Olimpíadas Nacionales de ETP 2026, modalidad Informática.</p>
+  <p>Evaluación de Proyectos · 7.º año · E.E.S.T. N.º 3 y N.º 5. Material de cátedra para la instancia Escolar-Jurisdiccional de las Olimpíadas Nacionales de ETP 2026, modalidad Informática.</p>
   <p>Retoma la clase 1 (matriz de evaluación ponderada, homogeneización y ponderación de parámetros) y las clases 10 y 11 (benchmarking y protocolos reproducibles). Lo que se completa en esta página queda guardado en el navegador de cada equipo.</p>
 </footer>
 <script>
@@ -1152,5 +1154,6 @@ Desde ya, muchas gracias.
 })();
 </script>
 
+<script src="../js/tema.js"></script>
 </body>
 </html>

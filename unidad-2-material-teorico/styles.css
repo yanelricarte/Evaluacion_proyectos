@@ -13,7 +13,7 @@ body{margin:0;background:var(--bg);color:var(--ink-soft);
 .wrap{max-width:860px;margin:0 auto;padding:0 24px 100px}
 
 header.doc{background:linear-gradient(135deg,var(--primary-dark),var(--primary-2));
-  color:#fff;padding:54px 24px 46px;margin-bottom:0}
+  color:var(--sobre-color);padding:54px 24px 46px;margin-bottom:0}
 header.doc .inner{max-width:860px;margin:0 auto}
 header.doc .eyebrow{font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   font-size:13px;opacity:.92}
@@ -65,7 +65,7 @@ tr:nth-child(even) td{background:var(--gray-4)}
 .stack .l b{display:block}
 .stack .sw{background:var(--soft);border-color:var(--primary-3)}
 .stack .fw{background:#eef1f6;border-color:#c3ccdb}
-.stack .hw{background:var(--gray-4);border-color:var(--gray-2)}
+.stack .hw{background:var(--gray-4);border-color:var(--muted)}
 
 .gloss dt{font-weight:700;color:var(--primary);margin-top:12px}
 .gloss dd{margin:2px 0 0 0}
@@ -85,3 +85,23 @@ footer.doc a{color:var(--primary);text-decoration:none}
   h2.sec{break-after:avoid} .callout{break-inside:avoid}
 }
 @media (max-width:560px){ body{font-size:16px} section.block{padding:22px 20px} }
+
+/* foco visible para quien navega con teclado */
+a:focus-visible, button:focus-visible, summary:focus-visible{
+  outline:2px solid var(--primary, var(--primary));
+  outline-offset:3px;
+  border-radius:6px;
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none !important; animation:none !important} }
+
+/* las tablas se apilan en el teléfono: cada celda lleva el nombre de su columna */
+@media (max-width:620px){
+  table{border:0;font-size:1em}
+  thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  tbody tr{display:block;border:1px solid var(--gray-3);border-radius:var(--radius-sm);
+    padding:12px 14px;margin:0 0 10px;background:var(--paper)}
+  tbody td{display:block;border:0;padding:4px 0;background:none !important}
+  tbody td::before{content:attr(data-l);display:block;font-size:.72em;font-weight:700;
+    letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+  tbody td:empty{display:none}
+}

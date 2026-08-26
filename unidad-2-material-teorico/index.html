@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="../css/comun.css" />
 </head>
 <body>
 
@@ -85,9 +86,9 @@
     <table>
       <thead><tr><th>Grado</th><th>Características</th><th>Ejemplo</th><th>Ventajas y costos</th></tr></thead>
       <tbody>
-        <tr><td><b>Baja integración</b></td><td>Cada capa se cambia de manera independiente.</td><td>Computadora de escritorio: se amplía la memoria, se reemplaza el disco, se reinstala el sistema operativo.</td><td>Muy flexible y reparable; requiere mayor espacio y armado.</td></tr>
-        <tr><td><b>Integración media</b></td><td>Algunas capas se actualizan (firmware, controladores, sistema operativo), pero el hardware viene cerrado.</td><td>Notebook, teléfono celular.</td><td>Equilibrio entre rendimiento y posibilidad de modificación.</td></tr>
-        <tr><td><b>Alta integración (embebido)</b></td><td>Hardware, firmware y software se presentan como una unidad inseparable.</td><td>Router, cajero automático, electrodoméstico inteligente.</td><td>Muy eficiente y compacto; difícil o imposible de modificar por partes.</td></tr>
+        <tr><td data-l="Grado"><b>Baja integración</b></td><td data-l="Características">Cada capa se cambia de manera independiente.</td><td data-l="Ejemplo">Computadora de escritorio: se amplía la memoria, se reemplaza el disco, se reinstala el sistema operativo.</td><td data-l="Ventajas y costos">Muy flexible y reparable; requiere mayor espacio y armado.</td></tr>
+        <tr><td data-l="Grado"><b>Integración media</b></td><td data-l="Características">Algunas capas se actualizan (firmware, controladores, sistema operativo), pero el hardware viene cerrado.</td><td data-l="Ejemplo">Notebook, teléfono celular.</td><td data-l="Ventajas y costos">Equilibrio entre rendimiento y posibilidad de modificación.</td></tr>
+        <tr><td data-l="Grado"><b>Alta integración (embebido)</b></td><td data-l="Características">Hardware, firmware y software se presentan como una unidad inseparable.</td><td data-l="Ejemplo">Router, cajero automático, electrodoméstico inteligente.</td><td data-l="Ventajas y costos">Muy eficiente y compacto; difícil o imposible de modificar por partes.</td></tr>
       </tbody>
     </table>
     <p>De esta clasificación se desprende una consideración técnica importante. Un mayor grado de integración suele asociarse con un rendimiento más ajustado y un funcionamiento más estable, pero reduce la posibilidad de reparar, ampliar o reemplazar componentes de manera independiente. El grado de integración es, por lo tanto, una característica que se evalúa en relación con el propósito y el contexto de uso, y carece de valor por sí misma.</p>
@@ -120,10 +121,10 @@
     <table>
       <thead><tr><th>Herramienta</th><th>Qué mide</th></tr></thead>
       <tbody>
-        <tr><td><b>PassMark PerformanceTest</b></td><td>Rendimiento general del equipo y comparación entre componentes (procesador, memoria, disco, gráficos).</td></tr>
-        <tr><td><b>Geekbench</b></td><td>Rendimiento del procesador en cálculo de uno y varios núcleos, comparable entre equipos distintos.</td></tr>
-        <tr><td><b>CrystalDiskMark</b></td><td>Velocidad de lectura y escritura de un disco o unidad de estado sólido.</td></tr>
-        <tr><td><b>iperf3</b></td><td>Rendimiento de una red, medido como ancho de banda real entre dos puntos.</td></tr>
+        <tr><td data-l="Herramienta"><b>PassMark PerformanceTest</b></td><td data-l="Qué mide">Rendimiento general del equipo y comparación entre componentes (procesador, memoria, disco, gráficos).</td></tr>
+        <tr><td data-l="Herramienta"><b>Geekbench</b></td><td data-l="Qué mide">Rendimiento del procesador en cálculo de uno y varios núcleos, comparable entre equipos distintos.</td></tr>
+        <tr><td data-l="Herramienta"><b>CrystalDiskMark</b></td><td data-l="Qué mide">Velocidad de lectura y escritura de un disco o unidad de estado sólido.</td></tr>
+        <tr><td data-l="Herramienta"><b>iperf3</b></td><td data-l="Qué mide">Rendimiento de una red, medido como ancho de banda real entre dos puntos.</td></tr>
       </tbody>
     </table>
     <p>La elección de herramientas gratuitas o libres no es solo una cuestión de costo: resulta coherente con el criterio de evaluación de software libre frente a privativo que se aborda más adelante en la materia, y evita dependencias de licencias propietarias.</p>
@@ -211,5 +212,6 @@
   <a href="../">Volver al inicio del sitio</a>
 </footer>
 
+<script src="../js/tema.js"></script>
 </body>
 </html>

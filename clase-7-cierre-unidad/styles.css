@@ -467,7 +467,7 @@ li{font-size:clamp(15px, 1.15vw, 20px); line-height:1.5; margin:6px 0; color:var
   font-size:clamp(14px, 1.1vw, 19px);
 }
 .node.soft{background:#fff; color:var(--ink-soft); border-color:var(--gray-3)}
-.arrow{font-weight:900; color:var(--gray-2)}
+.arrow{font-weight:900; color:var(--muted)}
 
 /* ===== Mapa conceptual como esquema (nodos + conectores) ===== */
 .cmap{margin-top:20px; display:flex; flex-direction:column; align-items:center}
@@ -822,8 +822,8 @@ li{font-size:clamp(15px, 1.15vw, 20px); line-height:1.5; margin:6px 0; color:var
 /* ===== Botón pantalla completa ===== */
 .view-toggle{
   position:fixed;
-  left:20px;
-  bottom:24px;
+  left:18px;
+  top:18px;
   z-index:25;
   display:inline-flex;
   align-items:center;
