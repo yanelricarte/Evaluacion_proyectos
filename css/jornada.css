@@ -32,8 +32,8 @@ h1,h2,h3,h4{
   display:flex; align-items:center; justify-content:center; gap:12px;
   margin:14px 0 0; text-align:left;
 }
-.hero-inner .qr img{ border-radius:10px; box-shadow:0 4px 14px rgba(27,42,65,.16) }
-.hero-inner .qr span{ max-width:16ch; color:var(--muted); font-size:.85rem; line-height:1.4 }
+.hero-inner .qr img{ width:160px; height:160px; border-radius:10px; box-shadow:0 4px 14px rgba(27,42,65,.16) }
+.hero-inner .qr span{ max-width:20ch; color:var(--muted); font-size:.9rem; line-height:1.4 }
 
 /* En las páginas sin hero, el título de apertura y su bajada se centran. */
 .hoja > h1,
