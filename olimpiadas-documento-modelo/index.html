@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>El documento de entrega: modelo completo y explicación — Olimpíadas de ETP 2026</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+:root{
+  --ink:#181a1e; --ink-soft:#3a3e46; --muted:#6b7280;
+  --linea:#dde1e6; --linea-fuerte:#aab1ba; --cabecera:#f0f2f5; --cebra:#fafbfc;
+  --papel:#fff; --pri:#b31759; --soft:#fff5f9;
+}
+*{box-sizing:border-box}
+body{margin:0 auto; max-width:940px; padding:44px 24px 90px; background:var(--papel); color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif; font-size:16.5px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
+h1{font-size:1.95em; line-height:1.18; margin:0 0 12px; letter-spacing:-.01em; max-width:34ch}
+h2{font-size:1.3em; line-height:1.25; margin:46px 0 10px; padding-bottom:7px;
+  border-bottom:2px solid var(--ink); letter-spacing:-.005em}
+h2.parte{font-size:1.55em; margin:64px 0 14px; padding:12px 0 10px;
+  border-top:3px solid var(--pri); border-bottom:3px solid var(--pri); color:var(--pri)}
+h3{font-size:1.06em; margin:30px 0 6px; color:var(--ink)}
+h4{font-size:.99em; margin:22px 0 5px; color:var(--ink-soft)}
+p{margin:0 0 12px; max-width:72ch}
+ul,ol{margin:0 0 14px; padding-left:1.45em; max-width:72ch}
+li{margin-bottom:7px}
+a{color:var(--pri); text-underline-offset:2px}
+a:hover{text-decoration-thickness:2px}
+
+table{width:100%; border-collapse:collapse; margin:16px 0 18px; font-size:.93em; line-height:1.5}
+th,td{border:1px solid var(--linea-fuerte); padding:8px 11px; text-align:left; vertical-align:top}
+th{background:var(--cabecera); font-weight:bold}
+tbody tr:nth-child(even) td{background:var(--cebra)}
+table.aviso{margin:18px 0; max-width:74ch}
+table.aviso td{background:var(--soft); border:1px solid var(--pri); padding:15px 18px}
+table.aviso td p{margin-bottom:9px}
+table.aviso td p:last-child{margin-bottom:0}
+.rot{font-size:.8em; letter-spacing:.07em; color:var(--pri); font-weight:bold; margin:0 0 7px}
+.doc{border-left:4px solid var(--linea); padding-left:22px}
+.doc > h2:first-child{margin-top:24px}
+pre{background:#f7f8fa; border:1px solid var(--linea); border-radius:8px; padding:14px 16px;
+  overflow-x:auto; font-family:"Courier New",Courier,monospace; font-size:.86em; line-height:1.55;
+  margin:14px 0}
+code{font-family:"Courier New",Courier,monospace; font-size:.94em; background:#f2f4f7;
+  padding:1px 4px; border-radius:4px}
+.nota{color:var(--muted); font-size:.94em; max-width:72ch}
+footer{margin-top:60px; padding-top:18px; border-top:1px solid var(--linea);
+  color:var(--muted); font-size:.92em}
+
+@media (max-width:760px){
+  body{padding:26px 16px 70px; font-size:16px}
+  h1{font-size:1.6em} h2{font-size:1.18em; margin-top:36px}
+  table{display:block; overflow-x:auto; white-space:normal; font-size:.88em}
+  .doc{padding-left:12px}
+}
+@media print{
+  body{padding:0; font-size:10.5pt; max-width:none}
+  h2{page-break-after:avoid} table,pre{page-break-inside:avoid}
+  a{color:inherit; text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<h1>El documento de entrega: modelo completo y explicación</h1>
+<p>Olimpíada Nacional de ETP 2026, modalidad Informática · E.E.S.T. N.º 3 «Domingo Faustino Sarmiento» · Mar del Plata</p>
+
+<p>Todo el trabajo de la Olimpíada llega al equipo evaluador en un único archivo PDF, y nadie va a estar ahí para explicar lo que el documento no diga. Esta guía tiene dos partes que se leen en orden.</p>
+
+<p>La <b>parte A</b> es un documento de entrega completo, escrito de corrido tal como se presenta: la portada, los ocho apartados, las referencias y los anexos de un equipo que resolvió la consigna. Sirve para ver cómo queda el trabajo terminado antes de empezar a escribir el propio. La <b>parte B</b> recorre ese mismo documento apartado por apartado y explica qué contiene cada uno, con qué criterio se arma y qué mira la grilla del INET al leerlo.</p>
+
+<table class="aviso" border="1"><tr><td>
+<p class="rot">LOS DATOS DEL MODELO SON DE EJEMPLO</p>
+<p>Los equipos del inventario, las frecuencias de copia, las configuraciones, los precios, los pesos de la matriz, los plazos y las fechas de la parte A pertenecen a un equipo imaginario y muestran la forma que tiene cada apartado terminado. Cada equipo escribe el suyo con lo que encuentra en su propio relevamiento y con los criterios que define y fundamenta, de modo que dos equipos pueden llegar a soluciones distintas y ambas resultar correctas.</p>
+<p>El entregable 4 es la excepción: la consigna pide intercambio por correo electrónico y presupuestos de tres empresas locales o regionales, con las copias de los mails y de los presupuestos agregadas al PDF. Ese intercambio lo hace el equipo y las respuestas son las que efectivamente llegaron.</p>
+</td></tr></table>
+
+<h2 id="indice">Índice</h2>
+<p><a href="#que"><b>Las piezas de la entrega</b></a> — el contenido del PDF y el lugar de cada pedido de la consigna.</p>
+<p><b>Parte A · El documento modelo, completo</b></p>
+<ol>
+<li><a href="#a0">Portada</a></li>
+<li><a href="#a1">1 · Situación y necesidades detectadas</a></li>
+<li><a href="#a2">2 · Alcance y decisiones de interpretación</a></li>
+<li><a href="#a3">3 · Proceso de trabajo y responsabilidades</a></li>
+<li><a href="#a4">4 · Desarrollo de la solución</a> — los seis entregables</li>
+<li><a href="#a5">5 · Comparación de alternativas y decisión</a></li>
+<li><a href="#a6">6 · Pruebas y resultados</a></li>
+<li><a href="#a7">7 · Registro de dificultades</a></li>
+<li><a href="#a8">8 · Conclusiones</a></li>
+<li><a href="#a9">Referencias</a></li>
+<li><a href="#a10">Anexos y cuadro de cumplimiento</a></li>
+</ol>
+<p><b>Parte B · Cada apartado, explicado</b></p>
+<ol>
+<li><a href="#b0">El documento visto entero</a> — extensión, orden de escritura y formato</li>
+<li><a href="#b1">La portada y los apartados 1 y 2</a></li>
+<li><a href="#b3">El apartado 3 y la planificación</a></li>
+<li><a href="#b4">El apartado 4, entregable por entregable</a></li>
+<li><a href="#b5">Los apartados 5 y 6: decisión y prueba</a></li>
+<li><a href="#b7">Los apartados 7 y 8: registro y cierre</a></li>
+<li><a href="#b9">Referencias, anexos y control final</a></li>
+</ol>
+
+<h2 id="que">Las piezas de la entrega</h2>
+
+<p>La entrega del equipo son tres piezas. La primera y principal es <b>un único archivo PDF</b> con todo el trabajo escrito adentro, incluidos los anexos: las planillas, las capturas de pantalla, los correos y los presupuestos. La segunda es <b>una carpeta comprimida con el código</b> del sitio: las vistas, los archivos del servidor y los dos archivos de la base de datos. La tercera es <b>el sitio funcionando</b>, que se muestra en la instancia y del que quedan capturas dentro del PDF.</p>
+
+<p>El archivo PDF se nombra con los datos que identifican al equipo: la jurisdicción, la especialidad, el CUE de la escuela y el número de equipo de tres dígitos. Va en Arial 12 con interlineado sencillo, y ese formato conviene fijarlo el primer día, antes de escribir: cambiar la tipografía sobre un documento terminado con tablas desarma el formato de las tablas.</p>
+
+<h3>El contenido del archivo PDF</h3>
+
+<p>El archivo tiene once partes en este orden. Las ocho del cuerpo son las que se escriben; los anexos van al final y guardan todo lo que ocupa espacio.</p>
+
+<table border="1">
+<thead><tr><th>Parte del archivo</th><th>Contenido</th><th>Extensión aproximada</th><th>Criterio de la grilla que alimenta</th></tr></thead>
+<tbody>
+<tr><td>Portada</td><td>Quién presenta el trabajo y a qué escuela pertenece</td><td>1 página</td><td>Producto final</td></tr>
+<tr><td>1 · Situación y necesidades detectadas</td><td>El estado actual de la empresa y el problema que genera</td><td>½ página</td><td>Resolución</td></tr>
+<tr><td>2 · Alcance y decisiones de interpretación</td><td>El recorte del trabajo y la lectura de lo que la consigna deja abierto</td><td>¼ página</td><td>Autorregulación</td></tr>
+<tr><td>3 · Proceso de trabajo y responsabilidades</td><td>El reparto de tareas, su cronograma y la razón del reparto</td><td>1 página</td><td>Planificación · Trabajo en equipo</td></tr>
+<tr><td>4 · Desarrollo de la solución</td><td>Los seis entregables, cada uno con su criterio</td><td>3 a 4 páginas</td><td>Resolución</td></tr>
+<tr><td>5 · Comparación de alternativas y decisión</td><td>Las opciones evaluadas y el criterio de la elección</td><td>1 página</td><td>Pensamiento combinatorio</td></tr>
+<tr><td>6 · Pruebas y resultados</td><td>Cómo se comprobó que la solución funciona</td><td>1 página</td><td>Resolución · Producto final</td></tr>
+<tr><td>7 · Registro de dificultades</td><td>Las trabas, los intentos y la resolución</td><td>½ página</td><td>Autorregulación</td></tr>
+<tr><td>8 · Conclusiones</td><td>Lo resuelto, lo pendiente y lo que se haría distinto</td><td>½ página</td><td>Resolución · Autorregulación</td></tr>
+<tr><td>Referencias</td><td>El origen de los precios, las recomendaciones y los datos técnicos</td><td>lo que ocupe</td><td>Autorregulación</td></tr>
+<tr><td>Anexos</td><td>Planillas completas, capturas, correos y presupuestos</td><td>sin límite</td><td>Producto final</td></tr>
+</tbody>
+</table>
+
+<h3>El lugar de cada pedido de la consigna</h3>
+
+<p>La consigna enumera seis entregables. Todos viven adentro del apartado 4, con un subtítulo propio cada uno, y varios dejan además su huella en otros apartados. Esta tabla es la que conviene tener al lado mientras se escribe: cada fila es un pedido que el equipo evaluador va a buscar.</p>
+
+<table border="1">
+<thead><tr><th>Lo que pide la consigna</th><th>Dónde queda en el documento</th></tr></thead>
+<tbody>
+<tr><td>1 · Plan de mantenimiento preventivo, con la planilla de al menos tres equipos por gerencia y de distintos tipos</td><td>Apartado 4.1, con la muestra y el criterio. La planilla completa, en el anexo A</td></tr>
+<tr><td>Criterios para la renovación de las computadoras, que la consigna nombra en la prosa de la situación</td><td>Apartado 4.1, al final, como umbrales medibles</td></tr>
+<tr><td>2 · Plan de copias de seguridad, con los valores que define el equipo</td><td>Apartado 4.2, con la planilla y el procedimiento de recuperación</td></tr>
+<tr><td>3 · Definición del equipo según el perfil del usuario, dos perfiles por gerencia, con precios de tres sitios de empresas del rubro</td><td>Apartado 4.3. Los ocho perfiles completos, en el anexo A; las direcciones, en las referencias</td></tr>
+<tr><td>4 · Gestión de compra con intercambio por correo y presupuestos de tres empresas</td><td>Apartado 4.4, con el cuadro comparativo y la decisión. Los correos y presupuestos, en el anexo C</td></tr>
+<tr><td>5 · Carpeta comprimida con el código: frontend, backend y base de datos</td><td>Apartado 4.5 describe la estructura; la carpeta se entrega aparte</td></tr>
+<tr><td>6 · Sitio web dinámico con vista de usuario, vista de administrador y productos que surgen de la base</td><td>Apartado 4.6 y la prueba CP-01 del apartado 6. Las capturas, en el anexo B</td></tr>
+<tr><td>Registro de usuario y contraseña, que la consigna nombra en la prosa</td><td>Apartado 4.6 y la prueba CP-02</td></tr>
+<tr><td>Comparación entre alternativas y explicación de la solución elegida</td><td>Apartado 5, con la matriz ponderada</td></tr>
+<tr><td>Registro de dificultades y organización de responsabilidades</td><td>Apartados 3 y 7</td></tr>
+</tbody>
+</table>
+
+<p>Con ese mapa a la vista, el trabajo del equipo consiste en llenar cada casillero con lo que produjo. La parte A muestra ese archivo ya lleno, y la parte B explica apartado por apartado con qué criterio se completa cada uno.</p>
+
+<h2 class="parte" id="parteA">Parte A · El documento modelo, completo</h2>
+
+<p class="nota">Lo que sigue es el documento entero del equipo BNS-INFO-060597100-001, tal como se entrega. Se lee de corrido, sin comentarios intercalados; la explicación de cada apartado está en la parte B.</p>
+
+<div class="doc">
+
+<h2 id="a0">Portada</h2>
+
+<p>Olimpíada Nacional de ETP 2026 — Instancia Escolar-Jurisdiccional<br>
+Especialidad: Informática</p>
+<p>Escuela: E.E.S.T. N.º 3 «Domingo Faustino Sarmiento»<br>
+CUE: 060597100<br>
+Localidad: Mar del Plata — Provincia: Buenos Aires<br>
+Correo institucional: (el de la escuela)</p>
+<p>Nombre del equipo: BNS-INFO-060597100-001</p>
+<p>Estudiantes participantes<br>
+1. Apellido, Nombre — líder de equipo<br>
+2. Apellido, Nombre — especialista en redes y reparación<br>
+3. Apellido, Nombre — desarrollo frontend<br>
+4. Apellido, Nombre — desarrollo backend y base de datos</p>
+<p>Coordinación a cargo: Apellido, Nombre<br>
+Situación problemática abordada: gabinete técnico de una empresa de venta de artículos de limpieza<br>
+Fecha de entrega: 15 de octubre de 2026</p>
+
+<h2 id="a1">1 · Situación y necesidades detectadas</h2>
+
+<p>La empresa cuenta con un parque informático de alrededor de cien equipos distribuidos en cuatro gerencias —general, administrativa, de producto y de ventas— que incluye computadoras de escritorio, notebooks, equipos multimediales en la sala de usos múltiples, dos servidores de archivos e impresoras en red. En el relevamiento realizado los días 10 y 11 de octubre de 2026 no se encontró registro de mantenimientos anteriores: ninguno de los cuatro responsables de sector pudo indicar cuándo se intervino por última vez cada equipo. En tres de los doce equipos revisados se observó acumulación de polvo en el disipador y menos del 10 % de espacio libre en el disco; en los dos servidores, las copias de seguridad se realizan cuando algún empleado las recuerda.</p>
+
+<p>La consecuencia es que las fallas se atienden cuando ya interrumpieron el trabajo. Una computadora del área de ventas fuera de servicio detiene la facturación del día, y una pérdida de archivos en el servidor de la gerencia administrativa puede alcanzar a semanas de documentación sin que exista una copia con fecha conocida. El costo de esas detenciones no está previsto en ningún plan.</p>
+
+<p>La necesidad que este trabajo atiende es el pasaje de una atención por reclamo a un esquema planificado: un plan de mantenimiento preventivo con tareas, periodicidad y responsables; un plan de copias de seguridad con procedimiento de recuperación probado; criterios escritos para decidir cuándo conviene renovar un equipo en lugar de repararlo; la especificación del equipamiento que corresponde a cada perfil de usuario; y un sitio web que permita publicar el catálogo de productos desde una base de datos administrada por la propia empresa.</p>
+
+<h2 id="a2">2 · Alcance y decisiones de interpretación</h2>
+
+<p>El trabajo abarca los seis entregables solicitados sobre el parque informático de las cuatro gerencias. El inventario se construyó con doce equipos, tres por gerencia, seleccionados de modo que quedaran representados los cinco tipos presentes en la empresa: computadoras de escritorio, notebooks, equipos multimediales, servidores de archivos e impresoras en red. Ese recorte se aplicó porque el relevamiento exhaustivo de los cien equipos excede el tiempo de la instancia, y la consigna establece un mínimo de tres equipos por gerencia. El procedimiento descripto es aplicable al resto del parque sin modificaciones.</p>
+
+<p>La consigna nombra cinco roles técnicos y el reglamento conforma equipos de cuatro integrantes. El equipo resolvió unificar los roles de especialista en redes y reparador de PC en un mismo integrante, porque ambas tareas se ejecutan sobre el mismo relevamiento de equipamiento y comparten las herramientas de diagnóstico.</p>
+
+<p>La expresión «restricciones para instalar aplicaciones libres de virus» se interpretó como la limitación de la instalación de software a cuentas con permisos administrativos, con una lista de aplicaciones autorizadas por gerencia. Bajo esa lectura, el control del origen del software queda a cargo del gabinete técnico y no de cada empleado.</p>
+
+<h2 id="a3">3 · Proceso de trabajo y responsabilidades</h2>
+
+<p>El equipo se organizó en cuatro roles a partir de los cinco que nombra la consigna, con la unificación explicada en el apartado 2.</p>
+
+<table border="1">
+<thead><tr><th>Integrante</th><th>Rol y entregables a cargo</th><th>Razón del reparto</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Líder de equipo. Cronograma, apartados 1, 2, 7 y 8, control final y armado del PDF</td><td>Es quien cursa el turno completo y puede coordinar los cierres diarios</td></tr>
+<tr><td>2</td><td>Redes y reparación. Entregables 1 y 2: mantenimiento preventivo y copias de seguridad</td><td>Los dos planes se apoyan en el mismo relevamiento de equipamiento</td></tr>
+<tr><td>3</td><td>Frontend. Entregables 3 y 4: especificación por perfil y gestión de compra. Vistas del sitio</td><td>Trabajó con matrices ponderadas en la evaluación comparativa de la unidad 2</td></tr>
+<tr><td>4</td><td>Backend y base de datos. Entregables 5 y 6: código, base de datos y carga de artículos</td><td>Tiene el entorno de desarrollo instalado y el repositorio creado</td></tr>
+</tbody>
+</table>
+
+<p>El reparto se decidió por afinidad técnica y por disponibilidad horaria: los dos integrantes que cursan en el turno mañana quedaron a cargo del relevamiento, que requiere estar en la empresa, y los dos que trabajan sobre el sitio comparten la base de datos y coordinaron sus tareas alrededor de ella. El seguimiento se hizo con un cierre diario de quince minutos al final de cada jornada, en el que cada integrante informó su avance y las trabas encontradas; esas trabas quedaron registradas en la bitácora que se resume en el apartado 7.</p>
+
+<table border="1">
+<thead><tr><th>Día</th><th>Tarea</th><th>Depende de</th><th>Responsable</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Lectura de la consigna y de la grilla, con los pedidos señalados</td><td>—</td><td>Los cuatro</td></tr>
+<tr><td>1</td><td>Documento abierto con la portada y los títulos de los once apartados</td><td>El reparto de tareas</td><td>Integrante 1</td></tr>
+<tr><td>1</td><td>Especificación del equipo a cotizar y envío de los pedidos a cinco empresas</td><td>El perfil de usuario elegido</td><td>Integrante 3</td></tr>
+<tr><td>1 y 2</td><td>Relevamiento del inventario, dos gerencias cada uno</td><td>—</td><td>Integrantes 1 y 2</td></tr>
+<tr><td>2</td><td>Tabla de tareas de mantenimiento y criterios de renovación</td><td>El inventario</td><td>Integrante 2</td></tr>
+<tr><td>2 y 3</td><td>Plan de copias y comparación de los dos soportes</td><td>El inventario</td><td>Integrante 2</td></tr>
+<tr><td>2 y 3</td><td>Base de datos, carga de productos y vista de administrador</td><td>—</td><td>Integrante 4</td></tr>
+<tr><td>3</td><td>Especificación de los ocho perfiles con precios de tres sitios</td><td>—</td><td>Integrante 3</td></tr>
+<tr><td>3 y 4</td><td>Vista de usuario con el listado que consulta la base</td><td>La base cargada</td><td>Integrantes 3 y 4</td></tr>
+<tr><td>4</td><td>Ejecución de las pruebas y armado de las fichas</td><td>El sitio funcionando</td><td>Integrantes 3 y 4</td></tr>
+<tr><td>4</td><td>Cuadro comparativo de los presupuestos recibidos</td><td>Las respuestas de las empresas</td><td>Integrante 3</td></tr>
+<tr><td>5</td><td>Control con la lista de cotejo, referencias, anexos y exportación del PDF</td><td>Todo lo anterior</td><td>Los cuatro</td></tr>
+</tbody>
+</table>
+
+<p>El quinto día se reservó para el control, sin tareas de producción, de modo que la revisión final se hiciera sobre el documento terminado.</p>
+
+<h2 id="a4">4 · Desarrollo de la solución</h2>
+
+<h3>4.1 · Plan de mantenimiento preventivo</h3>
+
+<p>El plan se construyó sobre el inventario relevado los días 10 y 11 de octubre. La planilla completa, con los doce equipos, se incluye en el anexo A; en este apartado se presenta una muestra de tres filas y el criterio con el que se completaron las restantes.</p>
+
+<table border="1">
+<thead><tr><th>Código</th><th>Gerencia</th><th>Tipo</th><th>Año</th><th>Último mantenimiento</th><th>Observaciones</th><th>Próximo</th></tr></thead>
+<tbody>
+<tr><td>ADM-01</td><td>Administrativa</td><td>PC de escritorio</td><td>2019</td><td>Sin registro</td><td>Disipador con polvo; 8 % de disco libre</td><td>20/10/2026</td></tr>
+<tr><td>VEN-02</td><td>Ventas</td><td>Notebook</td><td>2022</td><td>Sin registro</td><td>Batería con 71 % de capacidad de diseño</td><td>15/11/2026</td></tr>
+<tr><td>GEN-03</td><td>General</td><td>Servidor de archivos</td><td>2020</td><td>Sin registro</td><td>Sin monitoreo de temperatura configurado</td><td>05/11/2026</td></tr>
+</tbody>
+</table>
+
+<p>La columna del último mantenimiento se completó con «sin registro» porque la empresa no conserva antecedentes, y la fecha del relevamiento pasó a ser el estado inicial documentado del parque. La fecha del próximo mantenimiento se calculó a partir de la periodicidad definida para cada tipo de equipo, escalonada para que no coincidan todos los equipos de una misma gerencia en la misma semana.</p>
+
+<table border="1">
+<thead><tr><th>Tarea</th><th>Periodicidad</th><th>Razón de esa periodicidad</th><th>Herramientas</th><th>Precauciones</th></tr></thead>
+<tbody>
+<tr><td>Limpieza interna del gabinete y del disipador</td><td>Semestral</td><td>El depósito de artículos de limpieza genera polvo en suspensión, y en los tres equipos revisados de esa área se encontró acumulación</td><td>Aire comprimido, pincel antiestático, destornilladores</td><td>Equipo desconectado de la red eléctrica y pulsera antiestática</td></tr>
+<tr><td>Verificación del estado del disco</td><td>Trimestral</td><td>Es el componente con mayor tasa de falla del parque y su reemplazo requiere pedido previo</td><td>Utilitario de lectura de atributos del disco</td><td>Registrar el valor de sectores reasignados para comparar con la medición anterior</td></tr>
+<tr><td>Actualización del sistema operativo y del antivirus</td><td>Mensual</td><td>Los parches de seguridad se publican con esa frecuencia</td><td>Herramienta de actualización del sistema</td><td>Realizar la copia de seguridad antes de aplicar actualizaciones mayores</td></tr>
+<tr><td>Depuración de archivos temporales y control de espacio libre</td><td>Trimestral</td><td>Tres de los doce equipos relevados operan por debajo del 10 % de espacio libre</td><td>Utilitario de limpieza del sistema</td><td>Conservar las carpetas de trabajo del usuario</td></tr>
+<tr><td>Revisión de temperatura en carga</td><td>Semestral, junto con la limpieza</td><td>Permite verificar que la limpieza produjo efecto</td><td>Monitor de temperatura y prueba de carga</td><td>Suspender la prueba si la temperatura supera el máximo del fabricante</td></tr>
+</tbody>
+</table>
+
+<p>Cada intervención se asienta en el registro de mantenimiento del anexo A, con la fecha, el equipo, las tareas ejecutadas y lo que se encontró. Ese registro es el que permite, en el próximo ciclo, comparar mediciones y detectar el deterioro antes de la falla.</p>
+
+<h4>Criterios de renovación de equipos</h4>
+
+<p>Un equipo se considera candidato a renovación cuando cumple al menos dos de estas cuatro condiciones. Primera: no admite una versión del sistema operativo con soporte de seguridad vigente, verificable en la documentación del fabricante. Segunda: el disco informa sectores reasignados en aumento entre dos mediciones separadas por un mes. Tercera: el presupuesto de reparación supera el 40 % del valor de reposición de un equipo equivalente, tomado de los precios relevados en el entregable 3. Cuarta: el equipo acumula más de tres intervenciones correctivas en doce meses, contadas sobre el registro de mantenimiento.</p>
+
+<p>El umbral del 40 % se adoptó porque por debajo de ese valor la reparación extiende la vida útil a un costo menor que el de reposición, y por encima el equipo reparado conserva el resto de sus componentes con la misma antigüedad, de modo que la próxima falla queda a la misma distancia.</p>
+
+<h3>4.2 · Plan de copias de seguridad</h3>
+
+<p>La consigna establece que los valores de esta planilla los define el equipo. Los datos de la empresa se agruparon en cuatro conjuntos según su frecuencia de cambio y su volumen, y cada uno recibió su propia frecuencia de copia.</p>
+
+<table border="1">
+<thead><tr><th>Información</th><th>Origen</th><th>Frecuencia</th><th>Tipo de copia</th><th>Soporte y ubicación</th><th>Responsable</th></tr></thead>
+<tbody>
+<tr><td>Base de datos de ventas</td><td>Servidor GEN-03</td><td>Diaria, 21:00</td><td>Incremental; completa los domingos</td><td>NAS en el gabinete técnico, con réplica cifrada en la nube</td><td>Gabinete técnico</td></tr>
+<tr><td>Documentación administrativa</td><td>Servidor ADM-01</td><td>Diaria, 21:30</td><td>Incremental</td><td>NAS, con réplica en la nube</td><td>Gabinete técnico</td></tr>
+<tr><td>Fotografías de producto</td><td>Servidor GEN-03</td><td>Semanal, domingos</td><td>Completa</td><td>Disco externo que se retira del edificio</td><td>Gerencia de producto</td></tr>
+<tr><td>Equipos de empleados</td><td>Carpeta de trabajo local</td><td>Semanal, viernes</td><td>Completa de la carpeta de perfil</td><td>NAS, carpeta por gerencia</td><td>Cada empleado</td></tr>
+</tbody>
+</table>
+
+<p>Tres decisiones sostienen este plan. La copia semanal que se retira del edificio responde al escenario de robo o incendio, que una réplica alojada en el mismo rack no cubre. La retención de treinta días de versiones anteriores responde al escenario de infección por malware: una carpeta sincronizada en línea se cifra junto con el original, de modo que la recuperación exige poder volver a una versión previa. Y la base de datos de ventas recibe copia diaria porque su contenido cambia todos los días, mientras que las fotografías de producto, que ocupan la mayor parte del volumen y casi no cambian, se copian una vez por semana.</p>
+
+<h4>Procedimiento de recuperación</h4>
+<ol>
+<li>Identificar la fecha de la última versión válida del archivo o de la base, consultando el registro de copias del NAS.</li>
+<li>Detener el servicio que utiliza el archivo, cuando se trate de la base de datos de ventas, para evitar escrituras durante la restauración.</li>
+<li>Restaurar desde el NAS hacia una carpeta temporal del servidor, sin sobrescribir el original.</li>
+<li>Verificar la integridad del archivo restaurado: apertura correcta en el caso de un documento, y consulta de control sobre la última operación registrada en el caso de la base.</li>
+<li>Reemplazar el archivo original y reiniciar el servicio.</li>
+<li>Asentar la restauración en el registro, con la fecha, el archivo y el tiempo que insumió.</li>
+</ol>
+<p>El tiempo estimado del procedimiento es de diez minutos para un archivo individual y de una hora para la base de datos completa. La prueba de restauración ejecutada figura en el apartado 6, caso CP-03.</p>
+
+<h3>4.3 · Especificación de equipos por perfil de usuario</h3>
+
+<p>Se definieron ocho perfiles, dos por gerencia, a partir de las tareas que realiza cada puesto. La planilla completa, con los ocho perfiles y sus tres precios, está en el anexo A; se presentan aquí los dos que marcan los extremos del parque.</p>
+
+<table border="1">
+<thead><tr><th>Perfil</th><th>Tareas que realiza</th><th>Configuración definida</th><th>Precio sitio 1</th><th>Precio sitio 2</th><th>Precio sitio 3</th></tr></thead>
+<tbody>
+<tr><td>Administrativo de facturación</td><td>Sistema de gestión, planilla de cálculo y correo, ocho horas diarias, sin edición de imágenes</td><td>Procesador de cuatro núcleos de generación actual, 8 GB de memoria, disco de estado sólido de 480 GB, video integrado</td><td>$ 780.000</td><td>$ 812.000</td><td>$ 759.000</td></tr>
+<tr><td>Diseñador de la gerencia de producto</td><td>Edición de imágenes de catálogo y armado de piezas gráficas sobre archivos de gran tamaño</td><td>Procesador de gama media, 32 GB de memoria, disco de estado sólido de 1 TB, placa de video dedicada con 8 GB</td><td>$ 1.640.000</td><td>$ 1.712.000</td><td>$ 1.598.000</td></tr>
+</tbody>
+</table>
+<p class="nota">Precios consultados entre el 12 y el 13 de octubre de 2026 en los tres sitios que figuran en las referencias.</p>
+
+<p>El perfil administrativo de facturación trabaja con el sistema de gestión, una planilla de cálculo y el correo, de manera simultánea y durante toda la jornada. Ese uso se resuelve con memoria suficiente para sostener varias aplicaciones abiertas y con almacenamiento de estado sólido, que es lo que reduce el tiempo de apertura del sistema de gestión; la placa de video dedicada no aporta a estas tareas y por eso queda fuera de la configuración. El perfil de diseño invierte esa relación: trabaja sobre archivos de imagen de gran tamaño, de modo que la memoria pasa a 32 GB y se incorpora video dedicado, con un costo mayor que se justifica en la reducción de los tiempos de exportación del catálogo.</p>
+
+<h3>4.4 · Gestión de compra</h3>
+
+<p>Se solicitó cotización de una computadora de escritorio con la configuración definida para el perfil administrativo de facturación, que es el más numeroso de la empresa. El pedido se envió el 10 de octubre a cinco empresas de Mar del Plata y la región, con el mismo texto y las mismas especificaciones para todas, de modo que las respuestas resultaran comparables. La copia del correo enviado y las respuestas recibidas están en el anexo C.</p>
+
+<table border="1">
+<thead><tr><th>Empresa</th><th>Pedido enviado</th><th>Respuesta</th><th>Estado al cierre</th></tr></thead>
+<tbody>
+<tr><td>Empresa A</td><td>10/10/2026</td><td>13/10/2026</td><td>Presupuesto recibido</td></tr>
+<tr><td>Empresa B</td><td>10/10/2026</td><td>12/10/2026</td><td>Presupuesto recibido</td></tr>
+<tr><td>Empresa C</td><td>10/10/2026</td><td>14/10/2026</td><td>Presupuesto recibido</td></tr>
+<tr><td>Empresa D</td><td>10/10/2026</td><td>—</td><td>Sin respuesta</td></tr>
+<tr><td>Empresa E</td><td>10/10/2026</td><td>13/10/2026</td><td>Responde que no comercializa equipos armados</td></tr>
+</tbody>
+</table>
+
+<table border="1">
+<thead><tr><th>Concepto</th><th>Empresa A</th><th>Empresa B</th><th>Empresa C</th></tr></thead>
+<tbody>
+<tr><td>Configuración cotizada</td><td>Procesador de cuatro núcleos, 8 GB DDR4, SSD 480 GB, fuente 500 W</td><td>Procesador de cuatro núcleos, 16 GB DDR4, SSD 480 GB, fuente 600 W</td><td>Procesador de cuatro núcleos, 8 GB DDR4, SSD 240 GB, fuente 450 W</td></tr>
+<tr><td>Ajuste respecto de lo solicitado</td><td>Cumple la especificación</td><td>Supera la memoria pedida en 8 GB</td><td>El disco queda por debajo de los 480 GB solicitados</td></tr>
+<tr><td>Precio unitario con impuestos</td><td>$ 780.000</td><td>$ 845.000</td><td>$ 712.000</td></tr>
+<tr><td>Plazo de entrega</td><td>5 días hábiles</td><td>48 horas, con stock disponible</td><td>10 días hábiles</td></tr>
+<tr><td>Garantía</td><td>12 meses, en el local</td><td>24 meses, con retiro a domicilio</td><td>6 meses, en el local</td></tr>
+<tr><td>Forma de pago</td><td>Contado o tres cuotas sin interés</td><td>Contado, transferencia</td><td>Contado o seis cuotas con interés</td></tr>
+<tr><td>Fecha de la cotización</td><td>13/10/2026</td><td>12/10/2026</td><td>14/10/2026</td></tr>
+</tbody>
+</table>
+
+<p>El equipo recomienda la compra a la empresa B. Su cotización es la más alta de las tres, con una diferencia de $ 65.000 sobre la empresa A, y ese excedente corresponde a dos ventajas verificables: 8 GB adicionales de memoria, cuyo valor de mercado relevado en el entregable 3 se ubica entre $ 40.000 y $ 55.000, y una garantía de 24 meses con retiro a domicilio contra los 12 meses en el local que ofrece la empresa A. Para una empresa cuyo gabinete técnico está compuesto por cuatro personas, el traslado de un equipo en garantía representa medio día de trabajo que la cobertura con retiro evita.</p>
+
+<p>El plazo de entrega refuerza la elección: 48 horas con stock disponible contra cinco días hábiles, lo que resulta determinante cuando el equipo se compra para reemplazar una estación de facturación fuera de servicio. La cotización de la empresa C, la más económica, quedó fuera de la comparación porque el disco de 240 GB no alcanza la capacidad solicitada; se le pidió una cotización corregida el 14 de octubre y no llegó respuesta antes del cierre del trabajo.</p>
+
+<h3>4.5 · Carpeta con el código</h3>
+
+<p>La carpeta comprimida contiene cuatro elementos. En <i>frontend/</i> están las vistas del sitio y la hoja de estilos; en <i>backend/</i>, los archivos de conexión y las consultas a la base; en <i>basedatos/</i>, dos archivos: <i>estructura.sql</i>, con la creación de las tablas, y <i>datos.sql</i>, con los productos de ejemplo cargados para la demostración. El archivo <i>leeme.txt</i> indica los pasos para poner el sitio en funcionamiento: crear la base con el primer archivo, cargar el segundo, ajustar los datos de conexión en el archivo indicado y abrir la dirección del sitio en el navegador. Las credenciales de acceso del administrador de prueba figuran en ese mismo archivo.</p>
+
+<p>La estructura y los datos se entregan en archivos separados para que la base pueda reconstruirse vacía y cargarse después, que es lo que permite probar el alta de un artículo nuevo.</p>
+
+<h3>4.6 · Sitio web dinámico</h3>
+
+<p>El sitio tiene tres partes. La vista de usuario muestra el nombre de la empresa, el modo de contacto y el listado de productos con rubro, descripción, marca y precio, todos consultados desde la base de datos. La vista de administrador permite el alta de artículos y de rubros. El acceso a esa vista exige usuario y contraseña, y las direcciones internas del panel verifican la sesión antes de mostrar contenido.</p>
+
+<p>Que el listado surge de la base se demostró con el recorrido completo: se dio de alta un artículo desde la vista de administrador y se lo vio aparecer en la vista de usuario al recargar la página, sin modificar ningún archivo del sitio. Las capturas de ese recorrido están en el anexo B, figuras 1 y 2, y la ficha de la prueba es el caso CP-01 del apartado siguiente.</p>
+
+<h2 id="a5">5 · Comparación de alternativas y decisión</h2>
+
+<p>La decisión que más condiciona el resto del trabajo es el soporte de las copias de seguridad, porque de ella dependen el tiempo de recuperación, el costo y la protección frente a los tres escenarios previstos. Se compararon las dos alternativas disponibles con una matriz ponderada de cinco criterios. Los pesos se definieron antes de puntuar las alternativas, a partir de lo relevado en la empresa, y suman cien.</p>
+
+<p>Escala de puntuación: 5 cumple con margen, 4 cumple bien, 3 cumple justo, 2 cumple con dificultad, 1 no cumple. La columna «ponderado» es el puntaje multiplicado por el peso y dividido por cien, y el total de cada alternativa es la suma de su columna. Por ejemplo, el 4 del NAS en el primer criterio, con peso 30, da 4 × 30 ÷ 100 = 1,20.</p>
+
+<table border="1">
+<thead><tr><th>Criterio</th><th>Peso</th><th>NAS con réplica en la nube</th><th>Ponderado</th><th>Discos externos rotativos</th><th>Ponderado</th></tr></thead>
+<tbody>
+<tr><td>Protección ante infección por malware</td><td>30</td><td>4</td><td>1,20</td><td>5</td><td>1,50</td></tr>
+<tr><td>Tiempo de restauración de un archivo</td><td>25</td><td>5</td><td>1,25</td><td>2</td><td>0,50</td></tr>
+<tr><td>Costo del primer año, con puesta en marcha y abono</td><td>20</td><td>2</td><td>0,40</td><td>4</td><td>0,80</td></tr>
+<tr><td>Trabajo manual que exige</td><td>15</td><td>5</td><td>0,75</td><td>2</td><td>0,30</td></tr>
+<tr><td>Protección ante robo o incendio</td><td>10</td><td>5</td><td>0,50</td><td>3</td><td>0,30</td></tr>
+<tr><th>Total</th><th>100</th><th>—</th><th>4,10</th><th>—</th><th>3,40</th></tr>
+</tbody>
+</table>
+
+<p>Los datos detrás de los puntajes. El NAS conserva versiones anteriores durante treinta días, lo que permite volver a una copia previa a la infección, y por eso puntúa 4 en el primer criterio; el disco externo, que permanece desconectado entre copias, puntúa 5 porque el malware no lo alcanza. La restauración desde el NAS demora menos de cinco minutos y le da 5 en tiempo, mientras que el disco exige ubicarlo, conectarlo y buscar la versión, lo que le da 2. En costo la relación se invierte: el NAS requiere un equipo dedicado más un abono mensual y puntúa 2, contra los tres discos externos sin costo mensual, que puntúan 4. El NAS copia sin intervención de nadie una vez configurado, lo que le da 5 en trabajo manual, y el disco depende de que un empleado lo rote cada semana, que es la práctica que este trabajo viene a corregir, y por eso puntúa 2. En protección ante robo o incendio el NAS tiene 5 porque su réplica está fuera del edificio, y el disco tiene 3 porque protege solo si efectivamente se retira.</p>
+
+<p>El equipo adopta el esquema de NAS con réplica cifrada en la nube, que obtiene 4,10 puntos contra 3,40 de los discos externos rotativos. La diferencia se concentra en el tiempo de restauración, donde el acceso en línea resuelve en minutos lo que la rotación de discos resuelve en horas, y en el trabajo manual, donde la automatización elimina la dependencia de que alguien recuerde conectar el disco.</p>
+
+<p>La alternativa de los discos resulta superior en costo y en protección ante infección, porque el soporte permanece desconectado. Por esa razón la solución adoptada conserva una copia semanal en disco externo que se retira del edificio, de modo que el punto fuerte de la alternativa descartada queda incorporado.</p>
+
+<h4>El efecto de los pesos sobre el resultado</h4>
+
+<p>La decisión depende de los pesos, y conviene mostrar hasta dónde. Con los mismos puntajes y otra distribución de pesos —el costo como preocupación principal, en una empresa que pueda esperar al día siguiente para recuperar un archivo—, el resultado se invierte.</p>
+
+<table border="1">
+<thead><tr><th>Criterio</th><th>Peso alternativo</th><th>NAS, ponderado</th><th>Discos, ponderado</th></tr></thead>
+<tbody>
+<tr><td>Costo del primer año</td><td>40</td><td>0,80</td><td>1,60</td></tr>
+<tr><td>Protección ante infección por malware</td><td>30</td><td>1,20</td><td>1,50</td></tr>
+<tr><td>Trabajo manual que exige</td><td>15</td><td>0,75</td><td>0,30</td></tr>
+<tr><td>Protección ante robo o incendio</td><td>10</td><td>0,50</td><td>0,30</td></tr>
+<tr><td>Tiempo de restauración de un archivo</td><td>5</td><td>0,25</td><td>0,10</td></tr>
+<tr><th>Total</th><th>100</th><th>3,50</th><th>3,80</th></tr>
+</tbody>
+</table>
+
+<p>El equipo sostuvo los pesos originales porque la facturación diaria se realiza sobre los archivos del servidor administrativo: una detención de esa tarea cuesta más que el abono mensual del servicio, de modo que el tiempo de restauración pesa por encima del costo en esta empresa.</p>
+
+<h2 id="a6">6 · Pruebas y resultados</h2>
+
+<p>Se diseñaron tres casos de prueba, uno por cada afirmación del trabajo que necesitaba comprobación: que el listado del sitio surge de la base, que el acceso al panel de administración exige credenciales, y que el procedimiento de recuperación restaura un archivo en el tiempo previsto. Las evidencias están en el anexo B.</p>
+
+<table border="1">
+<thead><tr><th>Caso</th><th>Afirmación que verifica</th><th>Datos de entrada</th><th>Resultado esperado</th><th>Resultado obtenido</th><th>Evidencia</th></tr></thead>
+<tbody>
+<tr><td>CP-01</td><td>El listado de productos se consulta desde la base de datos</td><td>Alta del artículo «Detergente concentrado 5 L», rubro Limpieza, marca X, precio Y, desde la vista de administrador</td><td>El artículo aparece en el listado de la vista de usuario al recargar la página, sin modificar archivos del sitio</td><td>Correcto. El artículo se muestra con sus cuatro datos</td><td>Anexo B, figuras 1 y 2</td></tr>
+<tr><td>CP-02</td><td>El acceso a la vista de administrador exige credenciales</td><td>Dirección de la vista de administrador abierta en una ventana sin sesión iniciada</td><td>El sitio redirige al formulario de acceso y no muestra el panel de carga</td><td>Correcto tras corregir un enlace directo que omitía la verificación</td><td>Anexo B, figura 3</td></tr>
+<tr><td>CP-03</td><td>El procedimiento de recuperación restaura un archivo eliminado</td><td>Eliminación de un archivo de prueba en la carpeta administrativa, con la copia del día anterior disponible</td><td>El archivo se restaura completo en menos de diez minutos siguiendo el procedimiento escrito</td><td>Correcto. Tiempo registrado: seis minutos</td><td>Anexo B, figura 4</td></tr>
+</tbody>
+</table>
+
+<p>El caso CP-02 falló en su primera ejecución: la dirección interna del panel de carga se abría sin sesión iniciada, porque la verificación estaba solo en la página de acceso. Se agregó la comprobación de sesión al inicio de cada página del panel y la prueba se repitió con resultado correcto. La corrección quedó asentada en la bitácora del 14 de octubre.</p>
+
+<h2 id="a7">7 · Registro de dificultades</h2>
+
+<p>La bitácora completa, con el registro diario de las cinco jornadas, está en el anexo D. Tres dificultades condicionaron el trabajo y se detallan a continuación.</p>
+
+<p>La primera fue la ausencia de registros de mantenimiento anteriores: la planilla pedía el último mantenimiento de cada equipo y ese dato no existía en la empresa. El equipo consultó con los responsables de sector, que tampoco pudieron precisarlo, y resolvió consignar «sin registro» y tomar como fecha de referencia la del relevamiento propio, de modo que la planilla arranca con un estado inicial documentado.</p>
+
+<p>La segunda fue el listado de productos, que durante el tercer día mostró siempre los mismos artículos de ejemplo. Se revisó primero la consulta a la base, que resultó correcta al ejecutarla directamente sobre el gestor, y después el archivo de la vista, donde se encontró que el listado estaba escrito en la página y no recorría el resultado de la consulta. La corrección se probó con el caso CP-01.</p>
+
+<p>La tercera fue la respuesta de las empresas: de las cinco a las que se solicitó cotización el primer día, tres enviaron presupuesto —dos dentro de los tres días hábiles y la tercera al cuarto día—, una contestó que no comercializa equipos armados y la restante no respondió. El equipo previó ese plazo enviando cinco pedidos en lugar de tres, lo que permitió cerrar el cuadro comparativo con las tres cotizaciones que la consigna exige.</p>
+
+<h2 id="a8">8 · Conclusiones</h2>
+
+<p>El trabajo deja instalados un plan de mantenimiento preventivo con cinco tareas y su periodicidad fundada, un plan de copias para los cuatro conjuntos de información de la empresa con su procedimiento de recuperación, los criterios de renovación de equipos con cuatro umbrales medibles, la especificación de ocho perfiles de usuario con precios de tres fuentes, la gestión de compra con tres presupuestos comparados y un sitio web que publica el catálogo desde la base de datos. Los tres casos de prueba quedaron ejecutados y documentados.</p>
+
+<p>Quedó pendiente la carga de marcas desde la vista de administrador. La tabla de marcas está creada y probada con dos registros insertados directamente en la base, según se ve en el anexo B, figura 5; lo que falta es el formulario de carga. El equipo priorizó dejar probado el listado de productos desde la base, que es la condición que la consigna establece de manera explícita. Completar la carga de marcas requiere el mismo formulario que ya funciona para rubros, con el nombre de la tabla cambiado, y está estimado en dos horas de trabajo.</p>
+
+<p>Con más tiempo, el equipo habría relevado el consumo eléctrico de los equipos más antiguos. Durante el trabajo apareció como un dato que podría modificar el umbral de renovación: un equipo que se repara barato pero consume el doble tiene un costo anual que el criterio del 40 % no está midiendo. Ese relevamiento exige un instrumento de medición del que la escuela no dispone, y quedó anotado como línea de continuidad.</p>
+
+<h2 id="a9">Referencias</h2>
+
+<p>Instituto Nacional de Educación Tecnológica. (2024). <i>Olimpíada Nacional de ETP. Informática: lineamientos, pautas y criterios para su desarrollo</i>. Recuperado el 10 de octubre de 2026, de https://www.inet.edu.ar</p>
+<p>Nombre de la empresa 1. (s. f.). <i>Computadora de escritorio, modelo consultado</i>. Recuperado el 12 de octubre de 2026, de https://…</p>
+<p>Nombre de la empresa 2. (s. f.). <i>Computadora de escritorio y estación de diseño, modelos consultados</i>. Recuperado el 12 de octubre de 2026, de https://…</p>
+<p>Nombre del fabricante. (s. f.). <i>Especificaciones técnicas del procesador: temperatura máxima de operación</i>. Recuperado el 11 de octubre de 2026, de https://…</p>
+
+<h2 id="a10">Anexos</h2>
+
+<table border="1">
+<thead><tr><th>Anexo</th><th>Contenido</th></tr></thead>
+<tbody>
+<tr><td>A · Planillas completas</td><td>Inventario de los doce equipos, plan de tareas de mantenimiento, plan de copias, especificación de los ocho perfiles con sus tres precios y registro de mantenimiento</td></tr>
+<tr><td>B · Evidencias de las pruebas</td><td>Capturas de los tres casos de prueba, cada una con su epígrafe</td></tr>
+<tr><td>C · Gestión de compra</td><td>Copia del correo enviado, respuestas recibidas y los tres presupuestos</td></tr>
+<tr><td>D · Bitácora</td><td>Registro diario de las cinco jornadas, con fecha, dificultad, intento, solución y fuente consultada</td></tr>
+</tbody>
+</table>
+
+<h4>Cumplimiento de las pautas de presentación</h4>
+<table border="1">
+<thead><tr><th>Pauta</th><th>Forma de cumplimiento</th></tr></thead>
+<tbody>
+<tr><td>Un único archivo PDF con los anexos adentro</td><td>El documento incluye los anexos A, B, C y D</td></tr>
+<tr><td>Arial 12, interlineado sencillo</td><td>Aplicado en todo el cuerpo</td></tr>
+<tr><td>Planillas y capturas en anexo</td><td>Anexo A, planillas; anexo B, capturas</td></tr>
+<tr><td>Mails y presupuestos dentro del PDF</td><td>Anexo C, cinco pedidos enviados y tres presupuestos recibidos</td></tr>
+<tr><td>Citas y referencias en APA</td><td>Cuatro referencias, todas con fecha de acceso</td></tr>
+<tr><td>Nombre del archivo que identifica al equipo</td><td>BNS-INFO-060597100-001</td></tr>
+</tbody>
+</table>
+
+<h4>Anexo C, extracto: el correo enviado a las cinco empresas</h4>
+<p>Asunto: Solicitud de cotización — equipo de escritorio</p>
+<p>Estimados:</p>
+<p>Nos dirigimos a ustedes en el marco de un trabajo escolar de la E.E.S.T. N.º 3 de Mar del Plata para la Olimpíada Nacional de Educación Técnico Profesional. Solicitamos cotización de una computadora de escritorio con las siguientes especificaciones mínimas: procesador de cuatro núcleos de generación actual, 8 GB de memoria DDR4, disco de estado sólido de 480 GB, video integrado, gabinete con fuente de 500 W, teclado y mouse. Sin monitor.</p>
+<p>Agradeceremos indicar precio unitario con impuestos incluidos, plazo de entrega, garantía y forma de pago. Quedamos a disposición por cualquier consulta.</p>
+<p>Saludos cordiales.<br>
+Nombre y apellido — Equipo BNS-INFO-060597100-001</p>
+
+</div>
+
+<h2 class="parte" id="parteB">Parte B · Cada apartado, explicado</h2>
+
+<p class="nota">Esta parte recorre el mismo documento de la parte A y explica con qué criterio se escribe cada apartado. Los enlaces llevan al apartado correspondiente del modelo.</p>
+
+<h2 id="b0">El orden de escritura</h2>
+
+<p>El documento se lee en el orden de la portada a los anexos y se escribe en otro. El primer día se crea el archivo con la portada y con los títulos de los once apartados vacíos, para que cada integrante escriba adentro del suyo desde el principio y el documento crezca junto con el trabajo. Después se completan los apartados 3, 4, 5 y 6, que dependen de lo que el equipo produce. Los apartados 1, 2, 7 y 8 se escriben al final, porque recién entonces el equipo sabe qué encontró, qué interpretó y qué le faltó. Las referencias se cargan el día en que se consulta cada fuente.</p>
+
+<p>La grilla del INET reparte cien puntos y la resolución técnica vale treinta y dos. Los sesenta y ocho restantes —planificación 20, producto final 20, autorregulación 12, pensamiento combinatorio 10, trabajo en equipo 6— se juegan en la forma en que el trabajo está documentado, que es lo que estos apartados hacen.</p>
+
+<h2 id="b1">La portada y los apartados 1 y 2</h2>
+
+<h3>La portada</h3>
+<p>La grilla tiene, en su encabezado, los datos con los que el equipo evaluador identifica el trabajo antes de puntuarlo: especialidad, escuela, CUE, nombre del equipo, provincia, localidad, correo institucional, estudiantes participantes y coordinación a cargo. La <a href="#a0">portada del modelo</a> lleva esos mismos datos con esos mismos nombres, de modo que quien evalúa complete su grilla sin salir del documento. El rol que figura al lado de cada nombre reaparece después en el apartado 3; cuando los dos coinciden, el reparto de tareas se lee sin esfuerzo.</p>
+
+<h3>1 · Situación y necesidades detectadas</h3>
+<p>Es el apartado que más se resuelve copiando la consigna. Lo que se pide es otra cosa: leer la situación, decir cuál es el problema, a quién le afecta y con qué evidencia se afirma. <a href="#a1">En el modelo</a> se ve el movimiento completo en tres párrafos. El primero da el estado actual con datos propios: qué hay, cuánto hay y qué se encontró al relevar, con la fecha del relevamiento. El segundo dice la consecuencia para la empresa en términos de trabajo interrumpido, información perdida o tiempo gastado. El tercero enuncia la necesidad como el pasaje de una situación a otra, y de paso anticipa los seis entregables sin desarrollarlos.</p>
+<p>Dos cosas hacen que este apartado funcione: los datos son del relevamiento propio y llevan fecha, y el problema está dicho en términos de lo que le pasa a la empresa. «El parque informático está desactualizado» es una opinión; «tres de los doce equipos revisados operan con menos del 10 % de espacio libre en el disco» es un dato que el evaluador puede seguir hasta la planilla del anexo.</p>
+
+<h3>2 · Alcance y decisiones de interpretación</h3>
+<p>La consigna deja tres cosas abiertas y el equipo tiene que resolverlas para poder trabajar: el reparto de cinco roles técnicos entre cuatro integrantes, la frase sobre las restricciones para instalar aplicaciones —que admite dos lecturas— y la escala de las planillas, porque relevar cien equipos en cinco días es imposible y la consigna pide un mínimo de tres por gerencia.</p>
+<p>Una interpretación declarada es una decisión técnica que se puede defender. La misma interpretación aplicada en silencio se lee como un pedido que quedó sin cumplir. <a href="#a2">El modelo</a> resuelve las tres en tres párrafos cortos, y por eso este apartado ocupa poco y evita descuentos en varios criterios a la vez.</p>
+
+<h2 id="b3">3 · El proceso de trabajo y la planificación</h2>
+
+<p>Es la evidencia principal de dos criterios que suman veintiséis puntos: planificación, que vale veinte, y trabajo en equipo, que vale seis. La grilla evalúa que los roles se distribuyan en forma equitativa, y eso se lee en un cronograma con nombres y fechas, no en una declaración de buenas intenciones. «Trabajamos todos en todo» deja el criterio sin evidencia.</p>
+
+<p>El apartado tiene tres piezas, y <a href="#a3">en el modelo</a> aparecen en ese orden. La tabla de roles dice quién se ocupa de qué y, en la tercera columna, por qué le tocó a esa persona: afinidad técnica, disponibilidad horaria o rotación, y cualquiera de las tres se sostiene si está escrita. El párrafo siguiente explica el criterio del reparto y el modo de seguimiento, que en el modelo es un cierre diario de quince minutos. Y el cronograma reparte las tareas en los cinco días, con una columna de dependencias que evita que dos integrantes se queden esperando la misma cosa.</p>
+
+<p>Dos decisiones del cronograma valen para cualquier equipo. Los pedidos de cotización salen el primer día, porque son lo único que depende de que respondan terceros. Y el quinto día se reserva para el control, sin tareas de producción, que es la única manera de revisar un documento que ya no cambia.</p>
+
+<h2 id="b4">4 · El desarrollo, entregable por entregable</h2>
+
+<p>Acá viven los seis entregables, cada uno con su subtítulo numerado. La regla que ordena el apartado es la misma para los seis: <b>en el cuerpo va el criterio, en el anexo van las planillas completas</b>. Una tabla de doce filas ocupa media página y no explica nada por sí sola; tres filas de muestra más el párrafo que dice cómo se completaron las otras nueve ocupan menos y valen más.</p>
+
+<h3>4.1 · El plan de mantenimiento preventivo</h3>
+<p>La consigna pide una planilla con las computadoras por tipo, el año de fabricación, el último mantenimiento con sus observaciones y la fecha probable del próximo, con al menos tres equipos por gerencia que abarquen los diferentes tipos. Son dos condiciones en una misma oración y se verifican por separado: el mínimo se cuenta contando filas por gerencia, y la variedad se comprueba recorriendo la columna del tipo. Doce filas de computadoras de escritorio cumplen la primera y dejan sin cumplir la segunda.</p>
+<p>La periodicidad se escribe con la razón que la produjo. «Cada seis meses» solo no se puede defender; la tabla del modelo dedica una columna entera a esa razón, y ahí es donde el apartado deja de ser una lista de tareas y pasa a ser un plan. Los criterios de renovación aparecen en la prosa de la situación y no en la lista de entregables, así que es fácil pasarlos por alto: son umbrales con un valor y una unidad, como <a href="#a4">los cuatro del modelo</a>, y sin un número no se pueden aplicar.</p>
+
+<h3>4.2 · El plan de copias de seguridad</h3>
+<p>La consigna aclara que los valores de esta planilla los define el equipo. Cada columna es entonces una decisión propia y necesita su criterio al lado. Los datos de la empresa no valen todos lo mismo: la base de datos de ventas cambia todos los días y ocupa poco; las fotografías de producto casi no cambian y ocupan mucho. Una fila por conjunto de información, cada una con su frecuencia, responde el pedido y de paso justifica el tamaño del soporte.</p>
+<p>El plan tiene que responder a tres escenarios distintos: la falla del equipo, la eliminación accidental y la infección por malware. El tercero es el que cambia el diseño, porque una carpeta sincronizada en línea se cifra junto con el original; hace falta una copia desconectada o un soporte que conserve versiones anteriores. Y el procedimiento de recuperación es el parámetro que más se omite: se escribe paso a paso, con su tiempo estimado, y después se prueba, porque una copia que nadie sabe restaurar no protege nada.</p>
+
+<h3>4.3 · La especificación por perfil de usuario</h3>
+<p>Se piden al menos dos tipos de usuario por gerencia, o sea ocho perfiles, cada uno descripto por las tareas que realiza, con la configuración que le corresponde y su costo estimado tomado de tres sitios de empresas del rubro. Los portales de venta quedan excluidos por la consigna. Si los ocho perfiles terminaran en la misma configuración, hay que explicar por qué conviene unificar la compra; sin esa explicación, la coincidencia se lee como que el perfil no intervino en la decisión.</p>
+<p>El párrafo que sigue a la planilla es el que muestra el razonamiento: <a href="#a4">en el modelo</a> contrasta dos perfiles opuestos y explica qué componente sube, cuál queda afuera y por qué, atado a las tareas de cada puesto. Cada precio se cita con la dirección del sitio y la fecha de consulta, porque cambia de un mes al otro.</p>
+
+<h3>4.4 · La gestión de compra</h3>
+<p>Es el único entregable que depende de terceros, y el procedimiento tiene siete pasos que conviene arrancar el primer día.</p>
+<ol>
+<li>Definir la especificación exacta del equipo a cotizar, que sale del perfil de usuario elegido en el entregable 3.</li>
+<li>Buscar cinco o seis empresas de la ciudad o la región que vendan equipamiento informático y publiquen un correo de contacto. Los portales de venta quedan excluidos.</li>
+<li>Enviar a todas el mismo texto, con las mismas especificaciones, desde una dirección que el equipo revise a diario y con copia a los cuatro integrantes.</li>
+<li>Registrar cada envío en la tabla de seguimiento, con la fecha.</li>
+<li>Guardar cada respuesta apenas llega: la captura del correo con el encabezado completo —remitente, destinatario, fecha y asunto— y el presupuesto adjunto.</li>
+<li>Reiterar el pedido una vez a las empresas que no respondieron a las 48 horas.</li>
+<li>Volcar las tres cotizaciones al cuadro comparativo y escribir la decisión.</li>
+</ol>
+<p>Un pedido que trae las especificaciones completas recibe presupuestos comparables entre sí; uno que pide «una computadora para oficina» recibe tres equipos distintos y la comparación después no se puede hacer. Aun así, rara vez llegan tres equipos idénticos: cada empresa cotiza con el componente que tiene en stock, y esas diferencias se hacen visibles en una fila propia del cuadro antes de comparar precios. <a href="#a4">En el modelo</a>, una de las tres cotizaciones queda fuera de la comparación directa porque el disco no alcanza la capacidad solicitada, y esa decisión se explica en una línea.</p>
+<p>Cuando una empresa no responde, eso también se escribe: la fecha del pedido y la ausencia de respuesta al cierre son parte del registro y explican por qué se trabajó con las que contestaron. Las copias de los correos y los presupuestos van al anexo, adentro del mismo PDF; un adjunto aparte incumple la pauta de entrega en un único archivo.</p>
+
+<h3>4.5 y 4.6 · El código y el sitio</h3>
+<p>La carpeta comprimida lleva el frontend, el backend y la base de datos, y en el cuerpo del documento queda la descripción de esa estructura y de cómo se pone el sitio en funcionamiento. La estructura y los datos se entregan en dos archivos separados para que quien evalúa pueda reconstruir la base vacía y cargarla después, que es lo que necesita para probar el alta de un artículo nuevo.</p>
+<p>La oración que fija la prueba del sitio es «estos productos deben surgir de base de datos». Demostrarlo requiere mostrar el recorrido completo: se carga un artículo desde la vista de administrador y se lo ve aparecer en la vista de usuario sin modificar ningún archivo. El registro con usuario y contraseña aparece en la prosa de la situación y no en el texto del entregable 6, y se pide igual; su prueba central es negativa, porque lo que hay que demostrar es que alguien sin credenciales no llega al panel.</p>
+
+<h2 id="b5">5 y 6 · La decisión y la prueba</h2>
+
+<h3>5 · La comparación de alternativas</h3>
+<p>Este apartado alimenta pensamiento combinatorio, que vale diez puntos, y es el que más se olvida. En este trabajo hay al menos tres pares naturales de alternativas: el soporte de las copias de seguridad, la empresa a la que se compra el equipo y la configuración de un perfil. Con desarrollar uno con la matriz completa alcanza; los otros se resuelven en un párrafo.</p>
+<p>La matriz se arma en cuatro movimientos. Se eligen los criterios que importan para esa decisión; se les asigna un peso que sume cien, decidido antes de mirar las alternativas; se puntúa cada alternativa de 1 a 5 en cada criterio, con la escala declarada arriba de la tabla; y se calcula el ponderado. El orden importa: los pesos definidos después de conocer los puntajes producen la conclusión que el equipo ya quería.</p>
+<p>El cálculo es el mismo que trabajamos en clase y conviene dejarlo a la vista, porque es lo que permite seguir de dónde sale el número final. Cada celda de puntaje se multiplica por el peso de su criterio y se divide por cien: un 4 en un criterio que pesa 30 aporta 1,20. El total de cada alternativa es la suma de su columna de ponderados, y queda en la misma escala de 1 a 5 de los puntajes, así que se lee directamente. Las razones de cada puntaje van en el párrafo que sigue a la tabla, criterio por criterio, porque son las que el evaluador necesita para aceptar el número.</p>
+<p>El párrafo de decisión hace tres cosas, y <a href="#a5">el del modelo</a> las muestra en orden: nombra la alternativa elegida con su puntaje, explica en qué criterios se concentró la diferencia, y reconoce en qué es mejor la alternativa descartada —lo que permite incorporar su punto fuerte, como la copia semanal que se retira del edificio—. El cierre dice bajo qué condición la decisión cambiaría, con el cálculo hecho. Eso demuestra que el equipo entendió su propia matriz.</p>
+
+<h3>6 · Las pruebas</h3>
+<p>Una solución que no se probó es una propuesta. La prueba es lo que la convierte en resultado, y se escribe con la ficha que trabajamos en la unidad 1: identificador, qué se prueba, con qué datos, qué resultado se espera, qué se obtuvo y qué evidencia lo respalda. Tres o cuatro casos bien elegidos valen más que diez que prueban lo mismo.</p>
+<p>La elección de qué probar sale de las técnicas de diseño de casos. Los <a href="#a6">tres del modelo</a> cubren tres situaciones distintas: el pedido explícito de la consigna, un caso negativo por conjetura de errores —el acceso sin credenciales— y la comprobación de una promesa del propio trabajo, que es el procedimiento de recuperación. Una prueba que falla y después se corrige conviene dejarla escrita: es evidencia de autorregulación y vale más que una tabla donde todo sale bien a la primera.</p>
+
+<h2 id="b7">7 y 8 · El registro y el cierre</h2>
+
+<h3>7 · El registro de dificultades</h3>
+<p>La consigna pide un registro breve de las dificultades y de cómo se resolvieron. Breve se refiere a la extensión del apartado; el registro se carga el día en que ocurre cada dificultad, porque reconstruido de memoria el último día pierde las fechas y las fuentes, que son los datos que lo vuelven verificable.</p>
+<p>La bitácora completa va al anexo con cinco columnas: fecha, qué pasó, qué se probó, qué lo resolvió y dónde se buscó. En el cuerpo queda el resumen de las tres o cuatro dificultades que efectivamente cambiaron el trabajo, contadas con el recorrido entero, como <a href="#a7">las tres del modelo</a>: qué se intentó primero, qué se descartó y qué lo resolvió. La última columna de la bitácora se convierte después en la lista de referencias.</p>
+
+<h3>8 · Las conclusiones</h3>
+<p>Cierran el documento y es donde el equipo evaluador ve si el equipo entendió el problema o solo ejecutó tareas. Tienen tres partes: qué quedó resuelto, qué quedó pendiente y qué se haría distinto.</p>
+<p>En cinco días es probable que algo no llegue. Declararlo lo convierte en evidencia de autorregulación; callarlo hace que el evaluador lo encuentre como ítem faltante y descuente dos veces, una en resolución porque el pedido no está, y otra en autorregulación porque el equipo no registró su propio límite. Se escribe con cuatro datos, como <a href="#a8">el segundo párrafo del modelo</a>: qué parte quedó incompleta, hasta dónde se llegó, por qué se detuvo ahí y qué haría falta para terminarla. El tercer párrafo, el de lo que se haría distinto, es el que más pesa y el que menos se escribe.</p>
+
+<h2 id="b9">Referencias, anexos y control final</h2>
+
+<h3>Las referencias</h3>
+<p>Permiten que quien lee llegue a la misma fuente y verifique el dato. Un precio, una temperatura máxima de fabricante o una recomendación de periodicidad sin fuente son afirmaciones que el evaluador tiene que creer o descartar; con la fuente, puede comprobarlas. Se usan en dos lugares: dentro del cuerpo va la cita breve, con el apellido o la organización y el año entre paréntesis, y al final la lista completa, ordenada alfabéticamente.</p>
+<table border="1">
+<thead><tr><th>Tipo de fuente</th><th>Datos de la referencia</th></tr></thead>
+<tbody>
+<tr><td>Libro</td><td>Apellido, inicial del nombre. (Año). <i>Título completo en cursiva</i>. Ciudad: Editorial.</td></tr>
+<tr><td>Capítulo de libro</td><td>Autor y año; título del capítulo; «En» autores del libro (Eds.), <i>título del libro en cursiva</i> (pp. inicial-final). Ciudad: Editorial.</td></tr>
+<tr><td>Artículo de revista</td><td>Autor y año; título del artículo; <i>nombre de la revista</i>, <i>volumen</i>(número), página inicial-final.</td></tr>
+<tr><td>Material de internet</td><td>Autor de la página. (Fecha de publicación o revisión). <i>Título de la página</i>. Recuperado el (fecha de acceso), de (dirección).</td></tr>
+</tbody>
+</table>
+<p>La abreviatura «s. f.» significa «sin fecha» y se usa cuando la página no informa cuándo se publicó, que es lo habitual en un catálogo de productos. La fecha de acceso pasa entonces a ser el dato que ubica la consulta en el tiempo, y por eso resulta indispensable en un precio.</p>
+
+<h3>Los anexos</h3>
+<p>No cuentan para la extensión del cuerpo, y por eso son el lugar de todo lo que ocupa espacio sin explicar: las planillas completas, las capturas, los correos y los presupuestos. La condición para que sirvan es que estén nombrados y que el cuerpo los llame por su nombre. Una captura sin epígrafe obliga al evaluador a deducir qué está mirando; el epígrafe dice qué muestra la imagen y cuándo se tomó, y ocupa una línea: «Figura 1. Alta del artículo desde la vista de administrador, 13 de octubre de 2026».</p>
+
+<h3>El control del último día</h3>
+<p>Autorregulación evalúa que el equipo respete las consignas y pautas dadas, y ese cumplimiento se puede dejar a la vista con el cuadro de seis filas del <a href="#a10">final del modelo</a>, en lugar de obligar al evaluador a reconstruirlo. Sobre el documento terminado se recorren además estas seis comprobaciones.</p>
+<ol>
+<li>Cada uno de los seis entregables tiene su subtítulo propio en el apartado 4 y se encuentra buscándolo en el índice.</li>
+<li>Los mínimos numéricos están cumplidos y se pueden contar: tres equipos por gerencia con tipos variados, ocho perfiles de usuario, tres sitios de precios, tres presupuestos.</li>
+<li>Toda afirmación que lleva un número tiene al lado su fuente o el relevamiento del que salió.</li>
+<li>El término técnico aparece siempre con el mismo nombre: la copia elegida se llama «incremental» en la planilla y en el párrafo que la explica.</li>
+<li>Las capturas del anexo tienen epígrafe y el cuerpo las llama por su número de figura.</li>
+<li>El documento se abrió en otra computadora después de exportarlo, para verificar que las tablas y las imágenes conservan su formato.</li>
+</ol>
+
+<p class="nota">Material complementario: <a href="https://yanelricarte.github.io/Evaluacion_proyectos/olimpiadas-el-plan-y-su-prueba/">Guía de trabajo para las Olimpíadas 2026</a> y <a href="https://yanelricarte.github.io/Evaluacion_proyectos/olimpiadas-plantillas/">Planillas e instrumentos para el documento</a>.</p>
+
+<footer>Yanel Ricarte · Evaluación de Proyectos · 7.º año · 2026</footer>
+
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análisis de la situación y armado del documento — Olimpíada de ETP 2026</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../css/comun.css" />
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Taller · Olimpíada de ETP 2026 · 7.º año · E.E.S.T. N.º 5</div>
+    <h1>Análisis de la situación y armado del documento</h1>
+    <p class="lead">Este taller sirve para dos cosas: partir la situación que le tocó a tu equipo en pedazos que se puedan repartir y terminar, y dejar armado el documento del equipo con un responsable por apartado. Todo lo que escribas se copia al documento con el botón del final.</p>
+    <p class="lead"><b>El trabajo se entrega el viernes 4 de septiembre.</b> Si la escuela informó otra fecha, esa es la que vale.</p>
+    <div class="track">
+      <a class="track-step" href="#parte-0"><b>0</b><span>Nuestra situación</span></a>
+      <a class="track-step" href="#parte-1"><b>1</b><span>Leer el enunciado</span></a>
+      <a class="track-step" href="#parte-2"><b>2</b><span>Las partes del desarrollo</span></a>
+      <a class="track-step" href="#parte-3"><b>3</b><span>El documento repartido</span></a>
+      <a class="track-step" href="#parte-4"><b>4</b><span>Tres decisiones</span></a>
+      <a class="track-step" href="#parte-5"><b>5</b><span>Registro para la carpeta</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="encuadre">
+  <h2>Las siete piezas de la entrega</h2>
+  <p>La consigna asigna a cada equipo una situación entre diez, y las diez piden las mismas siete piezas. Conviene tenerlas a la vista porque el equipo evaluador recorre el documento buscando cada una.</p>
+  <ol>
+    <li>Una solución técnica a la situación asignada.</li>
+    <li>Un documento de entre 5 y 10 páginas, sin contar anexos.</li>
+    <li>Un esquema, diagrama, modelo, código o prototipo, según corresponda.</li>
+    <li>Una comparación entre al menos dos alternativas posibles.</li>
+    <li>La explicación de por qué el equipo eligió esa solución.</li>
+    <li>Un registro breve de dificultades y cómo se resolvieron.</li>
+    <li>La distribución de responsabilidades entre los cuatro integrantes.</li>
+  </ol>
+  <div class="rule-card">
+    <span class="rule-tag">De los cien puntos, la solución técnica vale treinta y dos</span>
+    <p>Los otros sesenta y ocho se reparten entre planificación, producto final, autorregulación, pensamiento combinatorio y trabajo en equipo. Se ganan en cómo está documentado el trabajo, y eso es lo que se produce hoy.</p>
+  </div>
+</section>
+
+<section id="parte-0">
+  <h2><span class="num">0</span>Nuestra situación</h2>
+  <p>Antes de empezar, esto tiene que estar claro y a la vista, porque todo lo que sigue se hace sobre el enunciado de una sola de las diez situaciones. Si tu equipo no sabe cuál le tocó, preguntalo ahora: es el dato del que dependen las cuatro horas que siguen.</p>
+
+  <div class="campo">
+    <label for="situacion">Número y título de nuestra situación</label>
+    <span class="ayuda">Por ejemplo: «7 · Resolver un incidente de seguridad informática».</span>
+    <input type="text" id="situacion" placeholder="N.º y título, tal como figura en la consigna">
+  </div>
+
+  <div class="campo">
+    <label for="integrantes">Los cuatro integrantes</label>
+    <span class="ayuda">Los nombres completos, en el orden en que van a figurar en la portada.</span>
+    <input type="text" id="integrantes" placeholder="Apellido y nombre de los cuatro">
+  </div>
+
+  <div class="rule-card">
+    <span class="rule-tag">La ficha de tu situación</span>
+    <p>En <a href="../olimpiadas-fichas-situaciones/">Fichas de las diez situaciones</a> hay una carilla por
+    situación, con todos los pedidos de tu enunciado como lista para marcar, los números que hay que contar
+    y qué producto técnico te corresponde. Buscá la tuya y tenela al lado mientras trabajás.</p>
+  </div>
+
+  <div class="rule-card">
+    <span class="rule-tag">Tené el enunciado de tu situación abierto</span>
+    <p>El enunciado de tu situación es la fuente de casi todo lo que vas a escribir hoy: de él salen las partes que se desarrollan en el punto 2, los mínimos que hay que cumplir —cuántas medidas de seguridad, cuántas consultas, cuántos usuarios— y lo que la consigna aclara que no hace falta hacer. Buscalo en el archivo de la consigna y dejalo abierto al lado.</p>
+  </div>
+</section>
+
+<section id="parte-1">
+  <h2><span class="num">1</span>Los cuatro pasos para leer el enunciado</h2>
+  <p>Top-down es bajar de lo general a lo particular: primero se mira el sistema completo y recién después se baja a la pieza. Al revés —empezar por la pieza— sirve cuando el sistema ya existe y hay que diagnosticarlo; en este trabajo la solución se está proponiendo, así que se baja desde el propósito.</p>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:16%">Paso</th><th style="width:34%">Desarrollo</th><th style="width:25%">En la situación 1 (red de una empresa)</th><th style="width:25%">En la situación 5 (base de préstamos)</th></tr></thead>
+    <tbody>
+      <tr><td><b>1 · Mirar el todo</b></td><td>Definir qué es el sistema y qué se espera de él</td><td>Una red que funcione bien y sea fácil de mantener para tres sectores con 26 puestos</td><td>Un registro que permita saber qué equipo está prestado y quién lo tiene</td></tr>
+      <tr><td><b>2 · Descomponer en bloques</b></td><td>Partirlo en sus grandes partes. Casi siempre están enumeradas en el propio enunciado</td><td>Topología, equipamiento, ubicación del servidor y las impresoras, seguridad, justificación</td><td>Personas, equipos, categorías, préstamos, devoluciones, consultas</td></tr>
+      <tr><td><b>3 · Bajar al componente</b></td><td>Dentro de cada parte, la pieza concreta y el dato que la define</td><td>Qué switch, de cuántos puertos, por qué ese</td><td>Qué campo de la tabla de préstamos, de qué tipo, por qué obligatorio</td></tr>
+      <tr><td><b>4 · Integrar</b></td><td>Volver a subir: comprobar que cada pieza sirve al propósito del paso 1</td><td>Un punto de acceso que nadie usa sale de la propuesta</td><td>Un dato que se calcula no se guarda</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="nota"><span class="marca">El paso 4 es el que decide qué queda afuera.</span> Lo que no sirve al propósito consume tiempo y páginas de las diez disponibles. El resultado de leer así el enunciado es la tabla del punto 2: las partes que hay que desarrollar, con lo que hay que decidir en cada una.</p>
+</section>
+
+<div class="check">
+    <span class="et">Comprobá antes de seguir</span>
+    <p>Leé tu enunciado con los cuatro pasos y respondé dos cosas, en el borrador:</p>
+    <ol>
+      <li>El propósito de tu solución, en una oración. Si no entra en una, todavía está confuso.</li>
+      <li>Cuántas partes pide tu enunciado. Contalas: son las filas que vas a llenar en el punto 2.</li>
+    </ol>
+  </div>
+
+  <section id="parte-2">
+  <h2><span class="num">2</span>Las partes del desarrollo y su reparto</h2>
+  <p>El apartado 4 del documento es el desarrollo de la solución, y se arma con las partes que tu propio
+  enunciado pide. En la ficha de tu situación están enumeradas: cada pedido de esa lista es una parte de
+  este apartado. En esta tabla se les agrega lo que falta para poder trabajarlas: qué hay que decidir en cada una, con
+  qué se demuestra, en qué estado está y quién la termina.</p>
+
+  <div class="campo">
+    <label for="proposito">Antes de la tabla: el propósito de la solución, en una oración</label>
+    <span class="ayuda">Qué tiene que lograr y para quién. Esta oración abre el apartado 1 del documento y
+    es la que decide qué entra y qué no: lo que no sirve al propósito consume páginas de las diez.</span>
+    <textarea id="proposito" rows="2" placeholder="Nuestra solución tiene que lograr… para…"></textarea>
+  </div>
+
+  <p>Una fila por pedido del enunciado. Las que sobren quedan vacías; si te faltan filas, seguí en la
+  carpeta. En la columna de estado va <b>verde</b> si ya está resuelto y escrito, <b>amarillo</b> si está
+  resuelto sin escribir, y <b>rojo</b> si no se empezó.</p>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:22%">El pedido del enunciado</th><th style="width:24%">Qué hay que decidir</th><th style="width:22%">Con qué se demuestra</th><th style="width:12%">Estado</th><th style="width:20%">Quién y qué día</th></tr></thead>
+    <tbody>
+      <tr class="ejemplo">
+        <td class="ej">Ejemplo: el procedimiento de recuperación de las copias</td>
+        <td class="ej">Cada cuánto se copia, en qué soporte, quién es responsable</td>
+        <td class="ej">La restauración de un archivo probada, con su tiempo</td>
+        <td class="ej">amarillo</td>
+        <td class="ej">Nombre · martes</td>
+      </tr>
+      <tr><td><input type="text" data-k="p1a"></td><td><input type="text" data-k="p1b"></td><td><input type="text" data-k="p1c"></td><td><select data-k="p1d"><option value="">—</option><option>verde</option><option>amarillo</option><option>rojo</option></select></td><td><input type="text" data-k="p1e"></td></tr>
+      <tr><td><input type="text" data-k="p2a"></td><td><input type="text" data-k="p2b"></td><td><input type="text" data-k="p2c"></td><td><select data-k="p2d"><option value="">—</option><option>verde</option><option>amarillo</option><option>rojo</option></select></td><td><input type="text" data-k="p2e"></td></tr>
+      <tr><td><input type="text" data-k="p3a"></td><td><input type="text" data-k="p3b"></td><td><input type="text" data-k="p3c"></td><td><select data-k="p3d"><option value="">—</option><option>verde</option><option>amarillo</option><option>rojo</option></select></td><td><input type="text" data-k="p3e"></td></tr>
+      <tr><td><input type="text" data-k="p4a"></td><td><input type="text" data-k="p4b"></td><td><input type="text" data-k="p4c"></td><td><select data-k="p4d"><option value="">—</option><option>verde</option><option>amarillo</option><option>rojo</option></select></td><td><input type="text" data-k="p4e"></td></tr>
+      <tr><td><input type="text" data-k="p5a"></td><td><input type="text" data-k="p5b"></td><td><input type="text" data-k="p5c"></td><td><select data-k="p5d"><option value="">—</option><option>verde</option><option>amarillo</option><option>rojo</option></select></td><td><input type="text" data-k="p5e"></td></tr>
+      <tr><td><input type="text" data-k="p6a"></td><td><input type="text" data-k="p6b"></td><td><input type="text" data-k="p6c"></td><td><select data-k="p6d"><option value="">—</option><option>verde</option><option>amarillo</option><option>rojo</option></select></td><td><input type="text" data-k="p6e"></td></tr>
+      <tr><td><input type="text" data-k="p7a"></td><td><input type="text" data-k="p7b"></td><td><input type="text" data-k="p7c"></td><td><select data-k="p7d"><option value="">—</option><option>verde</option><option>amarillo</option><option>rojo</option></select></td><td><input type="text" data-k="p7e"></td></tr>
+      <tr><td><input type="text" data-k="p8a"></td><td><input type="text" data-k="p8b"></td><td><input type="text" data-k="p8c"></td><td><select data-k="p8d"><option value="">—</option><option>verde</option><option>amarillo</option><option>rojo</option></select></td><td><input type="text" data-k="p8e"></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="rule-card">
+    <span class="rule-tag">Para qué sirve cada columna</span>
+    <p>La de <b>decisiones</b> es la que después se escribe en el apartado 4: un desarrollo sin decisiones es
+    un instructivo. La de <b>evidencia</b> anticipa el apartado 7: si queda vacía en varias filas, el
+    documento va a llegar sin nada que respalde lo que afirma. Y la de <b>estado y responsable</b> es el
+    apartado 3, que la consigna pide como distribución de responsabilidades entre los cuatro integrantes.</p>
+  </div>
+</section>
+
+<section id="parte-3">
+  <h2><span class="num">3</span>El documento repartido</h2>
+  <p>El documento tiene <b>nueve apartados numerados</b>, más la portada al principio y los anexos al final: once partes en total. De los nueve, el único que cambia según la situación asignada es el 4; los otros ocho se escriben igual en las diez. Abrí el archivo ahora, con la portada y los nueve títulos, aunque estén vacíos, y anotá en la tabla quién escribe cada uno y qué día lo termina.</p>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:30%">Apartado</th><th style="width:28%">Contenido</th><th style="width:12%">Extensión</th><th style="width:15%">Quién</th><th style="width:15%">Fecha</th></tr></thead>
+    <tbody>
+      <tr><td>Portada e identificación</td><td>La identificación del equipo, su escuela y su situación</td><td>1 pág</td><td><input type="text" data-k="d0q"></td><td><input type="text" data-k="d0d"></td></tr>
+      <tr><td>1 · La situación y el problema</td><td>El estado actual y el problema que genera, con datos propios</td><td>½ pág</td><td><input type="text" data-k="d1q"></td><td><input type="text" data-k="d1d"></td></tr>
+      <tr><td>2 · Alcance y supuestos</td><td>El recorte del trabajo y la lectura de lo que la consigna deja abierto</td><td>½ pág</td><td><input type="text" data-k="d2q"></td><td><input type="text" data-k="d2d"></td></tr>
+      <tr><td>3 · Organización y responsabilidades</td><td>El reparto de tareas y su cronograma</td><td>1 pág</td><td><input type="text" data-k="d3q"></td><td><input type="text" data-k="d3d"></td></tr>
+      <tr><td>4 · Desarrollo de la solución</td><td>Las partes del punto 2, desarrolladas</td><td>3 pág</td><td><input type="text" data-k="d4q"></td><td><input type="text" data-k="d4d"></td></tr>
+      <tr><td>5 · El esquema, modelo o prototipo</td><td>El producto técnico y cómo se lee</td><td>½ pág</td><td><input type="text" data-k="d5q"></td><td><input type="text" data-k="d5d"></td></tr>
+      <tr><td>6 · Comparación y decisión</td><td>La alternativa descartada y el criterio de la elección</td><td>1 pág</td><td><input type="text" data-k="d6q"></td><td><input type="text" data-k="d6d"></td></tr>
+      <tr><td>7 · Pruebas y resultados</td><td>La comprobación de que funciona</td><td>1 pág</td><td><input type="text" data-k="d7q"></td><td><input type="text" data-k="d7d"></td></tr>
+      <tr><td>8 · Registro de dificultades</td><td>Las trabas y su resolución</td><td>½ pág</td><td><input type="text" data-k="d8q"></td><td><input type="text" data-k="d8d"></td></tr>
+      <tr><td>9 · Conclusiones y referencias</td><td>Lo pendiente y las fuentes de los datos</td><td>½ pág</td><td><input type="text" data-k="d9q"></td><td><input type="text" data-k="d9d"></td></tr>
+      <tr><td>Anexos</td><td>Planillas, capturas, esquemas grandes, código, bitácora</td><td>no cuentan</td><td><input type="text" data-k="daq"></td><td><input type="text" data-k="dad"></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p><span class="marca">El máximo de diez páginas se cumple mandando al anexo</span> las planillas completas, las capturas y los esquemas grandes. En el cuerpo queda el criterio con el que se armó cada cosa. Un documento modelo completo, con los nueve apartados escritos, está en <a href="../olimpiadas-documento-modelo-t5/">El documento de entrega de la Técnica 5</a>.</p>
+</section>
+
+<div class="check">
+    <span class="et">Comprobá antes de seguir</span>
+    <p>Mirá el archivo del documento y respondé: ¿los nueve títulos están escritos, y cada uno tiene un
+    nombre y un día al lado? Si algún apartado quedó sin responsable, ese es el que nadie va a escribir.</p>
+  </div>
+
+  <section id="parte-4">
+  <h2><span class="num">4</span>Tres decisiones y su justificación</h2>
+  <p>La consigna pide comparar al menos dos alternativas y explicar la elegida. Vale diez puntos de la grilla y es lo que más se olvida. La pregunta que lo resuelve es una sola: <b>¿qué decisión de este trabajo pudo haber sido de otra manera?</b></p>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:25%">Decisión</th><th style="width:25%">Alternativa descartada</th><th style="width:25%">Criterio de la elección</th><th style="width:25%">Dato que la sostiene</th></tr></thead>
+    <tbody>
+      <tr><td><input type="text" data-k="dec1a"></td><td><input type="text" data-k="dec1b"></td><td><input type="text" data-k="dec1c"></td><td><input type="text" data-k="dec1d"></td></tr>
+      <tr><td><input type="text" data-k="dec2a"></td><td><input type="text" data-k="dec2b"></td><td><input type="text" data-k="dec2c"></td><td><input type="text" data-k="dec2d"></td></tr>
+      <tr><td><input type="text" data-k="dec3a"></td><td><input type="text" data-k="dec3b"></td><td><input type="text" data-k="dec3c"></td><td><input type="text" data-k="dec3d"></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="nota"><span class="marca">La última columna es la que funda la decisión</span>: mientras esté vacía, lo que hay es una preferencia del equipo.</p>
+
+  <h3>La matriz de la decisión principal</h3>
+  <p>De las tres, elegí la que más condicionó el trabajo y compará sus dos alternativas con una matriz.
+  Cuatro criterios alcanzan. Los pesos se reparten hasta sumar cien y <span class="marca">se definen antes de puntuar</span>:
+  al revés, se acomodan sin darse cuenta para que gane la opción que ya gustaba.</p>
+  <p class="nota">Escala: 5 cumple con margen, 4 cumple bien, 3 cumple justo, 2 cumple con dificultad, 1 no
+  cumple. Cada ponderado es el puntaje por el peso dividido cien, y el total es la suma de la columna, en
+  la misma escala de 1 a 5.</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:30%">Criterio</th><th style="width:10%">Peso</th><th style="width:12%">Alt. A</th><th style="width:12%">Ponderado</th><th style="width:12%">Alt. B</th><th style="width:12%">Ponderado</th><th style="width:12%">Dato del puntaje</th></tr></thead>
+    <tbody>
+      <tr><td><input type="text" data-k="m1a"></td><td><input type="text" data-k="m1p"></td><td><input type="text" data-k="m1A"></td><td><input type="text" data-k="m1PA"></td><td><input type="text" data-k="m1B"></td><td><input type="text" data-k="m1PB"></td><td><input type="text" data-k="m1d"></td></tr>
+      <tr><td><input type="text" data-k="m2a"></td><td><input type="text" data-k="m2p"></td><td><input type="text" data-k="m2A"></td><td><input type="text" data-k="m2PA"></td><td><input type="text" data-k="m2B"></td><td><input type="text" data-k="m2PB"></td><td><input type="text" data-k="m2d"></td></tr>
+      <tr><td><input type="text" data-k="m3a"></td><td><input type="text" data-k="m3p"></td><td><input type="text" data-k="m3A"></td><td><input type="text" data-k="m3PA"></td><td><input type="text" data-k="m3B"></td><td><input type="text" data-k="m3PB"></td><td><input type="text" data-k="m3d"></td></tr>
+      <tr><td><input type="text" data-k="m4a"></td><td><input type="text" data-k="m4p"></td><td><input type="text" data-k="m4A"></td><td><input type="text" data-k="m4PA"></td><td><input type="text" data-k="m4B"></td><td><input type="text" data-k="m4PB"></td><td><input type="text" data-k="m4d"></td></tr>
+      <tr><td><b>Total</b></td><td><b>100</b></td><td></td><td><input type="text" data-k="mTA"></td><td></td><td><input type="text" data-k="mTB"></td><td></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="nota">Dos controles: la columna de pesos suma exactamente cien, y cada criterio mide algo
+  distinto de los otros tres. La matriz en limpio, para el anexo, está en la
+  <a href="../olimpiadas-plantillas/#p10">planilla 10</a>; el desarrollo completo, con el ejemplo resuelto,
+  en la <a href="../olimpiadas-el-plan-y-su-prueba/index.html#comparacion">guía de trabajo</a>.</p>
+
+  <h3>La decisión escrita</h3>
+  <p>Elegí una de las tres y escribila como va a quedar en el apartado 6. Tiene que nombrar tres cosas: qué eligió el equipo, cuál fue el criterio que definió la diferencia, y qué se resigna al elegir eso.</p>
+
+  <div class="campo">
+    <label for="decision">Nuestra decisión, en tres o cuatro oraciones</label>
+    <span class="ayuda">Comparalo con estas dos versiones. «Elegimos un switch de 24 puertos porque es mejor» no dice nada. «Elegimos un switch de 24 puertos porque los tres sectores suman 26 puestos más dos impresoras, y con 16 habría que encadenar dos equipos, lo que agrega un punto de falla» dice el criterio, el dato y lo que se resigna.</span>
+    <textarea id="decision" rows="6" placeholder="Elegimos… El criterio que definió la diferencia fue… Lo que resignamos es…"></textarea>
+  </div>
+</section>
+
+<section id="parte-5">
+  <h2><span class="num">5</span>Registro para la carpeta</h2>
+  <p>Esto se escribe a mano en la carpeta, en cinco renglones. No se entrega: es lo que te queda de la clase.</p>
+  <ol>
+    <li>Los cuatro pasos para leer un enunciado, con tus palabras.</li>
+    <li>El propósito de nuestra solución, en una oración.</li>
+    <li>Las partes que tiene que desarrollar nuestro apartado 4.</li>
+    <li>La parte de la que me ocupo yo, y el día en que la termino.</li>
+    <li>Una decisión de mi equipo y el dato que la sostiene.</li>
+  </ol>
+</section>
+
+</main>
+
+<div class="export-bar">
+  <div class="export-inner">
+    <button class="export-btn" id="btn-copiar" type="button">Copiar todo lo escrito</button>
+    <button class="export-btn" id="btn-descargar" type="button">Descargar como texto</button>
+    <span class="export-status" id="estado">Se copia como texto, con los títulos puestos, para pegarlo en el documento del equipo. Lo que escribís queda guardado en este navegador.</span>
+  </div>
+</div>
+
+<footer class="page-foot">
+  Evaluación de Proyectos · 7.º año · Olimpíada de ETP 2026 · Material complementario:
+  <a href="../olimpiadas-el-plan-y-su-prueba/">Guía de trabajo</a> ·
+  <a href="../olimpiadas-plantillas/">Planillas</a> ·
+  <a href="../olimpiadas-documento-modelo-t5/">Documento modelo</a>
+</footer>
+
+<script src="../js/tema.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

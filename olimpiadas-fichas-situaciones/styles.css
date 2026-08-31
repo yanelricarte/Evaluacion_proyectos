@@ -1,0 +1,48 @@
+:root{
+  --ink:#17191d; --ink-soft:#33353b; --muted:#6a717b;
+  --linea:#d8dce1; --linea-fuerte:#9aa1ab; --cabecera:#eceff2;
+  --papel:#fff; --papel-2:#fafbfc; --primary:#b31759; --soft:#fff4f8;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--papel); color:var(--ink);
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; font-size:16.5px; line-height:1.62;
+  -webkit-font-smoothing:antialiased}
+.hero{border-bottom:1px solid var(--linea); background:var(--papel-2)}
+.hero-inner{max-width:900px; margin:0 auto; padding:30px 20px 24px}
+.kicker{font-size:.76rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--primary); margin-bottom:8px}
+h1{font-family:"Manrope",sans-serif; font-size:1.9rem; line-height:1.15; margin:0 0 10px}
+.lead{max-width:70ch; color:var(--ink-soft); margin:0 0 16px}
+.nav-fichas{display:flex; flex-wrap:wrap; gap:7px}
+.nav-fichas a{text-decoration:none; font-size:.92rem; font-weight:600; color:var(--ink-soft);
+  border:1.5px solid var(--linea-fuerte); border-radius:999px; padding:6px 13px; background:var(--papel);
+  min-width:2.6em; text-align:center}
+.nav-fichas a:hover{border-color:var(--primary); color:var(--primary)}
+main{max-width:900px; margin:0 auto; padding:8px 20px 80px}
+.ficha{border-top:3px solid var(--primary); padding-top:22px; margin-top:40px}
+.ficha:first-of-type{margin-top:14px}
+h2{font-family:"Manrope",sans-serif; font-size:1.35rem; margin:0 0 3px}
+.escenario{color:var(--ink-soft); margin:0 0 14px; max-width:72ch}
+h3{font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color:var(--primary);
+  margin:22px 0 7px; font-weight:800}
+ul.pedidos{list-style:none; margin:0 0 6px; padding:0; max-width:72ch}
+ul.pedidos li{display:flex; gap:11px; align-items:flex-start; margin-bottom:9px}
+ul.pedidos input{margin:5px 0 0; width:18px; height:18px; flex:0 0 auto; accent-color:var(--primary);
+  cursor:pointer}
+p{margin:0 0 9px; max-width:72ch}
+.dato{background:var(--soft); border-left:4px solid var(--primary); border-radius:0 10px 10px 0;
+  padding:11px 15px; margin:12px 0; max-width:72ch}
+.dato b{color:var(--primary)}
+.numeros{font-size:.95rem; background:var(--papel-2); border:1px solid var(--linea);
+  border-radius:10px; padding:11px 15px; max-width:72ch; line-height:1.55}
+.pie-ficha{color:var(--muted); font-size:.9rem; border-top:1px solid var(--linea);
+  padding-top:9px; margin-top:16px}
+footer{max-width:900px; margin:40px auto 0; padding:16px 20px 0; border-top:1px solid var(--linea);
+  color:var(--muted); font-size:.9rem}
+a{color:var(--primary)}
+@media print{
+  .hero{border:0} .nav-fichas, .lead{display:none}
+  .ficha{page-break-before:always; border-top:2px solid #000; margin-top:0}
+  .ficha:first-of-type{page-break-before:auto}
+  body{font-size:11pt}
+}

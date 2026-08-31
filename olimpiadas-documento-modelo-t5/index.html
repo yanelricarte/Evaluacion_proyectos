@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>El documento de entrega: modelo completo y explicación — Olimpíadas de ETP 2026 · Técnica 5</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+:root{
+  --ink:#181a1e; --ink-soft:#3a3e46; --muted:#6b7280;
+  --linea:#dde1e6; --linea-fuerte:#aab1ba; --cabecera:#f0f2f5; --cebra:#fafbfc;
+  --papel:#fff; --pri:#b31759; --soft:#fff5f9;
+}
+*{box-sizing:border-box}
+body{margin:0 auto; max-width:940px; padding:44px 24px 90px; background:var(--papel); color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif; font-size:16.5px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
+h1{font-size:1.95em; line-height:1.18; margin:0 0 12px; letter-spacing:-.01em; max-width:34ch}
+h2{font-size:1.3em; line-height:1.25; margin:46px 0 10px; padding-bottom:7px;
+  border-bottom:2px solid var(--ink); letter-spacing:-.005em}
+h2.parte{font-size:1.55em; margin:64px 0 14px; padding:12px 0 10px;
+  border-top:3px solid var(--pri); border-bottom:3px solid var(--pri); color:var(--pri)}
+h3{font-size:1.06em; margin:30px 0 6px; color:var(--ink)}
+h4{font-size:.99em; margin:22px 0 5px; color:var(--ink-soft)}
+p{margin:0 0 12px; max-width:72ch}
+ul,ol{margin:0 0 14px; padding-left:1.45em; max-width:72ch}
+li{margin-bottom:7px}
+a{color:var(--pri); text-underline-offset:2px}
+a:hover{text-decoration-thickness:2px}
+
+table{width:100%; border-collapse:collapse; margin:16px 0 18px; font-size:.93em; line-height:1.5}
+th,td{border:1px solid var(--linea-fuerte); padding:8px 11px; text-align:left; vertical-align:top}
+th{background:var(--cabecera); font-weight:bold}
+tbody tr:nth-child(even) td{background:var(--cebra)}
+table.aviso{margin:18px 0; max-width:74ch}
+table.aviso td{background:var(--soft); border:1px solid var(--pri); padding:15px 18px}
+table.aviso td p{margin-bottom:9px}
+table.aviso td p:last-child{margin-bottom:0}
+.rot{font-size:.8em; letter-spacing:.07em; color:var(--pri); font-weight:bold; margin:0 0 7px}
+.doc{border-left:4px solid var(--linea); padding-left:22px}
+.doc > h2:first-child{margin-top:24px}
+pre{background:#f7f8fa; border:1px solid var(--linea); border-radius:8px; padding:14px 16px;
+  overflow-x:auto; font-family:"Courier New",Courier,monospace; font-size:.86em; line-height:1.55;
+  margin:14px 0}
+code{font-family:"Courier New",Courier,monospace; font-size:.94em; background:#f2f4f7;
+  padding:1px 4px; border-radius:4px}
+.nota{color:var(--muted); font-size:.94em; max-width:72ch}
+footer{margin-top:60px; padding-top:18px; border-top:1px solid var(--linea);
+  color:var(--muted); font-size:.92em}
+
+@media (max-width:760px){
+  body{padding:26px 16px 70px; font-size:16px}
+  h1{font-size:1.6em} h2{font-size:1.18em; margin-top:36px}
+  table{display:block; overflow-x:auto; white-space:normal; font-size:.88em}
+  .doc{padding-left:12px}
+}
+@media print{
+  body{padding:0; font-size:10.5pt; max-width:none}
+  h2{page-break-after:avoid} table,pre{page-break-inside:avoid}
+  a{color:inherit; text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<h1>El documento de entrega: modelo completo y explicación</h1>
+<p>Olimpíada Nacional de ETP 2026, modalidad Informática · E.E.S.T. N.º 5 «Amancio Williams» · Mar del Plata</p>
+
+<p>Todo el trabajo de la Olimpíada llega al equipo evaluador en un documento escrito, y nadie va a estar ahí para explicar lo que ese documento no diga. Esta guía tiene dos partes que se leen en orden.</p>
+
+<p>La <b>parte A</b> es un documento de entrega completo, escrito de corrido tal como se presenta: la portada, los nueve apartados, las referencias y los anexos de un equipo que resolvió su situación. La <b>parte B</b> recorre ese mismo documento apartado por apartado y explica qué contiene cada uno, con qué criterio se arma y qué mira la grilla del INET al leerlo.</p>
+
+<table class="aviso" border="1"><tr><td>
+<p class="rot">EL MODELO ESTÁ ESCRITO SOBRE UNA SITUACIÓN, Y SIRVE PARA LAS DIEZ</p>
+<p>La consigna asigna a cada equipo una situación entre diez, y las diez piden las mismas siete piezas. De los nueve apartados del documento, <b>ocho son iguales para todos</b>: lo único que cambia de equipo a equipo es el apartado 4, el desarrollo de la solución. La parte A está escrita sobre la <b>situación 5, la base de datos de préstamos de equipamiento</b>, y la tabla del lugar de cada pedido dice qué va en el apartado 4 de cada una de las otras nueve.</p>
+<p>Los datos del modelo —los equipos, las fechas, los nombres de las tablas, los puntajes de la matriz— son de ejemplo y muestran la forma que tiene cada apartado terminado. Cada equipo escribe el suyo con lo que releva y con los criterios que define y fundamenta, de modo que dos equipos pueden llegar a soluciones distintas y ambas resultar correctas.</p>
+</td></tr></table>
+
+<h2 id="indice">Índice</h2>
+<p><a href="#que"><b>Las piezas de la entrega</b></a> — el contenido del documento y el lugar de cada pedido de la consigna.</p>
+<p><b>Parte A · El documento modelo, completo</b></p>
+<ol>
+<li><a href="#a0">Portada</a></li>
+<li><a href="#a1">1 · La situación y el problema detectado</a></li>
+<li><a href="#a2">2 · Alcance y supuestos</a></li>
+<li><a href="#a3">3 · Organización del trabajo y responsabilidades</a></li>
+<li><a href="#a4">4 · Desarrollo de la solución técnica</a></li>
+<li><a href="#a5">5 · El esquema, modelo o prototipo</a></li>
+<li><a href="#a6">6 · Comparación de alternativas y decisión</a></li>
+<li><a href="#a7">7 · Pruebas y resultados</a></li>
+<li><a href="#a8">8 · Registro de dificultades</a></li>
+<li><a href="#a9">9 · Conclusiones y referencias</a></li>
+<li><a href="#a10">Anexos</a></li>
+</ol>
+<p><b>Parte B · Cada apartado, explicado</b></p>
+<ol>
+<li><a href="#b0">El orden de escritura y el límite de páginas</a></li>
+<li><a href="#b1">La portada y los apartados 1 y 2</a></li>
+<li><a href="#b3">El apartado 3 y la planificación</a></li>
+<li><a href="#b4">Los apartados 4 y 5, según la situación asignada</a></li>
+<li><a href="#b6">Los apartados 6 y 7: decisión y prueba</a></li>
+<li><a href="#b8">Los apartados 8 y 9: registro y cierre</a></li>
+<li><a href="#b10">Anexos y control final</a></li>
+</ol>
+
+<h2 id="que">Las piezas de la entrega</h2>
+
+<p>La consigna pide siete piezas, y las siete viven adentro de un mismo documento escrito. La primera y principal es <b>el documento de entre cinco y diez páginas, sin contar anexos</b>. La segunda es <b>el producto técnico</b> que corresponda a la situación: un esquema, un diagrama, un modelo, código o un prototipo. Las cinco restantes son apartados de ese mismo documento.</p>
+
+<table border="1">
+<thead><tr><th>Lo que pide el encabezado de la consigna</th><th>Dónde queda</th></tr></thead>
+<tbody>
+<tr><td>1 · Una solución técnica a la situación asignada</td><td>Apartado 4, el único que cambia según la situación</td></tr>
+<tr><td>2 · Un documento de entre 5 y 10 páginas, sin contar anexos</td><td>Es el documento entero. El techo se cumple mandando planillas, capturas y esquemas grandes al anexo</td></tr>
+<tr><td>3 · Un esquema, diagrama, modelo, código o prototipo, según corresponda</td><td>Apartado 5, con el producto completo en el anexo</td></tr>
+<tr><td>4 · Una comparación entre al menos dos alternativas</td><td>Apartado 6, con la matriz ponderada</td></tr>
+<tr><td>5 · Una explicación de por qué eligieron esa solución</td><td>Apartado 6, párrafo de decisión</td></tr>
+<tr><td>6 · Un registro breve de dificultades y cómo las resolvieron</td><td>Apartado 8, con la bitácora completa en el anexo</td></tr>
+<tr><td>7 · Una distribución de responsabilidades entre los cuatro integrantes</td><td>Apartado 3, con el cronograma</td></tr>
+</tbody>
+</table>
+
+<p>Las pruebas no aparecen en el encabezado. Cuatro situaciones piden comprobar algo con esas palabras: la <b>4</b> pide «poner a prueba» el procedimiento y ejecutar tres herramientas, la <b>8</b> pide demostrar tres cosas —acceso permitido, acceso denegado y recuperación—, la <b>9</b> pide realizar y documentar el mantenimiento de una computadora, y la <b>7</b> pide explicar cómo comprobarían si hay otras cuentas comprometidas. En las demás, el apartado 7 se escribe igual: la grilla lee dentro de resolución que el equipo haya verificado lo que afirma.</p>
+
+<h3>El documento, apartado por apartado</h3>
+
+<table border="1">
+<thead><tr><th>Apartado</th><th>Contenido</th><th>Extensión</th><th>Criterio de la grilla que alimenta</th></tr></thead>
+<tbody>
+<tr><td>Portada e identificación</td><td>La identificación del equipo, su escuela y su situación</td><td>1 página</td><td>Producto final</td></tr>
+<tr><td>1 · La situación y el problema detectado</td><td>El estado actual y el problema que genera</td><td>½ pág</td><td>Resolución (32)</td></tr>
+<tr><td>2 · Alcance y supuestos</td><td>El recorte del trabajo y la lectura de lo que la consigna deja abierto</td><td>½ pág</td><td>Autorregulación (12)</td></tr>
+<tr><td>3 · Organización del trabajo y responsabilidades</td><td>El reparto de tareas, su cronograma y la razón del reparto</td><td>1 pág</td><td>Planificación (20) · Equipo (6)</td></tr>
+<tr><td>4 · Desarrollo de la solución técnica</td><td>La solución de la situación asignada, con su criterio</td><td>3 pág</td><td>Resolución (32)</td></tr>
+<tr><td>5 · El esquema, modelo o prototipo</td><td>El producto técnico y cómo se lee</td><td>½ pág + anexo</td><td>Resolución (32)</td></tr>
+<tr><td>6 · Comparación de alternativas y decisión</td><td>La alternativa descartada y el criterio de la elección</td><td>1 pág</td><td>Pensamiento combinatorio (10)</td></tr>
+<tr><td>7 · Pruebas y resultados</td><td>La comprobación de que funciona</td><td>1 pág</td><td>Resolución · Producto final (20)</td></tr>
+<tr><td>8 · Registro de dificultades</td><td>Las trabas, los intentos y la resolución</td><td>½ pág</td><td>Autorregulación (12)</td></tr>
+<tr><td>9 · Conclusiones y referencias</td><td>Qué quedó resuelto, qué pendiente y de dónde salieron los datos</td><td>½ pág</td><td>Autorregulación · Producto final</td></tr>
+<tr><td>Anexos</td><td>Planillas completas, capturas, esquemas grandes, código, bitácora</td><td>no cuentan</td><td>Producto final (20)</td></tr>
+</tbody>
+</table>
+
+<p class="nota">Suman ocho páginas de cuerpo, con margen sobre el techo de diez. La consigna de las diez situaciones no fija tipografía ni formato de archivo: rigen las pautas generales de la Olimpíada, y conviene confirmar en la escuela el formato de archivo, el nombre y el CUE, que forma parte de ese nombre.</p>
+
+<h3>El lugar de cada pedido, según la situación asignada</h3>
+
+<p>Esta es la tabla para tener al lado mientras se escribe. Los apartados 1, 2, 3, 6, 7, 8 y 9 se escriben igual en las diez situaciones; lo que cambia es qué se desarrolla en el 4 y qué producto va en el 5.</p>
+
+<table border="1">
+<thead><tr><th>Situación</th><th>El desarrollo del apartado 4</th><th>El producto del apartado 5</th></tr></thead>
+<tbody>
+<tr><td>1 · Red de una empresa</td><td>Topología elegida, equipamiento con su cantidad, ubicación de servidor e impresoras, tres medidas de seguridad</td><td>Diagrama de la red propuesta</td></tr>
+<tr><td>2 · Copias de seguridad</td><td>Qué se copia, frecuencia, tipo de copia, soporte, ubicación, responsable y procedimiento de recuperación, más el escenario de pérdida del servidor</td><td>Planilla del plan y esquema de los soportes</td></tr>
+<tr><td>3 · Equipos por perfil de usuario</td><td>Los tres puestos con su configuración componente por componente, y por qué cada uno corresponde a ese uso</td><td>Cuadro comparativo de configuraciones con costos</td></tr>
+<tr><td>4 · Diagnóstico de una computadora</td><td>Las cuatro causas posibles, el orden de comprobación, cómo se confirma o descarta cada una, qué información se protege antes de intervenir y las acciones correctivas</td><td>Tabla de hipótesis con la herramienta y el resultado de las tres ejecutadas</td></tr>
+<tr><td>5 · Base de datos de préstamos</td><td>Entidades, atributos, claves, relaciones, el script de creación y las cinco consultas</td><td>Modelo entidad-relación</td></tr>
+<tr><td>6 · Prototipo de reservas</td><td>Las funciones del prototipo, la base que lo sostiene y cómo se impide la superposición de reservas</td><td>Prototipo funcionando, con capturas y el modelo de datos</td></tr>
+<tr><td>7 · Incidente de seguridad</td><td>Tipo de ataque, primeras acciones, contraseñas a cambiar, cómo se detectan otras cuentas comprometidas y las medidas preventivas</td><td>La pieza breve de capacitación para empleados</td></tr>
+<tr><td>8 · Servidor de archivos</td><td>Usuarios, grupos, carpetas y permisos, con la demostración de acceso autorizado, acceso denegado y recuperación</td><td>Esquema de red y capturas de la configuración</td></tr>
+<tr><td>9 · Mantenimiento preventivo</td><td>Inventario, tareas con su periodicidad y su razón, herramientas, precauciones, registro y criterios de reemplazo</td><td>Planillas del plan y del mantenimiento documentado de una computadora</td></tr>
+<tr><td>10 · Informatizar una oficina</td><td>Los cinco puntos pedidos: equipamiento, red, información, seguridad y mantenimiento</td><td>Esquema de la red y estimación de costos en dos alternativas</td></tr>
+</tbody>
+</table>
+
+<h2 class="parte" id="parteA">Parte A · El documento modelo, completo</h2>
+
+<p class="nota">Lo que sigue es el documento entero de un equipo que resolvió la situación 5, tal como se entrega. Se lee de corrido, sin comentarios intercalados; la explicación de cada apartado está en la parte B.</p>
+
+<table class="aviso" border="1"><tr><td>
+<p class="rot">SI TU SITUACIÓN ES OTRA, ESTE MODELO IGUAL TE SIRVE</p>
+<p>De los nueve apartados, el <b>único</b> que cambia es el 4, y el producto del 5. Los apartados 1, 2, 3, 6, 7, 8 y 9 se leen tal cual y se escriben igual: lo que cambia son los datos. Un equipo con la situación 7 escribe el apartado 1 sobre el correo que comprometió una cuenta en lugar del cuaderno de préstamos, y el apartado 6 comparando dos medidas preventivas en lugar de dos formas de registrar la devolución; la forma de la oración y el tipo de dato que lleva son los mismos.</p>
+</td></tr></table>
+
+<div class="doc">
+
+<h2 id="a0">Portada</h2>
+
+<p>Olimpíada Nacional de ETP 2026 — Instancia Escolar-Jurisdiccional<br>
+Especialidad: Informática</p>
+<p>Escuela: E.E.S.T. N.º 5 «Amancio Williams»<br>
+CUE: (el que informe la escuela)<br>
+Localidad: Mar del Plata — Provincia: Buenos Aires<br>
+Correo institucional: (el de la escuela)</p>
+<p>Nombre del equipo: (el asignado por la plataforma)</p>
+<p>Integrantes<br>
+1. Apellido, Nombre — coordinación y documentación<br>
+2. Apellido, Nombre — modelo de datos<br>
+3. Apellido, Nombre — script de creación y carga<br>
+4. Apellido, Nombre — consultas y pruebas</p>
+<p>Coordinación a cargo: Apellido, Nombre<br>
+Situación abordada: 5 · Diseñar una base de datos para préstamos de equipamiento<br>
+Fecha de entrega: 4 de septiembre de 2026</p>
+
+<h2 id="a1">1 · La situación y el problema detectado</h2>
+
+<p>La escuela presta equipamiento informático —notebooks, proyectores, tablets, cámaras y herramientas— y hoy registra esos préstamos de manera manual, en un cuaderno del gabinete. En el relevamiento realizado el 31 de agosto de 2026 se revisaron las últimas cuarenta anotaciones y se encontró que veintiséis no consignan la fecha de devolución, que el mismo proyector aparece nombrado de tres formas distintas —«proyector Epson», «proyector 1» y «cañón»— y que no hay ninguna anotación de los equipos que nunca se prestaron, con lo cual el cuaderno no sirve como inventario.</p>
+
+<p>La consecuencia es que nadie puede responder dos preguntas que se hacen todas las semanas: qué equipos están prestados en este momento y quién tiene cada uno. Para averiguarlo hay que recorrer el cuaderno hacia atrás hasta encontrar la última anotación de cada equipo, y si esa anotación no tiene devolución, no se sabe si el equipo volvió o si alguien olvidó firmar. En dos casos de este año un proyector se prestó a dos cursos en la misma jornada.</p>
+
+<p>La necesidad que este trabajo atiende es el pasaje de un registro manual a una base de datos que guarde cada dato una sola vez y permita responder esas preguntas con una consulta: qué está prestado ahora, quién lo tiene, qué historial tiene una persona y qué equipos no se usan nunca.</p>
+
+<h2 id="a2">2 · Alcance y supuestos</h2>
+
+<p>El trabajo abarca el diseño completo de la base de datos: el modelo entidad-relación, las tablas resultantes con sus claves, el script de creación, la carga de datos de prueba y las cinco consultas pedidas. La consigna establece que no es necesario desarrollar una aplicación completa, de modo que las consultas se ejecutan sobre el gestor y no desde una interfaz.</p>
+
+<p>Dos supuestos se declaran porque el enunciado no los fija. El primero: un préstamo se registra a una sola persona, que es la responsable de la devolución, aunque el equipo se use después en grupo. El segundo: la devolución se registra como un hecho con su propia fecha y su propio estado del equipo, porque interesa saber en qué condiciones volvió; la alternativa de resolverla como una fecha dentro del préstamo se evaluó en el apartado 6.</p>
+
+<p>Los datos cargados son de prueba y no corresponden a personas reales de la escuela: se usaron cuatro nombres de fantasía y los cinco tipos de equipamiento que nombra la consigna.</p>
+
+<h2 id="a3">3 · Organización del trabajo y responsabilidades</h2>
+
+<table border="1">
+<thead><tr><th>Integrante</th><th>Responsabilidad</th><th>Razón del reparto</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Coordinación, relevamiento del cuaderno, apartados 1, 2, 8 y 9</td><td>Tiene acceso al gabinete en el turno en que se presta el equipamiento</td></tr>
+<tr><td>2</td><td>Modelo entidad-relación, entidades, atributos y relaciones</td><td>Trabajó el modelo de datos en el espacio de Base de Datos</td></tr>
+<tr><td>3</td><td>Script de creación de las tablas y carga de datos de prueba</td><td>Tiene el gestor instalado y funcionando en su equipo</td></tr>
+<tr><td>4</td><td>Las cinco consultas y las pruebas del apartado 7</td><td>Coordina con quien escribe el script, porque las consultas dependen de la carga</td></tr>
+</tbody>
+</table>
+
+<table border="1">
+<thead><tr><th>Día</th><th>Tarea</th><th>Depende de</th><th>Responsable</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Lectura de la consigna, señalando cada pedido, y relevamiento del cuaderno de préstamos</td><td>—</td><td>Los cuatro</td></tr>
+<tr><td>1</td><td>Documento abierto con la portada y los nueve títulos</td><td>El reparto</td><td>Integrante 1</td></tr>
+<tr><td>2</td><td>Listado de entidades y atributos, con la clave primaria de cada una</td><td>El relevamiento</td><td>Integrante 2</td></tr>
+<tr><td>2 y 3</td><td>Relaciones, cardinalidad y modelo entidad-relación dibujado</td><td>El listado de entidades</td><td>Integrante 2</td></tr>
+<tr><td>3</td><td>Script de creación de las cinco tablas y carga de datos de prueba</td><td>El modelo cerrado</td><td>Integrante 3</td></tr>
+<tr><td>4</td><td>Las cinco consultas, ejecutadas y con su resultado capturado</td><td>La carga de datos</td><td>Integrante 4</td></tr>
+<tr><td>4</td><td>Comparación de alternativas del apartado 6</td><td>El modelo cerrado</td><td>Integrantes 1 y 2</td></tr>
+<tr><td>5</td><td>Control final, anexos y armado del archivo</td><td>Todo lo anterior</td><td>Los cuatro</td></tr>
+</tbody>
+</table>
+
+<p>El reparto se decidió por afinidad técnica y por acceso a los recursos: el relevamiento quedó a cargo de quien puede entrar al gabinete, y el script a cargo de quien ya tenía el gestor instalado, para no perder tiempo en instalaciones. El seguimiento se hizo con un cierre diario de diez minutos, y las trabas de cada jornada quedaron en la bitácora del anexo D.</p>
+
+<h2 id="a4">4 · Desarrollo de la solución técnica</h2>
+
+<table class="aviso" border="1"><tr><td>
+<p class="rot">LO QUE LA SITUACIÓN 5 SOLICITA, TEXTUAL</p>
+<p>«Diseñen una base de datos que permita registrar: personas; equipos; categorías; préstamos;
+devoluciones. <b>Deberán presentar: modelo Entidad-Relación; tablas resultantes; claves primarias y
+foráneas; creación de las tablas; al menos cinco consultas SQL.</b> Una de las consultas deberá indicar qué
+equipos se encuentran actualmente prestados. Otra deberá mostrar el historial de préstamos de una persona.
+No será necesario desarrollar una aplicación completa.»</p>
+<p>Los cuatro subapartados que siguen responden esos pedidos en ese orden: las entidades con sus atributos y
+claves, las relaciones, la creación de las tablas y las cinco consultas. El modelo entidad-relación va en el
+apartado 5, y el diagrama en tamaño completo y el script entero, en el anexo. Esa distribución entre cuerpo
+y anexo es una decisión del equipo: la consigna pide las piezas y fija el techo de diez páginas, sin indicar
+en qué apartado va cada una.</p>
+</td></tr></table>
+
+<h3>4.1 · Las entidades y sus atributos</h3>
+
+<p>La consigna nombra cinco cosas que hay que registrar: personas, equipos, categorías, préstamos y devoluciones. Cada una es una entidad, y los atributos salen del relevamiento del cuaderno más los datos que hoy faltan y hacen falta.</p>
+
+<table border="1">
+<thead><tr><th>Entidad</th><th>Atributos</th><th>Clave primaria</th><th>Por qué esa clave</th></tr></thead>
+<tbody>
+<tr><td>persona</td><td>id_persona, apellido, nombre, tipo (docente, estudiante, personal), curso o área, contacto</td><td>id_persona</td><td>Dos personas pueden tener el mismo apellido y nombre, así que el nombre no distingue. Se usa un identificador propio que no cambia si la persona cambia de curso</td></tr>
+<tr><td>categoria</td><td>id_categoria, nombre, descripcion</td><td>id_categoria</td><td>El nombre de la categoría podría servir, pero cambia con el uso —«cámaras» pasó a «cámaras y trípodes»— y arrastraría el cambio a todos los equipos</td></tr>
+<tr><td>equipo</td><td>id_equipo, id_categoria, denominacion, marca, modelo, numero_inventario, estado, observaciones</td><td>id_equipo</td><td>El número de inventario es candidato natural, pero cuatro equipos del gabinete no lo tienen todavía, así que no sirve como clave de todas las filas</td></tr>
+<tr><td>prestamo</td><td>id_prestamo, id_equipo, id_persona, fecha_prestamo, fecha_prevista_devolucion, observaciones_entrega</td><td>id_prestamo</td><td>Un mismo equipo se presta muchas veces a la misma persona, así que ninguna combinación de datos identifica el préstamo por sí sola</td></tr>
+<tr><td>devolucion</td><td>id_devolucion, id_prestamo, fecha_devolucion, estado_devuelto, observaciones</td><td>id_devolucion</td><td>Se identifica por sí misma y se relaciona con un único préstamo</td></tr>
+</tbody>
+</table>
+
+<p>Un dato que el cuaderno guardaba y la base no guarda: la cantidad de días que estuvo prestado un equipo. No se almacena porque se calcula restando la fecha de devolución a la fecha de préstamo, y un dato calculado que se guarda es un dato que puede quedar en contradicción con los que lo producen.</p>
+
+<h3>4.2 · Las relaciones y su cardinalidad</h3>
+
+<table border="1">
+<thead><tr><th>Relación</th><th>Cardinalidad</th><th>Resolución</th></tr></thead>
+<tbody>
+<tr><td>Una categoría agrupa equipos</td><td>Uno a muchos: una categoría tiene muchos equipos, y cada equipo pertenece a una sola categoría</td><td>La tabla equipo lleva id_categoria como clave foránea</td></tr>
+<tr><td>Una persona recibe préstamos</td><td>Uno a muchos: una persona puede tener muchos préstamos; cada préstamo se registra a una sola persona</td><td>La tabla prestamo lleva id_persona como clave foránea</td></tr>
+<tr><td>Un equipo se presta muchas veces</td><td>Uno a muchos: un equipo aparece en muchos préstamos; cada préstamo es de un solo equipo</td><td>La tabla prestamo lleva id_equipo como clave foránea</td></tr>
+<tr><td>Un préstamo tiene una devolución</td><td>Uno a uno, opcional: un préstamo puede tener una devolución o ninguna todavía</td><td>La tabla devolucion lleva id_prestamo como clave foránea, con restricción de unicidad para impedir dos devoluciones del mismo préstamo</td></tr>
+</tbody>
+</table>
+
+<p>La relación entre persona y equipo es de muchos a muchos, y la tabla prestamo es la que la resuelve: no es una tabla intermedia vacía, porque tiene datos propios —las fechas y las observaciones de entrega—, que es exactamente lo que justifica que exista como entidad.</p>
+
+<p>La ausencia de devolución es lo que define que un equipo está prestado en este momento. Esa decisión de diseño es la que hace posible la primera consulta pedida por la consigna, y por eso la devolución no se resolvió como una fecha dentro del préstamo: la comparación está en el apartado 6.</p>
+
+<h3>4.3 · La creación de las tablas</h3>
+
+<pre>CREATE TABLE persona (
+  id_persona   INT AUTO_INCREMENT PRIMARY KEY,
+  apellido     VARCHAR(60)  NOT NULL,
+  nombre       VARCHAR(60)  NOT NULL,
+  tipo         VARCHAR(20)  NOT NULL,
+  curso_area   VARCHAR(40),
+  contacto     VARCHAR(80)
+) ENGINE=InnoDB;
+
+CREATE TABLE categoria (
+  id_categoria INT AUTO_INCREMENT PRIMARY KEY,
+  nombre       VARCHAR(40) NOT NULL UNIQUE,
+  descripcion  VARCHAR(120)
+) ENGINE=InnoDB;
+
+CREATE TABLE equipo (
+  id_equipo         INT AUTO_INCREMENT PRIMARY KEY,
+  id_categoria      INT NOT NULL,
+  denominacion      VARCHAR(60) NOT NULL,
+  marca             VARCHAR(40),
+  modelo            VARCHAR(40),
+  numero_inventario VARCHAR(20),
+  estado            VARCHAR(20) NOT NULL DEFAULT 'disponible',
+  observaciones     VARCHAR(160),
+  CONSTRAINT fk_equipo_categoria
+    FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
+) ENGINE=InnoDB;
+
+CREATE TABLE prestamo (
+  id_prestamo               INT AUTO_INCREMENT PRIMARY KEY,
+  id_equipo                 INT  NOT NULL,
+  id_persona                INT  NOT NULL,
+  fecha_prestamo            DATE NOT NULL,
+  fecha_prevista_devolucion DATE NOT NULL,
+  observaciones_entrega     VARCHAR(160),
+  CONSTRAINT fk_prestamo_equipo
+    FOREIGN KEY (id_equipo)  REFERENCES equipo(id_equipo),
+  CONSTRAINT fk_prestamo_persona
+    FOREIGN KEY (id_persona) REFERENCES persona(id_persona)
+) ENGINE=InnoDB;
+
+CREATE TABLE devolucion (
+  id_devolucion    INT AUTO_INCREMENT PRIMARY KEY,
+  id_prestamo      INT  NOT NULL UNIQUE,
+  fecha_devolucion DATE NOT NULL,
+  estado_devuelto  VARCHAR(20) NOT NULL,
+  observaciones    VARCHAR(160),
+  CONSTRAINT fk_devolucion_prestamo
+    FOREIGN KEY (id_prestamo) REFERENCES prestamo(id_prestamo)
+) ENGINE=InnoDB;</pre>
+
+<p>Tres decisiones del script se explican, porque no salen del enunciado. El motor es InnoDB, que es el que aplica las claves foráneas: con MyISAM la cláusula se acepta y se descarta, de modo que la integridad referencial no se cumpliría aunque el script pareciera correcto. La restricción <code>UNIQUE</code> en <code>devolucion.id_prestamo</code> es la que impide registrar dos devoluciones del mismo préstamo. Y el atributo <code>estado</code> de equipo tiene valor por omisión, para que un equipo recién cargado quede disponible sin necesidad de indicarlo.</p>
+
+<h3>4.4 · Las cinco consultas</h3>
+
+<p>Las dos primeras son las que la consigna pide de manera explícita.</p>
+
+<p><b>Consulta 1 — Qué equipos se encuentran actualmente prestados.</b> Un equipo está prestado cuando tiene un préstamo sin devolución registrada.</p>
+<pre>SELECT e.denominacion, e.marca, c.nombre AS categoria,
+       p.apellido, p.nombre, pr.fecha_prestamo, pr.fecha_prevista_devolucion
+FROM prestamo pr
+JOIN equipo   e ON e.id_equipo   = pr.id_equipo
+JOIN categoria c ON c.id_categoria = e.id_categoria
+JOIN persona  p ON p.id_persona  = pr.id_persona
+LEFT JOIN devolucion d ON d.id_prestamo = pr.id_prestamo
+WHERE d.id_devolucion IS NULL
+ORDER BY pr.fecha_prevista_devolucion;</pre>
+
+<p><b>Consulta 2 — El historial de préstamos de una persona.</b> Devuelve todos sus préstamos, devueltos y en curso, del más reciente al más antiguo.</p>
+<pre>SELECT e.denominacion, pr.fecha_prestamo, pr.fecha_prevista_devolucion,
+       d.fecha_devolucion, d.estado_devuelto
+FROM prestamo pr
+JOIN equipo e ON e.id_equipo = pr.id_equipo
+LEFT JOIN devolucion d ON d.id_prestamo = pr.id_prestamo
+WHERE pr.id_persona = 3
+ORDER BY pr.fecha_prestamo DESC;</pre>
+
+<p><b>Consulta 3 — Cuántos préstamos tuvo cada categoría.</b> Sirve para saber qué equipamiento se usa y qué equipamiento no.</p>
+<pre>SELECT c.nombre AS categoria, COUNT(pr.id_prestamo) AS cantidad_prestamos
+FROM categoria c
+LEFT JOIN equipo    e  ON e.id_categoria = c.id_categoria
+LEFT JOIN prestamo  pr ON pr.id_equipo   = e.id_equipo
+GROUP BY c.id_categoria, c.nombre
+ORDER BY cantidad_prestamos DESC;</pre>
+
+<p><b>Consulta 4 — Equipos que nunca se prestaron.</b> Es la que el cuaderno no podía responder, porque solo anotaba lo que se prestaba.</p>
+<pre>SELECT e.denominacion, e.marca, e.numero_inventario, c.nombre AS categoria
+FROM equipo e
+JOIN categoria c ON c.id_categoria = e.id_categoria
+LEFT JOIN prestamo pr ON pr.id_equipo = e.id_equipo
+WHERE pr.id_prestamo IS NULL
+ORDER BY c.nombre, e.denominacion;</pre>
+
+<p><b>Consulta 5 — Préstamos vencidos.</b> Los que pasaron su fecha prevista y todavía no tienen devolución.</p>
+<pre>SELECT p.apellido, p.nombre, p.contacto, e.denominacion,
+       pr.fecha_prevista_devolucion,
+       DATEDIFF(CURDATE(), pr.fecha_prevista_devolucion) AS dias_de_atraso
+FROM prestamo pr
+JOIN persona p ON p.id_persona = pr.id_persona
+JOIN equipo  e ON e.id_equipo  = pr.id_equipo
+LEFT JOIN devolucion d ON d.id_prestamo = pr.id_prestamo
+WHERE d.id_devolucion IS NULL
+  AND pr.fecha_prevista_devolucion &lt; CURDATE()
+ORDER BY dias_de_atraso DESC;</pre>
+
+<p>Las consultas 1, 4 y 5 usan el mismo recurso: unir con una tabla y quedarse con las filas donde esa unión no encontró nada. Es lo que permite preguntar por lo que falta —una devolución que no está, un préstamo que nunca existió— y no solo por lo que está cargado.</p>
+
+<h2 id="a5">5 · El esquema, modelo o prototipo</h2>
+
+<p>El producto técnico de esta situación es el modelo entidad-relación, que se incluye completo en el anexo A. El modelo tiene cinco entidades y cuatro relaciones, y se lee así: <b>categoria</b> agrupa <b>equipo</b>; <b>persona</b> y <b>equipo</b> se vinculan a través de <b>prestamo</b>, que guarda las fechas de la entrega; y cada <b>prestamo</b> puede tener una <b>devolucion</b>.</p>
+
+<pre>categoria 1 ─── N equipo
+                    │ N
+                    │
+persona 1 ─── N prestamo 1 ─── 0..1 devolucion</pre>
+
+<p>La única relación opcional es la de la devolución, y esa opcionalidad no es un detalle del dibujo: es el dato con el que se responde qué está prestado en este momento.</p>
+
+<h2 id="a6">6 · Comparación de alternativas y decisión</h2>
+
+<p>La decisión de diseño que más condiciona el resto del trabajo es cómo se registra la devolución. Se compararon las dos alternativas posibles con una matriz ponderada de cuatro criterios, con los pesos definidos antes de puntuar y a partir de lo que la escuela necesita del sistema.</p>
+
+<p><b>Alternativa A:</b> la devolución es un campo dentro de la tabla prestamo —<code>fecha_devolucion</code>—, vacío mientras el equipo no volvió. <b>Alternativa B:</b> la devolución es una tabla propia, relacionada uno a uno con el préstamo.</p>
+
+<p>Escala de puntuación: 5 cumple con margen, 4 cumple bien, 3 cumple justo, 2 cumple con dificultad, 1 no cumple. La columna «ponderado» es el puntaje multiplicado por el peso y dividido por cien; el total es la suma de la columna.</p>
+
+<table border="1">
+<thead><tr><th>Criterio</th><th>Peso</th><th>A · campo en préstamo</th><th>Ponderado</th><th>B · tabla propia</th><th>Ponderado</th></tr></thead>
+<tbody>
+<tr><td>Guardar el estado en que volvió el equipo y sus observaciones</td><td>35</td><td>2</td><td>0,70</td><td>5</td><td>1,75</td></tr>
+<tr><td>Simplicidad de las consultas pedidas</td><td>30</td><td>5</td><td>1,50</td><td>4</td><td>1,20</td></tr>
+<tr><td>Cantidad de tablas a crear y cargar en el tiempo disponible</td><td>20</td><td>5</td><td>1,00</td><td>3</td><td>0,60</td></tr>
+<tr><td>Posibilidad de crecer si la escuela adopta el sistema</td><td>15</td><td>2</td><td>0,30</td><td>5</td><td>0,75</td></tr>
+<tr><th>Total</th><th>100</th><th>—</th><th>3,50</th><th>—</th><th>4,30</th></tr>
+</tbody>
+</table>
+
+<p>Los datos detrás de los puntajes. La alternativa A resuelve la fecha con una sola columna, y ahí gana en simplicidad y en tiempo: son cuatro tablas en lugar de cinco. Donde no llega es en el estado del equipo devuelto: para guardar que un proyector volvió con el cable dañado habría que agregar dos columnas más a prestamo, que quedarían vacías en todas las filas de los préstamos en curso. La alternativa B las guarda en la tabla donde tienen sentido, y por eso puntúa 5 en el primer criterio; su costo es una unión más en dos de las cinco consultas, que igual necesitan la unión con devolución para saber si el préstamo está abierto.</p>
+
+<p>El equipo adopta la alternativa B, con 4,30 puntos contra 3,50. El criterio que definió la diferencia es el primero, porque el relevamiento mostró que el problema no es solo saber si el equipo volvió: en el cuaderno hay siete anotaciones al margen sobre equipos devueltos con desperfectos, y ese dato hoy se pierde. Lo que se resigna es una tabla más para crear y cargar, y una unión adicional en las consultas.</p>
+
+<p>La decisión depende de los pesos, y conviene decir hasta dónde. Si el estado del equipo devuelto no interesara —una escuela que solo necesita saber qué está afuera— y ese criterio bajara a 10 con la simplicidad en 55, el resultado se invertiría, con 4,45 para A contra 3,75 para B. Con los datos del relevamiento, el equipo sostiene el peso original.</p>
+
+<h2 id="a7">7 · Pruebas y resultados</h2>
+
+<p>Se diseñaron cuatro casos de prueba, cada uno con la afirmación que verifica. Las capturas de la ejecución están en el anexo B.</p>
+
+<table border="1">
+<thead><tr><th>Caso</th><th>Afirmación que verifica</th><th>Datos de entrada</th><th>Resultado esperado</th><th>Resultado obtenido</th></tr></thead>
+<tbody>
+<tr><td>CP-01</td><td>La consulta 1 devuelve solo los equipos sin devolución</td><td>Ocho préstamos cargados, tres sin devolución</td><td>Tres filas, con los tres equipos correspondientes</td><td>Correcto</td></tr>
+<tr><td>CP-02</td><td>La base rechaza un préstamo de un equipo que no existe</td><td>INSERT en prestamo con id_equipo = 999</td><td>La operación se rechaza por la clave foránea</td><td>Correcto. Error 1452 de restricción de integridad</td></tr>
+<tr><td>CP-03</td><td>La base rechaza una segunda devolución del mismo préstamo</td><td>Dos INSERT en devolucion con el mismo id_prestamo</td><td>El segundo se rechaza por la restricción de unicidad</td><td>Correcto tras cambiar el motor de la tabla</td></tr>
+<tr><td>CP-04</td><td>La consulta 4 muestra los equipos nunca prestados</td><td>Doce equipos cargados, cuatro sin ningún préstamo</td><td>Cuatro filas</td><td>Correcto</td></tr>
+</tbody>
+</table>
+
+<p>El caso CP-03 falló en su primera ejecución: la segunda devolución se insertó sin error. Al revisarlo se encontró que las tablas se habían creado con el motor por omisión del gestor, que no aplica las restricciones declaradas. Se recreó el esquema con InnoDB y la prueba se repitió con el resultado esperado. Es la dificultad que aparece registrada el día 4 de la bitácora.</p>
+
+<p>La elección de los casos siguió dos técnicas del espacio de Evaluación de Proyectos: los casos CP-01 y CP-04 comprueban lo que la consigna pide de manera explícita, y los CP-02 y CP-03 son casos negativos, que verifican que el sistema rechaza lo que no debe aceptar.</p>
+
+<h2 id="a8">8 · Registro de dificultades</h2>
+
+<p>La bitácora completa de las cinco jornadas está en el anexo D. Tres dificultades condicionaron el trabajo.</p>
+
+<p>La primera fue el nombre de los equipos en el cuaderno. El mismo proyector aparecía de tres formas distintas, y al pasar los datos no se sabía si eran uno o tres equipos. Se resolvió con el número de inventario del gabinete como referencia, y en los cuatro equipos sin número se agregó una observación con la marca y el modelo para identificarlos.</p>
+
+<p>La segunda fue el diseño de la devolución, que ocupó la mayor parte del segundo día. Se probaron las dos alternativas escribiendo las consultas de las dos maneras, y la comparación del apartado 6 salió de esa prueba: la discusión se cerró cuando se vio qué pasaba con el estado del equipo devuelto.</p>
+
+<p>La tercera fue el rechazo que no ocurría en el caso CP-03. Se revisó primero la sintaxis de la restricción, que era correcta, y después se consultó la documentación del gestor, donde figura que el motor por omisión acepta la cláusula y no la aplica. El esquema se recreó con InnoDB y quedó como decisión escrita en el apartado 4.3.</p>
+
+<h2 id="a9">9 · Conclusiones y referencias</h2>
+
+<p>El trabajo deja diseñada la base de datos completa: cinco entidades con sus atributos y claves, cuatro relaciones resueltas con claves foráneas, el script de creación, datos de prueba cargados y las cinco consultas pedidas, dos de ellas las que la consigna especifica. Las cuatro pruebas quedaron ejecutadas y documentadas, y dos de ellas verifican que la base rechaza operaciones inválidas.</p>
+
+<p>Quedó pendiente la carga de datos históricos del cuaderno. Se transcribieron cuarenta anotaciones para tener datos de prueba realistas y faltan las del primer semestre, que exigen resolver caso por caso las devoluciones sin fecha. El procedimiento está definido —cada anotación sin devolución se carga como préstamo abierto y se verifica físicamente si el equipo está en el gabinete—, y la carga completa está estimada en cuatro horas.</p>
+
+<p>Con más tiempo, el equipo habría agregado el control de que un equipo no se preste dos veces al mismo tiempo. Hoy la base lo permite: nada impide registrar un préstamo de un equipo que ya está afuera. Se puede resolver con una comprobación previa en la aplicación o con un procedimiento en la base, y es la primera cosa que habría que sumar si la escuela adopta el sistema.</p>
+
+<h3>Referencias</h3>
+<p>Instituto Nacional de Educación Tecnológica. (2024). <i>Olimpíada Nacional de ETP. Informática: lineamientos, pautas y criterios para su desarrollo</i>. Recuperado el 31 de agosto de 2026, de https://www.inet.edu.ar</p>
+<p>Nombre del gestor de bases de datos. (s. f.). <i>Documentación: motores de almacenamiento y restricciones de clave foránea</i>. Recuperado el 3 de septiembre de 2026, de https://…</p>
+<p>Apellido, N. (Año). <i>Título del material de bases de datos utilizado</i>. Editorial.</p>
+
+<h2 id="a10">Anexos</h2>
+
+<table border="1">
+<thead><tr><th>Anexo</th><th>Contenido</th></tr></thead>
+<tbody>
+<tr><td>A · Modelo entidad-relación</td><td>El diagrama completo con las cinco entidades, sus atributos y la cardinalidad de las cuatro relaciones</td></tr>
+<tr><td>B · Evidencias de las pruebas</td><td>Capturas de las cuatro pruebas, cada una con su epígrafe: «Figura 1. Resultado de la consulta 1, 3 de septiembre de 2026»</td></tr>
+<tr><td>C · Script completo</td><td>Creación de las tablas, carga de datos de prueba y las cinco consultas, en un archivo .sql</td></tr>
+<tr><td>D · Bitácora</td><td>Registro diario de las cinco jornadas: fecha, dificultad, qué se probó, qué lo resolvió y dónde se buscó</td></tr>
+</tbody>
+</table>
+
+</div>
+
+<h2 class="parte" id="parteB">Parte B · Cada apartado, explicado</h2>
+
+<p class="nota">Esta parte recorre el mismo documento de la parte A y explica con qué criterio se escribe cada apartado. Los enlaces llevan al apartado correspondiente del modelo.</p>
+
+<h2 id="b0">El orden de escritura y el límite de páginas</h2>
+
+<p>El documento se lee de la portada a los anexos y se escribe en otro orden. El primer día se crea el archivo con la portada y los nueve títulos vacíos, para que cada integrante escriba adentro del suyo y el documento crezca junto con el trabajo. Después se completan los apartados 3, 4, 5, 6 y 7, que dependen de lo que el equipo produce. Los apartados 1, 2, 8 y 9 se escriben al final, porque recién entonces el equipo sabe qué encontró, qué interpretó y qué le faltó.</p>
+
+<p>El techo de cinco a diez páginas se cuenta sobre el cuerpo y se cumple mandando al anexo las planillas completas, las capturas, los esquemas grandes y el código. En el cuerpo queda el criterio con el que se armó cada cosa. Recortar la fundamentación para entrar en diez páginas es el error opuesto: la fundamentación es lo que la grilla lee.</p>
+
+<p>De los cien puntos de la grilla del INET, la resolución técnica vale treinta y dos. Los sesenta y ocho restantes —planificación 20, producto final 20, autorregulación 12, pensamiento combinatorio 10, trabajo en equipo 6— se juegan en la forma en que el trabajo está documentado.</p>
+
+<h2 id="b1">La portada y los apartados 1 y 2</h2>
+
+<h3>La portada</h3>
+<p>Lleva los datos con los que el equipo evaluador identifica el trabajo antes de puntuarlo, con los mismos nombres que usa la grilla: especialidad, escuela, CUE, nombre del equipo, provincia, localidad, correo institucional, integrantes y coordinación. El CUE y el formato del nombre del archivo conviene confirmarlos en la escuela, porque un archivo que no se puede asociar al equipo es un trabajo que se evalúa mal por una razón administrativa. Y el rol que figura al lado de cada nombre reaparece en el apartado 3: cuando los dos coinciden, el reparto se lee sin esfuerzo.</p>
+
+<h3>1 · La situación y el problema detectado</h3>
+<p>Es el apartado que más se resuelve copiando el enunciado. Lo que se pide es otra cosa: leer la situación, decir cuál es el problema, a quién afecta y con qué evidencia se afirma. <a href="#a1">En el modelo</a> el movimiento son tres párrafos. El primero da el estado actual con datos propios —cuántas anotaciones se revisaron, qué se encontró, con fecha—. El segundo dice la consecuencia en términos de lo que la escuela no puede hacer. El tercero enuncia la necesidad como el pasaje de una situación a otra.</p>
+<p>El dato propio es lo que distingue este apartado de una paráfrasis. «El registro manual es poco eficiente» es una opinión; «veintiséis de las últimas cuarenta anotaciones no consignan la fecha de devolución» es un dato que el evaluador puede seguir.</p>
+
+<h3>2 · Alcance y supuestos</h3>
+<p>Cada una de las diez situaciones deja algo abierto, y el equipo tiene que resolverlo para poder trabajar. Declarar esa lectura la convierte en decisión técnica; aplicarla en silencio la convierte en un pedido que parece sin cumplir. <a href="#a2">En el modelo</a> se declaran dos supuestos y el límite que la propia consigna fija —que no hace falta desarrollar una aplicación—, más una aclaración sobre los datos de prueba.</p>
+<p>Conviene revisar el enunciado propio buscando tres cosas: las palabras que admiten dos lecturas, los mínimos numéricos que hay que cumplir, y las exclusiones explícitas. La situación 6, por ejemplo, dice qué no es obligatorio implementar: lo que se agregue de más consume páginas del techo y no suma puntaje.</p>
+
+<h2 id="b3">3 · La organización del trabajo</h2>
+
+<p>Es el requisito 7 del encabezado y la evidencia principal de dos criterios que suman veintiséis puntos: planificación, que vale veinte, y trabajo en equipo, que vale seis. La consigna pide la distribución entre los cuatro integrantes, y la grilla evalúa que sea equitativa: eso se lee en una tabla con nombres y en un cronograma con fechas, no en una declaración de buenas intenciones. «Trabajamos todos en todo» deja el criterio sin evidencia.</p>
+
+<p><a href="#a3">El modelo</a> tiene tres piezas: la tabla de responsabilidades con una columna que dice por qué le tocó a cada uno, el cronograma con una columna de dependencias —que evita que dos integrantes se queden esperando la misma cosa— y el párrafo del criterio del reparto y el modo de seguimiento. La carga estimada que la consigna informa para cada situación, entre 8 y 20 horas de equipo, es el dato con el que se arma ese cronograma.</p>
+
+<h2 id="b4">4 y 5 · El desarrollo y el producto técnico</h2>
+
+<p>Son los dos apartados que cambian según la situación asignada; la tabla del <a href="#que">lugar de cada pedido</a> dice qué va en cada uno para las diez. La regla que los ordena es la misma en todos los casos: <b>en el cuerpo va el criterio, en el anexo va el producto completo</b>. Un modelo entidad-relación grande, una planilla de doce filas o el script entero ocupan páginas del techo y no explican nada por sí solos; en el cuerpo van la muestra y la razón.</p>
+
+<p><b>Antes de escribir el apartado 4, conviene copiar el pedido textual del propio enunciado</b> y ponerlo
+al lado: cada subapartado responde a uno de esos pedidos, y el equipo evaluador los recorre en ese orden.
+En la situación 5 son cinco —modelo, tablas, claves, creación y cinco consultas—; en la 9 son siete; en la
+8, nueve. La numeración de los apartados del documento, en cambio, es una organización que propone este
+material: la consigna pide las siete piezas del encabezado y deja la estructura en manos del equipo.</p>
+<p>Tres cosas que la consigna pide y se pasan por alto con facilidad:</p>
+<ul>
+<li><b>El producto «según corresponda».</b> La elección queda en manos del equipo y conviene declararla al inicio del apartado 5, porque así se lee como decisión: la situación 5 corresponde al modelo entidad-relación, la 1 y la 8 a un esquema de red, la 6 al prototipo, la 7 a la pieza de capacitación.</li>
+<li><b>Las demostraciones prácticas.</b> Varias situaciones piden ejecutar y documentar: tres herramientas de diagnóstico en la 4, el mantenimiento de una computadora en la 9, los accesos permitido y denegado en la 8, la imposibilidad de la doble reserva en la 6. Esa ejecución es una prueba con evidencia, y va con su captura al anexo.</li>
+<li><b>Los mínimos numéricos.</b> Cinco consultas en la 5, tres medidas de seguridad en la 1, cinco medidas en la 10, tres usuarios y dos grupos en la 8, cuatro causas posibles en la 4. Se cuentan antes de entregar.</li>
+</ul>
+
+<p>Cuando el desarrollo incluye una decisión técnica que no sale del enunciado —como el motor de la base en <a href="#a4">el modelo</a>—, se escribe con su razón en el mismo lugar donde aparece. Esa es la diferencia entre un desarrollo y un instructivo.</p>
+
+<h2 id="b6">6 y 7 · La decisión y la prueba</h2>
+
+<h3>6 · La comparación de alternativas</h3>
+<p>Se pide en las diez situaciones, aunque el texto de cada una no lo repita, y es lo que más se olvida. Vale los diez puntos de pensamiento combinatorio de la grilla. La pregunta que lo resuelve es siempre la misma: <b>¿qué decisión de este trabajo pudo haber sido de otra manera?</b> En la situación 5 es cómo se registra la devolución; en la 2, el soporte de las copias; en la 1, la topología; en la 3 y la 10 la consigna ya nombra el par.</p>
+<p>La matriz se arma en cuatro movimientos: se eligen los criterios que importan en esa decisión, se les asigna un peso que sume cien —antes de mirar las alternativas—, se puntúa cada alternativa con una escala declarada, y se calcula el ponderado. El orden importa: los pesos definidos después de conocer los puntajes producen la conclusión que el equipo ya quería. Cada celda de puntaje se multiplica por el peso de su criterio y se divide por cien, y el total es la suma de esa columna, en la misma escala de 1 a 5.</p>
+<p><a href="#a6">El párrafo de decisión del modelo</a> hace cuatro cosas: nombra la alternativa elegida con su puntaje, dice qué criterio definió la diferencia, reconoce en qué era mejor la descartada y qué se resigna, y cierra diciendo bajo qué condición la decisión cambiaría, con el cálculo hecho. Ese último movimiento es el que demuestra que el equipo entendió su propia matriz.</p>
+
+<h3>7 · Las pruebas</h3>
+<p>No están pedidas en el encabezado. Cuatro situaciones piden comprobar algo con esas palabras —la 4, la 7, la 8 y la 9—, y en las demás el apartado se escribe igual, porque la grilla lee dentro de resolución que el equipo haya verificado lo que afirma. Una solución que no se probó es una propuesta; la prueba es lo que la convierte en resultado.</p>
+<p>Cada caso lleva identificador, qué verifica, con qué datos, qué resultado se esperaba y qué se obtuvo, con la evidencia en el anexo. La elección de qué probar sale de las técnicas de diseño de casos: dos casos comprueban lo que la consigna pide de manera explícita, y <b>al menos uno tiene que ser negativo</b> —que el sistema rechace lo que no debe aceptar, que un usuario sin permiso no acceda, que una reserva superpuesta no se registre—. <a href="#a7">En el modelo</a>, uno de los cuatro casos falla en su primera ejecución y se corrige: dejarlo escrito es evidencia de autorregulación y vale más que una tabla donde todo sale bien a la primera.</p>
+
+<h2 id="b8">8 y 9 · El registro y el cierre</h2>
+
+<h3>8 · El registro de dificultades</h3>
+<p>Es el requisito 6 del encabezado. Breve se refiere a la extensión del apartado, y el registro se carga el día en que ocurre cada dificultad: reconstruido de memoria al final, pierde las fechas y las fuentes, que son los datos que lo vuelven verificable. La bitácora completa va al anexo con cinco columnas —fecha, qué pasó, qué se probó, qué lo resolvió y dónde se buscó—, y en el cuerpo queda el resumen de las tres o cuatro que cambiaron el trabajo, contadas con el recorrido entero: qué se intentó primero, qué se descartó y qué lo resolvió. La última columna de la bitácora se convierte después en las referencias.</p>
+
+<h3>9 · Las conclusiones y las referencias</h3>
+<p>Las conclusiones tienen tres partes: qué quedó resuelto, qué quedó pendiente y qué se haría distinto. La segunda es la que más se calla y la que más conviene escribir: declarar lo incompleto lo convierte en evidencia de autorregulación, mientras que callarlo hace que el evaluador lo encuentre como ítem faltante y descuente dos veces. Se escribe con cuatro datos, como <a href="#a9">el segundo párrafo del modelo</a>: qué parte quedó incompleta, hasta dónde se llegó, por qué se detuvo ahí y qué haría falta para terminarla.</p>
+<p>Las referencias permiten que quien lee llegue a la misma fuente y verifique el dato. Un precio, un valor de fabricante o una recomendación técnica sin fuente son afirmaciones que el evaluador tiene que creer o descartar. Dentro del cuerpo va la cita breve con el apellido o la organización y el año; al final, la lista completa ordenada alfabéticamente. En un material de internet, la fecha de acceso es el dato que ubica la consulta en el tiempo, y por eso no se omite.</p>
+
+<h2 id="b10">Los anexos y el control final</h2>
+
+<p>Los anexos no cuentan para el techo de páginas, y por eso son el lugar de todo lo que ocupa espacio sin explicar. La condición para que sirvan es que estén nombrados y que el cuerpo los llame por su nombre. Una captura sin epígrafe obliga al evaluador a deducir qué está mirando; el epígrafe dice qué muestra y cuándo se tomó, y ocupa una línea.</p>
+
+<h3>Las siete comprobaciones del último día</h3>
+<ol>
+<li>Las siete piezas del encabezado están, y cada una se encuentra buscándola: solución, documento, producto técnico, comparación, explicación de la elección, registro de dificultades y reparto entre los cuatro.</li>
+<li>Los mínimos numéricos del propio enunciado están cumplidos y se pueden contar.</li>
+<li>El cuerpo tiene entre cinco y diez páginas, y lo que sobraba está en el anexo.</li>
+<li>Toda afirmación con un número tiene al lado su fuente o el relevamiento del que salió.</li>
+<li>El término técnico aparece siempre con el mismo nombre en todo el documento.</li>
+<li>Las capturas del anexo tienen epígrafe y el cuerpo las llama por su número de figura.</li>
+<li>El archivo se abrió en otra computadora después de exportarlo, para verificar que las tablas y las imágenes conservan su formato.</li>
+</ol>
+
+<p class="nota">Material complementario: <a href="https://yanelricarte.github.io/Evaluacion_proyectos/olimpiadas-el-plan-y-su-prueba/">Guía de trabajo para las Olimpíadas 2026</a> y <a href="https://yanelricarte.github.io/Evaluacion_proyectos/olimpiadas-plantillas/">Planillas e instrumentos para el documento</a>.</p>
+
+<footer>Yanel Ricarte · Evaluación de Proyectos · 7.º año · 2026</footer>
+
+</body>
+</html>

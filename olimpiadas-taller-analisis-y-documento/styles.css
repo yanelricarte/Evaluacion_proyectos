@@ -1,0 +1,107 @@
+:root{
+  --ink:#17191d; --ink-soft:#33353b; --muted:#6a717b;
+  --linea:#d8dce1; --linea-fuerte:#9aa1ab; --cabecera:#eceff2;
+  --papel:#fff; --papel-2:#fafbfc;
+  --primary:#b31759; --soft:#fff4f8;
+  --verde:#1d7a4c; --amarillo:#9a6b00; --rojo:#a32222;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--papel); color:var(--ink);
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16.5px; line-height:1.65; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
+
+/* ---------- encabezado ---------- */
+.hero{border-bottom:1px solid var(--linea); background:var(--papel-2)}
+.hero-inner{max-width:960px; margin:0 auto; padding:36px 22px 30px}
+.kicker{font-size:.78rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--primary); margin-bottom:10px}
+.hero h1{font-family:"Manrope",sans-serif; font-size:2.1rem; line-height:1.12; margin:0 0 12px}
+.lead{max-width:70ch; color:var(--ink-soft); margin:0 0 20px}
+.track{display:flex; flex-wrap:wrap; gap:10px}
+.track-step{display:flex; align-items:baseline; gap:8px; text-decoration:none; color:var(--ink-soft);
+  border:1px solid var(--linea); border-radius:10px; padding:8px 12px; background:var(--papel); font-size:.92rem}
+.track-step:hover{border-color:var(--primary); color:var(--ink)}
+.track-step b{color:var(--primary)}
+
+/* ---------- cuerpo ---------- */
+main{max-width:960px; margin:0 auto; padding:10px 22px 90px}
+section{padding-top:38px}
+h2{font-family:"Manrope",sans-serif; font-size:1.42rem; margin:0 0 6px; padding-bottom:8px;
+  border-bottom:2px solid var(--ink)}
+h3{font-size:1.05rem; margin:26px 0 4px}
+p{margin:0 0 12px; max-width:74ch}
+.num{color:var(--primary); font-weight:800; margin-right:6px}
+ul,ol{max-width:74ch; padding-left:1.35em}
+li{margin-bottom:6px}
+.nota{color:var(--muted); font-size:.94rem; max-width:74ch}
+
+/* ---------- tablas ---------- */
+.table-wrap{overflow-x:auto; margin:14px 0}
+table{width:100%; border-collapse:collapse; font-size:.93rem; min-width:0}
+th,td{border:1px solid var(--linea-fuerte); padding:9px 11px; text-align:left; vertical-align:top}
+tbody tr:nth-child(even) td{background:#fafbfc}
+tbody tr:nth-child(even) td input{background:#fff}
+th{background:var(--cabecera); font-weight:700}
+td.ej{color:var(--muted); font-style:italic}
+
+/* ---------- tarjeta de regla ---------- */
+.rule-card{background:var(--soft); border:1px solid var(--primary); border-radius:12px;
+  padding:14px 16px; margin:16px 0; max-width:74ch}
+.rule-tag{display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--primary); margin-bottom:6px}
+.rule-card p:last-child{margin-bottom:0}
+
+/* ---------- campos para escribir ---------- */
+.campo{margin:14px 0; max-width:74ch}
+.campo label{display:block; font-weight:600; font-size:.95rem; margin-bottom:4px}
+.campo .ayuda{display:block; color:var(--muted); font-size:.88rem; margin-bottom:6px}
+textarea, input[type=text]{width:100%; font:inherit; font-size:.95rem; color:var(--ink);
+  border:1.5px solid var(--linea-fuerte); border-radius:9px; padding:8px 10px; background:var(--papel);
+  resize:vertical}
+textarea:focus, input[type=text]:focus{outline:none; border-color:var(--primary)}
+table input[type=text]{border-width:1px; border-radius:6px; padding:7px 8px; font-size:.92rem}
+table select{font:inherit; font-size:.9rem; padding:6px 7px; border:1px solid var(--linea-fuerte);
+  border-radius:6px; background:var(--papel)}
+
+/* ---------- semáforo ---------- */
+.semaforo{display:flex; gap:14px; flex-wrap:wrap; margin:10px 0 4px; font-size:.92rem}
+.semaforo span{display:flex; align-items:center; gap:6px}
+.punto{width:12px; height:12px; border-radius:50%; display:inline-block}
+.p-verde{background:var(--verde)} .p-amarillo{background:var(--amarillo)} .p-rojo{background:var(--rojo)}
+
+/* ---------- barra de copiado ---------- */
+.export-bar{position:sticky; bottom:0; z-index:5; margin-top:34px;
+  background:var(--papel); border-top:1px solid var(--linea); padding:12px 0}
+.export-inner{max-width:960px; margin:0 auto; padding:0 22px; display:flex; gap:12px;
+  align-items:center; flex-wrap:wrap}
+.export-btn{font:inherit; font-size:.94rem; font-weight:600; cursor:pointer; padding:9px 16px;
+  border:1.5px solid var(--primary); border-radius:10px; background:var(--papel); color:var(--primary)}
+.export-btn:hover{background:var(--soft)}
+.export-status{color:var(--muted); font-size:.9rem}
+
+.page-foot{max-width:960px; margin:50px auto 0; padding:18px 22px 0; border-top:1px solid var(--linea);
+  color:var(--muted); font-size:.92rem}
+
+@media (max-width:620px){
+  .hero h1{font-size:1.7rem}
+  .hero-inner{padding:26px 18px 22px}
+  main{padding:6px 18px 70px}
+  table{font-size:.88rem}
+}
+@media print{
+  .export-bar, .track{display:none}
+  body{font-size:11pt}
+  section{page-break-inside:avoid}
+}
+
+/* ---------- resaltado y puntos de chequeo ---------- */
+.marca{background:#fbdce9; padding:0 .2em; border-radius:3px; font-weight:600}
+.sub-acento{text-decoration:underline; text-decoration-color:var(--primary);
+  text-decoration-thickness:3px; text-underline-offset:3px}
+.check{border:1.5px dashed var(--primary); border-radius:11px; padding:13px 17px; margin:18px 0;
+  background:var(--soft); max-width:74ch}
+.check .et{display:block; font-size:.7rem; font-weight:800; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--primary); margin-bottom:6px}
+.check p{margin:0 0 7px}
+.check p:last-child{margin-bottom:0}
+.check ol{margin:4px 0 0; padding-left:1.3em}

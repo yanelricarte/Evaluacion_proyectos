@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fichas de las diez situaciones — Olimpíada de ETP 2026</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../css/comun.css" />
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Olimpíada de ETP 2026 · 7.º año · E.E.S.T. N.º 5</div>
+    <h1>Fichas de las diez situaciones</h1>
+    <p class="lead">Cada ficha reúne, en una carilla, lo que la consigna pide en esa situación: los pedidos
+    del enunciado como lista para marcar, los números que hay que contar, el producto técnico que
+    corresponde, el par de alternativas para comparar y las pruebas que hacen falta. Buscá la tuya, marcá
+    lo que ya tenés y lo que queda es tu lista de trabajo. Las casillas quedan guardadas en este navegador.</p>
+    <nav class="nav-fichas">
+      <a href="#s1">1</a>
+      <a href="#s2">2</a>
+      <a href="#s3">3</a>
+      <a href="#s4">4</a>
+      <a href="#s5">5</a>
+      <a href="#s6">6</a>
+      <a href="#s7">7</a>
+      <a href="#s8">8</a>
+      <a href="#s9">9</a>
+      <a href="#s10">10</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="ficha" id="s1">
+  <h2>1 · Diseñar la red de una pequeña empresa</h2>
+  <p class="escenario">Una empresa tiene 12 computadoras en Administración, 8 en Ventas y 6 en Diseño, dos impresoras de red y conexión a Internet. Hoy todo está conectado de manera improvisada, con varios routers y switches.</p>
+  <h3>Lo que pide el enunciado</h3>
+  <ul class="pedidos">
+    <li><input type="checkbox" data-k="s1-1"><span>Un diagrama de la red propuesta</span></li>
+    <li><input type="checkbox" data-k="s1-2"><span>La topología elegida</span></li>
+    <li><input type="checkbox" data-k="s1-3"><span>Los switches, el router y los puntos de acceso necesarios, indicados</span></li>
+    <li><input type="checkbox" data-k="s1-4"><span>Dónde se ubican el servidor y las impresoras</span></li>
+    <li><input type="checkbox" data-k="s1-5"><span>Al menos tres medidas básicas de seguridad</span></li>
+    <li><input type="checkbox" data-k="s1-6"><span>La justificación de las decisiones tomadas</span></li>
+  </ul>
+  <p class="numeros"><b>Los números que hay que poder contar:</b> 26 puestos en total y 2 impresoras. Al menos 3 medidas de seguridad.</p>
+  <h3>El producto técnico, apartado 5</h3>
+  <p>El diagrama de la red, con los equipos y su ubicación.</p>
+  <h3>El par de alternativas, apartado 6</h3>
+  <p>Dos topologías posibles; o el servidor en el rack de administración contra un espacio propio.</p>
+  <h3>Las pruebas, apartado 7</h3>
+  <p>Una prueba por cada medida de seguridad: qué se intenta y qué tiene que pasar. Al menos una negativa, del tipo «alguien sin autorización no llega».</p>
+  <div class="dato"><b>En Base de Datos:</b> el dato que se repite en tu planilla es el sector y el tipo de equipo, repetidos en cada fila del inventario.</div>
+</section>
+
+<section class="ficha" id="s2">
+  <h2>2 · Elaborar un sistema de copias de seguridad</h2>
+  <p class="escenario">Una oficina tiene 15 computadoras y un servidor donde se guardan documentos administrativos, datos de clientes, fotografías y planillas contables. Hoy los empleados hacen copias cuando lo recuerdan.</p>
+  <h3>Lo que pide el enunciado</h3>
+  <ul class="pedidos">
+    <li><input type="checkbox" data-k="s2-1"><span>Qué información se debe copiar</span></li>
+    <li><input type="checkbox" data-k="s2-2"><span>La frecuencia de cada copia</span></li>
+    <li><input type="checkbox" data-k="s2-3"><span>Los tipos de copia</span></li>
+    <li><input type="checkbox" data-k="s2-4"><span>Los dispositivos o servicios utilizados</span></li>
+    <li><input type="checkbox" data-k="s2-5"><span>La ubicación de las copias</span></li>
+    <li><input type="checkbox" data-k="s2-6"><span>El responsable</span></li>
+    <li><input type="checkbox" data-k="s2-7"><span>El procedimiento básico de recuperación</span></li>
+    <li><input type="checkbox" data-k="s2-8"><span>Qué ocurriría ante la pérdida completa del servidor</span></li>
+  </ul>
+  <p class="numeros"><b>Los números que hay que poder contar:</b> Cuatro tipos de información nombrados en el enunciado, cada uno con su frecuencia.</p>
+  <h3>El producto técnico, apartado 5</h3>
+  <p>La planilla del plan, con una fila por tipo de información, y el esquema de los soportes.</p>
+  <h3>El par de alternativas, apartado 6</h3>
+  <p>Disco externo que se retira del edificio contra servicio en la nube.</p>
+  <h3>Las pruebas, apartado 7</h3>
+  <p>La restauración probada sobre un archivo, con el tiempo que tardó. Es la prueba que la consigna deja implícita al pedir el procedimiento de recuperación.</p>
+  <div class="dato"><b>En Base de Datos:</b> el dato que se repite en tu planilla es el responsable y el soporte, repetidos en cada fila.</div>
+</section>
+
+<section class="ficha" id="s3">
+  <h2>3 · Seleccionar computadoras para diferentes usuarios</h2>
+  <p class="escenario">Una empresa necesita tres computadoras. Puesto A: administración, correo, navegación y planillas de cálculo. Puesto B: programación, desarrollo web, bases de datos y máquinas virtuales ocasionales. Puesto C: edición de imágenes, video y diseño gráfico.</p>
+  <h3>Lo que pide el enunciado</h3>
+  <ul class="pedidos">
+    <li><input type="checkbox" data-k="s3-1"><span>Procesador, memoria RAM, almacenamiento, placa gráfica si fuera necesaria, monitor y sistema operativo, para cada puesto</span></li>
+    <li><input type="checkbox" data-k="s3-2"><span>La explicación de por qué cada componente resulta adecuado</span></li>
+    <li><input type="checkbox" data-k="s3-3"><span>Dos alternativas para uno de los puestos</span></li>
+    <li><input type="checkbox" data-k="s3-4"><span>La comparación de prestaciones y costos</span></li>
+    <li><input type="checkbox" data-k="s3-5"><span>La recomendación final de una opción</span></li>
+  </ul>
+  <p class="numeros"><b>Los números que hay que poder contar:</b> Tres puestos, seis componentes definidos en cada uno, y dos alternativas en uno de ellos.</p>
+  <h3>El producto técnico, apartado 5</h3>
+  <p>El cuadro comparativo de configuraciones con sus costos.</p>
+  <h3>El par de alternativas, apartado 6</h3>
+  <p>Ya está pedido: las dos configuraciones del puesto que elijan. La matriz compara prestaciones contra costo.</p>
+  <h3>Las pruebas, apartado 7</h3>
+  <p>El mismo uso probado en las dos alternativas del puesto: qué tarea se ejecuta y qué diferencia se mide.</p>
+  <div class="dato"><b>En Base de Datos:</b> el dato que se repite en tu planilla es el componente y su precio, repetidos puesto por puesto.</div>
+  <p class="pie-ficha">8 a 12 horas de equipo. No hace falta pedir presupuestos: se pueden usar valores de internet.</p>
+</section>
+
+<section class="ficha" id="s4">
+  <h2>4 · Diagnosticar una computadora con problemas</h2>
+  <p class="escenario">Un usuario informa que su computadora tarda varios minutos en iniciar, se reinicia ocasionalmente, tiene poco espacio disponible, se calienta demasiado y algunas aplicaciones dejan de responder.</p>
+  <h3>Lo que pide el enunciado</h3>
+  <ul class="pedidos">
+    <li><input type="checkbox" data-k="s4-1"><span>Al menos cuatro posibles causas</span></li>
+    <li><input type="checkbox" data-k="s4-2"><span>El orden de comprobación</span></li>
+    <li><input type="checkbox" data-k="s4-3"><span>Las herramientas de diagnóstico seleccionadas</span></li>
+    <li><input type="checkbox" data-k="s4-4"><span>Cómo se confirmaría o descartaría cada hipótesis</span></li>
+    <li><input type="checkbox" data-k="s4-5"><span>Qué información habría que proteger antes de intervenir</span></li>
+    <li><input type="checkbox" data-k="s4-6"><span>Las acciones correctivas propuestas</span></li>
+    <li><input type="checkbox" data-k="s4-7"><span>Al menos tres herramientas o procedimientos ejecutados sobre una computadora disponible</span></li>
+  </ul>
+  <p class="numeros"><b>Los números que hay que poder contar:</b> Cuatro causas como mínimo. Tres herramientas ejecutadas de verdad.</p>
+  <h3>El producto técnico, apartado 5</h3>
+  <p>La tabla de hipótesis con la herramienta usada y el resultado de las tres ejecuciones.</p>
+  <h3>El par de alternativas, apartado 6</h3>
+  <p>Dos órdenes de comprobación posibles: empezar por el disco o empezar por la temperatura. O dos herramientas para confirmar la misma hipótesis.</p>
+  <h3>Las pruebas, apartado 7</h3>
+  <p>Cada hipótesis es una prueba: qué se mide, con qué herramienta y qué valor la confirma o la descarta. Las tres ejecuciones van con su captura.</p>
+  <div class="dato"><b>En Base de Datos:</b> el dato que se repite en tu planilla es la herramienta, repetida en cada hipótesis que la usa.</div>
+  <p class="pie-ficha">10 a 14 horas de equipo. No hace falta reproducir todas las fallas del enunciado.</p>
+</section>
+
+<section class="ficha" id="s5">
+  <h2>5 · Diseñar una base de datos para préstamos de equipamiento</h2>
+  <p class="escenario">Una escuela necesita registrar los préstamos de notebooks, proyectores, tablets, cámaras y herramientas informáticas. Hoy los préstamos se registran manualmente.</p>
+  <h3>Lo que pide el enunciado</h3>
+  <ul class="pedidos">
+    <li><input type="checkbox" data-k="s5-1"><span>El modelo Entidad-Relación</span></li>
+    <li><input type="checkbox" data-k="s5-2"><span>Las tablas resultantes</span></li>
+    <li><input type="checkbox" data-k="s5-3"><span>Las claves primarias y foráneas</span></li>
+    <li><input type="checkbox" data-k="s5-4"><span>La creación de las tablas</span></li>
+    <li><input type="checkbox" data-k="s5-5"><span>Al menos cinco consultas SQL</span></li>
+    <li><input type="checkbox" data-k="s5-6"><span>Una consulta que indique qué equipos se encuentran actualmente prestados</span></li>
+    <li><input type="checkbox" data-k="s5-7"><span>Una consulta que muestre el historial de préstamos de una persona</span></li>
+  </ul>
+  <p class="numeros"><b>Los números que hay que poder contar:</b> Cinco cosas que registrar —personas, equipos, categorías, préstamos, devoluciones— y cinco consultas, dos de ellas especificadas.</p>
+  <h3>El producto técnico, apartado 5</h3>
+  <p>El modelo entidad-relación, con la clave primaria subrayada y la cardinalidad en cada relación.</p>
+  <h3>El par de alternativas, apartado 6</h3>
+  <p>La devolución como un campo dentro del préstamo contra la devolución como tabla propia.</p>
+  <h3>Las pruebas, apartado 7</h3>
+  <p>Un caso por consulta pedida, y al menos uno negativo: que la base rechace un préstamo de un equipo que no existe, o una segunda devolución del mismo préstamo.</p>
+  <div class="dato"><b>En Base de Datos:</b> el dato que se repite en tu planilla es la persona y el equipo, repetidos en cada fila de préstamos.</div>
+  <p class="pie-ficha">12 a 16 horas de equipo. No hace falta desarrollar una aplicación completa.</p>
+</section>
+
+<section class="ficha" id="s6">
+  <h2>6 · Crear un prototipo de sistema de reservas</h2>
+  <p class="escenario">La escuela necesita organizar el uso del laboratorio de informática, la biblioteca, el SUM y la sala multimedia. Hoy las reservas se hacen por mensajes y se producen superposiciones.</p>
+  <h3>Lo que pide el enunciado</h3>
+  <ul class="pedidos">
+    <li><input type="checkbox" data-k="s6-1"><span>Visualizar los espacios</span></li>
+    <li><input type="checkbox" data-k="s6-2"><span>Realizar una reserva</span></li>
+    <li><input type="checkbox" data-k="s6-3"><span>Indicar fecha y horario</span></li>
+    <li><input type="checkbox" data-k="s6-4"><span>Consultar las reservas existentes</span></li>
+    <li><input type="checkbox" data-k="s6-5"><span>Impedir que un mismo espacio sea reservado dos veces en el mismo horario</span></li>
+    <li><input type="checkbox" data-k="s6-6"><span>El sistema utiliza una base de datos</span></li>
+    <li><input type="checkbox" data-k="s6-7"><span>La explicación de cómo se ampliaría para uso institucional</span></li>
+  </ul>
+  <p class="numeros"><b>Los números que hay que poder contar:</b> Cuatro espacios y cinco funciones mínimas.</p>
+  <h3>El producto técnico, apartado 5</h3>
+  <p>El prototipo funcionando, con capturas, y el modelo de datos que lo sostiene.</p>
+  <h3>El par de alternativas, apartado 6</h3>
+  <p>El control de superposición hecho en el formulario antes de guardar, contra la restricción puesta en la base de datos.</p>
+  <h3>Las pruebas, apartado 7</h3>
+  <p>El caso central es negativo: se intenta reservar un espacio ya reservado en el mismo horario y el sistema lo rechaza. Con la captura del rechazo.</p>
+  <div class="dato"><b>En Base de Datos:</b> el dato que se repite en tu planilla es el espacio, repetido en cada reserva.</div>
+  <p class="pie-ficha">16 a 20 horas de equipo. No es obligatorio implementar recuperación de contraseña, envío de correos, aplicación móvil, hosting público ni permisos complejos.</p>
+</section>
+
+<section class="ficha" id="s7">
+  <h2>7 · Resolver un incidente de seguridad informática</h2>
+  <p class="escenario">Un empleado recibe un correo que aparenta ser de una empresa conocida y le pide ingresar a un enlace para actualizar su contraseña. El empleado introduce sus credenciales. Dos horas después se detectan accesos desconocidos a su cuenta.</p>
+  <h3>Lo que pide el enunciado</h3>
+  <ul class="pedidos">
+    <li><input type="checkbox" data-k="s7-1"><span>Qué tipo de ataque consideran que ocurrió</span></li>
+    <li><input type="checkbox" data-k="s7-2"><span>Cuáles serían las primeras acciones</span></li>
+    <li><input type="checkbox" data-k="s7-3"><span>Qué contraseñas deberían modificarse</span></li>
+    <li><input type="checkbox" data-k="s7-4"><span>Cómo comprobarían si existen otros equipos o cuentas comprometidos</span></li>
+    <li><input type="checkbox" data-k="s7-5"><span>Qué medidas evitarían que vuelva a suceder</span></li>
+    <li><input type="checkbox" data-k="s7-6"><span>Cómo capacitarían a los usuarios</span></li>
+    <li><input type="checkbox" data-k="s7-7"><span>Una pieza breve de capacitación para empleados, sobre cómo reconocer intentos similares</span></li>
+  </ul>
+  <p class="numeros"><b>Los números que hay que poder contar:</b> Seis preguntas del enunciado, respondidas una por una, más la pieza de capacitación.</p>
+  <h3>El producto técnico, apartado 5</h3>
+  <p>La pieza de capacitación: un instructivo, un cartel o una guía breve para los empleados.</p>
+  <h3>El par de alternativas, apartado 6</h3>
+  <p>Cambiar todas las contraseñas primero contra aislar primero el equipo. O el formato de la capacitación: charla presencial contra pieza escrita.</p>
+  <h3>Las pruebas, apartado 7</h3>
+  <p>La comprobación es la prueba: qué se revisa para saber si otras cuentas quedaron comprometidas, y qué resultado indicaría que sí. Y una lista de cotejo para validar la pieza de capacitación.</p>
+  <div class="dato"><b>En Base de Datos:</b> el dato que se repite en tu planilla es la acción y el responsable, repetidos en el registro de lo actuado.</div>
+  <p class="pie-ficha">8 a 12 horas de equipo.</p>
+</section>
+
+<section class="ficha" id="s8">
+  <h2>8 · Configurar un pequeño servidor de archivos</h2>
+  <p class="escenario">Una oficina tiene diez computadoras. Hoy cada empleado guarda los documentos en su propia PC y los comparte con pendrives.</p>
+  <h3>Lo que pide el enunciado</h3>
+  <ul class="pedidos">
+    <li><input type="checkbox" data-k="s8-1"><span>El servidor de archivos implementado en una computadora física o en una máquina virtual</span></li>
+    <li><input type="checkbox" data-k="s8-2"><span>Al menos tres usuarios</span></li>
+    <li><input type="checkbox" data-k="s8-3"><span>Dos grupos de trabajo</span></li>
+    <li><input type="checkbox" data-k="s8-4"><span>Dos carpetas compartidas</span></li>
+    <li><input type="checkbox" data-k="s8-5"><span>Diferentes permisos de acceso</span></li>
+    <li><input type="checkbox" data-k="s8-6"><span>La demostración de que un usuario autorizado puede acceder</span></li>
+    <li><input type="checkbox" data-k="s8-7"><span>La demostración de que un usuario no autorizado no puede</span></li>
+    <li><input type="checkbox" data-k="s8-8"><span>La demostración de que los archivos se recuperan mediante una copia de seguridad</span></li>
+    <li><input type="checkbox" data-k="s8-9"><span>Un esquema sencillo de la red</span></li>
+  </ul>
+  <p class="numeros"><b>Los números que hay que poder contar:</b> Tres usuarios, dos grupos, dos carpetas y tres demostraciones.</p>
+  <h3>El producto técnico, apartado 5</h3>
+  <p>El esquema de red y las capturas de la configuración de usuarios y permisos.</p>
+  <h3>El par de alternativas, apartado 6</h3>
+  <p>Permisos asignados por usuario contra permisos por grupo. O máquina física contra máquina virtual.</p>
+  <h3>Las pruebas, apartado 7</h3>
+  <p>Las tres demostraciones que pide la consigna ya son tres casos de prueba, y el segundo es negativo. Cada uno con su captura.</p>
+  <div class="dato"><b>En Base de Datos:</b> el dato que se repite en tu planilla es el grupo en cada usuario, y la carpeta en cada permiso.</div>
+  <p class="pie-ficha">12 a 18 horas de equipo.</p>
+</section>
+
+<section class="ficha" id="s9">
+  <h2>9 · Elaborar un plan de mantenimiento preventivo</h2>
+  <p class="escenario">Un laboratorio escolar tiene 20 computadoras, una impresora, un switch, un router y un proyector. Durante el último año solo se hicieron reparaciones cuando algún dispositivo dejó de funcionar.</p>
+  <h3>Lo que pide el enunciado</h3>
+  <ul class="pedidos">
+    <li><input type="checkbox" data-k="s9-1"><span>El inventario modelo</span></li>
+    <li><input type="checkbox" data-k="s9-2"><span>Las tareas de mantenimiento</span></li>
+    <li><input type="checkbox" data-k="s9-3"><span>La periodicidad de cada tarea</span></li>
+    <li><input type="checkbox" data-k="s9-4"><span>Las herramientas necesarias</span></li>
+    <li><input type="checkbox" data-k="s9-5"><span>Las precauciones de seguridad</span></li>
+    <li><input type="checkbox" data-k="s9-6"><span>El registro del mantenimiento</span></li>
+    <li><input type="checkbox" data-k="s9-7"><span>Los criterios para determinar cuándo un componente debería reemplazarse</span></li>
+    <li><input type="checkbox" data-k="s9-8"><span>El mantenimiento preventivo de una sola computadora, realizado y documentado</span></li>
+  </ul>
+  <p class="numeros"><b>Los números que hay que poder contar:</b> Veinte computadoras en el inventario. El plan es anual, pero se desarrolla solo el procedimiento de las computadoras.</p>
+  <h3>El producto técnico, apartado 5</h3>
+  <p>Las planillas del plan y la documentación del mantenimiento hecho en una computadora, con fotos.</p>
+  <h3>El par de alternativas, apartado 6</h3>
+  <p>Periodicidad fija por calendario contra periodicidad según horas de uso del equipo.</p>
+  <h3>Las pruebas, apartado 7</h3>
+  <p>El mantenimiento ejecutado es la prueba: qué se encontró, qué se hizo y qué medición cambió después. Cada criterio de reemplazo necesita un valor observable.</p>
+  <div class="dato"><b>En Base de Datos:</b> el dato que se repite en tu planilla es el equipo y el responsable, repetidos en cada registro de mantenimiento.</div>
+  <p class="pie-ficha">10 a 14 horas de equipo.</p>
+</section>
+
+<section class="ficha" id="s10">
+  <h2>10 · Informatización de una pequeña oficina</h2>
+  <p class="escenario">Una oficina nueva va a tener 8 empleados, 8 computadoras, una impresora, conexión a Internet y archivos compartidos. El propietario pide asesoramiento para organizar toda la infraestructura informática.</p>
+  <h3>Lo que pide el enunciado</h3>
+  <ul class="pedidos">
+    <li><input type="checkbox" data-k="s10-1"><span>A · Equipamiento: la configuración de computadora adecuada para los empleados</span></li>
+    <li><input type="checkbox" data-k="s10-2"><span>B · Red: el esquema con router, switch, computadoras e impresora</span></li>
+    <li><input type="checkbox" data-k="s10-3"><span>C · Información: dónde se almacenan los archivos compartidos y cómo se hacen las copias</span></li>
+    <li><input type="checkbox" data-k="s10-4"><span>D · Seguridad: cinco medidas básicas</span></li>
+    <li><input type="checkbox" data-k="s10-5"><span>E · Mantenimiento: la frecuencia de mantenimiento preventivo</span></li>
+    <li><input type="checkbox" data-k="s10-6"><span>La estimación general de costos</span></li>
+    <li><input type="checkbox" data-k="s10-7"><span>Dos alternativas: una económica y una recomendada</span></li>
+  </ul>
+  <p class="numeros"><b>Los números que hay que poder contar:</b> Cinco puntos, exclusivamente esos. Cinco medidas de seguridad. Dos alternativas de costo.</p>
+  <h3>El producto técnico, apartado 5</h3>
+  <p>El esquema de la red y el cuadro de costos con las dos alternativas.</p>
+  <h3>El par de alternativas, apartado 6</h3>
+  <p>Ya está pedido: la alternativa económica contra la recomendada. La matriz explica qué se gana con lo que cuesta de más.</p>
+  <h3>Las pruebas, apartado 7</h3>
+  <p>Una prueba por cada medida de seguridad propuesta, y la restauración de una copia del punto C.</p>
+  <div class="dato"><b>En Base de Datos:</b> el dato que se repite en tu planilla es el rubro y el proveedor, repetidos en el cuadro de costos.</div>
+  <p class="pie-ficha">La palabra «exclusivamente» del enunciado acota el trabajo: lo que se agregue de más no suma puntaje y consume páginas.</p>
+</section>
+
+</main>
+
+<footer>
+  Evaluación de Proyectos y Base de Datos · 7.º año · 2026 ·
+  <a href="../olimpiadas-taller-analisis-y-documento/">Taller de la jornada</a> ·
+  <a href="../olimpiadas-documento-modelo-t5/">Documento modelo</a> ·
+  <a href="../olimpiadas-plantillas/">Planillas</a>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var CLAVE='fichas-situaciones-t5';
+  var cajas=[].slice.call(document.querySelectorAll('input[type=checkbox][data-k]'));
+  function guardar(){
+    var d={}; cajas.forEach(function(c){ if(c.checked) d[c.dataset.k]=1; });
+    try{ localStorage.setItem(CLAVE, JSON.stringify(d)); }catch(e){}
+  }
+  try{
+    var d=JSON.parse(localStorage.getItem(CLAVE)||'{}');
+    cajas.forEach(function(c){ c.checked = d[c.dataset.k]===1; });
+  }catch(e){}
+  cajas.forEach(function(c){ c.addEventListener('change', guardar); });
+})();
+</script>
+</body>
+</html>

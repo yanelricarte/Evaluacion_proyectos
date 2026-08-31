@@ -1063,13 +1063,36 @@ ol.notas li::marker{color:var(--primary); font-weight:700; font-size:.9em}
     <h3 class="sub">El orden de armado</h3>
     <ol class="pasos">
       <li><b>Escribir el propósito en una oración</b><span>Para qué se decide esto. «Elegir el soporte donde van a quedar las copias de seguridad de la oficina.» Todos los criterios se derivan de esta oración, así que conviene que nombre el uso que va a tener la solución.</span></li>
-      <li><b>Elegir entre cuatro y seis criterios</b><span>Salen del propósito y de lo que la situación tiene de particular, no de una lista general. Con menos de cuatro la comparación queda gruesa; con más de seis los pesos se vuelven tan chicos que ninguno decide nada.</span></li>
+      <li><b>Elegir entre cuatro y seis criterios</b><span>Salen del propósito y de lo que la situación tiene de particular. Con menos de cuatro la comparación queda gruesa; con más de seis los pesos se vuelven tan chicos que ninguno decide nada. Y cada criterio tiene que medir algo distinto: «costo del equipo» y «precio de compra» son el mismo criterio escrito dos veces, y al repetirlo su peso se duplica sin que nadie lo haya decidido. La prueba es preguntarse si una alternativa podría ganar en uno y perder en el otro; si eso no puede pasar, son el mismo criterio.</span></li>
       <li><b>Repartir cien puntos entre los criterios, antes de mirar las alternativas</b><span>El momento importa: con las alternativas ya vistas, los pesos se acomodan sin darse cuenta para que gane la que gustaba, y la matriz termina justificando una decisión ya tomada. Una vez repartidos, los pesos quedan fijos.</span></li>
       <li><b>Definir la escala y qué significa cada valor</b><span>De 1 a 5, con el significado escrito: 5 cumple con margen, 3 cumple justo, 1 no cumple. Sin esa definición, dos integrantes puntúan distinto la misma alternativa y la matriz deja de ser comparable.</span></li>
       <li><b>Puntuar cada alternativa en cada criterio, con el dato al lado</b><span>Cada puntaje se apoya en un dato: un precio con su fuente, un tiempo medido, una prestación informada por el fabricante. El puntaje es la traducción del dato a la escala, y el dato queda anotado para que se pueda revisar.</span></li>
       <li><b>Multiplicar, sumar y leer el resultado</b><span>Cada puntaje por su peso, dividido cien, y la suma de la columna. La cuenta es la parte más fácil y la que menos se evalúa.</span></li>
       <li><b>Escribir la decisión en tres movimientos</b><span>Qué se eligió, qué criterio definió la diferencia y qué se resignó al elegirlo. Sin la tercera parte, el párrafo se lee como propaganda de la opción elegida.</span></li>
     </ol>
+
+    <h3 class="sub">El cálculo del ponderado</h3>
+    <p>La columna «ponderado» es la que traduce cada puntaje al peso que ese criterio tiene en la decisión. Un 5 en un criterio que pesa 5 puntos aporta menos que un 2 en un criterio que pesa 35, y eso es lo que la columna deja ver. La cuenta de cada celda es siempre la misma: <b>el puntaje por el peso del criterio, dividido cien</b>.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Criterio y su peso</th><th scope="col">Puntaje del disco externo</th><th scope="col">La cuenta</th><th scope="col" class="num">Ponderado</th></tr></thead>
+        <tbody>
+          <tr><td>Resguardo fuera del edificio · 35</td><td class="num">2</td><td>2 × 35 ÷ 100</td><td class="num">0,70</td></tr>
+          <tr><td>Tiempo de recuperación · 25</td><td class="num">5</td><td>5 × 25 ÷ 100</td><td class="num">1,25</td></tr>
+          <tr><td>Esfuerzo de operación diaria · 20</td><td class="num">2</td><td>2 × 20 ÷ 100</td><td class="num">0,40</td></tr>
+          <tr><td>Costo · 15</td><td class="num">5</td><td>5 × 15 ÷ 100</td><td class="num">0,75</td></tr>
+          <tr><td>Capacidad disponible · 5</td><td class="num">5</td><td>5 × 5 ÷ 100</td><td class="num">0,25</td></tr>
+          <tr class="fila-total"><td>Total del disco externo</td><td class="num"></td><td>0,70 + 1,25 + 0,40 + 0,75 + 0,25</td><td class="num">3,35</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>La misma cuenta sobre la otra columna da 1,75 + 0,75 + 1,00 + 0,30 + 0,15 = <b>3,95</b> para el servicio en la nube. Y ahí está la comparación: 3,95 contra 3,35.</p>
+    <p><b>Por qué se divide por cien.</b> Porque los pesos suman cien, y dividir devuelve el resultado a la escala de los puntajes. El total se lee entonces con la misma vara que se usó para puntuar: 3,95 queda entre «cumple justo» y «cumple bien», y 3,35 apenas por encima de «cumple justo». Un total no puede pasar de 5 ni quedar por debajo de 1; si eso ocurre, hay un error en la cuenta o en los pesos.</p>
+    <p>Se puede multiplicar sin dividir —el disco daría 335 y la nube 395—, y la comparación es la misma. Lo que se pierde es la lectura: 395 no dice nada por sí solo, mientras que 3,95 se interpreta contra la escala declarada. Por eso conviene la versión dividida.</p>
+    <div class="rule-card">
+      <span class="rule-tag">Los dos controles de la cuenta</span>
+      <p>Primero, que la columna de pesos sume exactamente cien: con 90 o con 110 los totales dejan de ser comparables con cualquier otra matriz, y el resultado no se puede leer contra la escala. Segundo, que cada ponderado sea menor o igual que su peso dividido veinte —el máximo posible, que es puntaje 5—: un ponderado más alto que eso es un error de multiplicación.</p>
+    </div>
 
     <h3 class="sub">Ejemplo completo: el soporte de las copias</h3>
     <p>Propósito: elegir el soporte donde van a quedar las copias de seguridad de una oficina de quince computadoras y un servidor, con un empleado que no es técnico a cargo de la tarea diaria.</p>
@@ -1088,6 +1111,72 @@ ol.notas li::marker{color:var(--primary); font-weight:700; font-size:.9em}
       </table>
     </div>
     <p>Los datos detrás de los puntajes: el disco externo depende de que una persona lo lleve fuera de la oficina, y por eso puntúa 2 en resguardo; en cambio se restaura conectándolo, sin depender de la conexión a internet, y por eso puntúa 5 en tiempo de recuperación. El servicio en la nube copia sin intervención de nadie, lo que le da 5 en esfuerzo de operación, y cobra un abono mensual, lo que le da 2 en costo.</p>
+
+
+    <div class="solo t5">
+      <h3 class="sub">Practicá el cálculo</h3>
+    <p>Esta matriz es de la situación 8, el servidor de archivos, y compara sus dos alternativas: montarlo
+    en una <b>computadora física</b> del gabinete o en una <b>máquina virtual</b>. Tiene los pesos y los
+    puntajes cargados, y le falta el total. La cuenta de cada celda es el puntaje por el peso dividido cien.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Criterio</th><th scope="col" class="num">Peso</th><th scope="col" class="num">A · física</th><th scope="col" class="num">B · virtual</th></tr></thead>
+        <tbody>
+          <tr><td>Tiempo de puesta en marcha</td><td class="num">40</td><td class="num">3</td><td class="num">5</td></tr>
+          <tr><td>Costo</td><td class="num">30</td><td class="num">5</td><td class="num">2</td></tr>
+          <tr><td>Facilidad de mantenimiento</td><td class="num">20</td><td class="num">4</td><td class="num">4</td></tr>
+          <tr><td>Margen de crecimiento</td><td class="num">10</td><td class="num">2</td><td class="num">5</td></tr>
+          <tr class="fila-total"><td>Total ponderado</td><td class="num">100</td><td class="num">?</td><td class="num">?</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="q" data-ok="b">
+      <p>¿Cuáles son los dos totales?</p>
+      <div class="opts">
+        <button class="opt" type="button" data-i="a">A 3,50 · B 4,10</button>
+        <button class="opt" type="button" data-i="b">A 3,70 · B 3,90</button>
+        <button class="opt" type="button" data-i="c">A 370 · B 390</button>
+      </div>
+      <div class="expl">A: 1,20 + 1,50 + 0,80 + 0,20 = 3,70. B: 2,00 + 0,60 + 0,80 + 0,50 = 3,90. Gana B por dos décimas, y esa distancia es tan corta que conviene escribir en el documento que las dos alternativas resultan casi equivalentes para el propósito declarado, nombrando el criterio con el que se desempató. La tercera opción es la suma sin dividir por cien: compara igual, pero el número deja de poder leerse contra la escala de 1 a 5. Con esta diferencia, el equipo de la situación 8 puede quedarse con la máquina virtual y anotar que la física gana en costo, que es el dato que el evaluador va a buscar.</div>
+    </div>
+
+    <h3 class="sub">El par de alternativas de tu situación</h3>
+      <p>El ejemplo de arriba es el par de la situación 2, y las diez tienen el suyo. En la <b>3</b> y en la <b>10</b> la consigna lo pide con esas palabras, así que ahí el par ya está dado; en las otras ocho lo elige el equipo, y la pregunta que lo encuentra es siempre la misma: <b>¿qué decisión de este trabajo pudo haber sido de otra manera?</b></p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col" style="width:26%">Tu situación</th><th scope="col" style="width:44%">El par de alternativas</th><th scope="col" style="width:30%">Los criterios que suelen pesar</th></tr></thead>
+          <tbody>
+            <tr><td>1 · Red de una empresa</td><td>Una topología contra otra; o el servidor en el rack de administración contra un espacio propio</td><td>Facilidad de mantenimiento, costo, crecimiento previsto, seguridad física</td></tr>
+            <tr><td>2 · Copias de seguridad</td><td>Disco externo que se retira del edificio contra servicio en la nube. Es el ejemplo desarrollado arriba</td><td>Resguardo fuera del edificio, tiempo de recuperación, esfuerzo diario, costo</td></tr>
+            <tr><td>3 · Equipos por puesto</td><td><b>Ya está pedido:</b> «presentar dos alternativas para uno de los puestos»</td><td>Prestaciones para las tareas del puesto, costo, vida útil, garantía</td></tr>
+            <tr><td>4 · Diagnóstico de una PC</td><td>Dos órdenes de comprobación: empezar por el disco o empezar por la temperatura. O dos herramientas para confirmar la misma hipótesis</td><td>Tiempo que insume, riesgo para los datos, claridad del resultado</td></tr>
+            <tr><td>5 · Base de préstamos</td><td>La devolución como un campo dentro del préstamo contra la devolución como tabla propia</td><td>Qué datos permite guardar, simplicidad de las consultas, tiempo de armado, crecimiento</td></tr>
+            <tr><td>6 · Prototipo de reservas</td><td>Impedir la superposición con un control en el formulario antes de guardar, o con una restricción en la base de datos</td><td>Seguridad de la regla, dificultad de implementación, mensajes al usuario</td></tr>
+            <tr><td>7 · Incidente de seguridad</td><td>Primera acción: cambiar todas las contraseñas o aislar primero el equipo. O el formato de la capacitación: charla presencial contra pieza escrita</td><td>Rapidez, alcance, evidencia que se conserva, costo de interrumpir el trabajo</td></tr>
+            <tr><td>8 · Servidor de archivos</td><td>Permisos asignados por usuario contra permisos por grupo. O máquina física contra máquina virtual</td><td>Trabajo de administración, claridad al crecer, recursos disponibles</td></tr>
+            <tr><td>9 · Mantenimiento preventivo</td><td>Periodicidad fija por calendario contra periodicidad según horas de uso del equipo</td><td>Simplicidad para quien ejecuta, ajuste al desgaste real, registro que exige</td></tr>
+            <tr><td>10 · Informatizar la oficina</td><td><b>Ya está pedido:</b> «dos alternativas: una económica; una recomendada»</td><td>Costo total, prestaciones, vida útil, qué se resigna en la económica</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hint">Una advertencia sobre la situación 3 y la 10: que el par esté dado no significa que la comparación esté hecha. La consigna pide las dos alternativas; los criterios, los pesos y la decisión escrita los pone el equipo, y eso es lo que puntúa.</p>
+    </div>
+
+    <div class="solo t3">
+      <h3 class="sub">El par de alternativas de cada entregable</h3>
+      <p>El ejemplo de arriba corresponde al entregable 2. Con desarrollar una comparación completa alcanza para el requisito, y conviene elegir la de la decisión que más condicionó el trabajo. Estas son las cuatro naturales de esta consigna.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col" style="width:30%">Entregable</th><th scope="col" style="width:40%">El par de alternativas</th><th scope="col" style="width:30%">Los criterios que suelen pesar</th></tr></thead>
+          <tbody>
+            <tr><td>2 · Copias de seguridad</td><td>Disco externo que se retira del edificio contra servicio en la nube. Es el ejemplo de arriba</td><td>Resguardo fuera del edificio, tiempo de recuperación, esfuerzo diario, costo</td></tr>
+            <tr><td>3 · Equipo por perfil de usuario</td><td>Dos configuraciones para el mismo perfil: la que cumple justo y la que deja margen</td><td>Prestaciones para las tareas, costo, vida útil, garantía</td></tr>
+            <tr><td>4 · Gestión de compra</td><td>Las empresas que cotizaron, comparadas entre sí</td><td>Precio, plazo de entrega, garantía, diferencias de configuración</td></tr>
+            <tr><td>1 · Plan de mantenimiento</td><td>Periodicidad fija por calendario contra periodicidad según horas de uso</td><td>Simplicidad para quien ejecuta, ajuste al desgaste real, registro que exige</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
     <h3 class="sub">El efecto de los pesos sobre el resultado</h3>
     <p>Si el mismo equipo hubiera pesado los criterios de otra manera, con el costo como preocupación principal porque no hay presupuesto para un abono, los puntajes serían idénticos y el resultado se daría vuelta.</p>
