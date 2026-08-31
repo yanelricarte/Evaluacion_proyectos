@@ -16,12 +16,15 @@ h1,h2,h3,h4{
 }
 
 /* ---------- alineación del texto ---------- */
-/* El encabezado se centra: título, bajada y aviso de entrega. */
+/* El encabezado se centra: título y aviso de entrega. La bajada,
+   larga, queda justificada como el resto del cuerpo. */
 .hero-inner{ text-align:center }
 .hero-inner .kicker,
-.hero-inner .lead,
 .hero-inner .entrega{
   text-align:center; margin-left:auto; margin-right:auto;
+}
+.hero-inner .lead{
+  text-align:justify; hyphens:auto; margin-left:auto; margin-right:auto;
 }
 .hero-inner .nav-fichas,
 .hero-inner .track{ justify-content:center }
