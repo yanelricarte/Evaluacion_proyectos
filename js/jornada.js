@@ -26,7 +26,9 @@
         io.unobserve(entradas[j].target);
       }
     }
-  }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+  // threshold 0: un bloque mucho mas alto que la ventana nunca llega a
+  // mostrar el 10 % de su area, y con 0.1 se quedaba en opacity 0.
+  }, { threshold: 0, rootMargin: '0px 0px -6% 0px' });
   for (var k = 0; k < bloques.length; k++) {
     bloques[k].classList.add('reveal');
     io.observe(bloques[k]);
