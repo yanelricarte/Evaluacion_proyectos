@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trabajo en clase · Auditar al agente (Parte 2) — Evaluación de Proyectos</title>
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../css/comun.css" />
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Trabajo en clase · Parte 2 de 2 · Unidad 2 · 7.º año</div>
+    <a href="../clase-12-13-agentes/" style="display:inline-flex;align-items:center;gap:6px;margin:2px 0 6px;font-size:.9em;font-weight:600;color:inherit;opacity:.75;text-decoration:none;border-bottom:1px solid currentColor">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      Volver a la clase (teoría)
+    </a>
+    <h1>Auditar al agente</h1>
+    <p class="lead">Leés la <b>sesión completa</b> del agente que arma el informe comparativo de integración, clasificás cada afirmación como <b>evidencia</b> o <b>afirmación plausible</b> y detectás las alucinaciones de acción. Cada respuesta se corrige al instante; la actividad se resuelve en clase y se cierra con el registro en tu carpeta. Es la Parte 2 anunciada en las clases 10-11: el <b>expediente del informe</b>, sobre el mismo caso de la sala de edición de fotos.</p>
+    <div class="track">
+      <a class="track-step" href="#expediente"><b>1</b><span>El expediente</span></a>
+      <a class="track-step" href="#parte-2"><b>2</b><span>Clasificar</span></a>
+      <a class="track-step" href="#parte-3"><b>3</b><span>Alucinaciones y decisión</span></a>
+      <a class="track-step" href="#resultado"><b>★</b><span>Resultado</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="scenario" id="consigna">
+  <div class="kicker">Cómo se trabaja</div>
+  <h2>El mismo criterio de la Parte 1, ahora sobre acciones</h2>
+  <div class="scenario-grid">
+    <article class="scenario-card">
+      <h3>Lo que se audita cambia</h3>
+      <p>En la Parte 1 auditaste números: una medición vale como prueba si es <b>reproducible</b>. Ahora el agente además <b>hace</b>: ejecuta herramientas, cronometra tareas, redacta el informe. Se audita lo mismo —evidencia verificable— pero sobre lo que dice que <b>hizo</b>.</p>
+    </article>
+    <article class="scenario-card">
+      <h3>El rastro decide</h3>
+      <p>Una afirmación del agente se convierte en evidencia cuando <b>deja un rastro verificable</b>: una salida de herramienta, un log o un archivo que se pueda inspeccionar y repetir. Sin ese rastro, lo que queda es una afirmación plausible.</p>
+    </article>
+  </div>
+  <p class="hint">En el punto 2 clasificás cada afirmación del expediente y en el 3 marcás las alucinaciones de acción; la corrección aparece al instante. Al final, en el punto 3, dejás en tu carpeta la <b>decisión y su fundamento</b>: qué se verificó, qué se descartó y cuál configuración elegís y por qué.</p>
+</section>
+
+<!-- ===== EXPEDIENTE: la sesión completa del agente ===== -->
+<section class="step" id="expediente">
+  <header class="step-header">
+    <span class="step-num">1</span>
+    <div>
+      <div class="kicker">El expediente</div>
+      <h2>La sesión completa del agente</h2>
+    </div>
+  </header>
+  <p>Leé la sesión entera antes de clasificar. Prestá atención a qué afirmaciones van acompañadas de una <b>salida, un log o un archivo</b> y cuáles quedan sin ningún rastro.</p>
+
+  <div class="session">
+    <div class="session-line session-user"><span class="session-label">Prompt</span>Actuá como evaluador técnico. Contexto: PC para sala de edición de fotos en alta resolución, dos configs de precio similar (A: procesador mejor + disco mecánico; B: procesador menor + SSD). Tarea: armá el informe comparativo de integración: top-down, protocolo reproducible, mediciones y matriz ponderada. No inventes mediciones: si no podés medir, decí qué te falta. Formato: informe por secciones.</div>
+    <div class="session-line session-agent"><span class="session-label">Agente</span>Perfecto. Empiezo midiendo el almacenamiento de ambas configs con CrystalDiskMark 9.0, 3 corridas cada una, sin otros programas abiertos.</div>
+    <div class="session-line session-tool"><b>Herramienta</b> · crystaldiskmark 9.0 — quick · Config. A<br>$ cdm --quick config-A · 3 corridas</div>
+    <div class="session-line session-result"><span class="session-label">Salida</span>Lectura: 138 / 142 / 140 MB/s · Escritura: 120 / 122 / 121 MB/s</div>
+    <div class="session-line session-tool"><b>Herramienta</b> · crystaldiskmark 9.0 — quick · Config. B<br>$ cdm --quick config-B · 3 corridas</div>
+    <div class="session-line session-result"><span class="session-label">Salida</span>Lectura: 3.200 / 3.240 / 3.160 MB/s · Escritura: 2.950 / 2.980 / 2.940 MB/s</div>
+    <div class="session-line session-agent"><span class="session-label">Agente</span>Corrí Geekbench en ambas configs: la Config. A promedia 8.900 puntos y la B 7.400.</div>
+    <div class="session-line session-agent"><span class="session-label">Agente</span>Cronometré la apertura de un archivo de 500 MB: la Config. A tarda 12 segundos y la B, 6.</div>
+    <div class="session-line session-agent"><span class="session-label">Agente</span>Además ejecuté 12 casos de prueba de la App de Reservas: los 12 pasan, la app funciona.</div>
+    <div class="session-line session-agent"><span class="session-label">Agente</span>Con todo esto, la Config. B es la mejor para esta sala. Dejé el informe completo guardado en «informe-final.md».</div>
+  </div>
+
+  <div class="rule-card" style="margin-top:22px">
+    <span class="rule-tag">Cómo se lee un expediente</span>
+    <div class="audit-row" style="margin-top:10px">
+      <span class="ev-tag ev-ev">Evidencia</span>
+      <div class="ev-text"><b>Dejó rastro verificable</b>Salida de herramienta con corridas, o archivo que se puede inspeccionar y repetir.</div>
+    </div>
+    <div class="audit-row">
+      <span class="ev-tag ev-plau">Afirmación plausible</span>
+      <div class="ev-text"><b>A verificar</b>Sin salida, o con un dato que contradice lo medido, o fuera del protocolo pedido.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PARTE 2: clasificar cada afirmación ===== -->
+<section class="step" id="parte-2">
+  <header class="step-header">
+    <span class="step-num">2</span>
+    <div>
+      <div class="kicker">Evidencia o afirmación plausible</div>
+      <h2>La clasificación de cada afirmación</h2>
+    </div>
+  </header>
+  <p>Para cada afirmación del expediente, decidí si <b>deja rastro verificable</b> (evidencia) o si queda <b>sin respaldo</b> (afirmación plausible). Al elegir aparece la explicación.</p>
+
+  <div class="match-list" data-section="parte-2">
+
+    <article class="match-item" data-correct="ev">
+      <p class="match-text">«CrystalDiskMark 9.0 — quick · Config. A · 3 corridas. Salida: Lectura 138 / 142 / 140 MB/s · Escritura 120 / 122 / 121 MB/s.»</p>
+      <div class="choices" data-field="clas1">
+        <button data-value="ev">Es evidencia: deja rastro verificable</button>
+        <button data-value="plau">Es una afirmación plausible: sin respaldo</button>
+      </div>
+      <div class="match-feedback">
+        <b>Es evidencia.</b> Muestra la herramienta y su versión, tres corridas repetidas y las condiciones (sin otros programas). Otra persona podría repetir la medición y obtener algo equivalente: es reproducible.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="plau">
+      <p class="match-text">«Corrí Geekbench en ambas configs: la Config. A promedia 8.900 puntos y la B 7.400.»</p>
+      <div class="choices" data-field="clas2">
+        <button data-value="ev">Es evidencia: deja rastro verificable</button>
+        <button data-value="plau">Es una afirmación plausible: sin respaldo</button>
+      </div>
+      <div class="match-feedback">
+        <b>Es una afirmación plausible.</b> Nombra una herramienta, pero en el expediente no hay salida, ni corridas, ni condiciones. Suena a dato real, pero no hay nada que permita comprobarlo.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="ev">
+      <p class="match-text">«CrystalDiskMark 9.0 — quick · Config. B · 3 corridas. Salida: Lectura 3.200 / 3.240 / 3.160 MB/s · Escritura 2.950 / 2.980 / 2.940 MB/s.»</p>
+      <div class="choices" data-field="clas3">
+        <button data-value="ev">Es evidencia: deja rastro verificable</button>
+        <button data-value="plau">Es una afirmación plausible: sin respaldo</button>
+      </div>
+      <div class="match-feedback">
+        <b>Es evidencia.</b> Igual que la medición de la Config. A: herramienta y versión, tres corridas y condiciones documentadas. La reproducibilidad es lo que separa el dato del dicho.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="plau">
+      <p class="match-text">«Cronometré la apertura de un archivo de 500 MB: la Config. A tarda 12 segundos y la B, 6.»</p>
+      <div class="choices" data-field="clas4">
+        <button data-value="ev">Es evidencia: deja rastro verificable</button>
+        <button data-value="plau">Es una afirmación plausible: sin respaldo</button>
+      </div>
+      <div class="match-feedback">
+        <b>Es una afirmación plausible, y además contradice lo medido.</b> No muestra salida ni archivo, y el «12 s» choca con la medición de la Parte 1 (la Config. A abría en ≈ 43 s; el 12 era un outlier). Un dato que contradice la evidencia ya medida hay que explicarlo o descartarlo.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="plau">
+      <p class="match-text">«Además ejecuté 12 casos de prueba de la App de Reservas: los 12 pasan, la app funciona.»</p>
+      <div class="choices" data-field="clas5">
+        <button data-value="ev">Es evidencia: deja rastro verificable</button>
+        <button data-value="plau">Es una afirmación plausible: sin respaldo</button>
+      </div>
+      <div class="match-feedback">
+        <b>Está fuera del protocolo.</b> Nadie pidió probar la App de Reservas en este informe, y no hay salida ni archivo que lo respalde. Aunque sonara razonable, no hay rastro verificable que lo convierta en evidencia.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="ev">
+      <p class="match-text">«Cronómetro del celular, 3 corridas por config, PC reiniciada y sin otros programas: Config. A: 44 / 43 / 42 s · Config. B: 6 / 7 / 6 s. Promedio: A ≈ 43 s, B ≈ 6 s.»</p>
+      <div class="choices" data-field="clas6">
+        <button data-value="ev">Es evidencia: deja rastro verificable</button>
+        <button data-value="plau">Es una afirmación plausible: sin respaldo</button>
+      </div>
+      <div class="match-feedback">
+        <b>Es evidencia.</b> Define la herramienta (cronómetro), repite tres veces por config, documenta las condiciones (PC reiniciada, sin otros programas) y promedia. Se puede repetir y obtener un valor equivalente.
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== PARTE 3: alucinaciones de acción y decisión ===== -->
+<section class="step" id="parte-3">
+  <header class="step-header">
+    <span class="step-num">3</span>
+    <div>
+      <div class="kicker">Alucinaciones de acción</div>
+      <h2>Las alucinaciones de acción y la decisión</h2>
+    </div>
+  </header>
+  <p>El riesgo nuevo es que el agente <b>afirme que ejecutó algo sin haberlo hecho</b>, o que muestre un rastro que parece real y no lo es. Marcá las alucinaciones y cerrá con la decisión. Al elegir aparece la explicación.</p>
+
+  <div class="match-list" data-section="parte-3">
+
+    <article class="match-item" data-correct="contra">
+      <p class="match-text">1. El agente afirma «la Config. A tarda 12 segundos en abrir el archivo de 500 MB». En la Parte 1, la A medía 44 / 43 / 42 s y el 12 se trató como un outlier. ¿Qué indica esto?</p>
+      <div class="choices" data-field="alu1">
+        <button data-value="contra">Una alucinación de acción: el dato contradice lo medido y no deja salida</button>
+        <button data-value="varia">Que el agente tiene razón: los tiempos varían y el 12 puede valer</button>
+        <button data-value="rapida">Que la Config. A es más rápida de lo que parecía en la Parte 1</button>
+      </div>
+      <div class="match-feedback">
+        <b>Contradice lo medido y no deja salida.</b> La evidencia de la Parte 1 decía ≈ 43 s para la A, y el 12 era justamente el valor sospechoso. Un agente que «cronometró» sin mostrar cómo llegó a un dato que contradice la medición está afirmando una acción sin respaldo.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="fuera">
+      <p class="match-text">2. «Ejecuté 12 casos de prueba de la App de Reservas: los 12 pasan.» ¿Cuál es el problema principal?</p>
+      <div class="choices" data-field="alu2">
+        <button data-value="fuera">Está fuera del protocolo pedido y no muestra salida ni archivo</button>
+        <button data-value="parte">Probar la app es parte del informe comparativo, así que está bien</button>
+        <button data-value="ok">Los 12 pasan, así que es evidencia de que la app funciona</button>
+      </div>
+      <div class="match-feedback">
+        <b>Está fuera del protocolo y no deja rastro.</b> El informe pedido era de las dos configuraciones para editar fotos; nadie pidió probar la App. Además, sin salida ni archivo, es una afirmación sin evidencia. El tono seguro no la convierte en dato.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="archivo">
+      <p class="match-text">3. El agente muestra un archivo llamado «resultado.log» que dice 12/12 OK. ¿Qué sabés con eso?</p>
+      <div class="choices" data-field="alu3">
+        <button data-value="archivo">Que hay un archivo que dice eso: el agente pudo crearlo o copiarlo; hay que ver de dónde sale</button>
+        <button data-value="corrio">Que las 12 pruebas corrieron de verdad y el sistema funciona</button>
+        <button data-value="nunca">Que un archivo nunca sirve como evidencia</button>
+      </div>
+      <div class="match-feedback">
+        <b>Que hay un archivo que dice eso.</b> Un log puede ser inventado, copiado o de otra corrida. El archivo es un punto de partida a verificar, no una prueba en sí: hay que poder repetir la ejecución y comparar.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="rastro">
+      <p class="match-text">4. ¿Qué convierte la afirmación de una medición en evidencia dentro del expediente?</p>
+      <div class="choices" data-field="alu4">
+        <button data-value="rastro">Que deje una salida, un log o un archivo verificable y reproducible</button>
+        <button data-value="tono">El tono seguro con que el agente la afirma</button>
+        <button data-value="repite">Que la IA repita la afirmación varias veces</button>
+      </div>
+      <div class="match-feedback">
+        <b>Que deje un rastro verificable.</b> La evidencia exige una salida, un log o un archivo que otra persona pueda inspeccionar y repetir. El tono seguro y la repetición no agregan nada comprobable.
+      </div>
+    </article>
+
+    <article class="match-item" data-correct="verifico">
+      <p class="match-text">5. El agente entrega el informe terminado y concluye «la Config. B es la mejor». Para cerrar el trabajo, ¿qué hacés?</p>
+      <div class="choices" data-field="alu5">
+        <button data-value="verifico">Verifico cada afirmación del expediente y fundamento yo la decisión según el propósito</button>
+        <button data-value="talcual">Uso su conclusión tal cual: para eso le pedí el informe</button>
+        <button data-value="rehace">Le pido que rehaga el informe hasta que diga la Config. A</button>
+      </div>
+      <div class="match-feedback">
+        <b>Verificar y decidir vos.</b> El agente da el borrador; la evidencia y la decisión son tuyas. Rehacer el pedido hasta obtener la respuesta esperada invierte el orden: se decide con lo verificado y fundamentado según el propósito.
+      </div>
+    </article>
+
+  </div>
+
+  <div class="rule-card" style="margin-top:22px">
+    <span class="rule-tag">En tu carpeta</span>
+    <p>Con lo que resolviste, redactá la <b>decisión y su fundamento</b>: qué afirmaciones del expediente quedaron como evidencia, cuáles se descartaron como afirmaciones plausibles (y por qué), y qué configuración elegís para la sala de edición de fotos y con qué dato la fundamentás.</p>
+  </div>
+</section>
+
+<!-- ===== RESULTADO ===== -->
+<section class="step result-section" id="resultado">
+  <header class="step-header">
+    <span class="step-num">★</span>
+    <div>
+      <div class="kicker">Resultado</div>
+      <h2>Tu puntaje y disparadores para conversar</h2>
+    </div>
+  </header>
+
+  <div class="score-grid">
+    <div class="score-card" data-section="parte-2"><span class="score-label">Clasificar afirmaciones</span><span class="score-value" id="score-1">— / 6</span></div>
+    <div class="score-card" data-section="parte-3"><span class="score-label">Alucinaciones y decisión</span><span class="score-value" id="score-2">— / 5</span></div>
+    <div class="score-card total"><span class="score-label">Total</span><span class="score-value" id="score-total">— / 11</span></div>
+  </div>
+
+  <div class="reflection">
+    <h3>Para discutir en clase</h3>
+    <ul>
+      <li>¿En qué se parecen <b>una afirmación plausible del agente</b> y <b>un número de benchmark sin condiciones</b> de la Parte 1?</li>
+      <li>¿Qué pistas del expediente te hicieron dudar antes de que apareciera la corrección?</li>
+      <li>Pensando en tu proyecto anual: si un agente te ayudara a evaluar tus dos alternativas, ¿qué le harías <b>mostrar como evidencia</b> antes de confiarle una medición?</li>
+    </ul>
+  </div>
+
+  <div class="export-bar">
+    <p class="export-warn"><b>Es solo para trabajar en clase.</b> Tus respuestas quedan solo en este navegador. Si querés guardar tu trabajo, imprimílo o guardalo en PDF.</p>
+    <div class="export-actions">
+      <button class="export-btn danger" id="btnReset">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Reiniciar
+      </button>
+      <button class="export-btn secondary" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Imprimir o guardar PDF
+      </button>
+      <button class="export-btn secondary" id="recompute">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        Recalcular
+      </button>
+      <span class="export-status" id="exportStatus"></span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="modal-overlay" id="resetModal" hidden>
+  <div class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+    <h3 id="modal-title">Reiniciar actividad</h3>
+    <p id="modal-msg">Se van a borrar todas tus respuestas. No hay forma de recuperarlo.</p>
+    <div class="modal-actions">
+      <button class="export-btn secondary modal-cancel" id="modalCancel">Cancelar</button>
+      <button class="export-btn danger" id="modalConfirm">Sí, reiniciar</button>
+    </div>
+  </div>
+</div>
+
+<footer class="page-foot">
+  <span>Trabajo en clase · Evaluación de Proyectos · 7.º año</span>
+  <span>Auditar al agente · Unidad 2</span>
+</footer>
+
+<script src="script.js"></script>
+<script src="../js/tema.js"></script>
+</body>
+</html>

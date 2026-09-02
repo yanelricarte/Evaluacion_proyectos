@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Clase 1 · Comparar, decidir y desarrollar una consigna — Olimpíadas de ETP 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7f9; --bg-soft:#fbfbfc; --paper:#fff; --paper-2:#fcfbfc;
+  --ink:#17191d; --ink-soft:#2f2f36; --muted:#6f7681;
+  --primary:#b31759; --primary-2:#d52b70; --soft:#fff1f6;
+  --gray-2:#8d96a3; --gray-3:#dfe3e8; --gray-4:#eef1f4;
+  --ok:#1f7a4d; --ok-soft:#eefaf3; --ok-border:#9ed2b1;
+  --no:#a8214b; --no-soft:#fff1f6; --no-border:#f2b4ca;
+  --code-bg:#20242b; --code-ink:#e8ebf0; --code-key:#f2a8c6; --code-com:#95a0af;
+  --shadow:0 18px 48px rgba(20,22,26,.08);
+  --shadow-soft:0 12px 28px rgba(20,22,26,.06);
+  --radius:24px; --radius-sm:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:"Inter",system-ui,sans-serif; color:var(--ink);
+  background:
+    radial-gradient(circle at 92% 0%, rgba(214,41,108,.06), transparent 22%),
+    radial-gradient(circle at 0% 100%, rgba(89,90,96,.05), transparent 24%),
+    linear-gradient(180deg, var(--bg-soft), var(--bg));
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:"Manrope","Inter",sans-serif; letter-spacing:-.02em; margin:0; color:var(--ink)}
+p{margin:0; line-height:1.58}
+a{color:var(--primary)}
+
+.hero{padding:56px 28px 40px; background:radial-gradient(circle at 8% 16%, rgba(214,41,108,.10), transparent 30%), linear-gradient(180deg,#fff,var(--bg-soft)); border-bottom:1px solid var(--gray-3)}
+.hero-inner{max-width:1060px; margin:0 auto}
+.kicker{font-size:.74em; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--primary); margin-bottom:10px}
+.hero h1{font-size:clamp(2rem,4.4vw,3rem); line-height:1.06; margin-bottom:14px}
+.hero .lead{max-width:840px; color:var(--ink-soft); font-size:1.06em}
+.hero .lead + .lead{margin-top:10px}
+.track{display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:10px; margin-top:26px}
+.track-step{display:flex; align-items:center; gap:10px; padding:11px 13px; background:var(--paper); border:1px solid var(--gray-3); border-radius:var(--radius-sm); text-decoration:none; color:var(--ink); box-shadow:var(--shadow-soft)}
+.track-step b{width:26px; height:26px; flex:0 0 26px; border-radius:9px; background:var(--soft); color:var(--primary); display:grid; place-items:center; font-size:.86em}
+.track-step span{font-size:.85em; font-weight:600; line-height:1.25}
+
+main{max-width:1060px; margin:0 auto; padding:34px 28px 60px; display:flex; flex-direction:column; gap:26px}
+section{background:var(--paper); border:1px solid var(--gray-3); border-radius:var(--radius); padding:30px; box-shadow:var(--shadow-soft)}
+section h2{font-size:1.5em; margin-bottom:8px}
+section > p{color:var(--ink-soft); margin-bottom:14px}
+section h3.sub{font-size:1.1em; margin:26px 0 8px; padding-top:18px; border-top:1px solid var(--gray-4)}
+section h3.sub:first-of-type{border-top:0; padding-top:0}
+.step-header{display:flex; align-items:flex-start; gap:14px; margin-bottom:14px}
+.step-num{width:44px; height:44px; flex:0 0 44px; border-radius:14px; background:linear-gradient(160deg,var(--primary),var(--primary-2)); color:#fff; display:grid; place-items:center; font-family:"Manrope",sans-serif; font-weight:800; font-size:1.15em}
+.hint{font-size:.9em; color:var(--muted); margin-top:12px}
+
+.table-wrap{overflow-x:auto; margin:16px 0 6px}
+table{width:100%; border-collapse:collapse; font-size:.94em; min-width:0}
+th{text-align:left; background:var(--gray-4); color:var(--ink); font-weight:700; padding:10px 12px; border-bottom:1px solid var(--gray-3); font-size:.9em}
+td{padding:10px 12px; border-bottom:1px solid var(--gray-4); color:var(--ink-soft); vertical-align:top}
+tr:nth-child(even) td{background:var(--paper-2)}
+td b{color:var(--ink)}
+.num{text-align:right; white-space:nowrap}
+
+.pasos{list-style:none; padding:0; margin:6px 0 0; display:flex; flex-direction:column; gap:12px; counter-reset:p}
+.pasos li{counter-increment:p; display:flex; gap:13px; align-items:flex-start; padding:13px 15px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:var(--radius-sm)}
+.pasos li::before{content:counter(p); flex:0 0 26px; width:26px; height:26px; border-radius:8px; background:var(--soft); color:var(--primary); display:grid; place-items:center; font-weight:800; font-size:.85em; font-family:"Manrope",sans-serif}
+.pasos b{display:block; margin-bottom:2px}
+.pasos span{color:var(--ink-soft); font-size:.95em; line-height:1.5}
+ul.limpia{margin:8px 0 0; padding-left:20px; color:var(--ink-soft); font-size:.95em; line-height:1.6}
+ul.limpia li{margin-bottom:6px}
+ul.limpia b{color:var(--ink)}
+
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:14px; margin-top:6px}
+.card{padding:15px 16px; background:var(--no-soft); border:1px solid var(--no-border); border-radius:var(--radius-sm)}
+.card h3{font-size:.98em; margin-bottom:5px; color:var(--no)}
+.card p{font-size:.9em; color:var(--ink-soft)}
+
+.rule-card{background:var(--ok-soft); border:1px solid var(--ok-border); border-radius:var(--radius-sm); padding:16px 18px; margin-top:18px}
+.rule-tag{display:inline-block; font-size:.72em; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ok); margin-bottom:6px}
+.rule-card p{font-size:.95em; color:var(--ink-soft)}
+.rule-card p + p{margin-top:8px}
+.aviso{background:var(--soft); border:1px solid var(--no-border); border-radius:var(--radius-sm); padding:16px 18px; margin-top:18px}
+.aviso .rule-tag{color:var(--primary)}
+.aviso p{font-size:.95em; color:var(--ink-soft)}
+
+pre{margin:12px 0 6px; padding:16px 18px; background:var(--code-bg); color:var(--code-ink); border-radius:var(--radius-sm); overflow-x:auto; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.86em; line-height:1.6}
+pre b{color:var(--code-key); font-weight:600}
+pre i{color:var(--code-com); font-style:normal}
+code.inline{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.9em; background:var(--gray-4); padding:2px 6px; border-radius:6px; color:var(--ink)}
+.der{overflow-x:auto; margin:14px 0 6px; padding:16px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:var(--radius-sm)}
+
+input[type="text"], textarea{width:100%; padding:8px 10px; font-family:inherit; font-size:.94em; color:var(--ink); background:var(--paper); border:1.5px solid var(--gray-3); border-radius:10px}
+input[type="number"]{width:74px; padding:8px 8px; font-family:inherit; font-size:.94em; text-align:right; color:var(--ink); background:var(--paper); border:1.5px solid var(--gray-3); border-radius:10px}
+input:focus, textarea:focus{outline:none; border-color:var(--primary-2); box-shadow:0 0 0 3px rgba(213,43,112,.12)}
+textarea{min-height:96px; line-height:1.5; resize:vertical}
+.matriz td{vertical-align:middle}
+.matriz tfoot td{background:var(--gray-4); font-weight:700; color:var(--ink); border-bottom:0}
+.pesos-aviso{font-size:.88em; font-weight:600; margin-top:10px}
+.pesos-aviso.ok{color:var(--ok)}
+.pesos-aviso.no{color:var(--no)}
+.veredicto{margin-top:14px; padding:14px 16px; border-radius:var(--radius-sm); background:var(--gray-4); border:1px solid var(--gray-3); font-size:.96em; color:var(--ink-soft)}
+.veredicto b{color:var(--ink)}
+.campo-label{display:block; font-size:.88em; font-weight:600; color:var(--ink); margin:16px 0 6px}
+.dos-col{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px}
+
+.q{padding:16px 17px; border:1px solid var(--gray-3); border-radius:var(--radius-sm); background:var(--paper-2); margin-bottom:12px}
+.q.ok{background:var(--ok-soft); border-color:var(--ok-border)}
+.q.no{background:var(--no-soft); border-color:var(--no-border)}
+.q-text{font-weight:600; margin-bottom:11px}
+.choices{display:flex; flex-direction:column; gap:8px}
+.choices button{text-align:left; padding:10px 13px; font-family:inherit; font-size:.93em; color:var(--ink); background:var(--paper); border:1.5px solid var(--gray-3); border-radius:11px; cursor:pointer}
+.choices button:hover:not(:disabled){border-color:var(--primary-2)}
+.choices button.right{background:var(--ok-soft); border-color:var(--ok); color:var(--ok); font-weight:600}
+.choices button.wrong{background:var(--no-soft); border-color:var(--no); color:var(--no)}
+.choices button:disabled{cursor:default}
+.fb{display:none; margin-top:11px; padding:11px 13px; background:var(--paper); border-left:3px solid var(--primary); border-radius:0 10px 10px 0; font-size:.92em; color:var(--ink-soft); line-height:1.5}
+.q.answered .fb{display:block}
+.score{display:inline-block; margin-top:6px; padding:9px 15px; background:var(--soft); border:1px solid var(--no-border); border-radius:11px; font-weight:700; color:var(--primary)}
+
+.export-bar{margin-top:18px; padding-top:16px; border-top:1px solid var(--gray-3)}
+.export-warn{font-size:.88em; color:var(--muted); margin-bottom:12px}
+.export-actions{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:10px 16px; font-family:inherit; font-size:.93em; font-weight:600; border-radius:11px; cursor:pointer; background:var(--paper); color:var(--ink); border:1.5px solid var(--gray-3)}
+.btn:hover{border-color:var(--primary-2)}
+.btn.danger{color:var(--no); border-color:var(--no-border)}
+.estado{font-size:.86em; color:var(--ok); opacity:0; transition:opacity .2s}
+.estado.show{opacity:1}
+.page-foot{max-width:1060px; margin:0 auto; padding:20px 28px 40px; display:flex; flex-wrap:wrap; gap:8px; justify-content:space-between; font-size:.84em; color:var(--muted); border-top:1px solid var(--gray-3)}
+
+.modal-ov[hidden]{display:none}
+.modal-ov{position:fixed; inset:0; background:rgba(20,22,26,.45); display:grid; place-items:center; padding:20px; z-index:50}
+.modal{background:var(--paper); border-radius:var(--radius); padding:26px; max-width:420px; box-shadow:var(--shadow)}
+.modal h3{margin-bottom:8px}
+.modal p{font-size:.94em; color:var(--ink-soft); margin-bottom:18px}
+.modal-actions{display:flex; gap:10px; justify-content:flex-end}
+
+@media (max-width:880px){
+  section{padding:22px}
+  .hero{padding:40px 20px 30px}
+  main{padding:24px 18px 40px}
+  table{font-size:.86em}
+  th,td{padding:8px 8px}
+  input[type="number"]{width:58px}
+  .dos-col{grid-template-columns:1fr}
+  pre{font-size:.78em; padding:13px 14px}
+}
+@media print{
+  body{background:#fff}
+  .hero, section{box-shadow:none; border:1px solid #ccc; page-break-inside:avoid}
+  .track, .export-actions, .modal-ov{display:none}
+  .fb{display:block !important}
+  input, textarea{border:1px dashed #999}
+  pre{background:#f4f4f6; color:#111; border:1px solid #ccc}
+  pre b{color:#8a1247}
+  pre i{color:#666}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Evaluación de Proyectos · E.E.S.T. N.º 5 · 7.º 2.ª · Clase 1</div>
+    <h1>Comparar, decidir y desarrollar una consigna</h1>
+    <p class="lead">Las diez consignas de la Olimpíada piden lo mismo en el encabezado: una <b>solución técnica</b>, un <b>artefacto</b>, una <b>comparación entre dos alternativas</b>, la <b>justificación</b> de la elegida, el <b>registro de dificultades</b> y el <b>reparto de tareas</b> entre los cuatro integrantes. Ese encabezado se prepara antes de saber qué tema les toca, porque el método es siempre el mismo.</p>
+    <p class="lead">En esta clase vemos el método de comparación, las fallas que más se ven, y desarrollamos una consigna completa de punta a punta: la <b>base de datos de préstamos de equipamiento</b>. Al final, cada equipo arma su propia matriz.</p>
+    <nav class="track">
+      <a class="track-step" href="#comun"><b>1</b><span>Lo que piden las diez</span></a>
+      <a class="track-step" href="#metodo"><b>2</b><span>Cómo se compara</span></a>
+      <a class="track-step" href="#cuidado"><b>3</b><span>Qué tener en cuenta</span></a>
+      <a class="track-step" href="#desarrollo"><b>4</b><span>Una consigna completa</span></a>
+      <a class="track-step" href="#matriz"><b>5</b><span>La matriz del equipo</span></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- 1 -->
+<section id="comun">
+  <div class="step-header">
+    <span class="step-num">1</span>
+    <div>
+      <div class="kicker">Punto de partida</div>
+      <h2>Lo que piden las diez consignas</h2>
+    </div>
+  </div>
+  <p>Cambia el tema —red, copias de seguridad, base de datos, prototipo—, pero el encabezado de entrega es idéntico para todas. Conviene leerlo como una lista de siete entregables.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Lo que hay que entregar</th><th>Qué mira quien evalúa</th></tr></thead>
+      <tbody>
+        <tr><td><b>Solución técnica</b> a la situación asignada</td><td>Que resuelva el problema planteado, no otro parecido.</td></tr>
+        <tr><td><b>Documento</b> de 5 a 10 páginas, sin contar anexos</td><td>Que se entienda sin que ustedes lo expliquen al lado.</td></tr>
+        <tr><td><b>Esquema, diagrama, modelo, código o prototipo</b></td><td>Que el artefacto exista y coincida con lo que dice el documento.</td></tr>
+        <tr><td><b>Comparación entre al menos dos alternativas</b></td><td>Que las dos opciones se midan con los mismos criterios.</td></tr>
+        <tr><td><b>Justificación</b> de la solución elegida</td><td>Que la razón esté escrita y se apoye en la comparación.</td></tr>
+        <tr><td><b>Registro de dificultades</b> y cómo las resolvieron</td><td>Que muestre el proceso real, con los errores incluidos.</td></tr>
+        <tr><td><b>Distribución de responsabilidades</b> entre los cuatro</td><td>Que cada integrante tenga trabajo propio identificable.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="rule-card">
+    <span class="rule-tag">Por qué empezamos por acá</span>
+    <p>Cuatro de los siete puntos —comparación, justificación, registro y reparto— tienen la misma forma para cualquiera de las diez situaciones. Se pueden preparar desde hoy.</p>
+    <p>De esos cuatro, el que más suele costar es la comparación, porque es fácil escribir «elegimos esta porque es mejor» y quedarse sin nada que sostenga el «mejor».</p>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="metodo">
+  <div class="step-header">
+    <span class="step-num">2</span>
+    <div>
+      <div class="kicker">El método</div>
+      <h2>Siete pasos para una comparación que se puede defender</h2>
+    </div>
+  </div>
+  <p>Una comparación se sostiene cuando otra persona puede seguirla y llegar al mismo resultado con los mismos datos. Estos siete pasos son el orden que lo hace posible.</p>
+  <ol class="pasos">
+    <li><div><b>Escribir el propósito en una frase</b><span>Para qué se usa lo que se elige. «Una PC para editar video ocho horas por día» lleva a criterios distintos que «una PC para administración». El propósito es el que después justifica los pesos.</span></div></li>
+    <li><div><b>Elegir cuatro o cinco criterios que salgan del propósito</b><span>Cada criterio tiene que poder responderse con un dato: precio total, memoria, tiempo de la tarea que importa, garantía, dificultad de mantenimiento. Con más de cinco criterios la comparación se diluye.</span></div></li>
+    <li><div><b>Ponerle peso a cada criterio</b><span>Repartir 100 puntos según lo que pide el propósito, y escribir la razón: «el rendimiento pesa 35 porque el puesto trabaja con archivos de alta resolución».</span></div></li>
+    <li><div><b>Definir la escala antes de puntuar</b><span>Del 1 al 5, diciendo qué significa cada valor en cada criterio. En precio, por ejemplo: 5 es la opción más barata de lo relevado, 1 es más del doble de esa. Sin escala definida, el puntaje es una opinión.</span></div></li>
+    <li><div><b>Medir lo mismo en las dos opciones</b><span>Misma fuente, misma fecha, mismas condiciones. Si una configuración se cotiza en un sitio y la otra en un local con financiación incluida, la comparación de precio ya no vale.</span></div></li>
+    <li><div><b>Calcular</b><span>Puntaje por peso en cada criterio, y sumar cada columna. El número no decide: ordena la discusión y muestra dónde está la diferencia real.</span></div></li>
+    <li><div><b>Escribir la decisión con lo que se resigna</b><span>Tres frases: cuál eligieron, qué criterio definió la diferencia y qué pierden al elegirla. La última es la que muestra que compararon de verdad.</span></div></li>
+  </ol>
+
+  <h3 class="sub">Ejemplo corto: dos configuraciones para el puesto de diseño</h3>
+  <p>Propósito: puesto de edición de imágenes y video, uso diario, archivos grandes, tiene que durar tres años. A: procesador de gama alta con gráfica integrada. B: gama media con gráfica dedicada y más memoria.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Criterio</th><th class="num">Peso</th><th class="num">A</th><th class="num">B</th><th class="num">A pond.</th><th class="num">B pond.</th></tr></thead>
+      <tbody>
+        <tr><td>Tiempo de exportación del mismo archivo de prueba</td><td class="num">35</td><td class="num">3</td><td class="num">5</td><td class="num">105</td><td class="num">175</td></tr>
+        <tr><td>Memoria y trabajo con varios programas abiertos</td><td class="num">25</td><td class="num">3</td><td class="num">5</td><td class="num">75</td><td class="num">125</td></tr>
+        <tr><td>Precio total del equipo (mismo sitio, misma fecha)</td><td class="num">25</td><td class="num">4</td><td class="num">3</td><td class="num">100</td><td class="num">75</td></tr>
+        <tr><td>Garantía y disponibilidad de repuestos</td><td class="num">15</td><td class="num">5</td><td class="num">4</td><td class="num">75</td><td class="num">60</td></tr>
+      </tbody>
+      <tfoot><tr><td>Total</td><td class="num">100</td><td class="num">—</td><td class="num">—</td><td class="num">355</td><td class="num">435</td></tr></tfoot>
+    </table>
+  </div>
+  <div class="rule-card">
+    <span class="rule-tag">La decisión escrita</span>
+    <p>«Elegimos la configuración B. La diferencia la definió el tiempo de exportación, que pesa 35 sobre 100 porque el puesto trabaja todos los días con archivos de alta resolución: B exportó el mismo archivo de prueba en la mitad de tiempo que A. Al elegir B resignamos precio —cuesta un 12 % más, cotizado en el mismo sitio el 20 de agosto— y un año de garantía. Aceptamos las dos cosas porque el tiempo de exportación afecta el trabajo diario y el precio se paga una sola vez.»</p>
+  </div>
+  <p class="hint">El párrafo nombra el criterio, el dato que lo respalda, la fuente con su fecha y lo que se pierde. Eso separa una justificación de una opinión.</p>
+</section>
+
+<!-- 3 -->
+<section id="cuidado">
+  <div class="step-header">
+    <span class="step-num">3</span>
+    <div>
+      <div class="kicker">Qué tener en cuenta</div>
+      <h2>Las fallas que más se ven en una comparación</h2>
+    </div>
+  </div>
+  <p>Todas se detectan releyendo la tabla con el propósito al lado, y todas se arreglan antes de escribir el documento.</p>
+  <div class="cards">
+    <div class="card"><h3>Los criterios aparecen después</h3><p>Si primero eligen la opción que les gusta y después buscan los criterios, la tabla va a darles la razón siempre. Los criterios se definen antes de mirar las opciones.</p></div>
+    <div class="card"><h3>Las dos opciones no cumplen el mismo propósito</h3><p>Comparar una PC sin gráfica dedicada contra una de diseño gráfico deja una sola opción viable. Las dos alternativas tienen que poder resolver el problema.</p></div>
+    <div class="card"><h3>El precio manda solo</h3><p>Elegir por precio sin mirar nada más lleva al equipo que no sirve; ignorarlo lleva a la propuesta que no se puede pagar. El precio es un criterio con peso, como los demás.</p></div>
+    <div class="card"><h3>Se mide en condiciones distintas</h3><p>Un tiempo tomado en una máquina recién reiniciada contra otro con veinte pestañas abiertas no se comparan. Misma prueba, mismas condiciones, y anotadas.</p></div>
+    <div class="card"><h3>Criterios que se pisan</h3><p>«Rendimiento» y «procesador» miden casi lo mismo, así que ese aspecto pesa el doble sin que nadie lo haya decidido. Cada criterio tiene que aportar algo distinto.</p></div>
+    <div class="card"><h3>Escala sin definición</h3><p>Un 4 sin explicación es un gusto disfrazado de número. Cada valor de la escala necesita su regla escrita, aunque sea corta.</p></div>
+    <div class="card"><h3>Datos sin fuente ni fecha</h3><p>Un precio o un dato de referencia sin decir de dónde salió y de qué día es no se puede verificar. Anótenlos en el momento de tomarlos.</p></div>
+    <div class="card"><h3>La conclusión no dice qué se resigna</h3><p>Toda elección deja algo afuera. Nombrarlo muestra que compararon; ocultarlo hace pensar que defendieron la opción que ya tenían decidida.</p></div>
+  </div>
+  <div class="rule-card">
+    <span class="rule-tag">Regla corta</span>
+    <p>Si al terminar la tabla el resultado les sorprende, la comparación sirvió. Si confirma exactamente lo que pensaban desde el principio, vale releer los pesos y buscar cuál acomodaron.</p>
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="desarrollo">
+  <div class="step-header">
+    <span class="step-num">4</span>
+    <div>
+      <div class="kicker">Consigna 5, de punta a punta</div>
+      <h2>Base de datos para préstamos de equipamiento</h2>
+    </div>
+  </div>
+  <p><b>La situación.</b> La escuela presta notebooks, proyectores, tablets, cámaras y herramientas informáticas. Hoy los préstamos se registran a mano en un cuaderno. Hay que diseñar la base de datos que los registre.</p>
+  <p><b>Lo que pide la consigna:</b> modelo entidad-relación, tablas resultantes, claves primarias y foráneas, la creación de las tablas y al menos cinco consultas SQL. Dos de esas consultas están fijadas: qué equipos están prestados en este momento, y el historial de préstamos de una persona. La aplicación completa queda afuera.</p>
+
+  <h3 class="sub">Paso 1 · Sacar las entidades del enunciado</h3>
+  <p>Los sustantivos del enunciado son el borrador del modelo. De «personas, equipos, categorías, préstamos y devoluciones» salen las candidatas, y sobre esa lista se decide qué es entidad y qué es atributo.</p>
+  <ul class="limpia">
+    <li><b>Persona</b> — quien pide el equipo. Entidad: tiene datos propios y se repite en muchos préstamos.</li>
+    <li><b>Equipo</b> — la notebook, el proyector, la cámara. Entidad: cada unidad física se identifica sola.</li>
+    <li><b>Categoría</b> — «notebook», «proyector», «tablet». Entidad chica, para no repetir el texto en cada equipo y poder agrupar después.</li>
+    <li><b>Préstamo</b> — el hecho de que una persona se lleve un equipo en una fecha. Entidad: es lo que la escuela quiere registrar.</li>
+    <li><b>Devolución</b> — acá aparece la decisión de diseño, y es la que hay que comparar.</li>
+  </ul>
+
+  <h3 class="sub">Paso 2 · La decisión de diseño, comparada</h3>
+  <p>La devolución admite dos modelados razonables. Es el par de alternativas que pide el encabezado de la consigna, y se compara con el método del punto 2.</p>
+  <div class="aviso">
+    <span class="rule-tag">¿De dónde sale la comparación acá?</span>
+    <p>El texto de la consigna 5 no dice «comparen dos opciones»: lo pide el <b>encabezado común</b> a las diez situaciones. Solo la 3 y la 10 aclaran en su propio enunciado qué comparar, así que en las otras ocho el par de alternativas <b>lo elige el equipo</b>. La regla para elegirlo: que sea una decisión que cambie el artefacto que entregan.</p>
+  </div>
+  <p style="margin-top:14px">En esta consigna hay cuatro decisiones que sirven como par de alternativas. La primera es la más recomendable, porque cambia el modelo y las consultas, y eso se ve en el entregable.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th style="min-width:150px">Qué se compara</th><th>Opción A</th><th>Opción B</th><th>Qué cambia en el trabajo</th></tr></thead>
+      <tbody>
+        <tr><td><b>Cómo se registra la devolución</b> <i>(la que desarrollamos)</i></td><td>Un campo <code class="inline">fecha_devolucion</code> en la tabla de préstamos, vacío mientras el equipo está afuera</td><td>Una tabla <code class="inline">devolucion</code> aparte, con su propia fila por cada devolución</td><td>Cambia el modelo entidad-relación, la cantidad de tablas y las dos consultas obligatorias</td></tr>
+        <tr><td><b>Dónde se impide prestar dos veces el mismo equipo</b></td><td>En la base, con una restricción o un disparador</td><td>En la aplicación, consultando antes de insertar</td><td>Cambia dónde vive la regla y qué pasa si alguien carga datos por fuera del sistema</td></tr>
+        <tr><td><b>Con qué motor de base de datos</b></td><td>MySQL o MariaDB</td><td>SQLite</td><td>Cambia la instalación, el respaldo y cuántas personas pueden cargar datos a la vez</td></tr>
+        <tr><td><b>Cómo se identifica cada equipo</b></td><td>Un código de inventario propio de la escuela</td><td>El número de serie del fabricante</td><td>Cambia la clave única y qué se hace cuando el equipo no trae número legible</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hint">Alcanza con comparar <b>una</b> de estas decisiones bien: la consigna pide una comparación breve, con criterios y justificación, no cuatro comparaciones apuradas.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th style="min-width:150px">Criterio</th><th class="num">Peso</th><th>A · Una tabla <code class="inline">prestamo</code> con <code class="inline">fecha_devolucion</code> que puede estar vacía</th><th>B · Dos tablas: <code class="inline">prestamo</code> y <code class="inline">devolucion</code></th></tr></thead>
+      <tbody>
+        <tr><td>Simplicidad de la consulta obligatoria «qué está prestado ahora»</td><td class="num">30</td><td><b>5</b> — se resuelve con <code class="inline">WHERE fecha_devolucion IS NULL</code></td><td><b>3</b> — hace falta un <code class="inline">LEFT JOIN</code> y buscar las filas sin par</td></tr>
+        <tr><td>Registro de datos propios de la devolución (estado en que volvió, quién lo recibió)</td><td class="num">25</td><td><b>3</b> — entran como columnas de <code class="inline">prestamo</code>, vacías mientras no se devuelva</td><td><b>5</b> — la devolución tiene su propia fila con sus atributos</td></tr>
+        <tr><td>Integridad: que no se registren dos devoluciones del mismo préstamo</td><td class="num">25</td><td><b>5</b> — imposible: hay una sola columna de fecha</td><td><b>3</b> — hay que agregar una restricción única sobre el préstamo</td></tr>
+        <tr><td>Cantidad de tablas para mantener y explicar en el documento</td><td class="num">20</td><td><b>5</b> — cuatro tablas</td><td><b>3</b> — cinco tablas</td></tr>
+      </tbody>
+      <tfoot><tr><td>Total ponderado</td><td class="num">100</td><td class="num">440</td><td class="num">350</td></tr></tfoot>
+    </table>
+  </div>
+  <div class="rule-card">
+    <span class="rule-tag">La decisión escrita para el documento</span>
+    <p>«Elegimos el modelo A: una sola tabla de préstamos con la fecha de devolución que queda vacía mientras el equipo está afuera. La diferencia la definió la simplicidad de la consulta obligatoria, que pesa 30 sobre 100 porque es la consulta que la escuela va a usar todos los días: se resuelve con una condición sobre un campo nulo, sin subconsultas. Al elegir A resignamos la posibilidad de guardar datos propios de la devolución con su propia estructura; si más adelante la escuela necesita registrar el estado en que vuelve cada equipo, esas columnas se agregan a la misma tabla.»</p>
+  </div>
+  <p class="hint">Fijate que la alternativa perdedora queda documentada y con su razón. Eso es lo que la consigna llama «comparación entre al menos dos alternativas posibles».</p>
+
+  <h3 class="sub">Paso 3 · El modelo entidad-relación</h3>
+  <p>Con la decisión tomada, el modelo queda con cuatro entidades y tres relaciones. Las cardinalidades se leen en los dos sentidos: una categoría agrupa muchos equipos, y cada equipo pertenece a una sola categoría.</p>
+  <div class="der">
+    <svg viewBox="0 0 720 260" width="720" height="260" role="img" aria-label="Modelo entidad relación con las entidades categoría, equipo, persona y préstamo">
+      <g font-family="Inter, sans-serif" font-size="13">
+        <rect x="12" y="16" width="150" height="66" rx="12" fill="#fff1f6" stroke="#b31759" stroke-width="1.5"/>
+        <text x="87" y="42" text-anchor="middle" font-weight="700" fill="#17191d">CATEGORIA</text>
+        <text x="87" y="62" text-anchor="middle" fill="#6f7681" font-size="11.5">id_categoria · nombre</text>
+
+        <rect x="270" y="16" width="180" height="66" rx="12" fill="#fff" stroke="#2f3a4f" stroke-width="1.5"/>
+        <text x="360" y="42" text-anchor="middle" font-weight="700" fill="#17191d">EQUIPO</text>
+        <text x="360" y="62" text-anchor="middle" fill="#6f7681" font-size="11.5">id_equipo · codigo · estado</text>
+
+        <rect x="558" y="16" width="150" height="66" rx="12" fill="#fff1f6" stroke="#b31759" stroke-width="1.5"/>
+        <text x="633" y="42" text-anchor="middle" font-weight="700" fill="#17191d">PERSONA</text>
+        <text x="633" y="62" text-anchor="middle" fill="#6f7681" font-size="11.5">id_persona · apellido</text>
+
+        <rect x="245" y="170" width="230" height="72" rx="12" fill="#eef1f4" stroke="#2f3a4f" stroke-width="1.5"/>
+        <text x="360" y="196" text-anchor="middle" font-weight="700" fill="#17191d">PRESTAMO</text>
+        <text x="360" y="215" text-anchor="middle" fill="#6f7681" font-size="11.5">fecha_prestamo · fecha_pactada</text>
+        <text x="360" y="231" text-anchor="middle" fill="#6f7681" font-size="11.5">fecha_devolucion (puede estar vacía)</text>
+
+        <line x1="162" y1="49" x2="270" y2="49" stroke="#8d96a3" stroke-width="1.5"/>
+        <text x="186" y="40" fill="#b31759" font-weight="700" font-size="12">1</text>
+        <text x="248" y="40" fill="#b31759" font-weight="700" font-size="12">N</text>
+
+        <line x1="360" y1="82" x2="360" y2="170" stroke="#8d96a3" stroke-width="1.5"/>
+        <text x="368" y="102" fill="#b31759" font-weight="700" font-size="12">1</text>
+        <text x="368" y="160" fill="#b31759" font-weight="700" font-size="12">N</text>
+
+        <path d="M633 82 L633 130 Q633 140 620 140 L475 140 Q463 140 463 152 L463 170" fill="none" stroke="#8d96a3" stroke-width="1.5"/>
+        <text x="641" y="102" fill="#b31759" font-weight="700" font-size="12">1</text>
+        <text x="471" y="164" fill="#b31759" font-weight="700" font-size="12">N</text>
+      </g>
+    </svg>
+  </div>
+  <ul class="limpia">
+    <li>Una <b>categoría</b> agrupa muchos <b>equipos</b>; cada equipo pertenece a una categoría.</li>
+    <li>Un <b>equipo</b> participa en muchos <b>préstamos</b> a lo largo del tiempo; cada préstamo es de un equipo.</li>
+    <li>Una <b>persona</b> puede tener muchos <b>préstamos</b>; cada préstamo es de una persona.</li>
+  </ul>
+
+  <h3 class="sub">Paso 4 · De las entidades a las tablas</h3>
+  <p>Cada entidad pasa a tabla, cada relación uno a muchos deja la clave foránea del lado «muchos».</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tabla</th><th>Clave primaria</th><th>Claves foráneas</th><th>Otros campos</th></tr></thead>
+      <tbody>
+        <tr><td><b>categoria</b></td><td>id_categoria</td><td>—</td><td>nombre (único)</td></tr>
+        <tr><td><b>persona</b></td><td>id_persona</td><td>—</td><td>apellido, nombre, rol, contacto</td></tr>
+        <tr><td><b>equipo</b></td><td>id_equipo</td><td>id_categoria → categoria</td><td>codigo (único), descripcion, estado</td></tr>
+        <tr><td><b>prestamo</b></td><td>id_prestamo</td><td>id_equipo → equipo, id_persona → persona</td><td>fecha_prestamo, fecha_pactada, fecha_devolucion (admite vacío), observaciones</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">Paso 5 · La creación de las tablas</h3>
+  <pre><i>-- El motor importa: en MyISAM la cláusula FOREIGN KEY se acepta y se ignora,</i>
+<i>-- así que la integridad referencial no se aplica. Con InnoDB sí.</i>
+
+<b>CREATE TABLE</b> categoria (
+  id_categoria <b>INT AUTO_INCREMENT PRIMARY KEY</b>,
+  nombre       <b>VARCHAR</b>(50) <b>NOT NULL UNIQUE</b>
+) <b>ENGINE</b>=InnoDB;
+
+<b>CREATE TABLE</b> persona (
+  id_persona <b>INT AUTO_INCREMENT PRIMARY KEY</b>,
+  apellido   <b>VARCHAR</b>(60) <b>NOT NULL</b>,
+  nombre     <b>VARCHAR</b>(60) <b>NOT NULL</b>,
+  rol        <b>ENUM</b>('docente','estudiante','personal') <b>NOT NULL</b>,
+  contacto   <b>VARCHAR</b>(80)
+) <b>ENGINE</b>=InnoDB;
+
+<b>CREATE TABLE</b> equipo (
+  id_equipo    <b>INT AUTO_INCREMENT PRIMARY KEY</b>,
+  id_categoria <b>INT NOT NULL</b>,
+  codigo       <b>VARCHAR</b>(20) <b>NOT NULL UNIQUE</b>,   <i>-- el número de inventario</i>
+  descripcion  <b>VARCHAR</b>(120) <b>NOT NULL</b>,
+  estado       <b>ENUM</b>('disponible','en_reparacion','baja') <b>NOT NULL DEFAULT</b> 'disponible',
+  <b>CONSTRAINT</b> fk_equipo_categoria <b>FOREIGN KEY</b> (id_categoria)
+    <b>REFERENCES</b> categoria(id_categoria)
+) <b>ENGINE</b>=InnoDB;
+
+<b>CREATE TABLE</b> prestamo (
+  id_prestamo      <b>INT AUTO_INCREMENT PRIMARY KEY</b>,
+  id_equipo        <b>INT NOT NULL</b>,
+  id_persona       <b>INT NOT NULL</b>,
+  fecha_prestamo   <b>DATETIME NOT NULL</b>,
+  fecha_pactada    <b>DATE NOT NULL</b>,          <i>-- cuándo se comprometió a devolverlo</i>
+  fecha_devolucion <b>DATETIME NULL</b>,          <i>-- vacío = todavía lo tiene</i>
+  observaciones    <b>VARCHAR</b>(200),
+  <b>CONSTRAINT</b> fk_prestamo_equipo <b>FOREIGN KEY</b> (id_equipo)
+    <b>REFERENCES</b> equipo(id_equipo),
+  <b>CONSTRAINT</b> fk_prestamo_persona <b>FOREIGN KEY</b> (id_persona)
+    <b>REFERENCES</b> persona(id_persona)
+) <b>ENGINE</b>=InnoDB;</pre>
+
+  <h3 class="sub">Paso 6 · Las cinco consultas</h3>
+  <p>Dos las pide la consigna. Las otras tres conviene elegirlas para mostrar recursos distintos: agrupamiento, funciones de fecha y una unión que trae también lo que no tiene coincidencia.</p>
+
+  <p><b>1. Qué equipos están prestados en este momento</b> (la pide la consigna)</p>
+  <pre><b>SELECT</b> e.codigo, e.descripcion, c.nombre <b>AS</b> categoria,
+       p.apellido, p.nombre, pr.fecha_prestamo, pr.fecha_pactada
+<b>FROM</b> prestamo pr
+<b>JOIN</b> equipo    e <b>ON</b> e.id_equipo    = pr.id_equipo
+<b>JOIN</b> categoria c <b>ON</b> c.id_categoria = e.id_categoria
+<b>JOIN</b> persona   p <b>ON</b> p.id_persona   = pr.id_persona
+<b>WHERE</b> pr.fecha_devolucion <b>IS NULL</b>
+<b>ORDER BY</b> pr.fecha_pactada;</pre>
+
+  <p><b>2. Historial de préstamos de una persona</b> (la pide la consigna)</p>
+  <pre><b>SELECT</b> e.codigo, e.descripcion, pr.fecha_prestamo, pr.fecha_devolucion,
+       <b>CASE WHEN</b> pr.fecha_devolucion <b>IS NULL THEN</b> 'En su poder'
+            <b>ELSE</b> 'Devuelto' <b>END AS</b> situacion
+<b>FROM</b> prestamo pr
+<b>JOIN</b> equipo e <b>ON</b> e.id_equipo = pr.id_equipo
+<b>WHERE</b> pr.id_persona = 7
+<b>ORDER BY</b> pr.fecha_prestamo <b>DESC</b>;</pre>
+
+  <p><b>3. Equipos más pedidos, por categoría</b> — agrupamiento</p>
+  <pre><b>SELECT</b> c.nombre <b>AS</b> categoria, e.codigo, <b>COUNT</b>(*) <b>AS</b> veces_prestado
+<b>FROM</b> prestamo pr
+<b>JOIN</b> equipo    e <b>ON</b> e.id_equipo    = pr.id_equipo
+<b>JOIN</b> categoria c <b>ON</b> c.id_categoria = e.id_categoria
+<b>GROUP BY</b> c.nombre, e.codigo
+<b>HAVING COUNT</b>(*) &gt; 1
+<b>ORDER BY</b> veces_prestado <b>DESC</b>;</pre>
+
+  <p><b>4. Préstamos vencidos y cuántos días de atraso llevan</b> — funciones de fecha</p>
+  <pre><b>SELECT</b> p.apellido, p.nombre, e.codigo, pr.fecha_pactada,
+       <b>DATEDIFF</b>(<b>CURDATE</b>(), pr.fecha_pactada) <b>AS</b> dias_de_atraso
+<b>FROM</b> prestamo pr
+<b>JOIN</b> persona p <b>ON</b> p.id_persona = pr.id_persona
+<b>JOIN</b> equipo  e <b>ON</b> e.id_equipo  = pr.id_equipo
+<b>WHERE</b> pr.fecha_devolucion <b>IS NULL</b>
+  <b>AND</b> pr.fecha_pactada &lt; <b>CURDATE</b>()
+<b>ORDER BY</b> dias_de_atraso <b>DESC</b>;</pre>
+
+  <p><b>5. Cuántos equipos disponibles hay en cada categoría</b> — unión que conserva las categorías sin equipos libres</p>
+  <pre><b>SELECT</b> c.nombre <b>AS</b> categoria, <b>COUNT</b>(e.id_equipo) <b>AS</b> disponibles
+<b>FROM</b> categoria c
+<b>LEFT JOIN</b> equipo e
+       <b>ON</b> e.id_categoria = c.id_categoria
+      <b>AND</b> e.estado = 'disponible'
+      <b>AND</b> e.id_equipo <b>NOT IN</b> (
+            <b>SELECT</b> id_equipo <b>FROM</b> prestamo <b>WHERE</b> fecha_devolucion <b>IS NULL</b>
+          )
+<b>GROUP BY</b> c.nombre
+<b>ORDER BY</b> disponibles <b>DESC</b>;</pre>
+  <p class="hint">La quinta usa <code class="inline">LEFT JOIN</code> a propósito: con un <code class="inline">JOIN</code> común, una categoría que tenga todos sus equipos prestados desaparecería del listado en lugar de mostrar cero.</p>
+
+  <h3 class="sub">Paso 7 · Probar el diseño antes de entregarlo</h3>
+  <p>Un modelo se prueba con datos que lo pongan en aprietos. Estas cuatro pruebas se corren con cinco o seis filas cargadas a mano, y lo que pase se anota en el registro de dificultades.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Prueba</th><th>Qué tendría que pasar</th></tr></thead>
+      <tbody>
+        <tr><td>Prestar un equipo que ya está prestado</td><td>El sistema lo tiene que impedir. En este modelo la base no lo bloquea sola: se controla antes de insertar, consultando si hay un préstamo abierto de ese equipo. <b>Conviene decirlo en el documento</b> en lugar de dejarlo implícito.</td></tr>
+        <tr><td>Registrar un préstamo con un id_persona que no existe</td><td>La clave foránea lo rechaza. Si lo acepta, la tabla quedó en MyISAM.</td></tr>
+        <tr><td>Borrar una persona que tiene préstamos</td><td>La base lo rechaza, porque hay préstamos que la referencian. Decidan y escriban qué hacer en ese caso.</td></tr>
+        <tr><td>Cargar dos equipos con el mismo número de inventario</td><td>El índice único sobre <code class="inline">codigo</code> lo rechaza.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">Paso 8 · Repartir el trabajo entre los cuatro</h3>
+  <p>La consigna pide que la distribución esté escrita. Un reparto donde cada integrante produce algo y revisa lo de otro deja las cuatro firmas visibles en el documento.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Integrante</th><th>Produce</th><th>Revisa</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Modelo entidad-relación y su explicación</td><td>Que las tablas del integrante 2 coincidan con el modelo</td></tr>
+        <tr><td>2</td><td>Tablas, claves y el script de creación</td><td>Que las consultas del 3 corran sobre esas tablas</td></tr>
+        <tr><td>3</td><td>Las cinco consultas y sus resultados de ejemplo</td><td>Que la comparación del 4 use los datos reales del trabajo</td></tr>
+        <tr><td>4</td><td>Comparación de alternativas, justificación y registro de dificultades</td><td>Que el documento entero se entienda sin explicación oral</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="aviso">
+    <span class="rule-tag">El registro de dificultades</span>
+    <p>Se escribe mientras pasa, con cuatro columnas: qué falló, qué pensaron que era, qué probaron y cómo terminó. «El <code class="inline">INSERT</code> en préstamos daba error 1452 · creímos que era un problema del formato de fecha · revisamos y el id_persona no existía en la tabla persona · cargamos primero las personas» vale más que un párrafo genérico sobre trabajo en equipo, y es un punto de la entrega.</p>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="matriz">
+  <div class="step-header">
+    <span class="step-num">5</span>
+    <div>
+      <div class="kicker">Para trabajar en clase</div>
+      <h2>La matriz del equipo</h2>
+    </div>
+  </div>
+  <p>Ahora con la consigna de cada equipo. Los pesos suman 100 y los puntajes van del 1 al 5. El total se calcula solo mientras escriben.</p>
+
+  <label class="campo-label" for="proposito">Propósito, en una frase (para qué se usa lo que se elige)</label>
+  <input type="text" id="proposito" data-k="proposito" placeholder="Ej.: registrar los préstamos de equipamiento de la escuela, que hoy se anotan en un cuaderno" />
+
+  <div class="dos-col">
+    <div><label class="campo-label" for="altA" style="margin-top:0">Alternativa A</label><input type="text" id="altA" data-k="altA" placeholder="Ej.: una tabla de préstamos con fecha de devolución que puede estar vacía" /></div>
+    <div><label class="campo-label" for="altB" style="margin-top:0">Alternativa B</label><input type="text" id="altB" data-k="altB" placeholder="Ej.: dos tablas separadas, préstamos y devoluciones" /></div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="matriz" id="tablaMatriz">
+      <thead>
+        <tr><th style="min-width:180px">Criterio (y qué dato lo responde)</th><th class="num">Peso</th><th class="num">A</th><th class="num">B</th><th class="num">A pond.</th><th class="num">B pond.</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><input type="text" data-k="c1" placeholder="Criterio 1" /></td><td class="num"><input type="number" data-k="p1" min="0" max="100" step="5" /></td><td class="num"><input type="number" data-k="a1" min="1" max="5" /></td><td class="num"><input type="number" data-k="b1" min="1" max="5" /></td><td class="num" data-out="pa1">—</td><td class="num" data-out="pb1">—</td></tr>
+        <tr><td><input type="text" data-k="c2" placeholder="Criterio 2" /></td><td class="num"><input type="number" data-k="p2" min="0" max="100" step="5" /></td><td class="num"><input type="number" data-k="a2" min="1" max="5" /></td><td class="num"><input type="number" data-k="b2" min="1" max="5" /></td><td class="num" data-out="pa2">—</td><td class="num" data-out="pb2">—</td></tr>
+        <tr><td><input type="text" data-k="c3" placeholder="Criterio 3" /></td><td class="num"><input type="number" data-k="p3" min="0" max="100" step="5" /></td><td class="num"><input type="number" data-k="a3" min="1" max="5" /></td><td class="num"><input type="number" data-k="b3" min="1" max="5" /></td><td class="num" data-out="pa3">—</td><td class="num" data-out="pb3">—</td></tr>
+        <tr><td><input type="text" data-k="c4" placeholder="Criterio 4" /></td><td class="num"><input type="number" data-k="p4" min="0" max="100" step="5" /></td><td class="num"><input type="number" data-k="a4" min="1" max="5" /></td><td class="num"><input type="number" data-k="b4" min="1" max="5" /></td><td class="num" data-out="pa4">—</td><td class="num" data-out="pb4">—</td></tr>
+        <tr><td><input type="text" data-k="c5" placeholder="Criterio 5 (opcional)" /></td><td class="num"><input type="number" data-k="p5" min="0" max="100" step="5" /></td><td class="num"><input type="number" data-k="a5" min="1" max="5" /></td><td class="num"><input type="number" data-k="b5" min="1" max="5" /></td><td class="num" data-out="pa5">—</td><td class="num" data-out="pb5">—</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>Total</td><td class="num" id="sumaPesos">0</td><td class="num">—</td><td class="num">—</td><td class="num" id="totalA">0</td><td class="num" id="totalB">0</td></tr>
+      </tfoot>
+    </table>
+  </div>
+  <p class="pesos-aviso" id="avisoPesos">Los pesos suman 0 de 100.</p>
+  <div class="veredicto" id="veredicto">Completen pesos y puntajes para ver el resultado.</div>
+
+  <label class="campo-label" for="decision">La decisión escrita (cuál eligen, qué criterio la definió con qué dato, y qué resignan)</label>
+  <textarea id="decision" data-k="decision" placeholder="Elegimos… La diferencia la definió… porque… Al elegirla resignamos…"></textarea>
+
+  <div class="rule-card">
+    <span class="rule-tag">Registro para la carpeta</span>
+    <p>Copien a mano en la carpeta, con la letra de cada uno: el propósito, los criterios con su peso, y la decisión escrita en tres frases. Ese registro es el borrador de la sección «comparación de alternativas» del documento que entregan.</p>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="chequeo">
+  <div class="step-header">
+    <span class="step-num">6</span>
+    <div>
+      <div class="kicker">Chequeo rápido</div>
+      <h2>Cinco situaciones para decidir</h2>
+    </div>
+  </div>
+  <p>Elegí una opción en cada una. La explicación aparece al elegir.</p>
+
+  <div id="quiz">
+    <div class="q" data-ok="antes">
+      <p class="q-text">1. El equipo ya se decidió por la opción B y arma la tabla para el documento. ¿Cuándo se definen los criterios?</p>
+      <div class="choices">
+        <button data-v="antes">Antes de mirar las opciones, a partir del propósito</button>
+        <button data-v="despues">Después, eligiendo los que muestren mejor a la opción B</button>
+        <button data-v="evaluador">Cuando pregunten en la defensa, para responder lo que esperan escuchar</button>
+      </div>
+      <div class="fb"><b>Antes de mirar las opciones.</b> Los criterios salen del propósito, y ahí todavía no hay favorito. Armados después, la tabla confirma la decisión que ya estaba tomada y la comparación deja de valer como prueba.</div>
+    </div>
+
+    <div class="q" data-ok="condiciones">
+      <p class="q-text">2. Van a comparar dos configuraciones por el tiempo que tardan en abrir un archivo grande. ¿Qué hace válida esa medición?</p>
+      <div class="choices">
+        <button data-v="condiciones">El mismo archivo en las dos máquinas, en las mismas condiciones, y varias veces</button>
+        <button data-v="unavez">Tomar el tiempo una vez en cada máquina y anotar el resultado</button>
+        <button data-v="ficha">Copiar los tiempos que publica el fabricante en la ficha técnica</button>
+      </div>
+      <div class="fb"><b>Mismo archivo, mismas condiciones, varias corridas.</b> Una sola toma puede caer en un momento raro de la máquina, y los datos del fabricante se miden en un equipo que no es el de ustedes. La medición vale cuando otra persona puede repetirla y obtener algo parecido.</div>
+    </div>
+
+    <div class="q" data-ok="solapan">
+      <p class="q-text">3. La tabla tiene estos criterios: «velocidad del procesador» (30), «rendimiento general» (30), «precio» (25) y «garantía» (15). ¿Cuál es el problema?</p>
+      <div class="choices">
+        <button data-v="solapan">Los dos primeros miden casi lo mismo, así que ese aspecto pesa 60</button>
+        <button data-v="pocos">Son pocos criterios: hacen falta al menos ocho para comparar bien</button>
+        <button data-v="suman">Los pesos tendrían que ser todos iguales entre sí</button>
+      </div>
+      <div class="fb"><b>Se solapan.</b> «Velocidad del procesador» ya está contenida en «rendimiento general», así que el equipo le dio 60 puntos al mismo aspecto y dejó precio y garantía en un lugar más chico del que quería. Cada criterio tiene que aportar algo que los otros no.</div>
+    </div>
+
+    <div class="q" data-ok="null">
+      <p class="q-text">4. En el modelo de préstamos elegido, ¿cómo se sabe qué equipos están prestados en este momento?</p>
+      <div class="choices">
+        <button data-v="null">Son los préstamos que tienen la fecha de devolución vacía</button>
+        <button data-v="estado">Son los equipos con el campo estado en «disponible»</button>
+        <button data-v="ultimo">Son los últimos préstamos cargados en la tabla</button>
+      </div>
+      <div class="fb"><b>Los que tienen la fecha de devolución vacía.</b> Ese campo nulo es el que marca «todavía está afuera», y por eso la consulta obligatoria sale con una sola condición. El campo <code class="inline">estado</code> del equipo sirve para otra cosa: distinguir lo que está en reparación o dado de baja. El orden de carga no dice nada sobre devoluciones.</div>
+    </div>
+
+    <div class="q" data-ok="resigna">
+      <p class="q-text">5. La opción elegida suma 440 y la otra 350. ¿Qué falta en el documento para que la justificación esté completa?</p>
+      <div class="choices">
+        <button data-v="resigna">Qué criterio definió la diferencia, con qué dato, y qué se resigna al elegirla</button>
+        <button data-v="numero">Nada: el número más alto ya justifica la elección</button>
+        <button data-v="tercera">Una tercera alternativa que empate con las otras dos</button>
+      </div>
+      <div class="fb"><b>El criterio, el dato y lo que se resigna.</b> El total ordena la discusión; la justificación es el texto que explica de dónde viene la diferencia y qué costo tiene la elección. Un número sin ese párrafo se lee como una cuenta sin argumento.</div>
+    </div>
+  </div>
+
+  <p><span class="score" id="score">0 de 5</span></p>
+
+  <div class="export-bar">
+    <p class="export-warn"><b>Es material de trabajo en clase.</b> Lo que escriban queda solamente en este navegador. Para conservarlo, imprímanlo o guárdenlo en PDF.</p>
+    <div class="export-actions">
+      <button class="btn danger" id="btnReset">Reiniciar</button>
+      <button class="btn" onclick="window.print()">Imprimir o guardar PDF</button>
+      <span class="estado" id="estado"></span>
+    </div>
+  </div>
+</section>
+
+<!-- anexo -->
+<section id="anexo">
+  <div class="step-header">
+    <span class="step-num">★</span>
+    <div>
+      <div class="kicker">Anexo</div>
+      <h2>Qué se puede comparar en las otras consignas</h2>
+    </div>
+  </div>
+  <p>Para las diez situaciones de la Olimpíada, un par de alternativas posibles. Es un punto de partida: si el equipo encuentra un par mejor para su caso, lo cambia y lo justifica.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th style="min-width:145px">Situación</th><th>Dos alternativas posibles</th><th>Criterios que suelen decidir</th></tr></thead>
+      <tbody>
+        <tr><td><b>1. Red de una empresa</b></td><td>Segmentar por sector con switch administrable y VLAN, o una sola red con switches simples</td><td>Costo del equipamiento, aislamiento entre sectores, dificultad de mantenimiento</td></tr>
+        <tr><td><b>2. Copias de seguridad</b></td><td>Discos externos rotativos en la oficina, o servicio en la nube con copia local</td><td>Costo mensual, tiempo de recuperación, protección ante robo o incendio</td></tr>
+        <tr><td><b>3. Tres puestos de trabajo</b></td><td>Para el puesto de diseño: gama alta con gráfica integrada, o gama media con gráfica dedicada</td><td>Rendimiento en la tarea real, precio total, garantía</td></tr>
+        <tr><td><b>4. Diagnóstico de una PC</b></td><td>Empezar por el software (arranque, disco, temperaturas), o abrir el equipo y revisar el hardware primero</td><td>Riesgo de perder datos, tiempo hasta el diagnóstico, costo</td></tr>
+        <tr><td><b>5. Base de datos de préstamos</b></td><td>Una tabla de préstamos con fecha de devolución que puede estar vacía, o tablas separadas de préstamos y devoluciones</td><td>Simplicidad de la consulta diaria, datos propios de la devolución, integridad</td></tr>
+        <tr><td><b>6. Prototipo de reservas</b></td><td>Validar la superposición en el código, o impedirla con una restricción en la base</td><td>Seguridad del dato, esfuerzo de desarrollo, claridad del mensaje al usuario</td></tr>
+        <tr><td><b>7. Incidente de phishing</b></td><td>Cambiar contraseñas y activar segundo factor, o además bloquear la cuenta y auditar accesos uno por uno</td><td>Tiempo de contención, impacto en el trabajo del empleado, certeza del alcance</td></tr>
+        <tr><td><b>8. Servidor de archivos</b></td><td>PC física reutilizada, o máquina virtual sobre un equipo existente</td><td>Costo, facilidad de respaldo y restauración, rendimiento con diez usuarios</td></tr>
+        <tr><td><b>9. Mantenimiento preventivo</b></td><td>Limpieza y revisión completa dos veces al año, o revisión ligera trimestral</td><td>Horas de trabajo, tiempo fuera de servicio del laboratorio, fallas evitadas</td></tr>
+        <tr><td><b>10. Informatización de una oficina</b></td><td>La propuesta económica y la recomendada, que ya pide la consigna</td><td>Costo total, vida útil estimada, capacidad de crecer a más puestos</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hint">En las consignas 4, 6, 8 y 9 hay que demostrar algo sobre una máquina real o virtual, así que conviene sumar un criterio de viabilidad: con el equipamiento y el tiempo disponibles, ¿pueden mostrarlo funcionando?</p>
+</section>
+
+</main>
+
+<div class="modal-ov" id="modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
+    <h3 id="mt">Reiniciar la actividad</h3>
+    <p>Se borran la matriz, la decisión escrita y las respuestas del chequeo. No hay forma de recuperarlo.</p>
+    <div class="modal-actions">
+      <button class="btn" id="mCancel">Cancelar</button>
+      <button class="btn danger" id="mOk">Sí, reiniciar</button>
+    </div>
+  </div>
+</div>
+
+<footer class="page-foot">
+  <span>Evaluación de Proyectos · E.E.S.T. N.º 5 · 7.º 2.ª · Clase 1</span>
+  <span>Olimpíadas de ETP 2026 · Modalidad Informática</span>
+</footer>
+
+<script>
+const KEY = 'olimpiadas-7-2-clase-1:v1';
+const state = (() => { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch { return {}; } })();
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} };
+
+document.querySelectorAll('[data-k]').forEach(el => {
+  if (state[el.dataset.k] !== undefined) el.value = state[el.dataset.k];
+  el.addEventListener('input', () => {
+    state[el.dataset.k] = el.value;
+    save();
+    calcular();
+  });
+});
+
+const val = k => {
+  const el = document.querySelector(`[data-k="${k}"]`);
+  const n = parseFloat(el && el.value);
+  return Number.isFinite(n) ? n : null;
+};
+const celda = k => document.querySelector(`[data-out="${k}"]`);
+
+function calcular() {
+  let sumaPesos = 0, totalA = 0, totalB = 0;
+  for (let i = 1; i <= 5; i++) {
+    const p = val('p' + i), a = val('a' + i), b = val('b' + i);
+    if (p !== null) sumaPesos += p;
+    const pa = (p !== null && a !== null) ? p * a : null;
+    const pb = (p !== null && b !== null) ? p * b : null;
+    celda('pa' + i).textContent = pa === null ? '—' : pa;
+    celda('pb' + i).textContent = pb === null ? '—' : pb;
+    if (pa !== null) totalA += pa;
+    if (pb !== null) totalB += pb;
+  }
+  document.getElementById('sumaPesos').textContent = sumaPesos;
+  document.getElementById('totalA').textContent = totalA;
+  document.getElementById('totalB').textContent = totalB;
+
+  const aviso = document.getElementById('avisoPesos');
+  aviso.textContent = sumaPesos === 100
+    ? 'Los pesos suman 100. La matriz está bien repartida.'
+    : `Los pesos suman ${sumaPesos} de 100. Ajusten el reparto antes de leer el total.`;
+  aviso.className = 'pesos-aviso ' + (sumaPesos === 100 ? 'ok' : 'no');
+
+  const ver = document.getElementById('veredicto');
+  const nA = (document.querySelector('[data-k="altA"]').value || 'la alternativa A').trim();
+  const nB = (document.querySelector('[data-k="altB"]').value || 'la alternativa B').trim();
+  if (totalA === 0 && totalB === 0) {
+    ver.textContent = 'Completen pesos y puntajes para ver el resultado.';
+  } else if (totalA === totalB) {
+    ver.innerHTML = `<b>Empate en ${totalA}.</b> Definan cuál criterio desempata y escríbanlo: el empate también se justifica.`;
+  } else {
+    const gana = totalA > totalB ? nA : nB;
+    const dif = Math.abs(totalA - totalB);
+    let mayor = { i: 0, d: -1 };
+    for (let i = 1; i <= 5; i++) {
+      const p = val('p' + i), a = val('a' + i), b = val('b' + i);
+      if (p === null || a === null || b === null) continue;
+      const d = Math.abs(p * a - p * b);
+      if (d > mayor.d) mayor = { i, d };
+    }
+    const crit = mayor.i ? (document.querySelector(`[data-k="c${mayor.i}"]`).value || '').trim() : '';
+    ver.innerHTML = `<b>Adelante: ${gana}</b>, por ${dif} puntos.` +
+      (crit ? ` La mayor diferencia está en <b>${crit}</b>: ese es el criterio que tienen que nombrar en la justificación.` : '') +
+      ` El total ordena la discusión; la decisión la escriben ustedes abajo.`;
+  }
+}
+
+document.querySelectorAll('#quiz .q').forEach((q, idx) => {
+  const ok = q.dataset.ok;
+  const botones = q.querySelectorAll('.choices button');
+  const cerrar = elegido => {
+    botones.forEach(b => {
+      b.disabled = true;
+      if (b.dataset.v === ok) b.classList.add('right');
+      if (b.dataset.v === elegido && elegido !== ok) b.classList.add('wrong');
+    });
+    q.classList.add('answered', elegido === ok ? 'ok' : 'no');
+    state['q' + idx] = elegido;
+    save();
+    puntaje();
+  };
+  botones.forEach(b => b.addEventListener('click', () => {
+    if (q.classList.contains('answered')) return;
+    cerrar(b.dataset.v);
+  }));
+  if (state['q' + idx]) cerrar(state['q' + idx]);
+});
+
+function puntaje() {
+  const qs = document.querySelectorAll('#quiz .q');
+  let ok = 0;
+  qs.forEach((q, i) => { if (state['q' + i] === q.dataset.ok) ok++; });
+  document.getElementById('score').textContent = `${ok} de ${qs.length}`;
+}
+
+const modal = document.getElementById('modal');
+document.getElementById('btnReset').addEventListener('click', () => { modal.hidden = false; });
+document.getElementById('mCancel').addEventListener('click', () => { modal.hidden = true; });
+document.getElementById('mOk').addEventListener('click', () => {
+  try { localStorage.removeItem(KEY); } catch {}
+  location.reload();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.hidden = true; });
+
+calcular();
+puntaje();
+</script>
+</body>
+</html>
