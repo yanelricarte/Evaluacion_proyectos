@@ -77,7 +77,7 @@ footer{margin-top:60px; padding-top:18px; border-top:1px solid var(--linea);
 
 <table class="aviso" border="1"><tr><td>
 <p class="rot">EL MODELO ESTÁ ESCRITO SOBRE UNA SITUACIÓN, Y SIRVE PARA LAS DIEZ</p>
-<p>La consigna asigna a cada equipo una situación entre diez, y las diez piden las mismas siete piezas. De los nueve apartados del documento, <b>ocho son iguales para todos</b>: lo único que cambia de equipo a equipo es el apartado 4, el desarrollo de la solución. La parte A está escrita sobre la <b>situación 5, la base de datos de préstamos de equipamiento</b>, y la tabla del lugar de cada pedido dice qué va en el apartado 4 de cada una de las otras nueve.</p>
+<p>La consigna asigna a cada equipo una situación entre diez, y las diez piden las mismas siete piezas. De los nueve apartados del documento, <b>siete son iguales para todos</b>, y cambian dos: el apartado 4, el desarrollo de la solución, y el producto técnico que va en el 5. La parte A está escrita sobre la <b>situación 5, la base de datos de préstamos de equipamiento</b>, y la tabla del lugar de cada pedido dice qué va en el apartado 4 de cada una de las otras nueve.</p>
 <p>Los datos del modelo —los equipos, las fechas, los nombres de las tablas, los puntajes de la matriz— son de ejemplo y muestran la forma que tiene cada apartado terminado. Cada equipo escribe el suyo con lo que releva y con los criterios que define y fundamenta, de modo que dos equipos pueden llegar a soluciones distintas y ambas resultar correctas.</p>
 </td></tr></table>
 
@@ -141,7 +141,7 @@ footer{margin-top:60px; padding-top:18px; border-top:1px solid var(--linea);
 <tr><td>6 · Comparación de alternativas y decisión</td><td>La alternativa descartada y el criterio de la elección</td><td>1 pág</td><td>Pensamiento combinatorio (10)</td></tr>
 <tr><td>7 · Pruebas y resultados</td><td>La comprobación de que funciona</td><td>1 pág</td><td>Resolución · Producto final (20)</td></tr>
 <tr><td>8 · Registro de dificultades</td><td>Las trabas, los intentos y la resolución</td><td>½ pág</td><td>Autorregulación (12)</td></tr>
-<tr><td>9 · Conclusiones y referencias</td><td>Qué quedó resuelto, qué pendiente y de dónde salieron los datos</td><td>½ pág</td><td>Autorregulación · Producto final</td></tr>
+<tr><td>9 · Conclusiones y referencias</td><td>Lo resuelto, lo pendiente y el origen de los datos</td><td>½ pág</td><td>Autorregulación · Producto final</td></tr>
 <tr><td>Anexos</td><td>Planillas completas, capturas, esquemas grandes, código, bitácora</td><td>no cuentan</td><td>Producto final (20)</td></tr>
 </tbody>
 </table>
@@ -262,7 +262,7 @@ en qué apartado va cada una.</p>
 <p>La consigna nombra cinco cosas que hay que registrar: personas, equipos, categorías, préstamos y devoluciones. Cada una es una entidad, y los atributos salen del relevamiento del cuaderno más los datos que hoy faltan y hacen falta.</p>
 
 <table border="1">
-<thead><tr><th>Entidad</th><th>Atributos</th><th>Clave primaria</th><th>Por qué esa clave</th></tr></thead>
+<thead><tr><th>Entidad</th><th>Atributos</th><th>Clave primaria</th><th>Fundamento de la clave</th></tr></thead>
 <tbody>
 <tr><td>persona</td><td>id_persona, apellido, nombre, tipo (docente, estudiante, personal), curso o área, contacto</td><td>id_persona</td><td>Dos personas pueden tener el mismo apellido y nombre, así que el nombre no distingue. Se usa un identificador propio que no cambia si la persona cambia de curso</td></tr>
 <tr><td>categoria</td><td>id_categoria, nombre, descripcion</td><td>id_categoria</td><td>El nombre de la categoría podría servir, pero cambia con el uso —«cámaras» pasó a «cámaras y trípodes»— y arrastraría el cambio a todos los equipos</td></tr>
@@ -286,7 +286,7 @@ en qué apartado va cada una.</p>
 </tbody>
 </table>
 
-<p>La relación entre persona y equipo es de muchos a muchos, y la tabla prestamo es la que la resuelve: no es una tabla intermedia vacía, porque tiene datos propios —las fechas y las observaciones de entrega—, que es exactamente lo que justifica que exista como entidad.</p>
+<p>La relación entre persona y equipo es de muchos a muchos, y la tabla prestamo es la que la resuelve, y tiene datos propios —las fechas y las observaciones de entrega—, que es exactamente lo que justifica que exista como entidad.</p>
 
 <p>La ausencia de devolución es lo que define que un equipo está prestado en este momento. Esa decisión de diseño es la que hace posible la primera consulta pedida por la consigna, y por eso la devolución no se resolvió como una fecha dentro del préstamo: la comparación está en el apartado 6.</p>
 
@@ -408,7 +408,7 @@ ORDER BY dias_de_atraso DESC;</pre>
                     │
 persona 1 ─── N prestamo 1 ─── 0..1 devolucion</pre>
 
-<p>La única relación opcional es la de la devolución, y esa opcionalidad no es un detalle del dibujo: es el dato con el que se responde qué está prestado en este momento.</p>
+<p>La única relación opcional es la de la devolución, y esa opcionalidad es el dato con el que se responde qué está prestado en este momento.</p>
 
 <h2 id="a6">6 · Comparación de alternativas y decisión</h2>
 
@@ -431,7 +431,7 @@ persona 1 ─── N prestamo 1 ─── 0..1 devolucion</pre>
 
 <p>Los datos detrás de los puntajes. La alternativa A resuelve la fecha con una sola columna, y ahí gana en simplicidad y en tiempo: son cuatro tablas en lugar de cinco. Donde no llega es en el estado del equipo devuelto: para guardar que un proyector volvió con el cable dañado habría que agregar dos columnas más a prestamo, que quedarían vacías en todas las filas de los préstamos en curso. La alternativa B las guarda en la tabla donde tienen sentido, y por eso puntúa 5 en el primer criterio; su costo es una unión más en dos de las cinco consultas, que igual necesitan la unión con devolución para saber si el préstamo está abierto.</p>
 
-<p>El equipo adopta la alternativa B, con 4,30 puntos contra 3,50. El criterio que definió la diferencia es el primero, porque el relevamiento mostró que el problema no es solo saber si el equipo volvió: en el cuaderno hay siete anotaciones al margen sobre equipos devueltos con desperfectos, y ese dato hoy se pierde. Lo que se resigna es una tabla más para crear y cargar, y una unión adicional en las consultas.</p>
+<p>El equipo adopta la alternativa B, con 4,30 puntos contra 3,50. El criterio que definió la diferencia es el primero, porque el relevamiento mostró que el problema alcanza también al estado en que el equipo vuelve: en el cuaderno hay siete anotaciones al margen sobre equipos devueltos con desperfectos, y ese dato hoy se pierde. Lo que se resigna es una tabla más para crear y cargar, y una unión adicional en las consultas.</p>
 
 <p>La decisión depende de los pesos, y conviene decir hasta dónde. Si el estado del equipo devuelto no interesara —una escuela que solo necesita saber qué está afuera— y ese criterio bajara a 10 con la simplicidad en 55, el resultado se invertiría, con 4,45 para A contra 3,75 para B. Con los datos del relevamiento, el equipo sostiene el peso original.</p>
 
@@ -519,7 +519,7 @@ persona 1 ─── N prestamo 1 ─── 0..1 devolucion</pre>
 
 <p>Es el requisito 7 del encabezado y la evidencia principal de dos criterios que suman veintiséis puntos: planificación, que vale veinte, y trabajo en equipo, que vale seis. La consigna pide la distribución entre los cuatro integrantes, y la grilla evalúa que sea equitativa: eso se lee en una tabla con nombres y en un cronograma con fechas, no en una declaración de buenas intenciones. «Trabajamos todos en todo» deja el criterio sin evidencia.</p>
 
-<p><a href="#a3">El modelo</a> tiene tres piezas: la tabla de responsabilidades con una columna que dice por qué le tocó a cada uno, el cronograma con una columna de dependencias —que evita que dos integrantes se queden esperando la misma cosa— y el párrafo del criterio del reparto y el modo de seguimiento. La carga estimada que la consigna informa para cada situación, entre 8 y 20 horas de equipo, es el dato con el que se arma ese cronograma.</p>
+<p><a href="#a3">El modelo</a> tiene tres piezas: la tabla de responsabilidades con una columna que dice por qué le tocó a cada uno, el cronograma con una columna de dependencias —que evita que dos integrantes se queden esperando la misma cosa— y el párrafo del criterio del reparto y el modo de seguimiento. La consigna estima la carga de siete de las diez situaciones, entre 8 y 20 horas de equipo, y ese es el dato con el que se arma el cronograma. Las situaciones 1, 2 y 10 no la traen, así que ahí la estima el equipo.</p>
 
 <h2 id="b4">4 y 5 · El desarrollo y el producto técnico</h2>
 
