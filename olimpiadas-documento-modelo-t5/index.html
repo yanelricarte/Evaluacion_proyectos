@@ -412,7 +412,9 @@ persona 1 ─── N prestamo 1 ─── 0..1 devolucion</pre>
 
 <h2 id="a6">6 · Comparación de alternativas y decisión</h2>
 
-<p>La decisión de diseño que más condiciona el resto del trabajo es cómo se registra la devolución. Se compararon las dos alternativas posibles con una matriz ponderada de cuatro criterios, con los pesos definidos antes de puntuar y a partir de lo que la escuela necesita del sistema.</p>
+<p>El equipo estuvo dividido en este punto durante el segundo día. Al listar los atributos de la devolución aparecieron siete anotaciones al margen del cuaderno sobre equipos que volvieron con desperfectos —un proyector con el cable dañado, dos tablets con la pantalla rayada—, y ese dato no tenía lugar en el modelo tal como estaba planteado hasta ese momento. La discusión se cerró escribiendo las cinco consultas pedidas de las dos maneras posibles, con el resultado a la vista, y la matriz que sigue documenta esa decisión.</p>
+
+<p>La decisión de diseño que más condiciona el resto del trabajo es cómo se registra la devolución. Se compararon las dos alternativas posibles con una matriz ponderada de cuatro criterios, con los pesos definidos antes de puntuar y a partir de lo que la escuela necesita del sistema. El resultado sale de esos pesos, y con otro reparto se invierte: si el estado del equipo devuelto no interesara —una escuela que solo necesita saber qué está afuera— y ese criterio bajara a 10 con la simplicidad en 55, la elección cambiaría, con 4,45 para A contra 3,75 para B. Lo que sostiene el peso de 35 es el hallazgo del párrafo anterior.</p>
 
 <p><b>Alternativa A:</b> la devolución es un campo dentro de la tabla prestamo —<code>fecha_devolucion</code>—, vacío mientras el equipo no volvió. <b>Alternativa B:</b> la devolución es una tabla propia, relacionada uno a uno con el préstamo.</p>
 
@@ -431,9 +433,9 @@ persona 1 ─── N prestamo 1 ─── 0..1 devolucion</pre>
 
 <p>Los datos detrás de los puntajes. La alternativa A resuelve la fecha con una sola columna, y ahí gana en simplicidad y en tiempo: son cuatro tablas en lugar de cinco. Donde no llega es en el estado del equipo devuelto: para guardar que un proyector volvió con el cable dañado habría que agregar dos columnas más a prestamo, que quedarían vacías en todas las filas de los préstamos en curso. La alternativa B las guarda en la tabla donde tienen sentido, y por eso puntúa 5 en el primer criterio; su costo es una unión más en dos de las cinco consultas, que igual necesitan la unión con devolución para saber si el préstamo está abierto.</p>
 
-<p>El equipo adopta la alternativa B, con 4,30 puntos contra 3,50. El criterio que definió la diferencia es el primero, porque el relevamiento mostró que el problema alcanza también al estado en que el equipo vuelve: en el cuaderno hay siete anotaciones al margen sobre equipos devueltos con desperfectos, y ese dato hoy se pierde. Lo que se resigna es una tabla más para crear y cargar, y una unión adicional en las consultas.</p>
+<p>El equipo adopta la alternativa B, con 4,30 puntos contra 3,50. El criterio que definió la diferencia es el primero, que es el que las anotaciones del cuaderno pusieron sobre la mesa: el problema alcanza también al estado en que el equipo vuelve, y ese dato hoy se pierde. Lo que se resigna es una tabla más para crear y cargar, y una unión adicional en las consultas.</p>
 
-<p>La decisión depende de los pesos, y conviene decir hasta dónde. Si el estado del equipo devuelto no interesara —una escuela que solo necesita saber qué está afuera— y ese criterio bajara a 10 con la simplicidad en 55, el resultado se invertiría, con 4,45 para A contra 3,75 para B. Con los datos del relevamiento, el equipo sostiene el peso original.</p>
+<p>La prueba que cerró la discusión está registrada en la bitácora del día 2. Con la alternativa A, las columnas del estado devuelto quedaban vacías en los tres préstamos en curso de la carga de prueba, y la consulta del historial de una persona devolvía la fecha de devolución sin poder decir en qué condiciones había vuelto el equipo. Con los pesos ya fijados, esa prueba fue la que asignó el 2 y el 5 del primer criterio.</p>
 
 <h2 id="a7">7 · Pruebas y resultados</h2>
 
