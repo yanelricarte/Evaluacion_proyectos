@@ -467,7 +467,7 @@ li{font-size:clamp(15px, 1.15vw, 20px); line-height:1.5; margin:6px 0; color:var
   font-size:clamp(14px, 1.1vw, 19px);
 }
 .node.soft{background:#fff; color:var(--ink-soft); border-color:var(--gray-3)}
-.arrow{font-weight:900; color:var(--gray-2)}
+.arrow{font-weight:900; color:var(--muted)}
 
 /* ===== Mapa conceptual como esquema (nodos + conectores) ===== */
 .cmap{margin-top:20px; display:flex; flex-direction:column; align-items:center}
@@ -822,8 +822,8 @@ li{font-size:clamp(15px, 1.15vw, 20px); line-height:1.5; margin:6px 0; color:var
 /* ===== Botón pantalla completa ===== */
 .view-toggle{
   position:fixed;
-  left:20px;
-  bottom:24px;
+  left:18px;
+  top:18px;
   z-index:25;
   display:inline-flex;
   align-items:center;
@@ -1088,7 +1088,7 @@ body.fullscreen-mode .slide{padding:46px 80px 56px}
 .layer.sw .lyr-name{color:var(--primary)}
 .layer.fw{background:#eef1f6;border-color:#c3ccdb}
 .layer.fw .lyr-name{color:var(--accent)}
-.layer.hw{background:var(--gray-4);border-color:var(--gray-2)}
+.layer.hw{background:var(--gray-4);border-color:var(--muted)}
 .layer.hw .lyr-name{color:var(--gray-1)}
 .stack-axis{display:flex;justify-content:space-between;color:var(--muted);
   font-size:clamp(12px,.95vw,15px);font-weight:600;margin-top:4px;padding:0 4px}
@@ -1099,3 +1099,46 @@ body.fullscreen-mode .slide{padding:46px 80px 56px}
   font-weight:600;margin-right:14px}
 .legend-chip .sw-dot,.legend-chip .fw-dot,.legend-chip .hw-dot{width:14px;height:14px;border-radius:5px;display:inline-block}
 .sw-dot{background:var(--primary-2)} .fw-dot{background:var(--accent)} .hw-dot{background:var(--gray-2)}
+
+/* Árbol de evaluación (clase 9) */
+.eval-tree{
+  margin-top:20px;
+  background:var(--paper);
+  border:1px solid var(--gray-3);
+  border-radius:var(--radius-sm);
+  padding:18px 20px;
+  box-shadow:var(--shadow-soft);
+}
+.eval-tree svg{width:100%; height:auto; max-height:46vh; display:block}
+.eval-tree .tr-box{fill:var(--gray-4); stroke:var(--gray-3); stroke-width:1.5}
+.eval-tree .tr-root{fill:var(--primary); stroke:none}
+.eval-tree .tr-branch{fill:var(--soft); stroke:var(--no-border); stroke-width:1.5}
+.eval-tree .tr-leaf{fill:var(--paper); stroke:var(--primary); stroke-width:1.5; stroke-dasharray:5 4}
+.eval-tree .tr-link{fill:none; stroke:var(--gray-2); stroke-width:2}
+.eval-tree .tr-t{font-family:"Inter",system-ui,sans-serif; font-size:16px; font-weight:600; fill:var(--ink); text-anchor:middle}
+.eval-tree .tr-t.on-root{fill:#fff; font-size:18px; font-weight:700}
+.eval-tree .tr-t.leaf{font-size:14px; font-weight:600; fill:var(--primary-dark)}
+.eval-tree .tr-lvl{font-family:"Inter",system-ui,sans-serif; font-size:13px; font-weight:700; fill:var(--muted); letter-spacing:.02em}
+.eval-tree .tr-lvl.sub{font-weight:500}
+
+/* Árbol de evaluación · versión en lista para pantallas angostas */
+.tree-mob{display:none; list-style:none; margin:0; padding:0}
+.tree-mob ul{list-style:none; margin:6px 0 0; padding:0 0 0 16px; border-left:2px solid var(--gray-3)}
+.tree-mob li{margin:10px 0; font-size:15px; font-weight:600; color:var(--ink); line-height:1.35}
+.tree-mob .t-lvl{
+  display:inline-block; margin-right:8px; padding:2px 8px; border-radius:999px;
+  background:var(--gray-4); color:var(--muted);
+  font-size:11px; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
+}
+.tree-mob .t-root>.t-lvl{background:var(--primary); color:#fff}
+.tree-mob .t-branch>.t-lvl{background:var(--soft); color:var(--primary)}
+.tree-mob .t-leaf, .tree-mob .t-note{
+  display:block; margin-top:4px;
+  font-size:13px; font-weight:600; color:var(--primary-dark);
+}
+.tree-mob .t-note{color:var(--muted); font-weight:500}
+@media (max-width: 980px){
+  .eval-tree{padding:14px 16px}
+  .eval-tree svg{display:none}
+  .tree-mob{display:block}
+}

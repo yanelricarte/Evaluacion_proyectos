@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="../css/comun.css" />
 </head>
 <body>
 
@@ -60,7 +61,7 @@
     <h2 class="sec"><span class="nro">1.</span>De la evaluación del software a la evaluación del sistema integral</h2>
     <p>Toda evaluación de un equipo comienza, con frecuencia, con una percepción. Un usuario afirma que una computadora «anda lenta», que «se traba» o que «no rinde». Esa percepción es valiosa porque señala una posible dificultad, pero todavía no constituye una evaluación técnica. Para transformarla en juicio fundamentado es necesario preguntarse en qué parte del sistema se origina el problema, qué se puede medir y con qué se compara el resultado.</p>
     <p>La dificultad es que un mismo síntoma puede tener causas ubicadas en lugares muy distintos del sistema. Una computadora puede resultar lenta por una memoria insuficiente, por un disco mecánico antiguo, por un sistema operativo saturado de programas que se inician automáticamente, por un controlador inadecuado o por una aplicación que exige más recursos de los que el equipo puede ofrecer. Recomendar el reemplazo del procesador cuando el problema real es el disco implica una decisión costosa y equivocada. Por eso, antes de medir o de proponer mejoras, conviene comprender de qué partes se compone el sistema y cómo se relacionan entre sí.</p>
-    <p>Evaluar un sistema integral supone, entonces, sostener simultáneamente dos miradas: una mirada analítica, que distingue las partes y sus funciones, y una mirada de conjunto, que comprende que el rendimiento final no es la suma de componentes aislados, sino el resultado de su integración.</p>
+    <p>Evaluar un sistema integral supone, entonces, sostener simultáneamente dos miradas: una mirada analítica, que distingue las partes y sus funciones, y una mirada de conjunto, que comprende que el rendimiento final resulta de la integración de las partes, más que de la suma de sus componentes aislados.</p>
   </section>
 
   <section class="block" id="s2">
@@ -85,12 +86,12 @@
     <table>
       <thead><tr><th>Grado</th><th>Características</th><th>Ejemplo</th><th>Ventajas y costos</th></tr></thead>
       <tbody>
-        <tr><td><b>Baja integración</b></td><td>Cada capa se cambia de manera independiente.</td><td>Computadora de escritorio: se amplía la memoria, se reemplaza el disco, se reinstala el sistema operativo.</td><td>Muy flexible y reparable; requiere mayor espacio y armado.</td></tr>
-        <tr><td><b>Integración media</b></td><td>Algunas capas se actualizan (firmware, controladores, sistema operativo), pero el hardware viene cerrado.</td><td>Notebook, teléfono celular.</td><td>Equilibrio entre rendimiento y posibilidad de modificación.</td></tr>
-        <tr><td><b>Alta integración (embebido)</b></td><td>Hardware, firmware y software se presentan como una unidad inseparable.</td><td>Router, cajero automático, electrodoméstico inteligente.</td><td>Muy eficiente y compacto; difícil o imposible de modificar por partes.</td></tr>
+        <tr><td data-l="Grado"><b>Baja integración</b></td><td data-l="Características">Cada capa se cambia de manera independiente.</td><td data-l="Ejemplo">Computadora de escritorio: se amplía la memoria, se reemplaza el disco, se reinstala el sistema operativo.</td><td data-l="Ventajas y costos">Muy flexible y reparable; requiere mayor espacio y armado.</td></tr>
+        <tr><td data-l="Grado"><b>Integración media</b></td><td data-l="Características">Algunas capas se actualizan (firmware, controladores, sistema operativo), pero el hardware viene cerrado.</td><td data-l="Ejemplo">Notebook, teléfono celular.</td><td data-l="Ventajas y costos">Equilibrio entre rendimiento y posibilidad de modificación.</td></tr>
+        <tr><td data-l="Grado"><b>Alta integración (embebido)</b></td><td data-l="Características">Hardware, firmware y software se presentan como una unidad inseparable.</td><td data-l="Ejemplo">Router, cajero automático, electrodoméstico inteligente.</td><td data-l="Ventajas y costos">Muy eficiente y compacto; difícil o imposible de modificar por partes.</td></tr>
       </tbody>
     </table>
-    <p>De esta clasificación se desprende una consideración técnica importante. Un mayor grado de integración suele asociarse con un rendimiento más ajustado y un funcionamiento más estable, pero reduce la posibilidad de reparar, ampliar o reemplazar componentes de manera independiente. El grado de integración no es, por lo tanto, un valor en sí mismo, sino una característica que se evalúa en relación con el propósito y el contexto de uso.</p>
+    <p>De esta clasificación se desprende una consideración técnica importante. Un mayor grado de integración suele asociarse con un rendimiento más ajustado y un funcionamiento más estable, pero reduce la posibilidad de reparar, ampliar o reemplazar componentes de manera independiente. El grado de integración es, por lo tanto, una característica que se evalúa en relación con el propósito y el contexto de uso, y carece de valor por sí misma.</p>
   </section>
 
   <section class="block" id="s4">
@@ -113,17 +114,17 @@
     <p>Un número aislado no constituye evidencia suficiente. Un benchmark adquiere valor únicamente cuando es reproducible, es decir, cuando otra persona, en las mismas condiciones, obtiene un resultado equivalente. Para alcanzar esa condición es necesario controlar las variables y documentarlas: realizar las mediciones en condiciones comparables, sin otros programas en ejecución; repetir la prueba varias veces y considerar el promedio en lugar de una sola medición; y registrar la herramienta utilizada y su versión, la configuración del equipo, la fecha y las condiciones de la prueba.</p>
     <div class="callout">
       <span class="tag">Lectura crítica</span>
-      Las comparativas de hardware que circulan en medios especializados con frecuencia presentan un número sin explicitar en qué condiciones se obtuvo. Parte del oficio del evaluador consiste en desconfiar del dato aislado y preguntar con qué herramienta, cuántas veces y bajo qué condiciones se midió. Sin esa información, el resultado no es evidencia técnica, sino afirmación no verificable.
+      Las comparativas de hardware que circulan en medios especializados con frecuencia presentan un número sin explicitar en qué condiciones se obtuvo. Parte del oficio del evaluador consiste en desconfiar del dato aislado y preguntar con qué herramienta, cuántas veces y bajo qué condiciones se midió. Sin esa información, el resultado queda como afirmación no verificable, en lugar de evidencia técnica.
     </div>
     <h3>5.2. Herramientas</h3>
     <p>La unidad trabaja con un conjunto de herramientas de medición de uso profesional, seleccionadas por ser gratuitas o de acceso libre y por poder ejecutarse en el laboratorio de la institución.</p>
     <table>
       <thead><tr><th>Herramienta</th><th>Qué mide</th></tr></thead>
       <tbody>
-        <tr><td><b>PassMark PerformanceTest</b></td><td>Rendimiento general del equipo y comparación entre componentes (procesador, memoria, disco, gráficos).</td></tr>
-        <tr><td><b>Geekbench</b></td><td>Rendimiento del procesador en cálculo de uno y varios núcleos, comparable entre equipos distintos.</td></tr>
-        <tr><td><b>CrystalDiskMark</b></td><td>Velocidad de lectura y escritura de un disco o unidad de estado sólido.</td></tr>
-        <tr><td><b>iperf3</b></td><td>Rendimiento de una red, medido como ancho de banda real entre dos puntos.</td></tr>
+        <tr><td data-l="Herramienta"><b>PassMark PerformanceTest</b></td><td data-l="Qué mide">Rendimiento general del equipo y comparación entre componentes (procesador, memoria, disco, gráficos).</td></tr>
+        <tr><td data-l="Herramienta"><b>Geekbench</b></td><td data-l="Qué mide">Rendimiento del procesador en cálculo de uno y varios núcleos, comparable entre equipos distintos.</td></tr>
+        <tr><td data-l="Herramienta"><b>CrystalDiskMark</b></td><td data-l="Qué mide">Velocidad de lectura y escritura de un disco o unidad de estado sólido.</td></tr>
+        <tr><td data-l="Herramienta"><b>iperf3</b></td><td data-l="Qué mide">Rendimiento de una red, medido como ancho de banda real entre dos puntos.</td></tr>
       </tbody>
     </table>
     <p>La elección de herramientas gratuitas o libres no es solo una cuestión de costo: resulta coherente con el criterio de evaluación de software libre frente a privativo que se aborda más adelante en la materia, y evita dependencias de licencias propietarias.</p>
@@ -211,5 +212,6 @@
   <a href="../">Volver al inicio del sitio</a>
 </footer>
 
+<script src="../js/tema.js"></script>
 </body>
 </html>

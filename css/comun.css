@@ -1,0 +1,120 @@
+/* ============================================================
+   Evaluación de Proyectos · capa común
+   Se carga después de la hoja de cada página. Define el tema
+   oscuro, el cuerpo de lectura y los estados de accesibilidad
+   sin tocar las hojas de cada clase.
+   ============================================================ */
+
+:root{
+  /* el texto que va encima de un fondo de color se mantiene claro
+     en los dos temas */
+  --sobre-color:#ffffff;
+  /* el gris de los textos secundarios sube un punto: en las superficies
+     con tinte rosada quedaba en 4.44:1, apenas por debajo del mínimo */
+  --muted:#656c76;
+}
+
+/* la numeración de los apartados es información, no adorno: va en el
+   carmín pleno en los dos temas */
+h2.sec .nro, .nro{ color:var(--primary) }
+
+/* ---------- tema oscuro ---------- */
+@media (prefers-color-scheme: dark){
+  :root:not(.claro){
+    --bg:#15161a; --bg-soft:#191b1f;
+    --paper:#1c1e22; --paper-2:#22252a;
+
+    --ink:#e8e9ea; --ink-soft:#cdd0d4; --muted:#9ba1a9;
+
+    --primary:#e694b3; --primary-2:#8a2d52; --primary-3:#6f2743; --primary-dark:#f4c0d3;
+
+    --accent:#a9b6cc; --sage:#a3a6ad; --sage-soft:#2a2d33;
+
+    --gray-1:#e8e9ea; --gray-2:#9ba1a9; --gray-3:#343941; --gray-4:#262a30;
+    --line:#343941;
+
+    --soft:#2a1c24; --soft-2:#241a20;
+
+    --ok:#7fc09a; --ok-soft:#1b2620; --ok-border:#3c5b48;
+    --no:#e8899f; --no-soft:#2b1b21; --no-border:#5e3140;
+
+    --shadow:0 18px 48px rgba(0,0,0,.45);
+    --shadow-soft:0 12px 28px rgba(0,0,0,.32);
+  }
+}
+:root.oscuro{
+  --bg:#15161a; --bg-soft:#191b1f;
+  --paper:#1c1e22; --paper-2:#22252a;
+  --ink:#e8e9ea; --ink-soft:#cdd0d4; --muted:#9ba1a9;
+  --primary:#e694b3; --primary-2:#8a2d52; --primary-3:#6f2743; --primary-dark:#f4c0d3;
+  --accent:#a9b6cc; --sage:#a3a6ad; --sage-soft:#2a2d33;
+  --gray-1:#e8e9ea; --gray-2:#9ba1a9; --gray-3:#343941; --gray-4:#262a30;
+  --line:#343941;
+  --soft:#2a1c24; --soft-2:#241a20;
+  --ok:#7fc09a; --ok-soft:#1b2620; --ok-border:#3c5b48;
+  --no:#e8899f; --no-soft:#2b1b21; --no-border:#5e3140;
+  --shadow:0 18px 48px rgba(0,0,0,.45);
+  --shadow-soft:0 12px 28px rgba(0,0,0,.32);
+}
+:root.oscuro body{ background:var(--bg); }
+:root.oscuro{}
+:root.oscuro :is(header.doc,.btn-programa,.step-num,.check-btn,.action-btn,.export-btn,.score-card.total,.pts.grande){background:linear-gradient(135deg,#7c2246,#571630); color:var(--sobre-color); border-color:#7c2246}
+:root.oscuro :is(h2.sec .nro,.nro){color:var(--primary)}
+@media (prefers-color-scheme: dark){
+  :root:not(.claro) body{ background:var(--bg) }
+  :root:not(.claro) :is(header.doc,.btn-programa,.step-num,.check-btn,.action-btn,.export-btn,.score-card.total,.pts.grande){
+    background:linear-gradient(135deg,#7c2246,#571630); color:var(--sobre-color); border-color:#7c2246}
+  :root:not(.claro) :is(h2.sec .nro,.nro){color:var(--primary)}
+}
+
+/* ---------- cuerpo de lectura ----------
+   El texto corrido de los documentos se lee a 17 px. Las clases que
+   siguen son las que cada hoja fijaba en 15 o 16 px y llevan texto
+   principal; las notas al pie y las pistas quedan un punto abajo. */
+.wrap p, .wrap li, main p, main li, section p, section li,
+article p, article li, .doc p, .doc li{
+  font-size:17px;
+  line-height:1.72;
+}
+
+.step p, .step li,
+.tool-block p,
+.problem p, .problem-text,
+.test-step p,
+.scenario p{
+  font-size:17px;
+  line-height:1.7;
+}
+
+.card p, .scenario-card p, .tool p, .rule-card p, .aviso p, .prod-task p{
+  font-size:16px;
+  line-height:1.62;
+}
+
+.hint, .prod-help, .export-warn, footer p, .nota, .pie{
+  font-size:15px;
+  line-height:1.6;
+}
+
+/* ---------- accesibilidad ---------- */
+a:focus-visible, button:focus-visible, summary:focus-visible,
+[tabindex]:focus-visible, input:focus-visible, select:focus-visible{
+  outline:2px solid var(--primary);
+  outline-offset:3px;
+  border-radius:6px;
+}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important; animation:none !important; scroll-behavior:auto !important}
+}
+
+/* ---------- el botón de tema ---------- */
+.btn-tema{
+  position:fixed; top:14px; right:14px; z-index:60;
+  display:inline-flex; align-items:center; gap:7px;
+  font:inherit; font-size:13px; font-weight:600;
+  padding:8px 13px; cursor:pointer;
+  background:var(--paper); color:var(--ink-soft);
+  border:1px solid var(--gray-3); border-radius:9px;
+}
+.btn-tema:hover{ border-color:var(--primary); color:var(--primary) }
+@media print{ .btn-tema{display:none} }

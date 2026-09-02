@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../css/comun.css" />
 </head>
 <body>
 
@@ -17,7 +18,7 @@
   <div class="hero-inner">
     <div class="kicker">Trabajo en clase · Unidad 2 · 7.º año</div>
     <h1>Diagnóstico por capas</h1>
-    <p class="lead">Aplicá lo que vimos hoy sobre las capas hardware-firmware-software y los grados de integración. Se corrige solo y se termina en clase: no se entrega nada, el registro final lo copiás a tu carpeta.</p>
+    <p class="lead">Aplicá lo que vimos sobre las capas hardware-firmware-software y los grados de integración. Se corrige solo y se termina en clase: no se entrega nada, el registro final lo copiás a tu carpeta.</p>
     <div class="track">
       <a class="track-step" href="#parte-1"><b>1</b><span>¿En qué capa está el problema?</span></a>
       <a class="track-step" href="#parte-2"><b>2</b><span>Grado de integración</span></a>
@@ -39,7 +40,7 @@
       <p>Cuanto más abajo, más difícil y caro de cambiar.</p>
     </article>
     <article class="scenario-card">
-      <h3>La idea de hoy</h3>
+      <h3>La idea central</h3>
       <p>Un mismo síntoma («va lento», «se cuelga») puede originarse en cualquier capa. <b>Diagnosticar bien</b> es saber en cuál mirar antes de gastar tiempo o dinero.</p>
     </article>
   </div>
@@ -52,7 +53,7 @@
     <span class="step-num">1</span>
     <div>
       <div class="kicker">Diagnóstico</div>
-      <h2>¿En qué capa está el problema?</h2>
+      <h2>La capa donde se origina el problema</h2>
     </div>
   </header>
   <p>Para cada síntoma, elegí la <b>capa</b> donde se origina. Al elegir aparece la explicación.</p>
@@ -152,7 +153,7 @@
     <span class="step-num">2</span>
     <div>
       <div class="kicker">Clasificación</div>
-      <h2>¿Qué grado de integración tiene cada equipo?</h2>
+      <h2>El grado de integración de cada equipo</h2>
     </div>
   </header>
   <p>Recordá: <b>baja</b> = cada capa se cambia por separado · <b>media</b> = se actualiza software pero el hardware viene cerrado · <b>alta (embebido)</b> = todo viene como una unidad inseparable.</p>
@@ -302,5 +303,6 @@
 </footer>
 
 <script src="script.js"></script>
+<script src="../js/tema.js"></script>
 </body>
 </html>

@@ -1,0 +1,81 @@
+/* ============================================================
+   Olimpíadas · capa de la jornada
+   Se carga después de la hoja de cada página. Centraliza lo que
+   las cinco páginas de la jornada comparten: la alineación del
+   texto, las transiciones y la animación de entrada al leer.
+   Usa las variables que cada hoja ya define.
+   ============================================================ */
+
+/* ---------- tipografía del conjunto ---------- */
+body{
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+h1,h2,h3,h4{
+  font-family:"Manrope","Inter",system-ui,sans-serif;
+  letter-spacing:-.01em;
+}
+
+/* ---------- alineación del texto ---------- */
+/* El encabezado se centra: título y aviso de entrega. La bajada,
+   larga, queda justificada como el resto del cuerpo. */
+.hero-inner{ text-align:center }
+.hero-inner .kicker,
+.hero-inner .entrega{
+  text-align:center; margin-left:auto; margin-right:auto;
+}
+.hero-inner .lead{
+  text-align:justify; hyphens:auto; margin-left:auto; margin-right:auto;
+}
+.hero-inner .nav-fichas,
+.hero-inner .track{ justify-content:center }
+.hero-inner .qr{
+  display:flex; align-items:center; justify-content:center; gap:12px;
+  margin:14px 0 0; text-align:left;
+}
+.hero-inner .qr img{ width:160px; height:160px; border-radius:10px; box-shadow:0 4px 14px rgba(27,42,65,.16) }
+.hero-inner .qr span{ max-width:20ch; color:var(--muted); font-size:.9rem; line-height:1.4 }
+
+/* En las páginas sin hero, el título de apertura y su bajada se centran. */
+.hoja > h1,
+body > h1:first-of-type{ text-align:center }
+.hoja > h1 + p,
+body > h1:first-of-type + p{
+  text-align:center; margin-left:auto; margin-right:auto;
+}
+
+/* El cuerpo de lectura se justifica; las listas, tablas, cartas y
+   notas quedan a la izquierda. */
+main p, section p, body > p, .doc p, .hoja p{ text-align:justify; hyphens:auto }
+h1,h2,h3,h4, ul, ol, li, th, td, .mat, .rule-card, .sale, .dato, .numeros,
+.campo label, .nota, .pie-ficha, footer{ text-align:left }
+
+/* ---------- transiciones y estados ---------- */
+html{ scroll-behavior:smooth }
+a{ transition:color .15s ease }
+.nav-fichas a, .track-step{
+  transition:border-color .15s ease, color .15s ease, transform .15s ease;
+}
+.nav-fichas a:hover, .track-step:hover{ transform:translateY(-1px) }
+.mat, .rule-card, .sale, .check, .ficha{
+  transition:border-color .18s ease, box-shadow .18s ease;
+}
+.mat:hover, .rule-card:hover, .sale:hover, .check:hover{
+  border-color:var(--primary); box-shadow:0 8px 24px rgba(27,42,65,.08);
+}
+.ficha:hover{ box-shadow:0 2px 0 0 var(--primary) }
+
+/* ---------- animación de entrada ---------- */
+.reveal{
+  opacity:0; transform:translateY(16px);
+  transition:opacity .5s ease, transform .5s ease;
+}
+.reveal.visible{ opacity:1; transform:none }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto }
+  *, *::before, *::after{ transition:none !important; animation:none !important }
+  .reveal{ opacity:1 !important; transform:none !important }
+}
+@media print{
+  .reveal{ opacity:1 !important; transform:none !important }
+}
