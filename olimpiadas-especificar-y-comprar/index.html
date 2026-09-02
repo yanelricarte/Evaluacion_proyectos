@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>La especificación técnica y su presupuesto · Olimpíadas de ETP 2026 — Evaluación de Proyectos</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7f9; --bg-soft:#fbfbfc; --paper:#fff; --paper-2:#fcfbfc;
+  --ink:#17191d; --ink-soft:#2f2f36; --muted:#6a717b;
+  --primary:#b31759; --primary-2:#d52b70; --soft:#fff1f6;
+  --gray-2:#8d96a3; --gray-3:#dfe3e8; --gray-4:#eef1f4;
+  --ok:#1f7a4d; --ok-soft:#eefaf3; --ok-border:#9ed2b1;
+  --no:#a8214b; --no-soft:#fff1f6; --no-border:#f2b4ca;
+  --shadow-soft:0 12px 28px rgba(20,22,26,.06);
+  --radius:24px; --radius-sm:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:"Inter",system-ui,sans-serif; color:var(--ink);
+  background:
+    radial-gradient(circle at 92% 0%, rgba(214,41,108,.06), transparent 22%),
+    radial-gradient(circle at 0% 100%, rgba(89,90,96,.05), transparent 24%),
+    linear-gradient(180deg, var(--bg-soft), var(--bg));
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:"Manrope","Inter",sans-serif; letter-spacing:-.02em; margin:0; color:var(--ink)}
+p{margin:0; line-height:1.58}
+a{color:var(--primary)}
+
+.hero{padding:56px 28px 40px; background:radial-gradient(circle at 8% 16%, rgba(214,41,108,.10), transparent 30%), linear-gradient(180deg,var(--paper),var(--bg-soft)); border-bottom:1px solid var(--gray-3)}
+.hero-inner{max-width:1060px; margin:0 auto}
+.kicker{font-size:.74em; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--primary); margin-bottom:10px}
+.hero h1{font-size:clamp(2rem,4.4vw,3rem); line-height:1.06; margin-bottom:14px}
+.hero .lead{max-width:840px; color:var(--ink-soft); font-size:1.06em}
+.hero .lead + .lead{margin-top:10px}
+
+.cuenta{display:flex; flex-wrap:wrap; gap:12px; margin-top:26px}
+.cuenta-box{flex:1 1 190px; min-width:0; padding:16px 18px; background:var(--paper); border:1px solid var(--gray-3); border-radius:var(--radius-sm); box-shadow:var(--shadow-soft)}
+.cuenta-box.destacada{border-color:var(--primary-2); background:var(--soft)}
+.cuenta-n{font-family:"Manrope",sans-serif; font-weight:800; font-size:2.1em; line-height:1; color:var(--primary)}
+.cuenta-box.gris .cuenta-n{color:var(--gray-2)}
+.cuenta-l{margin-top:6px; font-size:.88em; color:var(--ink-soft); line-height:1.4}
+
+.track{display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:10px; margin-top:26px}
+.track-step{display:flex; align-items:center; gap:10px; padding:11px 13px; background:var(--paper); border:1px solid var(--gray-3); border-radius:var(--radius-sm); text-decoration:none; color:var(--ink); box-shadow:var(--shadow-soft)}
+.track-step b{width:26px; height:26px; flex:0 0 26px; border-radius:9px; background:var(--soft); color:var(--primary); display:grid; place-items:center; font-size:.86em}
+.track-step span{font-size:.85em; font-weight:600; line-height:1.25}
+
+main{max-width:1060px; margin:0 auto; padding:34px 28px 60px; display:flex; flex-direction:column; gap:26px}
+section{background:var(--paper); border:1px solid var(--gray-3); border-radius:var(--radius); padding:30px; box-shadow:var(--shadow-soft)}
+section h2{font-size:1.5em; margin-bottom:8px}
+section > p{color:var(--ink-soft); margin-bottom:14px}
+section h3.sub{font-size:1.1em; margin:26px 0 8px; padding-top:18px; border-top:1px solid var(--gray-4)}
+section h3.sub:first-of-type{border-top:0; padding-top:0}
+.hint{font-size:.9em; color:var(--muted); margin-top:12px}
+
+.table-wrap{margin:16px 0 6px}
+table{width:100%; border-collapse:collapse; font-size:.94em; table-layout:auto}
+th{text-align:left; background:var(--gray-4); color:var(--ink); font-weight:700; padding:10px 12px; border-bottom:1px solid var(--gray-3); font-size:.9em}
+td{padding:10px 12px; border-bottom:1px solid var(--gray-4); color:var(--ink-soft); vertical-align:top}
+tr:nth-child(even) td{background:var(--paper-2)}
+td b{color:var(--ink)}
+.num{text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums}
+.pts{display:inline-block; min-width:34px; padding:2px 7px; border-radius:8px; background:var(--soft); color:var(--primary); font-weight:700; font-size:.9em; text-align:center; font-variant-numeric:tabular-nums}
+
+.cadena{white-space:pre-wrap; margin:14px 0 4px; padding:12px 14px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:10px; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.8em; line-height:1.7; color:var(--ink); overflow-wrap:anywhere}
+
+.pasos{list-style:none; padding:0; margin:6px 0 0; display:flex; flex-direction:column; gap:12px; counter-reset:p}
+.pasos li{counter-increment:p; display:grid; grid-template-columns:26px 1fr; column-gap:13px; row-gap:4px; align-items:start; padding:14px 16px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:var(--radius-sm)}
+.pasos li::before{content:counter(p); grid-column:1; grid-row:1; width:26px; height:26px; border-radius:8px; background:var(--soft); color:var(--primary); display:grid; place-items:center; font-weight:800; font-size:.85em; font-family:"Manrope",sans-serif}
+.pasos b{grid-column:2; grid-row:1; margin:0; line-height:1.35}
+.pasos span{grid-column:2; grid-row:2; color:var(--ink-soft); font-size:.95em; line-height:1.6}
+
+ul.limpia{margin:8px 0 0; padding-left:20px; color:var(--ink-soft); font-size:.95em; line-height:1.6}
+ul.limpia li{margin-bottom:6px}
+ul.limpia b{color:var(--ink)}
+
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(255px,100%),1fr)); gap:14px; margin-top:6px}
+.tool{padding:16px 17px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:var(--radius-sm)}
+.tool h3{font-size:1em; margin-bottom:6px}
+.tool .de{font-size:.72em; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:var(--primary); margin-bottom:8px}
+.tool p{font-size:.92em; color:var(--ink-soft)}
+
+.rule-card{background:var(--ok-soft); border:1px solid var(--ok-border); border-radius:var(--radius-sm); padding:16px 18px; margin-top:18px}
+.rule-tag{display:inline-block; font-size:.72em; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ok); margin-bottom:6px}
+.rule-card p{font-size:.95em; color:var(--ink-soft)}
+.rule-card p + p{margin-top:8px}
+.aviso{background:var(--soft); border:1px solid var(--no-border); border-radius:var(--radius-sm); padding:16px 18px; margin-top:18px}
+.aviso .rule-tag{color:var(--primary)}
+.aviso p{font-size:.95em; color:var(--ink-soft)}
+.aviso p + p{margin-top:8px}
+
+code.inline{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.9em; background:var(--gray-4); padding:2px 6px; border-radius:6px; color:var(--ink)}
+
+/* ===== selector de escuela ===== */
+.selector{display:flex; flex-wrap:wrap; gap:10px; margin:6px 0 4px}
+.sel-btn{flex:1 1 230px; min-width:0; text-align:left; padding:14px 16px; font-family:inherit; font-size:.95em; cursor:pointer; background:var(--paper-2); color:var(--ink); border:1.5px solid var(--gray-3); border-radius:var(--radius-sm)}
+.sel-btn b{display:block; font-family:"Manrope",sans-serif; font-weight:700; margin-bottom:3px}
+.sel-btn span{font-size:.88em; color:var(--muted); line-height:1.4}
+.sel-btn:hover{border-color:var(--primary-2)}
+.sel-btn[aria-pressed="true"]{background:var(--soft); border-color:var(--primary-2)}
+.sel-btn[aria-pressed="true"] span{color:var(--ink-soft)}
+section a, .rule-card a, .aviso a, .modelo a{overflow-wrap:anywhere}
+.solo{display:none}
+body.esc-t3 .solo.t3{display:block}
+body.esc-t5 .solo.t5{display:block}
+body.esc-none .solo{display:block}
+/* ===== plantillas para completar ===== */
+.fill{background:#fffdf7; border:1px dashed var(--gray-2); border-radius:8px; padding:8px 10px; min-height:38px; font-size:.95em; color:var(--ink); line-height:1.5; outline:none; overflow-wrap:break-word}
+.fill:focus{border-style:solid; border-color:var(--primary-2); background:var(--paper)}
+.fill.vacio::before{content:attr(data-ph); color:var(--gray-2); font-style:italic}
+td .fill{margin:0}
+.plantilla th{background:var(--soft); color:var(--primary)}
+.plantilla td{background:var(--paper) !important}
+.export-bar{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:16px; padding:14px 16px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:var(--radius-sm)}
+.export-bar p{font-size:.9em; color:var(--muted); flex:1 1 220px; min-width:0}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:10px 16px; font-family:inherit; font-size:.93em; font-weight:600; border-radius:11px; cursor:pointer; background:var(--paper); color:var(--ink); border:1.5px solid var(--gray-3)}
+.btn:hover{border-color:var(--primary-2)}
+.acciones{display:flex; flex-wrap:wrap; gap:10px; margin-top:6px}
+
+/* ===== lista de cotejo ===== */
+.cotejo{list-style:none; padding:0; margin:8px 0 0; display:flex; flex-direction:column; gap:8px}
+.cotejo li{display:flex; gap:11px; align-items:flex-start; padding:11px 13px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:11px; font-size:.94em; color:var(--ink-soft); line-height:1.5}
+.cotejo input{margin-top:3px; flex:0 0 auto; accent-color:var(--primary)}
+.cotejo li.marcada{background:var(--ok-soft); border-color:var(--ok-border)}
+
+/* ===== quiz ===== */
+.q{padding:16px 18px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:var(--radius-sm); margin-top:12px}
+.q > p{color:var(--ink); font-weight:600; margin-bottom:10px}
+.opts{display:flex; flex-wrap:wrap; gap:8px}
+.opt{padding:8px 13px; font-family:inherit; font-size:.92em; cursor:pointer; background:var(--paper); color:var(--ink); border:1.5px solid var(--gray-3); border-radius:10px; text-align:left}
+.opt:hover{border-color:var(--primary-2)}
+.q.answered .opt{cursor:default}
+.q.answered .opt[data-v="ok"]{background:var(--ok-soft); border-color:var(--ok-border); color:var(--ok); font-weight:700}
+.q.answered .opt.elegida[data-v="no"]{background:var(--no-soft); border-color:var(--no-border); color:var(--no)}
+.expl{display:none; margin-top:11px; padding-top:11px; border-top:1px solid var(--gray-4); font-size:.93em; color:var(--ink-soft)}
+.q.answered .expl{display:block}
+.score{margin-top:14px; font-size:.93em; color:var(--muted)}
+.score b{color:var(--primary)}
+
+footer{max-width:1060px; margin:0 auto; padding:0 28px 56px; color:var(--muted); font-size:.88em; line-height:1.6}
+footer p + p{margin-top:8px}
+
+/* ===== tablas que se apilan en pantallas chicas ===== */
+@media (max-width:760px){
+  table.apilable{font-size:.95em}
+  table.apilable thead{display:none}
+  table.apilable tbody, table.apilable tfoot{display:block}
+  table.apilable tr{display:block; margin-bottom:12px; padding:10px 12px; background:var(--paper);
+    border:1px solid var(--gray-3); border-radius:12px}
+  table.apilable tr:nth-child(even) td{background:transparent}
+  table.apilable td{display:block; border:0; padding:4px 0; text-align:left}
+  table.apilable td::before{content:attr(data-l); display:block; font-size:.72em; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--primary); margin-bottom:2px}
+  table.apilable td:not([data-l])::before{content:none}
+  table.apilable td.num{text-align:left}
+  table.apilable tr.fila-total{background:var(--soft); border-color:var(--primary-2)}
+  .table-wrap{margin-left:0; margin-right:0}
+}
+
+@media print{
+  body{background:#fff}
+  .hero{padding:0 0 18px; background:none; border-bottom:2px solid #000}
+  .track, .acciones, .selector, .export-bar{display:none !important}
+  main{padding:14px 0 0; gap:14px; max-width:none}
+  section{break-inside:avoid; box-shadow:none; border:1px solid #bbb; padding:16px}
+  .solo{display:block !important}
+  .expl{display:block !important}
+  .fill{background:#fff; border:1px solid #999; min-height:34px}
+  .fill.vacio::before{content:""}
+  .cuenta-box{box-shadow:none}
+  a{color:#000; text-decoration:none}
+}
+@media (max-width:640px){
+  .hero{padding:38px 20px 30px}
+  main{padding:22px 20px 44px}
+  section{padding:22px 18px}
+  footer{padding:0 20px 40px}
+  table{font-size:.82em}
+  th,td{padding:7px 8px}
+  .cadena{font-size:.74em}
+}
+/* ===== calculadora de matriz ===== */
+.matriz input[type="number"]{width:74px; padding:6px 8px; font-family:inherit; font-size:.92em; border:1px solid var(--gray-3); border-radius:8px; text-align:right; background:#fffdf7; color:var(--ink)}
+.matriz input[type="number"]:focus{outline:none; border-color:var(--primary-2); background:var(--paper)}
+.matriz td.res{font-variant-numeric:tabular-nums; font-weight:600; color:var(--ink)}
+.matriz tfoot td{background:var(--soft) !important; border-top:2px solid var(--primary-2); font-weight:700; color:var(--ink)}
+.alerta{margin-top:10px; padding:10px 13px; border-radius:10px; font-size:.9em; background:var(--no-soft); border:1px solid var(--no-border); color:var(--no)}
+.alerta.ok{background:var(--ok-soft); border-color:var(--ok-border); color:var(--ok)}
+.gana{margin-top:12px; padding:13px 15px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:11px; font-size:.95em; color:var(--ink-soft)}
+.gana b{color:var(--ink)}
+
+/* ===== armador del nombre de archivo ===== */
+.armador{display:flex; flex-wrap:wrap; gap:12px; align-items:flex-end; margin-top:14px}
+.campo{flex:1 1 150px; min-width:0}
+.campo label{display:block; font-size:.8em; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:5px}
+.campo input{width:100%; padding:9px 11px; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.95em; border:1px solid var(--gray-3); border-radius:9px; background:#fffdf7; color:var(--ink)}
+.campo input:focus{outline:none; border-color:var(--primary-2); background:var(--paper)}
+.salida{margin-top:14px; padding:14px 16px; background:var(--ink); color:var(--sobre-color); border-radius:11px; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:1em; overflow-wrap:anywhere}
+
+/* ===== mail modelo ===== */
+.mail{margin-top:14px; border:1px solid var(--gray-3); border-radius:var(--radius-sm); overflow:hidden}
+.mail-h{padding:11px 14px; background:var(--gray-4); font-size:.88em; color:var(--ink-soft); border-bottom:1px solid var(--gray-3)}
+.mail-h b{color:var(--ink)}
+.mail-b{padding:15px 16px; font-size:.94em; color:var(--ink-soft); line-height:1.65; white-space:pre-line}
+.mail-b b{color:var(--ink)}
+
+/* ===== modelo de redaccion ===== */
+.modelo{margin-top:14px; padding:16px 18px; background:var(--paper-2); border-left:3px solid var(--primary-2); border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+.modelo .de{font-size:.72em; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:var(--primary); margin-bottom:8px}
+.modelo p{font-size:.96em; color:var(--ink-soft); line-height:1.65}
+.modelo p + p{margin-top:9px}
+.modelo em{color:var(--ink); font-style:normal; background:var(--soft); padding:1px 4px; border-radius:4px}
+</style>
+  <link rel="stylesheet" href="../css/comun.css" />
+</head>
+<body class="esc-t3">
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="kicker">Olimpíadas de ETP 2026 · Evaluación de Proyectos</p>
+    <h1>La especificación técnica y su presupuesto</h1>
+    <p class="lead">Elegir una computadora no se decide mirando fichas técnicas: se decide desde la tarea que va a hacer quien la usa. Esta clase recorre el camino completo —perfil, especificación, comparación, cotización— y termina en las pautas formales con las que se entrega el trabajo.</p>
+    <p class="lead">El instrumento central es la matriz de evaluación ponderada de la clase 1, con la homogeneización de parámetros que es contenido del programa. Lo nuevo es que acá los datos los ponen empresas reales, y llegan desordenados.</p>
+
+    <div class="cuenta">
+      <div class="cuenta-box destacada">
+        <div class="cuenta-n">10</div>
+        <div class="cuenta-l">Puntos de pensamiento combinatorio, que se ganan comparando alternativas en serio</div>
+      </div>
+      <div class="cuenta-box">
+        <div class="cuenta-n">20</div>
+        <div class="cuenta-l">Puntos de producto final: formato, referencias y presentación del documento</div>
+      </div>
+      <div class="cuenta-box gris">
+        <div class="cuenta-n">2 a 5</div>
+        <div class="cuenta-l">Días hábiles que tarda una empresa en contestar un pedido de cotización</div>
+      </div>
+    </div>
+
+    <nav class="track" aria-label="Contenido">
+      <a class="track-step" href="#tuyo"><b>1</b><span>Qué entregable te toca</span></a>
+      <a class="track-step" href="#perfil"><b>2</b><span>Del perfil a la especificación</span></a>
+      <a class="track-step" href="#matriz"><b>3</b><span>La matriz, paso a paso</span></a>
+      <a class="track-step" href="#redaccion"><b>4</b><span>Cómo se escribe la decisión</span></a>
+      <a class="track-step" href="#homogeneizar"><b>5</b><span>Presupuestos no comparables</span></a>
+      <a class="track-step" href="#cotizacion"><b>6</b><span>El pedido de cotización</span></a>
+      <a class="track-step" href="#fuentes"><b>7</b><span>Precios con fuente</span></a>
+      <a class="track-step" href="#formato"><b>8</b><span>Las pautas formales</span></a>
+      <a class="track-step" href="#indice"><b>9</b><span>Índice del documento</span></a>
+      <a class="track-step" href="#cotejo"><b>10</b><span>Lista de cotejo</span></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section id="tuyo">
+    <h2>1 · Qué entregable te toca</h2>
+    <p>El camino es el mismo para las dos escuelas. Cambia dónde termina: en una hay que pedir presupuestos reales, en la otra alcanza con valores de mercado citados.</p>
+
+    <div class="selector" role="group" aria-label="Elegí tu escuela">
+      <button class="sel-btn" type="button" data-esc="t3" aria-pressed="false">
+        <b>E.E.S.T. N.º 3 · Domingo F. Sarmiento</b>
+        <span>Entregables 3 y 4: perfiles por gerencia, costos de tres sitios y gestión de compra con presupuestos</span>
+      </button>
+      <button class="sel-btn" type="button" data-esc="t5" aria-pressed="false">
+        <b>E.E.S.T. N.º 5 · Amancio Williams</b>
+        <span>Situación 3: tres puestos con dos alternativas en uno. Situación 10: alternativa económica y recomendada</span>
+      </button>
+    </div>
+
+    <div class="solo t3">
+      <h3 class="sub">Los dos entregables, con sus mínimos</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Entregable</th><th scope="col">El mínimo que se cuenta</th><th scope="col">Dónde se pierde</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>3 · Definición del equipo según el usuario</b><br>Describir el tipo de usuario y las tareas que hace, y definir computadora, procesador, placa de video y memoria para ese perfil.</td>
+              <td><b>Dos tipos de usuario por cada gerencia</b>, ocho perfiles con cuatro gerencias. Costos estimados según <b>tres páginas de internet de empresas del rubro</b>, sin portales de venta.</td>
+              <td>Ocho perfiles con la misma configuración. Si los ocho terminan en el mismo equipo, el perfil no se usó para decidir.</td>
+            </tr>
+            <tr>
+              <td><b>4 · Gestión de compra</b><br>Compra de una computadora de escritorio según especificaciones, con intercambio por correo electrónico y presupuestos de tres empresas.</td>
+              <td><b>Tres empresas locales o regionales</b> a las que se pide cotización. Las copias de los mails y los presupuestos van agregados al PDF.</td>
+              <td>El tiempo. Depende de que contesten terceros, y no todos contestan.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="aviso">
+        <span class="rule-tag">Dos precisiones del enunciado que conviene leer dos veces</span>
+        <p>«Tres páginas de internet de empresas del rubro, no se contemplan portales de venta»: los precios salen de sitios de empresas que venden equipamiento informático, no de plataformas de compraventa entre usuarios. Y la gestión de compra es de <b>una</b> computadora, no de las ocho: se elige un perfil, se escribe su especificación y sobre esa especificación se piden los tres presupuestos.</p>
+      </div>
+    </div>
+
+    <div class="solo t5">
+      <h3 class="sub">Las situaciones que resuelve esta clase</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Situación</th><th scope="col">Lo que pide el enunciado</th><th scope="col">Cómo se resuelve acá</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>3 · Seleccionar computadoras</b><br>Puesto A administración, puesto B programación con máquinas virtuales, puesto C edición de imagen y video.</td>
+              <td>Configuración por puesto con procesador, memoria, almacenamiento, placa gráfica si hiciera falta, monitor y sistema operativo. Explicar por qué cada componente es adecuado, presentar dos alternativas para uno de los puestos, comparar prestaciones y costos, y recomendar.</td>
+              <td>El punto 2 produce las tres especificaciones; el punto 3, la matriz de las dos alternativas; el punto 4, la recomendación escrita. No hacen falta presupuestos: los valores salen de internet, citados.</td>
+            </tr>
+            <tr>
+              <td><b>10 · Informatización de una oficina</b><br>Ocho empleados, ocho computadoras, una impresora, internet y archivos compartidos.</td>
+              <td>Del punto A, la configuración adecuada para los empleados. Al final, una estimación general de costos con dos alternativas: una económica y una recomendada.</td>
+              <td>Un solo perfil, porque los ocho puestos hacen lo mismo. Las dos alternativas se arman con la misma matriz y dos techos de presupuesto distintos, en el punto 6.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="aviso">
+        <span class="rule-tag">La trampa de la situación 3</span>
+        <p>«Presentar dos alternativas para uno de los puestos» es el requisito que más se cumple de mentira: se muestran dos equipos y se elige el más caro sin decir por qué. Las dos alternativas tienen que competir con criterios ponderados, y la que pierde tiene que perder por algo que se pueda nombrar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="perfil">
+    <h2>2 · Del perfil de usuario a la especificación</h2>
+    <p>El error más común es arrancar por el componente. El orden que hace defendible la decisión es el inverso: primero la tarea, después la exigencia que esa tarea impone, y recién entonces el componente que la satisface.</p>
+
+    <div class="cadena">tarea que hace la persona → exigencia técnica que esa tarea impone → componente que la satisface → parámetro concreto y su costo</div>
+
+    <h3 class="sub">Ejemplo desarrollado, tres perfiles</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Perfil</th><th scope="col">Tareas</th><th scope="col">Exigencia que imponen</th><th scope="col">Componente que la resuelve</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Administración</b></td>
+            <td>Correo, navegación con muchas pestañas, planillas de cálculo, facturación</td>
+            <td>Muchas aplicaciones livianas abiertas a la vez, y arranque rápido. Nada de cálculo intensivo.</td>
+            <td>Memoria antes que procesador, y almacenamiento de estado sólido antes que capacidad. Placa de video dedicada: no hace falta.</td>
+          </tr>
+          <tr>
+            <td><b>Programación</b></td>
+            <td>Desarrollo web, base de datos local, máquinas virtuales ocasionales</td>
+            <td>Compilar y correr una máquina virtual junto al entorno de desarrollo, sin que se frene lo demás.</td>
+            <td>Procesador con varios núcleos y memoria holgada, porque la máquina virtual reserva memoria para ella. Almacenamiento de estado sólido con espacio, por las imágenes de disco.</td>
+          </tr>
+          <tr>
+            <td><b>Diseño y video</b></td>
+            <td>Edición de imágenes, edición de video, diseño gráfico</td>
+            <td>Trabajo sostenido sobre archivos grandes, y previsualización de video en tiempo real.</td>
+            <td>Placa de video dedicada, memoria abundante, almacenamiento rápido y de gran capacidad, y monitor con buena reproducción de color, que acá es parte del equipo de trabajo.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="hint">Fijate qué hace esta tabla: justifica cada componente sin nombrar todavía ninguna marca ni ningún precio. Esa es la parte que puntúa, y es la que se puede escribir antes de mirar el mercado.</p>
+
+    <h3 class="sub">Plantilla de especificación, para completar</h3>
+    <p>Una fila por puesto o por perfil. La columna de la derecha es la que después sostiene la comparación.</p>
+    <div class="table-wrap">
+      <table class="plantilla">
+        <thead><tr><th scope="col">Perfil o puesto</th><th scope="col">Tareas concretas</th><th scope="col">Componente y parámetro elegido</th><th scope="col">Por qué la tarea lo exige</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><div class="fill" contenteditable="true" data-k="esp-1-1" data-ph="Gerencia administrativa · liquidación"></div></td>
+            <td><div class="fill" contenteditable="true" data-k="esp-1-2" data-ph="Planillas de gran tamaño, sistema de gestión, correo"></div></td>
+            <td><div class="fill" contenteditable="true" data-k="esp-1-3" data-ph="16 GB de memoria, disco de estado sólido de 480 GB, procesador de gama media"></div></td>
+            <td><div class="fill" contenteditable="true" data-k="esp-1-4" data-ph="Las planillas con muchas fórmulas ocupan memoria; el sistema de gestión queda abierto todo el día"></div></td>
+          </tr>
+          <tr>
+            <td><div class="fill" contenteditable="true" data-k="esp-2-1" data-ph=""></div></td>
+            <td><div class="fill" contenteditable="true" data-k="esp-2-2" data-ph=""></div></td>
+            <td><div class="fill" contenteditable="true" data-k="esp-2-3" data-ph=""></div></td>
+            <td><div class="fill" contenteditable="true" data-k="esp-2-4" data-ph=""></div></td>
+          </tr>
+          <tr>
+            <td><div class="fill" contenteditable="true" data-k="esp-3-1" data-ph=""></div></td>
+            <td><div class="fill" contenteditable="true" data-k="esp-3-2" data-ph=""></div></td>
+            <td><div class="fill" contenteditable="true" data-k="esp-3-3" data-ph=""></div></td>
+            <td><div class="fill" contenteditable="true" data-k="esp-3-4" data-ph=""></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule-card">
+      <span class="rule-tag">La prueba del perfil</span>
+      <p>Tapá la columna del perfil y leé la especificación. Si no se puede reconstruir para qué puesto es, el perfil no intervino en la decisión y la consigna pide justamente eso. Y al revés: si dos perfiles muy distintos terminan en la misma máquina, hay que explicar por qué conviene igual —la compra unificada abarata y simplifica el mantenimiento, y es un argumento válido si está escrito.</p>
+    </div>
+  </section>
+
+  <section id="matriz">
+    <h2>3 · La matriz de comparación, paso a paso</h2>
+    <p>Es el instrumento de la clase 1 y el que produce los 10 puntos de pensamiento combinatorio. Los siete pasos van en este orden, y el orden importa: los pesos se definen antes de mirar los candidatos.</p>
+
+    <ol class="pasos">
+      <li><b>Escribir el propósito</b><span>Para qué se compra, en una oración. «Equipar el puesto de diseño para edición de video en resolución alta.» Todo lo demás se deriva de acá.</span></li>
+      <li><b>Elegir los criterios</b><span>Entre cuatro y seis. Salen del perfil, no del folleto: rendimiento en la tarea, memoria, almacenamiento, calidad del monitor, garantía, precio.</span></li>
+      <li><b>Ponderar</b><span>Repartir 100 puntos entre los criterios, antes de mirar las alternativas. Si se ponderan después, la matriz solamente justifica lo que ya estaba elegido, y eso se nota.</span></li>
+      <li><b>Definir la escala</b><span>De 1 a 5, con el significado de cada valor escrito. «5 = cumple con margen; 3 = cumple justo; 1 = no cumple.» Sin la escala escrita, cada integrante puntúa distinto.</span></li>
+      <li><b>Medir</b><span>Con la fuente y la fecha de cada dato. Si se comparan prestaciones y no fichas técnicas, acá entra benchmarking: mismas condiciones y varias corridas.</span></li>
+      <li><b>Calcular</b><span>Puntaje por peso, y la suma. La cuenta es lo más fácil y no es lo que se evalúa.</span></li>
+      <li><b>Escribir la decisión</b><span>Tres frases: qué se eligió, qué criterio definió la diferencia y qué se resignó al elegir. Esta parte está en el punto 4.</span></li>
+    </ol>
+
+    <h3 class="sub">Matriz para completar, con el cálculo hecho</h3>
+    <p>Cargá los pesos y los puntajes de 1 a 5. Los pesos tienen que sumar 100.</p>
+    <div class="table-wrap">
+      <table class="matriz" id="matriz">
+        <thead>
+          <tr>
+            <th scope="col">Criterio</th>
+            <th scope="col" class="num">Peso</th>
+            <th scope="col" class="num">Alt. A</th>
+            <th scope="col" class="num">A ponderado</th>
+            <th scope="col" class="num">Alt. B</th>
+            <th scope="col" class="num">B ponderado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-fila="1">
+            <td><div class="fill" contenteditable="true" data-k="mtz-1" data-ph="Rendimiento en la tarea principal"></div></td>
+            <td class="num"><input type="number" min="0" max="100" step="1" data-k="p1" aria-label="Peso del criterio 1"></td>
+            <td class="num"><input type="number" min="1" max="5" step="1" data-k="a1" aria-label="Puntaje A del criterio 1"></td>
+            <td class="num res" data-res="a1">—</td>
+            <td class="num"><input type="number" min="1" max="5" step="1" data-k="b1" aria-label="Puntaje B del criterio 1"></td>
+            <td class="num res" data-res="b1">—</td>
+          </tr>
+          <tr data-fila="2">
+            <td><div class="fill" contenteditable="true" data-k="mtz-2" data-ph="Memoria y capacidad de ampliación"></div></td>
+            <td class="num"><input type="number" min="0" max="100" step="1" data-k="p2" aria-label="Peso del criterio 2"></td>
+            <td class="num"><input type="number" min="1" max="5" step="1" data-k="a2" aria-label="Puntaje A del criterio 2"></td>
+            <td class="num res" data-res="a2">—</td>
+            <td class="num"><input type="number" min="1" max="5" step="1" data-k="b2" aria-label="Puntaje B del criterio 2"></td>
+            <td class="num res" data-res="b2">—</td>
+          </tr>
+          <tr data-fila="3">
+            <td><div class="fill" contenteditable="true" data-k="mtz-3" data-ph="Precio"></div></td>
+            <td class="num"><input type="number" min="0" max="100" step="1" data-k="p3" aria-label="Peso del criterio 3"></td>
+            <td class="num"><input type="number" min="1" max="5" step="1" data-k="a3" aria-label="Puntaje A del criterio 3"></td>
+            <td class="num res" data-res="a3">—</td>
+            <td class="num"><input type="number" min="1" max="5" step="1" data-k="b3" aria-label="Puntaje B del criterio 3"></td>
+            <td class="num res" data-res="b3">—</td>
+          </tr>
+          <tr data-fila="4">
+            <td><div class="fill" contenteditable="true" data-k="mtz-4" data-ph="Garantía y soporte"></div></td>
+            <td class="num"><input type="number" min="0" max="100" step="1" data-k="p4" aria-label="Peso del criterio 4"></td>
+            <td class="num"><input type="number" min="1" max="5" step="1" data-k="a4" aria-label="Puntaje A del criterio 4"></td>
+            <td class="num res" data-res="a4">—</td>
+            <td class="num"><input type="number" min="1" max="5" step="1" data-k="b4" aria-label="Puntaje B del criterio 4"></td>
+            <td class="num res" data-res="b4">—</td>
+          </tr>
+          <tr data-fila="5">
+            <td><div class="fill" contenteditable="true" data-k="mtz-5" data-ph="Plazo de entrega"></div></td>
+            <td class="num"><input type="number" min="0" max="100" step="1" data-k="p5" aria-label="Peso del criterio 5"></td>
+            <td class="num"><input type="number" min="1" max="5" step="1" data-k="a5" aria-label="Puntaje A del criterio 5"></td>
+            <td class="num res" data-res="a5">—</td>
+            <td class="num"><input type="number" min="1" max="5" step="1" data-k="b5" aria-label="Puntaje B del criterio 5"></td>
+            <td class="num res" data-res="b5">—</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Totales</td>
+            <td class="num" id="sumaPesos">0</td>
+            <td class="num"></td>
+            <td class="num" id="totalA">0,00</td>
+            <td class="num"></td>
+            <td class="num" id="totalB">0,00</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="alerta" id="avisoPesos">Los pesos suman 0. Tienen que sumar 100 para que el resultado sea interpretable.</div>
+    <div class="gana" id="resultado">Cargá los pesos y los puntajes para ver el resultado.</div>
+
+    <div class="aviso">
+      <span class="rule-tag">Cuando la diferencia es mínima</span>
+      <p>Si las dos alternativas terminan a menos de medio punto, la matriz está diciendo que son equivalentes para el propósito declarado. Eso también es un resultado y se escribe: se elige por un criterio de desempate que se nombra —disponibilidad inmediata, servicio técnico en la ciudad, compatibilidad con lo que ya hay— y se deja constancia de que el desempate fue eso y no la matriz.</p>
+    </div>
+  </section>
+
+  <section id="redaccion">
+    <h2>4 · Cómo se escribe la decisión</h2>
+    <p>La matriz produce un número. Lo que lee el evaluador es el párrafo. Tiene tres partes y ninguna se puede omitir.</p>
+
+    <div class="cadena">qué elegimos → qué criterio definió la diferencia → qué resignamos al elegirlo</div>
+
+    <div class="modelo">
+      <div class="de">Modelo de redacción · comparación de equipos</div>
+      <p>Se recomienda la <em>alternativa B</em> para el puesto de diseño. La diferencia la definió el <em>rendimiento en edición de video</em>, criterio al que se asignó el peso más alto (35 sobre 100) porque es la tarea que ocupa la mayor parte de la jornada en ese puesto: la alternativa B incorpora placa de video dedicada y la A resuelve el procesamiento con la placa integrada, lo que en la medición de referencia consultada duplica el tiempo de exportación.</p>
+      <p>Al elegir B se resigna <em>precio</em>: cuesta un 22 % más que A, y en ese criterio A obtuvo el puntaje máximo. Se acepta esa diferencia porque el tiempo de exportación afecta todos los días al mismo puesto, mientras que el precio es un costo único.</p>
+      <p>Si el presupuesto disponible no permitiera la alternativa B, la alternativa A sigue cumpliendo el mínimo de la tarea, con un tiempo de exportación mayor que hay que informar al usuario antes de la compra.</p>
+    </div>
+
+    <p class="hint">Ese último párrafo es opcional y conviene escribirlo: muestra que el equipo entendió el problema y no solo la comparación. En la situación 10, donde piden una alternativa económica y una recomendada, ese párrafo <b>es</b> el entregable.</p>
+
+    <div class="modelo">
+      <div class="de">Modelo de redacción · cuando el dato no se pudo conseguir</div>
+      <p>No fue posible obtener el <em>tiempo de respuesta del servicio técnico</em> de dos de los tres proveedores consultados: uno no lo informa en su sitio y el otro no respondió la consulta enviada el 6 de octubre. El criterio se mantuvo en la matriz con el peso definido y se puntuó con el valor mínimo en los dos casos, dejando constancia de que la falta de información es en sí misma un dato sobre el servicio.</p>
+    </div>
+
+    <p class="hint">Escribir el límite de la información disponible es autorregulación, y son 12 puntos de la grilla. Inventar el dato faltante es lo que se cae cuando el evaluador pregunta de dónde salió.</p>
+
+    <h3 class="sub">Tu párrafo de decisión</h3>
+    <div class="table-wrap">
+      <table class="plantilla">
+        <thead><tr><th scope="col">Parte</th><th scope="col">Tu texto</th></tr></thead>
+        <tbody>
+          <tr><td><b>Qué elegimos</b></td><td><div class="fill" contenteditable="true" data-k="dec-1" data-ph="Se recomienda la alternativa… para…"></div></td></tr>
+          <tr><td><b>Qué definió la diferencia</b></td><td><div class="fill" contenteditable="true" data-k="dec-2" data-ph="La diferencia la definió el criterio…, con peso…, porque…"></div></td></tr>
+          <tr><td><b>Qué resignamos</b></td><td><div class="fill" contenteditable="true" data-k="dec-3" data-ph="Al elegirla se resigna…, y se acepta porque…"></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="homogeneizar">
+    <h2>5 · Tres presupuestos que no son comparables</h2>
+    <p>Los presupuestos van a llegar con configuraciones distintas, plazos distintos y garantías distintas. Compararlos por el precio final es el error clásico. Homogeneizar parámetros es contenido de la materia y es exactamente esto.</p>
+
+    <h3 class="sub">Ejemplo: lo que llega</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Proveedor</th><th scope="col">Lo que cotizó</th><th scope="col">Precio</th><th scope="col">Plazo</th><th scope="col">Garantía</th></tr></thead>
+        <tbody>
+          <tr><td><b>Proveedor 1</b></td><td>Equipo con 8 GB de memoria, disco de estado sólido de 240 GB, sin monitor</td><td>El más bajo</td><td>48 horas</td><td>6 meses</td></tr>
+          <tr><td><b>Proveedor 2</b></td><td>Equipo con 16 GB, disco de 480 GB, monitor de 24 pulgadas incluido</td><td>El más alto</td><td>10 días</td><td>24 meses en el local</td></tr>
+          <tr><td><b>Proveedor 3</b></td><td>Equipo con 16 GB, disco de 480 GB, sin monitor, sistema operativo incluido</td><td>Intermedio</td><td>5 días</td><td>12 meses con retiro a domicilio</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Los cuatro movimientos que los vuelven comparables</h3>
+    <ol class="pasos">
+      <li><b>Llevar todo a la misma configuración</b><span>La especificación del equipo manda. Al proveedor 1 hay que sumarle el costo de llevar la memoria a 16 GB y el disco a 480 GB, o pedirle que recotice. Comparar 8 GB contra 16 GB por el precio final no compara nada.</span></li>
+      <li><b>Separar lo que no forma parte del pedido</b><span>El monitor del proveedor 2 se descuenta del total, o se le suma a los otros dos. Lo que no puede pasar es que quede adentro de uno solo.</span></li>
+      <li><b>Convertir el plazo y la garantía en criterios</b><span>No son «condiciones comerciales»: son dos criterios más de la matriz, con su peso. Cuarenta y ocho horas de plazo valen algo concreto cuando el equipo tiene una semana de trabajo.</span></li>
+      <li><b>Anotar qué no se pudo homogeneizar</b><span>Si un proveedor no informa el modelo exacto del disco, se escribe. El dato faltante entra a la matriz con el puntaje mínimo y con la aclaración.</span></li>
+    </ol>
+
+    <div class="rule-card">
+      <span class="rule-tag">El resultado que hay que mostrar</span>
+      <p>Después de homogeneizar, la tabla de comparación tiene una fila por proveedor y las mismas columnas para todos, con una columna final de «ajustes aplicados» que dice qué se sumó o se descontó y por qué. Esa columna es la evidencia de que se homogeneizó, y sin ella el evaluador ve tres precios y ningún criterio.</p>
+    </div>
+  </section>
+
+  <section id="cotizacion">
+    <h2>6 · El pedido de cotización</h2>
+
+    <div class="solo t3">
+      <p>Es el entregable con el reloj más largo, porque depende de que respondan terceros. Se manda el primer día, no el último.</p>
+
+      <h3 class="sub">El contenido del pedido</h3>
+      <ul class="limpia">
+        <li>La <b>especificación técnica</b> del equipo, con los parámetros mínimos: procesador, memoria, almacenamiento, placa de video si hace falta, y si incluye o no monitor y sistema operativo.</li>
+        <li>La <b>cantidad</b> y el destino, en una línea. Un pedido institucional se responde distinto que una consulta suelta.</li>
+        <li>Las <b>preguntas que no son el precio</b>: plazo de entrega, garantía y su alcance, forma de facturación, y si el servicio técnico es en el local o con retiro.</li>
+        <li>Una <b>fecha</b> hasta la que se espera la respuesta. Da un motivo para contestar y deja constancia del plazo si no contestan.</li>
+      </ul>
+
+      <div class="mail">
+        <div class="mail-h"><b>Asunto:</b> Pedido de cotización — equipo de escritorio — Escuela Técnica N.º 3, trabajo escolar</div>
+        <div class="mail-b">Buenos días.
+
+Somos un equipo de estudiantes de 7.º año de la Escuela de Educación Secundaria Técnica N.º 3 de Mar del Plata. Estamos elaborando un trabajo para la Olimpíada Nacional de Educación Técnico Profesional y necesitamos cotizar un equipo de escritorio con las siguientes características mínimas:
+
+— Procesador: <b>[gama y generación]</b>
+— Memoria: <b>[capacidad]</b>
+— Almacenamiento: <b>[tipo y capacidad]</b>
+— Placa de video: <b>[dedicada o integrada]</b>
+— Monitor: <b>[incluido o no]</b>
+— Sistema operativo: <b>[incluido o no]</b>
+
+Además del precio, les agradecemos indicar plazo de entrega, garantía y su alcance, y si el servicio técnico se realiza en el local o con retiro a domicilio.
+
+Necesitamos la respuesta antes del <b>[fecha]</b>. El presupuesto se usa exclusivamente con fines educativos y se incluye como anexo del trabajo.
+
+Desde ya, muchas gracias.
+
+<b>[Nombres del equipo]</b>
+7.º año — E.E.S.T. N.º 3, Mar del Plata</div>
+      </div>
+
+      <div class="aviso">
+        <span class="rule-tag">El reloj, y qué hacer si no contestan</span>
+        <p>Una empresa tarda entre dos y cinco días hábiles en responder, y no todas responden. Conviene escribirle a <b>cinco o seis</b> para asegurar tres respuestas. Y no hay que esperar a tener la matriz terminada: el presupuesto se pide sobre una especificación, y la matriz explica después por qué esa especificación y no otra.</p>
+        <p>Si una empresa no contesta, se documenta el pedido enviado con su fecha y se deja constancia de la falta de respuesta. Eso también es evidencia del proceso, y ocupa el lugar de un presupuesto en la tabla, con la aclaración.</p>
+      </div>
+
+      <h3 class="sub">Registro de pedidos</h3>
+      <div class="table-wrap">
+        <table class="plantilla">
+          <thead><tr><th scope="col">Empresa</th><th scope="col">Fecha de envío</th><th scope="col">Fecha de respuesta</th><th scope="col">Estado</th><th scope="col">Dónde está la copia</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="fill" contenteditable="true" data-k="cot-1-1" data-ph="Proveedor 1"></div></td>
+              <td><div class="fill" contenteditable="true" data-k="cot-1-2" data-ph="6 de octubre"></div></td>
+              <td><div class="fill" contenteditable="true" data-k="cot-1-3" data-ph="8 de octubre"></div></td>
+              <td><div class="fill" contenteditable="true" data-k="cot-1-4" data-ph="Respondió con presupuesto"></div></td>
+              <td><div class="fill" contenteditable="true" data-k="cot-1-5" data-ph="Anexo C, figura 1"></div></td>
+            </tr>
+            <tr>
+              <td><div class="fill" contenteditable="true" data-k="cot-2-1" data-ph=""></div></td>
+              <td><div class="fill" contenteditable="true" data-k="cot-2-2" data-ph=""></div></td>
+              <td><div class="fill" contenteditable="true" data-k="cot-2-3" data-ph=""></div></td>
+              <td><div class="fill" contenteditable="true" data-k="cot-2-4" data-ph=""></div></td>
+              <td><div class="fill" contenteditable="true" data-k="cot-2-5" data-ph=""></div></td>
+            </tr>
+            <tr>
+              <td><div class="fill" contenteditable="true" data-k="cot-3-1" data-ph=""></div></td>
+              <td><div class="fill" contenteditable="true" data-k="cot-3-2" data-ph=""></div></td>
+              <td><div class="fill" contenteditable="true" data-k="cot-3-3" data-ph=""></div></td>
+              <td><div class="fill" contenteditable="true" data-k="cot-3-4" data-ph=""></div></td>
+              <td><div class="fill" contenteditable="true" data-k="cot-3-5" data-ph=""></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="solo t5">
+      <p>Tu consigna aclara que no hace falta pedir presupuestos y que se pueden usar valores obtenidos de internet. Lo que sí hay que producir, en la situación 10, son dos alternativas de costo: una económica y una recomendada.</p>
+
+      <h3 class="sub">Las dos alternativas, con la misma matriz</h3>
+      <ol class="pasos">
+        <li><b>Definir el mínimo funcional</b><span>Qué es lo que la oficina no puede dejar de tener para trabajar. Ese es el piso de la alternativa económica, y hay que escribirlo como umbral, no como intención.</span></li>
+        <li><b>Armar la económica sobre ese piso</b><span>La configuración más barata que cumple el mínimo. Con la matriz ya hecha, es la alternativa que gana cuando el precio pesa más.</span></li>
+        <li><b>Armar la recomendada con la ponderación real</b><span>La que gana con los pesos que salen del uso. Suele diferenciarse en memoria, almacenamiento y garantía.</span></li>
+        <li><b>Escribir qué se pierde con la económica</b><span>En términos concretos: cuánto antes queda obsoleta, qué tarea se hace más lenta, qué ampliación va a hacer falta y cuándo. Esa comparación es el entregable.</span></li>
+      </ol>
+
+      <div class="table-wrap">
+        <table class="plantilla">
+          <thead><tr><th scope="col">Rubro</th><th scope="col">Alternativa económica</th><th scope="col">Alternativa recomendada</th><th scope="col">Qué se pierde con la económica</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="fill" contenteditable="true" data-k="alt-1-1" data-ph="Equipos (8 puestos)"></div></td>
+              <td><div class="fill" contenteditable="true" data-k="alt-1-2" data-ph=""></div></td>
+              <td><div class="fill" contenteditable="true" data-k="alt-1-3" data-ph=""></div></td>
+              <td><div class="fill" contenteditable="true" data-k="alt-1-4" data-ph=""></div></td>
+            </tr>
+            <tr>
+              <td><div class="fill" contenteditable="true" data-k="alt-2-1" data-ph="Red y conectividad"></div></td>
+              <td><div class="fill" contenteditable="true" data-k="alt-2-2" data-ph=""></div></td>
+              <td><div class="fill" contenteditable="true" data-k="alt-2-3" data-ph=""></div></td>
+              <td><div class="fill" contenteditable="true" data-k="alt-2-4" data-ph=""></div></td>
+            </tr>
+            <tr>
+              <td><div class="fill" contenteditable="true" data-k="alt-3-1" data-ph="Almacenamiento compartido y copias"></div></td>
+              <td><div class="fill" contenteditable="true" data-k="alt-3-2" data-ph=""></div></td>
+              <td><div class="fill" contenteditable="true" data-k="alt-3-3" data-ph=""></div></td>
+              <td><div class="fill" contenteditable="true" data-k="alt-3-4" data-ph=""></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hint">La estimación es «general», así que no hace falta precisión de proveedor: hace falta que cada número tenga su fuente y su fecha, y que las dos columnas sumen.</p>
+    </div>
+  </section>
+
+  <section id="fuentes">
+    <h2>7 · Los precios, con fuente y fecha</h2>
+    <p>Un precio sin fuente no se puede verificar, y en un trabajo evaluado eso lo vuelve inútil. La consigna de la Técnica 3 además restringe de dónde puede salir.</p>
+
+    <div class="cards">
+      <div class="tool">
+        <div class="de">De dónde</div>
+        <h3>Sitios de empresas del rubro</h3>
+        <p>Tres sitios distintos de empresas que venden equipamiento informático. Los portales de compraventa entre usuarios quedan expresamente afuera del entregable 3.</p>
+      </div>
+      <div class="tool">
+        <div class="de">Con qué</div>
+        <h3>Título, fecha de acceso y URL</h3>
+        <p>Es el mínimo de APA 7 para material de internet. El precio cambia, así que la fecha de acceso es la que vuelve verificable el número.</p>
+      </div>
+      <div class="tool">
+        <div class="de">Dónde queda</div>
+        <h3>En la bitácora, el mismo día</h3>
+        <p>La última columna de la bitácora se convierte en la lista de referencias el último día. Cargada después, siempre falta la fecha.</p>
+      </div>
+    </div>
+
+    <div class="modelo">
+      <div class="de">Modelo de referencia · precio consultado en internet</div>
+      <p>Nombre de la empresa. (s. f.). <em>Computadora de escritorio [modelo]</em>. Recuperado el 6 de octubre de 2026, de https://…</p>
+    </div>
+    <p class="hint">La abreviatura «s. f.» significa «sin fecha» y se usa cuando la página no informa cuándo se publicó, que es lo habitual en un catálogo de productos.</p>
+  </section>
+
+  <section id="formato">
+    <h2>8 · Las pautas formales, y cómo se cumplen</h2>
+    <p>Valen 20 puntos de producto final y son lo único de la grilla que se puede tener perfecto sin saber nada del tema. También lo primero que se pierde cuando se entrega apurado.</p>
+
+    <h3 class="sub">Un único archivo PDF, con los anexos adentro</h3>
+    <p>Los anexos van en el mismo documento, no como archivos aparte. En la práctica: el equipo trabaja en un solo archivo del procesador de textos, con una sección «Anexos» al final donde entran las capturas, las planillas completas, los croquis y las copias de los mails; recién al final exporta a PDF. Los presupuestos que llegaron en PDF se insertan como imagen, o se combinan al final del archivo exportado.</p>
+
+    <h3 class="sub">Arial 12, interlineado sencillo</h3>
+    <p>Es el cuerpo del texto; los títulos pueden ser mayores. Conviene fijar el estilo al empezar: cambiar la tipografía sobre un documento terminado con tablas desarma el formato de las tablas y consume el tiempo del último día.</p>
+
+    <h3 class="sub">El nombre del archivo</h3>
+    <p>Tres primeras consonantes de la jurisdicción, especialidad, CUE de la escuela y número de equipo. Tiene que coincidir con el dato con el que se identificaron en la plataforma.</p>
+    <div class="armador">
+      <div class="campo">
+        <label for="inCue">CUE de la escuela</label>
+        <input type="text" id="inCue" inputmode="numeric" placeholder="060597100" maxlength="12">
+      </div>
+      <div class="campo">
+        <label for="inEq">N.º de equipo</label>
+        <input type="text" id="inEq" inputmode="numeric" placeholder="001" maxlength="3">
+      </div>
+    </div>
+    <div class="salida" id="nombreArchivo">BNS-INFO-CUE-00X</div>
+    <p class="hint">La jurisdicción es Buenos Aires, así que las tres consonantes son <code class="inline">BNS</code>, y la especialidad es <code class="inline">INFO</code>. El CUE de la Técnica 3 es <code class="inline">060597100</code> y el de la Técnica 5 figura en los directorios educativos como <code class="inline">060622400</code>. Confirmen el suyo en la escuela antes de entregar: el nombre tiene que coincidir con el dato que quedó cargado en la plataforma.</p>
+
+    <h3 class="sub">Las citas y las referencias</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Tipo de fuente</th><th scope="col">Qué lleva la referencia</th></tr></thead>
+        <tbody>
+          <tr><td><b>Libro</b></td><td>Apellido, inicial. (Año). <i>Título completo en cursiva</i>. Ciudad: Editorial.</td></tr>
+          <tr><td><b>Capítulo de libro</b></td><td>Autor y año; título del capítulo; «En» autores del libro (Eds.), <i>título del libro en cursiva</i> (pp. inicial-final). Ciudad: Editorial.</td></tr>
+          <tr><td><b>Artículo de revista</b></td><td>Autor y año; título del artículo; <i>nombre de la revista</i>, <i>volumen</i>(número), página inicial-final.</td></tr>
+          <tr><td><b>Material de internet</b></td><td>Autor de la página. (Fecha de publicación o revisión). <i>Título de la página</i>. Recuperado el (fecha de acceso), de (URL).</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="hint">La cuarta fila es la que van a usar casi siempre: especificaciones del fabricante, precios de referencia, valores de temperatura, documentación de herramientas.</p>
+
+    <div class="solo t5">
+      <div class="aviso">
+        <span class="rule-tag">Cinco a diez páginas, sin contar anexos</span>
+        <p>Se cuenta el cuerpo: portada, desarrollo y conclusiones. Las planillas largas, las capturas y las tablas completas van al anexo y no cuentan. En el cuerpo queda el criterio con el que se armó cada cosa, que es lo que puntúa. Un cuerpo de cuatro páginas con un anexo de doce está mejor presentado que uno de doce páginas con las planillas intercaladas.</p>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <span class="rule-tag">Los criterios que se aplican antes de leer el contenido</span>
+      <p>Redacción comprensible y clara. Ortografía. Presencia de todos los ítems solicitados. Adecuación a las pautas de formato. Referencias en APA 7. Los cinco están enunciados en el documento de la Olimpíada, y los cinco se verifican sin entrar en el tema.</p>
+    </div>
+  </section>
+
+  <section id="indice">
+    <h2>9 · El índice del documento</h2>
+    <p>Sirve para las dos consignas. Cada sección responde a algo que está pedido, y el nombre de la sección le facilita al evaluador encontrar la evidencia del criterio que está puntuando.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Sección</th><th scope="col">Qué responde</th><th scope="col">Extensión</th></tr></thead>
+        <tbody>
+          <tr><td><b>Portada</b></td><td>Equipo, escuela, situación abordada</td><td>media página</td></tr>
+          <tr><td><b>1 · Situación y necesidades detectadas</b></td><td>Qué está mal hoy y por qué es un problema. Es la «problematización» que pide el documento de la Olimpíada.</td><td>media página</td></tr>
+          <tr><td><b>2 · Alcance</b></td><td>Qué entra y qué queda afuera, con la razón</td><td>pocas líneas</td></tr>
+          <tr><td><b>3 · Proceso de trabajo y responsabilidades</b></td><td>Cronograma y reparto por tarea, con el criterio de reparto</td><td>media página</td></tr>
+          <tr><td><b>4 · Desarrollo de la solución</b></td><td>Un apartado por entregable o por punto de la situación</td><td>el cuerpo</td></tr>
+          <tr><td><b>5 · Comparación de alternativas y decisión</b></td><td>La matriz, la escala, el cálculo y el párrafo de decisión</td><td>una página</td></tr>
+          <tr><td><b>6 · Pruebas y resultados</b></td><td>Las fichas de caso de prueba, con lo esperado y lo obtenido</td><td>una página</td></tr>
+          <tr><td><b>7 · Registro de dificultades</b></td><td>La bitácora resumida: qué se trabó, qué se probó, qué lo resolvió</td><td>media página</td></tr>
+          <tr><td><b>8 · Conclusiones</b></td><td>Qué se resolvió, qué quedó pendiente, qué se haría distinto</td><td>media página</td></tr>
+          <tr><td><b>Referencias</b></td><td>En APA 7, armadas desde la bitácora</td><td>lo que ocupe</td></tr>
+          <tr><td><b>Anexos</b></td><td>Planillas completas, capturas con epígrafe, croquis, mails y presupuestos</td><td>sin límite</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="aviso">
+      <span class="rule-tag">La sección que se borra</span>
+      <p>Cuando falta espacio, la primera que se saca es la 7. Es la que sostiene los 12 puntos de autorregulación, y es la más difícil de reconstruir el último día. Media página escrita con la bitácora al lado alcanza.</p>
+    </div>
+  </section>
+
+  <section id="cotejo">
+    <h2>10 · Lista de cotejo del entregable</h2>
+    <p>Se usa sobre el documento terminado. Si una línea no se puede marcar, se arregla o se explica en el documento.</p>
+    <ul class="cotejo">
+      <li><label><input type="checkbox" data-k="ck1"> Cada perfil tiene tareas concretas escritas, y no solo el nombre del puesto.</label></li>
+      <li><label><input type="checkbox" data-k="ck2"> Cada componente elegido tiene al lado la exigencia de la tarea que lo justifica.</label></li>
+      <li><label><input type="checkbox" data-k="ck3"> Se cumple el mínimo de perfiles o de puestos que pide la consigna.</label></li>
+      <li><label><input type="checkbox" data-k="ck4"> La matriz tiene los pesos definidos y suman 100.</label></li>
+      <li><label><input type="checkbox" data-k="ck5"> La escala de puntuación está escrita, con el significado de cada valor.</label></li>
+      <li><label><input type="checkbox" data-k="ck6"> Cada dato de la matriz tiene fuente y fecha de acceso.</label></li>
+      <li><label><input type="checkbox" data-k="ck7"> El párrafo de decisión dice qué se eligió, qué definió la diferencia y qué se resignó.</label></li>
+      <li><label><input type="checkbox" data-k="ck8"> Los presupuestos o los precios están homogeneizados, con la columna de ajustes aplicados.</label></li>
+      <li><label><input type="checkbox" data-k="ck9"> El plazo de entrega y la garantía entraron como criterios, no como comentario.</label></li>
+      <li><label><input type="checkbox" data-k="ck10"> Los pedidos sin respuesta están documentados con su fecha de envío.</label></li>
+      <li><label><input type="checkbox" data-k="ck11"> El archivo es un único PDF y los anexos están adentro.</label></li>
+      <li><label><input type="checkbox" data-k="ck12"> El cuerpo está en Arial 12 con interlineado sencillo.</label></li>
+      <li><label><input type="checkbox" data-k="ck13"> El nombre del archivo coincide con el dato cargado en la plataforma.</label></li>
+      <li><label><input type="checkbox" data-k="ck14"> Todas las fuentes de internet tienen título, fecha de acceso y URL.</label></li>
+      <li><label><input type="checkbox" data-k="ck15"> Las once secciones del índice están, aunque alguna sea breve.</label></li>
+    </ul>
+
+    <div class="export-bar">
+      <p>Bajá lo que completaste para pegarlo en el documento del equipo. El archivo sale en texto plano, con las tablas separadas por tabulaciones.</p>
+      <button class="btn" type="button" id="btnBajar">Descargar como archivo</button>
+      <button class="btn" type="button" onclick="window.print()">Imprimir o guardar PDF</button>
+    </div>
+  </section>
+
+  <section id="control">
+    <h2>11 · Preguntas de control</h2>
+    <p>Cuatro preguntas sobre lo que más se pierde en estos entregables.</p>
+
+    <div id="quiz">
+      <div class="q" data-ok="c">
+        <p>¿Cuándo se definen los pesos de la matriz?</p>
+        <div class="opts">
+          <button class="opt" type="button" data-i="a">Después de medir, para que reflejen los datos reales</button>
+          <button class="opt" type="button" data-i="b">Al final, cuando ya se sabe cuál conviene</button>
+          <button class="opt" type="button" data-i="c">Antes de mirar las alternativas, a partir del propósito</button>
+        </div>
+        <div class="expl">Antes. Los pesos salen del propósito y del perfil de uso. Definidos después, la matriz solamente confirma una decisión ya tomada, y eso se nota en la lectura.</div>
+      </div>
+
+      <div class="q" data-ok="b">
+        <p>Un proveedor cotiza con monitor incluido y los otros dos sin monitor. ¿Cómo se comparan?</p>
+        <div class="opts">
+          <button class="opt" type="button" data-i="a">Se comparan los precios finales tal como llegaron</button>
+          <button class="opt" type="button" data-i="b">Se descuenta el monitor, o se le suma a los otros dos, y se aclara el ajuste</button>
+          <button class="opt" type="button" data-i="c">Se descarta ese presupuesto porque no cumple lo pedido</button>
+        </div>
+        <div class="expl">Se homogeneiza: se lleva todo a la misma configuración y se deja escrito qué se sumó o se descontó. Descartarlo pierde una de las tres cotizaciones que pide la consigna.</div>
+      </div>
+
+      <div class="q" data-ok="a">
+        <p>Las ocho gerencias del entregable 3 terminan con la misma configuración de equipo. ¿Qué hay que hacer?</p>
+        <div class="opts">
+          <button class="opt" type="button" data-i="a">Explicar por qué conviene unificar, o revisar si los perfiles se diferenciaron de verdad</button>
+          <button class="opt" type="button" data-i="b">Cambiar algún componente para que se vean distintas</button>
+          <button class="opt" type="button" data-i="c">Dejarlo así: la consigna pide ocho perfiles, no ocho equipos distintos</button>
+        </div>
+        <div class="expl">Unificar puede ser la decisión correcta —abarata y simplifica el mantenimiento— y hay que escribir ese argumento. Lo que no se puede es que la coincidencia sea el resultado de no haber usado el perfil para decidir.</div>
+      </div>
+
+      <div class="q" data-ok="c">
+        <p>El documento va a quedar en doce páginas y el límite es diez sin contar anexos. ¿Qué se mueve?</p>
+        <div class="opts">
+          <button class="opt" type="button" data-i="a">El registro de dificultades, que es lo más prescindible</button>
+          <button class="opt" type="button" data-i="b">Las conclusiones, porque repiten lo ya dicho</button>
+          <button class="opt" type="button" data-i="c">Las planillas completas y las capturas, al anexo</button>
+        </div>
+        <div class="expl">Al anexo van las tablas largas y las imágenes, que no cuentan para el límite. El registro de dificultades sostiene 12 puntos de autorregulación y las conclusiones son parte de lo pedido.</div>
+      </div>
+
+      <p class="score">Respondidas correctamente: <b id="score">0 de 4</b></p>
+    </div>
+
+    <div class="acciones">
+      <button class="btn" type="button" id="btnReset">Reiniciar respuestas</button>
+    </div>
+  </section>
+
+  <section id="registro">
+    <h2>12 · Registro para la carpeta</h2>
+    <p>Copiá a mano en la carpeta, antes de terminar la clase:</p>
+    <ul class="limpia">
+      <li>La <b>cadena</b> de esta clase: tarea, exigencia, componente, parámetro.</li>
+      <li>Los <b>criterios de tu matriz</b> con su peso, y la suma en 100.</li>
+      <li>Tu <b>párrafo de decisión</b>, con las tres partes.</li>
+      <li>El <b>nombre de archivo</b> de tu equipo, completo.</li>
+      <li>La frase de control: <b>un precio sin fuente y sin fecha no se puede verificar</b>.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <p>Evaluación de Proyectos · 7.º año · E.E.S.T. N.º 3 y N.º 5. Material de cátedra para la instancia Escolar-Jurisdiccional de las Olimpíadas Nacionales de ETP 2026, modalidad Informática.</p>
+  <p>Retoma la clase 1 (matriz de evaluación ponderada, homogeneización y ponderación de parámetros) y las clases 10 y 11 (benchmarking y protocolos reproducibles). Lo que se completa en esta página queda guardado en el navegador de cada equipo.</p>
+</footer>
+<script>
+(function () {
+  "use strict";
+  var KEY = "olimpiadas-necesidad-presupuesto";
+  var state = {};
+
+  try {
+    var guardado = localStorage.getItem(KEY);
+    if (guardado) state = JSON.parse(guardado) || {};
+  } catch (e) { state = {}; }
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+
+  /* ---------- tablas apilables en pantallas chicas ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll("main table"), function (t) {
+    var ths = t.querySelectorAll("thead th");
+    if (ths.length < 3) return;
+    var rotulos = Array.prototype.map.call(ths, function (th) { return th.textContent.trim(); });
+    t.classList.add("apilable");
+    Array.prototype.forEach.call(t.querySelectorAll("tbody tr, tfoot tr"), function (tr) {
+      Array.prototype.forEach.call(tr.children, function (celda, i) {
+        if (rotulos[i]) celda.setAttribute("data-l", rotulos[i]);
+      });
+    });
+  });
+
+  /* ---------- selector de escuela ---------- */
+  var botones = Array.prototype.slice.call(document.querySelectorAll(".sel-btn"));
+
+  function aplicarEscuela(esc) {
+    document.body.classList.remove("esc-none", "esc-t3", "esc-t5");
+    document.body.classList.add(esc ? "esc-" + esc : "esc-none");
+    botones.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.esc === esc));
+    });
+  }
+
+  botones.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var esc = b.dataset.esc;
+      if (state.escuela === esc) { esc = null; }
+      state.escuela = esc;
+      save();
+      aplicarEscuela(esc);
+    });
+  });
+
+  aplicarEscuela(state.escuela || "t3");
+
+  /* ---------- celdas para completar ---------- */
+  var celdas = Array.prototype.slice.call(document.querySelectorAll(".fill"));
+
+  function marcarVacia(c) {
+    c.classList.toggle("vacio", c.textContent.trim() === "");
+  }
+
+  celdas.forEach(function (c) {
+    var k = c.dataset.k;
+    if (state[k]) c.textContent = state[k];
+    marcarVacia(c);
+    c.addEventListener("input", function () {
+      state[k] = c.textContent.trim();
+      marcarVacia(c);
+      save();
+    });
+    c.addEventListener("paste", function (ev) {
+      ev.preventDefault();
+      var texto = (ev.clipboardData || window.clipboardData).getData("text");
+      document.execCommand("insertText", false, texto.replace(/\s+/g, " "));
+    });
+  });
+
+  /* ---------- matriz con calculo ---------- */
+  var FILAS = 5;
+  var numeros = Array.prototype.slice.call(document.querySelectorAll("#matriz input[type='number']"));
+
+  function leer(k) {
+    var v = parseFloat(state[k]);
+    return isFinite(v) ? v : 0;
+  }
+
+  function recalcular() {
+    var sumaPesos = 0, totalA = 0, totalB = 0;
+    for (var i = 1; i <= FILAS; i++) {
+      var peso = leer("p" + i);
+      var a = leer("a" + i);
+      var b = leer("b" + i);
+      sumaPesos += peso;
+      var pa = peso * a / 100;
+      var pb = peso * b / 100;
+      totalA += pa;
+      totalB += pb;
+      var celdaA = document.querySelector("[data-res='a" + i + "']");
+      var celdaB = document.querySelector("[data-res='b" + i + "']");
+      if (celdaA) celdaA.textContent = (peso && a) ? pa.toFixed(2).replace(".", ",") : "—";
+      if (celdaB) celdaB.textContent = (peso && b) ? pb.toFixed(2).replace(".", ",") : "—";
+    }
+
+    document.getElementById("sumaPesos").textContent = sumaPesos;
+    document.getElementById("totalA").textContent = totalA.toFixed(2).replace(".", ",");
+    document.getElementById("totalB").textContent = totalB.toFixed(2).replace(".", ",");
+
+    var aviso = document.getElementById("avisoPesos");
+    if (sumaPesos === 100) {
+      aviso.className = "alerta ok";
+      aviso.textContent = "Los pesos suman 100. La comparación es interpretable.";
+    } else {
+      aviso.className = "alerta";
+      aviso.textContent = "Los pesos suman " + sumaPesos + ". Tienen que sumar 100 para que el resultado sea interpretable.";
+    }
+
+    var res = document.getElementById("resultado");
+    if (!totalA && !totalB) {
+      res.innerHTML = "Cargá los pesos y los puntajes para ver el resultado.";
+      return;
+    }
+    var dif = Math.abs(totalA - totalB);
+    var gana = totalA > totalB ? "A" : "B";
+    if (dif < 0.5) {
+      res.innerHTML = "<b>Empate técnico.</b> La diferencia es de " + dif.toFixed(2).replace(".", ",") +
+        " puntos, menos de medio punto: para el propósito declarado las dos alternativas son equivalentes. " +
+        "Elegí por un criterio de desempate que puedas nombrar, y dejá escrito que el desempate fue eso y no la matriz.";
+    } else {
+      res.innerHTML = "<b>Gana la alternativa " + gana + "</b> por " + dif.toFixed(2).replace(".", ",") +
+        " puntos. Ahora escribí el párrafo del punto 4: qué elegiste, qué criterio definió la diferencia y qué resignaste.";
+    }
+  }
+
+  numeros.forEach(function (inp) {
+    var k = inp.dataset.k;
+    if (state[k] !== undefined && state[k] !== "") inp.value = state[k];
+    inp.addEventListener("input", function () {
+      state[k] = inp.value;
+      save();
+      recalcular();
+    });
+  });
+  recalcular();
+
+  /* ---------- armador del nombre de archivo ---------- */
+  var inCue = document.getElementById("inCue");
+  var inEq = document.getElementById("inEq");
+  var salida = document.getElementById("nombreArchivo");
+
+  function armarNombre() {
+    var cue = (inCue.value || "").replace(/\D/g, "");
+    var eq = (inEq.value || "").replace(/\D/g, "");
+    var partes = ["BNS", "INFO", cue || "CUE", eq ? eq.padStart(3, "0") : "00X"];
+    salida.textContent = partes.join("-");
+  }
+
+  if (inCue && inEq && salida) {
+    if (state.cue) inCue.value = state.cue;
+    if (state.equipo) inEq.value = state.equipo;
+    [inCue, inEq].forEach(function (inp) {
+      inp.addEventListener("input", function () {
+        state.cue = inCue.value;
+        state.equipo = inEq.value;
+        save();
+        armarNombre();
+      });
+    });
+    armarNombre();
+  }
+
+  /* ---------- lista de cotejo ---------- */
+  var checks = Array.prototype.slice.call(document.querySelectorAll(".cotejo input"));
+  checks.forEach(function (ch) {
+    var k = ch.dataset.k;
+    ch.checked = !!state[k];
+    ch.closest("li").classList.toggle("marcada", ch.checked);
+    ch.addEventListener("change", function () {
+      state[k] = ch.checked;
+      ch.closest("li").classList.toggle("marcada", ch.checked);
+      save();
+    });
+  });
+
+  /* ---------- descarga de lo completado ---------- */
+  function textoTabla(tabla) {
+    var lineas = [];
+    Array.prototype.forEach.call(tabla.querySelectorAll("tr"), function (tr) {
+      var cs = Array.prototype.map.call(tr.children, function (c) {
+        var inp = c.querySelector("input");
+        var txt = inp ? inp.value : c.textContent;
+        return (txt || "").replace(/\s+/g, " ").trim();
+      });
+      if (cs.join("").length) lineas.push(cs.join("\t"));
+    });
+    return lineas.join("\n");
+  }
+
+  var btnBajar = document.getElementById("btnBajar");
+  if (btnBajar) {
+    btnBajar.addEventListener("click", function () {
+      var partes = ["DE LA NECESIDAD AL PRESUPUESTO — lo que completó el equipo", ""];
+      if (salida) partes.push("Nombre del archivo de entrega: " + salida.textContent, "");
+      Array.prototype.forEach.call(document.querySelectorAll("main section"), function (sec) {
+        var tablas = sec.querySelectorAll("table.plantilla, table.matriz");
+        if (!tablas.length) return;
+        var h2 = sec.querySelector("h2");
+        partes.push("== " + (h2 ? h2.textContent.trim() : "") + " ==");
+        Array.prototype.forEach.call(tablas, function (t) {
+          partes.push(textoTabla(t), "");
+        });
+      });
+      var pendientes = checks.filter(function (ch) { return !ch.checked; });
+      partes.push("== Lista de cotejo: pendientes ==");
+      if (pendientes.length) {
+        pendientes.forEach(function (ch) {
+          partes.push("[ ] " + ch.closest("label").textContent.trim());
+        });
+      } else {
+        partes.push("Sin pendientes.");
+      }
+      var blob = new Blob([partes.join("\n")], { type: "text/plain;charset=utf-8" });
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "necesidad-al-presupuesto.txt";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(a.href);
+    });
+  }
+
+  /* ---------- preguntas de control ---------- */
+  var preguntas = Array.prototype.slice.call(document.querySelectorAll("#quiz .q"));
+
+  function puntaje() {
+    var ok = 0;
+    preguntas.forEach(function (q, i) {
+      if (state["q" + i] && state["q" + i] === q.dataset.ok) ok++;
+    });
+    document.getElementById("score").textContent = ok + " de " + preguntas.length;
+  }
+
+  function pintar(q, i) {
+    var elegida = state["q" + i];
+    if (!elegida) return;
+    q.classList.add("answered");
+    Array.prototype.forEach.call(q.querySelectorAll(".opt"), function (o) {
+      o.dataset.v = o.dataset.i === q.dataset.ok ? "ok" : "no";
+      o.classList.toggle("elegida", o.dataset.i === elegida);
+    });
+  }
+
+  preguntas.forEach(function (q, i) {
+    Array.prototype.forEach.call(q.querySelectorAll(".opt"), function (o) {
+      o.addEventListener("click", function () {
+        if (q.classList.contains("answered")) return;
+        state["q" + i] = o.dataset.i;
+        save();
+        pintar(q, i);
+        puntaje();
+      });
+    });
+    pintar(q, i);
+  });
+  puntaje();
+
+  var btnReset = document.getElementById("btnReset");
+  if (btnReset) {
+    btnReset.addEventListener("click", function () {
+      preguntas.forEach(function (q, i) {
+        delete state["q" + i];
+        q.classList.remove("answered");
+        Array.prototype.forEach.call(q.querySelectorAll(".opt"), function (o) {
+          o.classList.remove("elegida");
+          delete o.dataset.v;
+        });
+      });
+      save();
+      puntaje();
+    });
+  }
+})();
+</script>
+
+<script src="../js/tema.js"></script>
+</body>
+</html>

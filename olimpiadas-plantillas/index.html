@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Planillas e instrumentos para el documento — Olimpíadas de ETP 2026</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+:root{
+  --ink:#17191d; --ink-soft:#33353b; --muted:#6a717b;
+  --linea:#9aa1ab; --linea-suave:#d8dce1; --cabecera:#eceff2;
+  --primary:#b31759; --soft:#fff4f8;
+}
+*{box-sizing:border-box}
+body{margin:0; padding:40px 24px 80px; background:#fff; color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif; font-size:16px; line-height:1.62;
+  -webkit-font-smoothing:antialiased}
+.hoja{max-width:900px; margin:0 auto}
+h1{font-size:1.9em; line-height:1.15; margin:0 0 14px}
+h2{font-size:1.22em; margin:44px 0 4px; padding-bottom:6px; border-bottom:2px solid var(--ink)}
+h3{font-size:1.02em; margin:22px 0 4px}
+p{margin:0 0 12px; max-width:74ch}
+a{color:var(--primary); overflow-wrap:anywhere}
+.intro{max-width:74ch; color:var(--ink-soft)}
+p.nota, .nota{overflow-wrap:anywhere;
+  font-size:.92em; color:var(--muted); max-width:74ch}
+table{width:100%; border-collapse:collapse; margin:14px 0 8px; font-size:.9em; font-family:Arial,Helvetica,sans-serif}
+th,td{border:1px solid var(--linea); padding:7px 9px; text-align:left; vertical-align:top}
+th{background:var(--cabecera); font-weight:bold}
+td.ej{color:var(--muted); font-style:italic}
+ol.indice{max-width:74ch; padding-left:1.5em}
+ol.indice li{margin-bottom:3px}
+ol.indice a{color:var(--ink-soft); text-decoration:none; border-bottom:1px solid var(--linea-suave)}
+ul{max-width:74ch; padding-left:1.4em}
+ul li{margin-bottom:6px}
+.vacia td{height:1.9em}
+footer{max-width:74ch; margin:60px auto 0; padding-top:18px; border-top:1px solid var(--linea-suave); color:var(--muted); font-size:.9em}
+
+/* ---------- pantallas chicas: las planillas se apilan ---------- */
+@media (max-width: 1000px) {
+  table.apilable thead, table.apilable tr.fila-cab { display: none; }
+  table.apilable tbody, table.apilable tfoot { display: block; }
+  table.apilable tr { display: block; margin-bottom: 14px; padding: 10px 12px;
+    border: 1px solid var(--linea); border-radius: 10px; }
+  table.apilable td { display: block; border: 0; padding: 5px 0; }
+  table.apilable td::before { content: attr(data-l); display: block; font-size: .68em;
+    font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--primary); margin-bottom: 2px; font-family: Arial, Helvetica, sans-serif; }
+  table.apilable td:not([data-l])::before { content: none; }
+  table.apilable td:empty { min-height: 1.6em; }
+}
+
+@media print{
+  body{padding:0; font-size:11pt}
+  h2{page-break-after:avoid}
+  table{page-break-inside:avoid}
+}
+section a, table a{overflow-wrap:anywhere}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/jornada.css" />
+</head>
+<body>
+<div class="hoja">
+
+<h1>Planillas e instrumentos para el documento</h1>
+<p class="intro">Olimpíada Nacional de ETP 2026, modalidad Informática · instancia Escolar-Jurisdiccional. Esta página es la guía para organizar el escrito que el equipo entrega: ordena sus partes y muestra la planilla que sostiene cada una. Las planillas están vacías y con una fila de ejemplo, que se borra.</p>
+
+<h2 id="uso">Cómo se organiza el escrito</h2>
+<p>Las partes del escrito se acomodan en el orden del índice, porque ese orden es el del documento final: primero la portada y el cuerpo, y al final los anexos, después de las conclusiones y las referencias.</p>
+
+<h2 id="correspondencia">Las planillas y las situaciones de la Técnica 5</h2>
+<p>Nueve planillas sirven a las diez situaciones, porque arman el documento y no dependen de qué se
+produce. Las demás corresponden a una situación en particular, y esta tabla dice a cuál.</p>
+<div class="table-wrap">
+<table>
+  <tr><th style="width:52%">Planilla</th><th>A qué situaciones sirve</th></tr>
+  <tr><td>1 portada · 2 cronograma · 3 relevamiento · 10 matriz · 11 fichas de prueba · 12 bitácora · 15 lista de cotejo · 16 referencias · 17 fundamentación</td><td>Las diez</td></tr>
+  <tr><td>18 partes del desarrollo · 19 reparto del documento · 20 tres decisiones</td><td>Las diez</td></tr>
+  <tr><td>4 inventario de equipos</td><td>1, 9 y 10</td></tr>
+  <tr><td>5 plan de tareas · 6 criterios de reemplazo · 8 registro de mantenimiento</td><td>9, y el punto E de la 10</td></tr>
+  <tr><td>7 protocolo de medición</td><td>4 y 9</td></tr>
+  <tr><td>9 plan de copias de seguridad</td><td>2, y el punto C de la 10</td></tr>
+  <tr><td>13 especificación de equipos por perfil</td><td>3 y 10</td></tr>
+  <tr><td>21 entidades, atributos y claves</td><td>5 y 6</td></tr>
+  <tr><td>22 hipótesis de diagnóstico</td><td>4</td></tr>
+  <tr><td>23 usuarios, grupos y permisos</td><td>8, y la seguridad de la 1 y la 10</td></tr>
+  <tr><td>14 registro de pedidos de cotización</td><td>Solo la Técnica 3: la consigna de las diez situaciones aclara que no hace falta pedir presupuestos</td></tr>
+</table>
+</div>
+
+<h2 id="indice">Índice</h2>
+<ol class="indice">
+  <li><a href="#p1">Portada e identificación del equipo</a> — va en la portada</li>
+  <li><a href="#p2">Cronograma y responsabilidades</a> — apartado de proceso de trabajo</li>
+  <li><a href="#p3">Guía de relevamiento</a> — instrumento de trabajo</li>
+  <li><a href="#p4">Inventario de equipos</a> — anexo, con resumen en el cuerpo</li>
+  <li><a href="#p5">Plan de tareas de mantenimiento</a> — apartado de desarrollo</li>
+  <li><a href="#p6">Criterios de reemplazo de componentes</a> — apartado de desarrollo</li>
+  <li><a href="#p7">Protocolo de medición</a> — apartado de desarrollo</li>
+  <li><a href="#p8">Registro de mantenimiento</a> — anexo</li>
+  <li><a href="#p9">Plan de copias de seguridad</a> — apartado de desarrollo</li>
+  <li><a href="#p10">Matriz de comparación ponderada</a> — apartado de comparación de alternativas</li>
+  <li><a href="#p11">Fichas de caso de prueba</a> — apartado de pruebas</li>
+  <li><a href="#p12">Bitácora del equipo</a> — anexo, con síntesis en el cuerpo</li>
+  <li><a href="#p13">Especificación de equipos por perfil</a> — apartado de desarrollo</li>
+  <li><a href="#p14">Registro de pedidos de cotización</a> — anexo · solo Técnica 3</li>
+  <li><a href="#p15">Lista de cotejo antes de entregar</a> — instrumento de control</li>
+  <li><a href="#p16">Referencias</a> — al final del cuerpo</li>
+  <li><a href="#p17">Fundamentación de una decisión</a> — apartado de comparación o de desarrollo</li>
+  <li><a href="#p18">Las partes del desarrollo</a> — apartado de desarrollo, y base del reparto</li>
+  <li><a href="#p19">Reparto del documento</a> — apartado de proceso de trabajo</li>
+  <li><a href="#p20">Tres decisiones y su justificación</a> — apartado de comparación</li>
+  <li><a href="#p21">Entidades, atributos y claves</a> — apartado de desarrollo, situaciones 5 y 6</li>
+  <li><a href="#p22">Hipótesis de diagnóstico</a> — apartado de desarrollo, situación 4</li>
+  <li><a href="#p23">Usuarios, grupos y permisos</a> — apartado de desarrollo, situación 8</li>
+</ol>
+
+<h2 id="p1">1 · Portada e identificación del equipo</h2>
+<table>
+  <tr><th style="width:34%">Dato</th><th>Contenido</th></tr>
+  <tr><td>Instancia</td><td>Olimpíada Nacional de ETP 2026 — instancia Escolar-Jurisdiccional</td></tr>
+  <tr><td>Especialidad</td><td>Informática</td></tr>
+  <tr><td>Escuela</td><td></td></tr>
+  <tr><td>CUE</td><td></td></tr>
+  <tr><td>Localidad</td><td></td></tr>
+  <tr><td>Provincia</td><td>Buenos Aires</td></tr>
+  <tr><td>Correo institucional</td><td></td></tr>
+  <tr><td>Nombre del equipo</td><td>BNS-INFO-(CUE)-(número de equipo con tres dígitos)</td></tr>
+  <tr><td>Estudiante 1</td><td>Apellido y nombre — rol en el equipo</td></tr>
+  <tr><td>Estudiante 2</td><td></td></tr>
+  <tr><td>Estudiante 3</td><td></td></tr>
+  <tr><td>Estudiante 4</td><td></td></tr>
+  <tr><td>Coordinación a cargo</td><td></td></tr>
+  <tr><td>Situación problemática abordada</td><td></td></tr>
+  <tr><td>Fecha de entrega</td><td></td></tr>
+</table>
+<p class="nota">El CUE de la E.E.S.T. N.º 3 es 060597100. Para la E.E.S.T. N.º 5 los directorios educativos indican 060622400, que conviene confirmar en la escuela antes de entregar.</p>
+
+<h2 id="p2">2 · Cronograma y responsabilidades</h2>
+<table>
+  <tr><th>Día</th><th>Tarea</th><th>Depende de</th><th>Responsable</th><th>Estado</th></tr>
+  <tr><td class="ej">1</td><td class="ej">Lectura de la consigna y de la grilla, con los fragmentos señalados</td><td class="ej">—</td><td class="ej">Los cuatro</td><td class="ej">Hecho</td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+<p class="nota">Debajo del cronograma va una línea con el criterio de reparto: por qué cada integrante quedó con esas tareas. El último día no lleva tareas de producción.</p>
+
+<h2 id="p3">3 · Guía de relevamiento</h2>
+<table>
+  <tr><th style="width:52%">Pregunta</th><th>Respuesta relevada</th></tr>
+  <tr><td>¿Cuántos equipos hay en este sector y de qué tipo?</td><td></td></tr>
+  <tr><td>¿Cuántas horas por día se usan y cuántas personas los comparten?</td><td></td></tr>
+  <tr><td>¿Cuándo se le hizo mantenimiento por última vez y quién lo hizo?</td><td></td></tr>
+  <tr><td>¿Qué pasa hoy cuando un equipo falla? ¿A quién se le avisa?</td><td></td></tr>
+  <tr><td>¿Se guarda alguna copia de los archivos? ¿Dónde y cada cuánto?</td><td></td></tr>
+  <tr><td>¿Qué archivos no se pueden perder de ninguna manera?</td><td></td></tr>
+  <tr><td>¿Hay algún equipo que dé problemas seguido? ¿Cuáles?</td><td></td></tr>
+  <tr><td>¿Quién decide sobre estos equipos y a quién se le pide autorización?</td><td></td></tr>
+</table>
+
+<h2 id="p4">4 · Inventario de equipos</h2>
+<table>
+  <tr><th>Identificación</th><th>Sector</th><th>Tipo de equipo</th><th>Año</th><th>Uso diario</th><th>Último mantenimiento</th><th>Observaciones</th><th>Próximo mantenimiento</th></tr>
+  <tr><td class="ej">LAB-PC-01</td><td class="ej">Laboratorio</td><td class="ej">Escritorio</td><td class="ej">2018</td><td class="ej">8 h</td><td class="ej">Sin registro</td><td class="ej">Ventilador del disipador con ruido</td><td class="ej">Último + periodicidad</td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+<p class="nota">La consigna de la Técnica 3 pide al menos tres equipos por gerencia, y que entre todas las filas aparezcan los distintos tipos de equipo. Con cuatro gerencias son doce filas como piso.</p>
+
+<h2 id="p5">5 · Plan de tareas de mantenimiento</h2>
+<table>
+  <tr><th>Tarea</th><th>Periodicidad y de dónde sale</th><th>Herramienta</th><th>Precaución de seguridad</th><th>Responsable</th><th>Dónde se registra</th></tr>
+  <tr><td class="ej">Limpieza interna de gabinete y disipador</td><td class="ej">Cada 3 meses, porque son 20 equipos encendidos 8 horas en un espacio con mucha circulación</td><td class="ej">Aire comprimido y pincel antiestático</td><td class="ej">Equipo desconectado y pulsera antiestática</td><td class="ej">Técnico de turno</td><td class="ej">Registro de mantenimiento</td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<h2 id="p6">6 · Criterios de reemplazo de componentes</h2>
+<table>
+  <tr><th>Componente</th><th>Indicador que se observa</th><th>Valor que dispara el reemplazo</th><th>Razón de ese valor</th></tr>
+  <tr><td class="ej">Disco de almacenamiento</td><td class="ej">Sectores reasignados en el informe de estado</td><td class="ej">Cualquier valor distinto de cero que crezca entre dos mediciones trimestrales</td><td class="ej">Un disco que empezó a reasignar sectores falla sin aviso</td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<h2 id="p7">7 · Protocolo de medición</h2>
+<table>
+  <tr><th style="width:30%">Elemento del protocolo</th><th>Definición del equipo</th></tr>
+  <tr><td>Qué se mide y en qué unidad</td><td class="ej">Tiempo de arranque, en segundos, desde el encendido hasta que el escritorio responde al primer clic</td></tr>
+  <tr><td>Con qué herramienta y versión</td><td></td></tr>
+  <tr><td>En qué condiciones</td><td></td></tr>
+  <tr><td>Cuántas corridas y qué se promedia</td><td></td></tr>
+  <tr><td>Dónde se registra</td><td></td></tr>
+</table>
+
+<h2 id="p8">8 · Registro de mantenimiento</h2>
+<table>
+  <tr><th>Fecha</th><th>Equipo</th><th>Tareas realizadas</th><th>Mediciones</th><th>Observaciones</th><th>Responsable</th></tr>
+  <tr><td class="ej">14/10/2026</td><td class="ej">LAB-PC-07</td><td class="ej">Limpieza interna y depuración de espacio</td><td class="ej">62 °C en uso; 12 GB libres antes, 48 GB después</td><td class="ej">Se reemplazó la pasta térmica</td><td class="ej">Integrante 1</td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<h2 id="p9">9 · Plan de copias de seguridad</h2>
+<table>
+  <tr><th>Qué se copia</th><th>Frecuencia</th><th>Tipo de copia</th><th>Soporte y ubicación</th><th>Responsable y suplente</th><th>Procedimiento de recuperación</th><th>Tiempo estimado</th></tr>
+  <tr><td class="ej">Datos de clientes</td><td class="ej">Diaria, 22:00</td><td class="ej">Completa los domingos, incremental el resto</td><td class="ej">Servidor y copia semanal en disco externo fuera del edificio</td><td class="ej">Sistemas; suplente, administración</td><td class="ej">Restaurar la completa y aplicar las incrementales en orden</td><td class="ej">30 min</td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+<p class="nota">Debajo de la tabla va la respuesta a qué ocurre ante la pérdida completa del servidor, que se lee de la fila de derecha a izquierda.</p>
+
+<h2 id="p10">10 · Matriz de comparación ponderada</h2>
+<table>
+  <tr><th style="width:26%">Criterio</th><th>Peso</th><th>Alternativa A</th><th>A ponderado</th><th>Alternativa B</th><th>B ponderado</th><th>Dato en el que se apoya el puntaje</th></tr>
+  <tr><td class="ej">Resguardo fuera del edificio</td><td class="ej">35</td><td class="ej">2</td><td class="ej">0,70</td><td class="ej">5</td><td class="ej">1,75</td><td class="ej">El disco depende de que alguien lo retire cada semana</td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><th>Total</th><th>100</th><th></th><th></th><th></th><th></th><th></th></tr>
+</table>
+<p class="nota">Arriba de la matriz van el propósito en una oración y la escala con el significado de cada valor. Abajo, el párrafo de decisión: qué se eligió, qué criterio definió la diferencia y qué se resignó.</p>
+
+<h2 id="p11">11 · Fichas de caso de prueba</h2>
+<table>
+  <tr><th style="width:24%">Campo</th><th>CP-01</th><th>CP-02</th><th>CP-03</th><th>CP-04</th></tr>
+  <tr><td>Identificador y nombre</td><td class="ej">Restauración de una copia</td><td></td><td></td><td></td></tr>
+  <tr><td>Tipo (positivo, negativo, de conjetura)</td><td class="ej">Positivo</td><td></td><td></td><td></td></tr>
+  <tr><td>Condición que verifica</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Precondición</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Datos de entrada</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Pasos</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Resultado esperado (antes de ejecutar)</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Resultado obtenido (después de ejecutar)</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Evidencia en el anexo</td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<h2 id="p12">12 · Bitácora del equipo</h2>
+<table>
+  <tr><th>Día</th><th>Qué pasó</th><th>Qué probamos</th><th>Qué lo resolvió</th><th>Dónde lo buscamos (título, fecha de acceso y dirección)</th></tr>
+  <tr><td class="ej">11/10</td><td class="ej">Ninguna gerencia tenía registro de mantenimientos anteriores</td><td class="ej">Preguntar al encargado y buscar facturas de servicio técnico</td><td class="ej">Quedó como «sin registro», y se aclaró en el alcance</td><td class="ej">—</td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<h2 id="p13">13 · Especificación de equipos por perfil</h2>
+<table>
+  <tr><th>Perfil o puesto</th><th>Tareas concretas</th><th>Componente y parámetro elegido</th><th>Por qué la tarea lo exige</th><th>Costo estimado y fuente</th></tr>
+  <tr><td class="ej">Gerencia administrativa, liquidación</td><td class="ej">Planillas grandes, sistema de gestión, correo</td><td class="ej">16 GB de memoria, disco de estado sólido de 480 GB</td><td class="ej">Las planillas con muchas fórmulas ocupan memoria y el sistema queda abierto todo el día</td><td class="ej">Sitio de la empresa, consultado el 10/10/2026</td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<h2 id="p14">14 · Registro de pedidos de cotización</h2>
+<table>
+  <tr><th>Empresa</th><th>Fecha de envío</th><th>Fecha de respuesta</th><th>Estado</th><th>Dónde está la copia</th></tr>
+  <tr><td class="ej">Proveedor 1</td><td class="ej">06/10/2026</td><td class="ej">08/10/2026</td><td class="ej">Respondió con presupuesto</td><td class="ej">Anexo C, figura 1</td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+<p class="nota">Los pedidos sin respuesta se dejan en la tabla con su fecha de envío. Son evidencia del proceso y ocupan el lugar de un presupuesto, con la aclaración.</p>
+
+<h2 id="p15">15 · Lista de cotejo antes de entregar</h2>
+<table>
+  <tr><th style="width:58%">Línea a verificar</th><th>Cumple</th><th>Qué falta y quién lo resuelve</th></tr>
+  <tr><td>La portada tiene los nueve datos de identificación completos</td><td></td><td></td></tr>
+  <tr><td>El inventario cubre todos los sectores y llega al mínimo por sector</td><td></td><td></td></tr>
+  <tr><td>Entre las filas del inventario aparecen los distintos tipos de equipo</td><td></td><td></td></tr>
+  <tr><td>La tabla de tareas está separada del inventario</td><td></td><td></td></tr>
+  <tr><td>Cada periodicidad tiene escrito de dónde sale</td><td></td><td></td></tr>
+  <tr><td>Hay al menos tres criterios de reemplazo con indicador y valor</td><td></td><td></td></tr>
+  <tr><td>El plan de copias responde los siete parámetros</td><td></td><td></td></tr>
+  <tr><td>Hay al menos una copia fuera del equipo que se copia</td><td></td><td></td></tr>
+  <tr><td>Está escrito qué ocurre ante la pérdida completa del servidor</td><td></td><td></td></tr>
+  <tr><td>Los pesos de la matriz suman 100 y están definidos antes de los puntajes</td><td></td><td></td></tr>
+  <tr><td>La escala de la matriz tiene el significado de cada valor escrito</td><td></td><td></td></tr>
+  <tr><td>El párrafo de decisión dice qué se eligió, qué definió la diferencia y qué se resignó</td><td></td><td></td></tr>
+  <tr><td>Hay al menos cuatro fichas de caso de prueba y una es negativa</td><td></td><td></td></tr>
+  <tr><td>Cada ficha tiene el resultado obtenido cargado después de ejecutar</td><td></td><td></td></tr>
+  <tr><td>Las pruebas que salieron mal están en el documento con su ajuste</td><td></td><td></td></tr>
+  <tr><td>Cada caso ejecutado tiene su figura en el anexo, numerada y con epígrafe</td><td></td><td></td></tr>
+  <tr><td>El cronograma tiene día, responsable y el criterio de reparto</td><td></td><td></td></tr>
+  <tr><td>Las fuentes tienen título, fecha de acceso y dirección</td><td></td><td></td></tr>
+  <tr><td>El cuerpo está en Arial 12 con interlineado sencillo</td><td></td><td></td></tr>
+  <tr><td>El archivo es un único PDF con los anexos adentro</td><td></td><td></td></tr>
+  <tr><td>El nombre del archivo coincide con el dato cargado en la plataforma</td><td></td><td></td></tr>
+</table>
+
+<h2 id="p16">16 · Referencias</h2>
+<p>Los documentos de la Olimpíada, listos para citar y con su enlace:</p>
+<ul>
+  <li>Instituto Nacional de Educación Tecnológica. (2024). <i>Olimpíada Nacional de ETP 2024. Informática: lineamientos, pautas y criterios para su desarrollo</i>. Recuperado de <a href="https://www.inet.edu.ar/wp-content/uploads/2024/08/ONETP-2024_Informatica_docentes.pdf">https://www.inet.edu.ar/wp-content/uploads/2024/08/ONETP-2024_Informatica_docentes.pdf</a></li>
+  <li>Instituto Nacional de Educación Tecnológica. (2025). <i>Olimpíada Nacional de ETP 2025. Reglamento</i>. Recuperado de <a href="https://www.inet.edu.ar/wp-content/uploads/2025/05/ONETP-2025_Reglamento.pdf">https://www.inet.edu.ar/wp-content/uploads/2025/05/ONETP-2025_Reglamento.pdf</a></li>
+  <li>Instituto Nacional de Educación Tecnológica. (2025). <i>Olimpíada Nacional de ETP 2025. Informática: documento para estudiantes</i>. Recuperado de <a href="https://www.inet.edu.ar/wp-content/uploads/2025/06/ONETP-2025_Informatica_para-Estudiantes.pdf">https://www.inet.edu.ar/wp-content/uploads/2025/06/ONETP-2025_Informatica_para-Estudiantes.pdf</a></li>
+  <li>Instituto Nacional de Educación Tecnológica. (2025). <i>Olimpíada Nacional de ETP 2025. Programación: documento para docentes</i>. Recuperado de <a href="https://www.inet.edu.ar/wp-content/uploads/2025/06/ONETP_2025_Programacion_Docentes.pdf">https://www.inet.edu.ar/wp-content/uploads/2025/06/ONETP_2025_Programacion_Docentes.pdf</a></li>
+</ul>
+<p>Las fuentes técnicas que cada equipo consulte se escriben con el mismo formato: autor u organización, año o «s. f.» si la página no lo informa, título en cursiva, fecha de acceso y dirección completa.</p>
+<table>
+  <tr><th style="width:34%">Qué se consultó</th><th>Referencia completa</th></tr>
+  <tr><td class="ej">Precio del equipo del perfil administrativo</td><td class="ej">Nombre de la empresa. (s. f.). <i>Computadora de escritorio, modelo consultado</i>. Recuperado el 10 de octubre de 2026, de https://…</td></tr>
+  <tr class="vacia"><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td></tr>
+  <tr class="vacia"><td></td><td></td></tr>
+</table>
+
+<h2 id="p17">17 · Fundamentación de una decisión</h2>
+<table>
+  <tr><th style="width:26%">Paso</th><th>Lo que escribe el equipo</th></tr>
+  <tr><td>La decisión del proyecto</td><td class="ej">Renovar la pasta térmica cada 24 meses</td></tr>
+  <tr><td>La afirmación general que hay adentro</td><td class="ej">Que la pasta térmica pierde capacidad de transferir calor con el tiempo</td></tr>
+  <tr><td>¿La sostiene un dato propio?</td><td class="ej">No: el dato del relevamiento dice qué equipos hay, no cada cuánto se degrada la pasta</td></tr>
+  <tr><td>La pregunta que tiene que responder la fuente</td><td></td></tr>
+  <tr><td>La fuente elegida y por qué sirve</td><td></td></tr>
+  <tr><td>La oración con la cita, como va en el documento</td><td></td></tr>
+  <tr><td>La referencia completa</td><td></td></tr>
+  <tr><td>Control: el apellido y el año de la cita están en las referencias</td><td></td></tr>
+</table>
+<p class="nota">Se repite una vez por cada afirmación general que el documento necesite sostener. No hay una cantidad prescrita: las que el trabajo necesite.</p>
+
+
+<h2 id="p18">18 · Las partes del desarrollo</h2>
+<p class="nota">Sirve a las diez situaciones. Una fila por cada cosa que el enunciado pide entregar; se completa con el enunciado a la vista y después se desarrolla en el apartado 4 del documento.</p>
+<p><b>El propósito, en una oración:</b> ______________________________________________</p>
+<table class="apilable">
+  <tr class="fila-cab"><th style="width:20%">Parte</th><th style="width:24%">Decisiones que contiene</th><th style="width:22%">Evidencia con la que se demuestra</th><th style="width:12%">Estado</th><th style="width:22%">Responsable y fecha</th></tr>
+  <tr><td class="ej" data-l="Parte">Copias de seguridad</td><td class="ej" data-l="Decisiones">Frecuencia, soporte, responsable, procedimiento de recuperación</td><td class="ej" data-l="Evidencia">La restauración de un archivo probada, con su tiempo</td><td class="ej" data-l="Estado">amarillo</td><td class="ej" data-l="Responsable">Integrante 3 · martes</td></tr>
+  <tr class="vacia"><td data-l="Parte"></td><td data-l="Decisiones"></td><td data-l="Evidencia"></td><td data-l="Estado"></td><td data-l="Responsable"></td></tr>
+  <tr class="vacia"><td data-l="Parte"></td><td data-l="Decisiones"></td><td data-l="Evidencia"></td><td data-l="Estado"></td><td data-l="Responsable"></td></tr>
+  <tr class="vacia"><td data-l="Parte"></td><td data-l="Decisiones"></td><td data-l="Evidencia"></td><td data-l="Estado"></td><td data-l="Responsable"></td></tr>
+  <tr class="vacia"><td data-l="Parte"></td><td data-l="Decisiones"></td><td data-l="Evidencia"></td><td data-l="Estado"></td><td data-l="Responsable"></td></tr>
+  <tr class="vacia"><td data-l="Parte"></td><td data-l="Decisiones"></td><td data-l="Evidencia"></td><td data-l="Estado"></td><td data-l="Responsable"></td></tr>
+</table>
+<p class="nota">En la columna de estado: verde lo que ya está escrito en el documento, amarillo lo resuelto que todavía no se escribió, rojo lo que no se empezó. Cada parte sale de una línea del enunciado.</p>
+
+<h2 id="p19">19 · Reparto del documento</h2>
+<p class="nota">Sirve a las diez situaciones. Cumple el requisito 7 del encabezado, la distribución de responsabilidades entre los cuatro integrantes.</p>
+<table class="apilable">
+  <tr class="fila-cab"><th style="width:34%">Apartado</th><th style="width:14%">Extensión</th><th style="width:26%">Responsable</th><th style="width:13%">Fecha</th><th style="width:13%">Listo</th></tr>
+  <tr><td data-l="Apartado">Portada e identificación</td><td data-l="Extensión">1 pág</td><td data-l="Responsable"></td><td data-l="Fecha"></td><td data-l="Listo"></td></tr>
+  <tr><td data-l="Apartado">1 · La situación y el problema</td><td data-l="Extensión">½ pág</td><td data-l="Responsable"></td><td data-l="Fecha"></td><td data-l="Listo"></td></tr>
+  <tr><td data-l="Apartado">2 · Alcance y supuestos</td><td data-l="Extensión">½ pág</td><td data-l="Responsable"></td><td data-l="Fecha"></td><td data-l="Listo"></td></tr>
+  <tr><td data-l="Apartado">3 · Organización y responsabilidades</td><td data-l="Extensión">1 pág</td><td data-l="Responsable"></td><td data-l="Fecha"></td><td data-l="Listo"></td></tr>
+  <tr><td data-l="Apartado">4 · Desarrollo de la solución</td><td data-l="Extensión">3 pág</td><td data-l="Responsable"></td><td data-l="Fecha"></td><td data-l="Listo"></td></tr>
+  <tr><td data-l="Apartado">5 · El esquema, modelo o prototipo</td><td data-l="Extensión">½ pág</td><td data-l="Responsable"></td><td data-l="Fecha"></td><td data-l="Listo"></td></tr>
+  <tr><td data-l="Apartado">6 · Comparación y decisión</td><td data-l="Extensión">1 pág</td><td data-l="Responsable"></td><td data-l="Fecha"></td><td data-l="Listo"></td></tr>
+  <tr><td data-l="Apartado">7 · Pruebas y resultados</td><td data-l="Extensión">1 pág</td><td data-l="Responsable"></td><td data-l="Fecha"></td><td data-l="Listo"></td></tr>
+  <tr><td data-l="Apartado">8 · Registro de dificultades</td><td data-l="Extensión">½ pág</td><td data-l="Responsable"></td><td data-l="Fecha"></td><td data-l="Listo"></td></tr>
+  <tr><td data-l="Apartado">9 · Conclusiones y referencias</td><td data-l="Extensión">½ pág</td><td data-l="Responsable"></td><td data-l="Fecha"></td><td data-l="Listo"></td></tr>
+  <tr><td data-l="Apartado">Anexos</td><td data-l="Extensión">sin límite</td><td data-l="Responsable"></td><td data-l="Fecha"></td><td data-l="Listo"></td></tr>
+</table>
+
+<h2 id="p20">20 · Tres decisiones y su justificación</h2>
+<p class="nota">Sirve a las diez situaciones. Alimenta el apartado de comparación y decisión.</p>
+<table class="apilable">
+  <tr class="fila-cab"><th style="width:25%">Decisión</th><th style="width:25%">Alternativa descartada</th><th style="width:25%">Criterio de la elección</th><th style="width:25%">Dato que la sostiene</th></tr>
+  <tr><td class="ej" data-l="Decisión">Switch de 24 puertos</td><td class="ej" data-l="Alternativa">Dos switches de 16 encadenados</td><td class="ej" data-l="Criterio">Un solo punto de falla</td><td class="ej" data-l="Dato">26 puestos más dos impresoras</td></tr>
+  <tr class="vacia"><td data-l="Decisión"></td><td data-l="Alternativa"></td><td data-l="Criterio"></td><td data-l="Dato"></td></tr>
+  <tr class="vacia"><td data-l="Decisión"></td><td data-l="Alternativa"></td><td data-l="Criterio"></td><td data-l="Dato"></td></tr>
+  <tr class="vacia"><td data-l="Decisión"></td><td data-l="Alternativa"></td><td data-l="Criterio"></td><td data-l="Dato"></td></tr>
+</table>
+<p class="nota">La columna del dato es la que funda la decisión: mientras esté vacía, lo que hay es una preferencia del equipo.</p>
+
+<h2 id="p21">21 · Entidades, atributos y claves</h2>
+<p class="nota">Situaciones 5 y 6. Es parte del entregable: la consigna de la 5 pide el modelo entidad-relación, las tablas resultantes y las claves primarias y foráneas.</p>
+<table class="apilable">
+  <tr class="fila-cab"><th style="width:16%">Entidad</th><th style="width:30%">Atributos, con su tipo de dato</th><th style="width:16%">Clave primaria</th><th style="width:20%">Razón de esa clave</th><th style="width:18%">Clave foránea y a qué entidad nombra</th></tr>
+  <tr><td class="ej" data-l="Entidad">prestamo</td><td class="ej" data-l="Atributos">fecha_prestamo (fecha), fecha_prevista (fecha)</td><td class="ej" data-l="Clave primaria">id_prestamo</td><td class="ej" data-l="Razón">El mismo equipo se presta muchas veces a la misma persona</td><td class="ej" data-l="Clave foránea">id_equipo · id_persona</td></tr>
+  <tr class="vacia"><td data-l="Entidad"></td><td data-l="Atributos"></td><td data-l="Clave primaria"></td><td data-l="Razón"></td><td data-l="Clave foránea"></td></tr>
+  <tr class="vacia"><td data-l="Entidad"></td><td data-l="Atributos"></td><td data-l="Clave primaria"></td><td data-l="Razón"></td><td data-l="Clave foránea"></td></tr>
+  <tr class="vacia"><td data-l="Entidad"></td><td data-l="Atributos"></td><td data-l="Clave primaria"></td><td data-l="Razón"></td><td data-l="Clave foránea"></td></tr>
+  <tr class="vacia"><td data-l="Entidad"></td><td data-l="Atributos"></td><td data-l="Clave primaria"></td><td data-l="Razón"></td><td data-l="Clave foránea"></td></tr>
+</table>
+<p class="nota">Debajo va la cardinalidad de cada relación, respondida en los dos sentidos, y el diagrama con la clave primaria subrayada. Un dato que se calcula no se guarda como atributo.</p>
+
+<h2 id="p22">22 · Hipótesis de diagnóstico</h2>
+<p class="nota">Situación 4. La consigna pide al menos cuatro causas posibles, el orden de comprobación y cómo se confirma o descarta cada una.</p>
+<table class="apilable">
+  <tr class="fila-cab"><th style="width:8%">Orden</th><th style="width:24%">Causa posible</th><th style="width:20%">Herramienta o procedimiento</th><th style="width:24%">Cómo se confirma o se descarta</th><th style="width:24%">Resultado obtenido</th></tr>
+  <tr><td class="ej" data-l="Orden">1</td><td class="ej" data-l="Causa">Disco con sectores dañados</td><td class="ej" data-l="Herramienta">Lectura de atributos del disco</td><td class="ej" data-l="Comprobación">Sectores reasignados en aumento entre dos mediciones</td><td class="ej" data-l="Resultado">Descartada: valor estable</td></tr>
+  <tr class="vacia"><td data-l="Orden"></td><td data-l="Causa"></td><td data-l="Herramienta"></td><td data-l="Comprobación"></td><td data-l="Resultado"></td></tr>
+  <tr class="vacia"><td data-l="Orden"></td><td data-l="Causa"></td><td data-l="Herramienta"></td><td data-l="Comprobación"></td><td data-l="Resultado"></td></tr>
+  <tr class="vacia"><td data-l="Orden"></td><td data-l="Causa"></td><td data-l="Herramienta"></td><td data-l="Comprobación"></td><td data-l="Resultado"></td></tr>
+  <tr class="vacia"><td data-l="Orden"></td><td data-l="Causa"></td><td data-l="Herramienta"></td><td data-l="Comprobación"></td><td data-l="Resultado"></td></tr>
+</table>
+<p class="nota">Antes de la primera comprobación se anota qué información se protege y cómo. La consigna pide ejecutar al menos tres herramientas sobre una computadora disponible.</p>
+
+<h2 id="p23">23 · Usuarios, grupos y permisos</h2>
+<p class="nota">Situación 8, y la parte de seguridad de la 1 y de la 10. La consigna de la 8 pide tres usuarios, dos grupos, dos carpetas compartidas y permisos diferenciados.</p>
+<table class="apilable">
+  <tr class="fila-cab"><th style="width:20%">Usuario</th><th style="width:18%">Grupo</th><th style="width:24%">Carpeta</th><th style="width:20%">Permiso</th><th style="width:18%">Prueba que lo verifica</th></tr>
+  <tr><td class="ej" data-l="Usuario">administrativo1</td><td class="ej" data-l="Grupo">administracion</td><td class="ej" data-l="Carpeta">/compartido/administracion</td><td class="ej" data-l="Permiso">lectura y escritura</td><td class="ej" data-l="Prueba">CP-01: accede y guarda un archivo</td></tr>
+  <tr class="vacia"><td data-l="Usuario"></td><td data-l="Grupo"></td><td data-l="Carpeta"></td><td data-l="Permiso"></td><td data-l="Prueba"></td></tr>
+  <tr class="vacia"><td data-l="Usuario"></td><td data-l="Grupo"></td><td data-l="Carpeta"></td><td data-l="Permiso"></td><td data-l="Prueba"></td></tr>
+  <tr class="vacia"><td data-l="Usuario"></td><td data-l="Grupo"></td><td data-l="Carpeta"></td><td data-l="Permiso"></td><td data-l="Prueba"></td></tr>
+</table>
+<p class="nota">Las tres demostraciones que la consigna pide van como casos de prueba en la planilla 11: el acceso autorizado, el acceso denegado y la recuperación desde una copia.</p>
+
+<footer>
+Evaluación de Proyectos · 7.º año · E.E.S.T. N.º 3 «Domingo Faustino Sarmiento» y E.E.S.T. N.º 5 «Amancio Williams». Planillas para la instancia Escolar-Jurisdiccional de la Olimpíada Nacional de ETP 2026, modalidad Informática.
+</footer>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+  Array.prototype.forEach.call(document.querySelectorAll("table"), function (t) {
+    var ths = t.querySelectorAll("tr:first-child th");
+    if (ths.length < 3) return;
+    var rot = Array.prototype.map.call(ths, function (th) { return th.textContent.trim(); });
+    t.classList.add("apilable");
+    if (ths[0].parentElement) ths[0].parentElement.classList.add("fila-cab");
+    var filas = Array.prototype.slice.call(t.querySelectorAll("tr")).slice(1);
+    filas.forEach(function (tr) {
+      Array.prototype.forEach.call(tr.children, function (c, i) {
+        if (rot[i] && c.tagName === "TD") c.setAttribute("data-l", rot[i]);
+      });
+    });
+  });
+})();
+</script>
+<script src="../js/jornada.js"></script>
+</body>
+</html>

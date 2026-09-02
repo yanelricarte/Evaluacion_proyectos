@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Consigna de trabajo · Olimpíadas de ETP 2026</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7f9; --bg-soft:#fbfbfc; --paper:#fff; --paper-2:#fcfbfc;
+  --ink:#17191d; --ink-soft:#2f2f36; --muted:#6f7681;
+  --primary:#b31759; --primary-2:#d52b70; --soft:#fff1f6;
+  --gray-2:#8d96a3; --gray-3:#dfe3e8; --gray-4:#eef1f4;
+  --ok:#1f7a4d; --ok-soft:#eefaf3; --ok-border:#9ed2b1;
+  --no:#a8214b; --no-soft:#fff1f6; --no-border:#f2b4ca;
+  --shadow-soft:0 12px 28px rgba(20,22,26,.06);
+  --radius:24px; --radius-sm:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:"Inter",system-ui,sans-serif; color:var(--ink);
+  background:
+    radial-gradient(circle at 92% 0%, rgba(214,41,108,.06), transparent 22%),
+    radial-gradient(circle at 0% 100%, rgba(89,90,96,.05), transparent 24%),
+    linear-gradient(180deg, var(--bg-soft), var(--bg));
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:"Manrope","Inter",sans-serif; letter-spacing:-.02em; margin:0; color:var(--ink)}
+p{margin:0; line-height:1.68}
+a{color:var(--primary)}
+
+.hero{padding:56px 28px 40px; background:radial-gradient(circle at 8% 16%, rgba(214,41,108,.10), transparent 30%), linear-gradient(180deg,#fff,var(--bg-soft)); border-bottom:1px solid var(--gray-3)}
+.hero-inner{max-width:1000px; margin:0 auto}
+.kicker{font-size:.74em; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--primary); margin-bottom:10px}
+.hero h1{font-size:clamp(2rem,4.4vw,3rem); line-height:1.06; margin-bottom:14px}
+.hero .lead{max-width:840px; color:var(--ink-soft); font-size:1.06em}
+.hero .lead + .lead{margin-top:10px}
+
+
+
+main{max-width:1000px; margin:0 auto; padding:34px 28px 60px; display:flex; flex-direction:column; gap:26px}
+section{background:var(--paper); border:1px solid var(--gray-3); border-radius:var(--radius); padding:30px; box-shadow:var(--shadow-soft)}
+section h2{font-size:1.5em; margin-bottom:8px}
+section > p{color:var(--ink-soft); margin-bottom:14px}
+section h3.sub{font-size:1.1em; margin:26px 0 8px; padding-top:18px; border-top:1px solid var(--gray-4)}
+section h3.sub:first-of-type{border-top:0; padding-top:0}
+section details.acordeon summary{cursor:pointer; list-style:none; font-family:"Manrope","Inter",sans-serif; font-size:1.5em; letter-spacing:-.02em; font-weight:700; color:var(--ink)}
+section details.acordeon summary::-webkit-details-marker{display:none}
+section details.acordeon summary::before{content:"▸"; display:inline-block; margin-right:9px; color:var(--primary); transition:transform .15s ease}
+section details.acordeon[open] summary::before{transform:rotate(90deg)}
+section details.acordeon[open] summary{margin-bottom:8px}
+section details.acordeon > p{color:var(--ink-soft); margin-bottom:14px}
+.hint{font-size:.9em; color:var(--muted); margin-top:12px}
+
+.table-wrap{margin:16px 0 6px}
+table{width:100%; border-collapse:collapse; font-size:.94em; table-layout:auto}
+table.props{table-layout:fixed}
+th{text-align:left; background:var(--gray-4); color:var(--ink); font-weight:700; padding:10px 12px; border-bottom:1px solid var(--gray-3); font-size:.9em}
+td{padding:10px 12px; border-bottom:1px solid var(--gray-4); color:var(--ink-soft); vertical-align:top}
+tr:nth-child(even) td{background:var(--paper-2)}
+td b{color:var(--ink)}
+.num{text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums}
+.pts{display:inline-block; min-width:34px; padding:2px 7px; border-radius:8px; background:var(--soft); color:var(--primary); font-weight:700; font-size:.9em; text-align:center; font-variant-numeric:tabular-nums}
+
+.cadena{white-space:pre-wrap; margin:14px 0 4px; padding:12px 14px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:10px; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.8em; line-height:1.7; color:var(--ink); overflow-wrap:anywhere}
+
+.pasos{list-style:none; padding:0; margin:6px 0 0; display:flex; flex-direction:column; gap:12px; counter-reset:p}
+.pasos li{counter-increment:p; display:grid; grid-template-columns:26px 1fr; column-gap:13px; row-gap:4px; align-items:start; padding:14px 16px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:var(--radius-sm)}
+.pasos li::before{content:counter(p); grid-column:1; grid-row:1; width:26px; height:26px; border-radius:8px; background:var(--soft); color:var(--primary); display:grid; place-items:center; font-weight:800; font-size:.85em; font-family:"Manrope",sans-serif}
+.pasos b{grid-column:2; grid-row:1; margin:0; line-height:1.35}
+.pasos span{grid-column:2; grid-row:2; color:var(--ink-soft); font-size:.95em; line-height:1.6}
+
+ul.limpia{margin:8px 0 0; padding-left:20px; color:var(--ink-soft); font-size:.95em; line-height:1.6}
+ul.limpia li{margin-bottom:6px}
+ul.limpia b{color:var(--ink)}
+
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:14px; margin-top:6px}
+.tool{padding:16px 17px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:var(--radius-sm)}
+.tool h3{font-size:1em; margin-bottom:6px}
+.tool .de{font-size:.72em; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:var(--primary); margin-bottom:8px}
+.tool p{font-size:.92em; color:var(--ink-soft)}
+
+.rule-card{background:var(--ok-soft); border:1px solid var(--ok-border); border-radius:var(--radius-sm); padding:16px 18px; margin-top:18px}
+.rule-tag{display:inline-block; font-size:.72em; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ok); margin-bottom:6px}
+.rule-card p{font-size:.95em; color:var(--ink-soft)}
+.rule-card p + p{margin-top:8px}
+.aviso{background:var(--soft); border:1px solid var(--no-border); border-radius:var(--radius-sm); padding:16px 18px; margin-top:18px}
+.aviso .rule-tag{color:var(--primary)}
+.aviso p{font-size:.95em; color:var(--ink-soft)}
+.aviso p + p{margin-top:8px}
+
+code.inline{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.9em; background:var(--gray-4); padding:2px 6px; border-radius:6px; color:var(--ink)}
+
+/* ===== selector de escuela ===== */
+.selector{display:flex; flex-wrap:wrap; gap:10px; margin:6px 0 4px}
+.sel-btn{flex:1 1 230px; min-width:0; text-align:left; padding:14px 16px; font-family:inherit; font-size:.95em; cursor:pointer; background:var(--paper-2); color:var(--ink); border:1.5px solid var(--gray-3); border-radius:var(--radius-sm)}
+.sel-btn b{display:block; font-family:"Manrope",sans-serif; font-weight:700; margin-bottom:3px}
+.sel-btn span{font-size:.88em; color:var(--muted); line-height:1.4}
+.sel-btn:hover{border-color:var(--primary-2)}
+.sel-btn[aria-pressed="true"]{background:var(--soft); border-color:var(--primary-2)}
+.sel-btn[aria-pressed="true"] span{color:var(--ink-soft)}
+.solo{display:none}
+body.esc-t3 .solo.t3{display:block}
+body.esc-t5 .solo.t5{display:block}
+body.esc-none .sel-aviso{display:block}
+.sel-aviso{display:none; margin:10px 0 4px; padding:12px 14px; background:var(--soft); border:1.5px dashed var(--primary-2); border-radius:var(--radius-sm); color:var(--primary); font-weight:600}
+/* ===== plantillas para completar ===== */
+.fill{background:#fffdf7; border:1px dashed var(--gray-2); border-radius:8px; padding:8px 10px; min-height:38px; font-size:.95em; color:var(--ink); line-height:1.5; outline:none; overflow-wrap:break-word}
+.fill:focus{border-style:solid; border-color:var(--primary-2); background:#fff}
+.fill.vacio::before{content:attr(data-ph); color:var(--gray-2); font-style:italic}
+td .fill{margin:0}
+.plantilla th{background:var(--soft); color:var(--primary)}
+.plantilla td{background:var(--paper) !important}
+.export-bar{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:16px; padding:14px 16px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:var(--radius-sm)}
+.export-bar p{font-size:.9em; color:var(--muted); flex:1 1 220px; min-width:0}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:10px 16px; font-family:inherit; font-size:.93em; font-weight:600; border-radius:11px; cursor:pointer; background:var(--paper); color:var(--ink); border:1.5px solid var(--gray-3)}
+.btn:hover{border-color:var(--primary-2)}
+.acciones{display:flex; flex-wrap:wrap; gap:10px; margin-top:6px}
+
+/* ===== lista de cotejo ===== */
+.cotejo{list-style:none; padding:0; margin:8px 0 0; display:flex; flex-direction:column; gap:8px}
+.cotejo li{display:flex; gap:11px; align-items:flex-start; padding:11px 13px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:11px; font-size:.94em; color:var(--ink-soft); line-height:1.5}
+.cotejo input{margin-top:3px; flex:0 0 auto; accent-color:var(--primary)}
+.cotejo li.marcada{background:var(--ok-soft); border-color:var(--ok-border)}
+
+/* ===== quiz ===== */
+.q{padding:16px 18px; background:var(--paper-2); border:1px solid var(--gray-3); border-radius:var(--radius-sm); margin-top:12px}
+.q > p{color:var(--ink); font-weight:600; margin-bottom:10px}
+.opts{display:flex; flex-wrap:wrap; gap:8px}
+.opt{padding:8px 13px; font-family:inherit; font-size:.92em; cursor:pointer; background:var(--paper); color:var(--ink); border:1.5px solid var(--gray-3); border-radius:10px; text-align:left}
+.opt:hover{border-color:var(--primary-2)}
+.q.answered .opt{cursor:default}
+.q.answered .opt[data-v="ok"]{background:var(--ok-soft); border-color:var(--ok-border); color:var(--ok); font-weight:700}
+.q.answered .opt.elegida[data-v="no"]{background:var(--no-soft); border-color:var(--no-border); color:var(--no)}
+.expl{display:none; margin-top:11px; padding-top:11px; border-top:1px solid var(--gray-4); font-size:.93em; color:var(--ink-soft)}
+.q.answered .expl{display:block}
+.score{margin-top:14px; font-size:.93em; color:var(--muted)}
+.score b{color:var(--primary)}
+
+footer{max-width:1000px; margin:0 auto; padding:0 28px 56px; color:var(--muted); font-size:.88em; line-height:1.6}
+footer p + p{margin-top:8px}
+
+/* ===== modelo de redaccion ===== */
+.modelo{margin-top:14px; padding:16px 18px; background:var(--paper-2); border-left:3px solid var(--primary-2); border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+.modelo .de{font-size:.72em; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:var(--primary); margin-bottom:8px}
+.modelo p{font-size:.96em; color:var(--ink-soft); line-height:1.65}
+.modelo p + p{margin-top:9px}
+.modelo em{color:var(--ink); font-style:normal; background:var(--soft); padding:1px 4px; border-radius:4px}
+
+/* ===== indice ===== */
+.indice-t{font-size:.74em; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-top:28px; margin-bottom:8px}
+ol.indice{margin:0; padding-left:1.3em; color:var(--ink-soft); font-size:.96em; line-height:1.8}
+ol.indice li{margin-bottom:2px}
+ol.indice a{color:var(--ink-soft); text-decoration:none; border-bottom:1px solid var(--gray-3)}
+ol.indice a:hover{color:var(--primary); border-color:var(--primary-2)}
+
+/* ===== bloque de archivo o mensaje ===== */
+.mail{margin:14px 0 6px; border:1px solid var(--gray-3); border-radius:var(--radius-sm); overflow:hidden}
+.mail-h{padding:11px 14px; background:var(--gray-4); font-size:.88em; color:var(--ink-soft); border-bottom:1px solid var(--gray-3)}
+.mail-h b{color:var(--ink)}
+.mail-b{padding:15px 16px; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.82em; color:var(--ink-soft); line-height:1.75; white-space:pre-wrap; overflow-wrap:break-word}
+
+/* ===== medida y ritmo de lectura ===== */
+:root{--medida:72ch}
+section p, section h3.sub, section ul.limpia, section .pasos, section .modelo,
+section .rule-card, section .aviso, section .consigna, section .notas,
+section .cadena, section .mail, section .hint, section .export-bar,
+section .cotejo, section .q, section .score{max-width:var(--medida)}
+section h2{max-width:56ch}
+section p{margin-bottom:14px; font-size:1.01em}
+section p:last-child{margin-bottom:0}
+.rule-card p, .aviso p, .modelo p, .consigna p, .tool p, td p,
+.mail-b, .hint{margin-bottom:0}
+.hint{margin-top:10px}
+.pasos span{line-height:1.62}
+.pasos, .cotejo{margin-top:14px}
+section h3.sub{margin-top:34px; margin-bottom:6px}
+td, th{max-width:none}
+
+/* ===== consigna señalada ===== */
+.consigna{max-width:74ch; margin:16px 0 0; padding:18px 20px 20px; background:var(--paper-2); border:1px solid var(--gray-3); border-left:3px solid var(--gray-2); border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:.97em; line-height:2.05; color:var(--ink-soft)}
+.consigna p + p{margin-top:14px}
+.consigna b{color:var(--ink); font-weight:600; background:var(--soft); box-shadow:0 2px 0 var(--primary-2); padding:1px 3px; border-radius:2px}
+.consigna .ent{font-family:"Manrope",sans-serif; font-weight:800; color:var(--primary)}
+mark.mk{background:var(--soft); color:var(--ink); padding:0 2px; border-bottom:2px solid var(--primary-2)}
+sup.n{font-size:.68em; font-weight:700; color:var(--primary); margin-left:1px; vertical-align:super}
+ol.notas, ul.notas{max-width:calc(74ch + 23px); margin:14px 0 0; padding-left:1.6em; color:var(--ink-soft); font-size:.96em; line-height:1.6}
+ol.notas li, ul.notas li{margin-bottom:10px; padding-left:2px}
+ul.notas{list-style:none; padding-left:23px; margin-top:16px}
+ul.notas li{padding-left:0; margin-bottom:12px}
+ul.notas li b:first-child{color:var(--ink)}
+ol.notas li::marker{color:var(--primary); font-weight:700; font-size:.9em}
+
+/* ===== tablas que se apilan en pantallas chicas ===== */
+@media (max-width:760px){
+  table.apilable{font-size:.95em}
+  table.apilable thead{display:none}
+  table.apilable tbody, table.apilable tfoot{display:block}
+  table.apilable tr{display:block; margin-bottom:12px; padding:10px 12px; background:var(--paper);
+    border:1px solid var(--gray-3); border-radius:12px}
+  table.apilable tr:nth-child(even) td{background:transparent}
+  table.apilable td{display:block; border:0; padding:4px 0; text-align:left}
+  table.apilable td::before{content:attr(data-l); display:block; font-size:.72em; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--primary); margin-bottom:2px}
+  table.apilable td:not([data-l])::before{content:none}
+  table.apilable td.num{text-align:left}
+  table.apilable tr.fila-total{background:var(--soft); border-color:var(--primary-2)}
+  .table-wrap{margin-left:0; margin-right:0}
+}
+
+@media print{
+  body{background:#fff}
+  .hero{padding:0 0 18px; background:none; border-bottom:2px solid #000}
+  .acciones, .selector, .sel-aviso, .export-bar{display:none !important}
+  main{padding:14px 0 0; gap:14px; max-width:none}
+  section{break-inside:avoid; box-shadow:none; border:1px solid #bbb; padding:16px}
+  .solo{display:block !important}
+  .expl{display:block !important}
+  .fill{background:#fff; border:1px solid #999; min-height:34px}
+  .fill.vacio::before{content:""}
+  a{color:#000; text-decoration:none}
+}
+@media (max-width:640px){
+  .hero{padding:38px 20px 30px}
+  main{padding:22px 20px 44px}
+  section{padding:22px 18px}
+  footer{padding:0 20px 40px}
+  table{font-size:.82em}
+  th,td{padding:7px 8px}
+  .cadena{font-size:.74em}
+}
+</style>
+</head>
+<body class="esc-none">
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="kicker">Olimpíadas de ETP 2026 · Evaluación de Proyectos</p>
+    <h1>Consigna de trabajo: los documentos del equipo</h1>
+    <p class="lead">Esta consigna enumera los documentos que cada equipo debe presentar a lo largo de la jornada de cinco días y qué debe quedar completo al final de la primera clase. Cada documento se produce con su planilla, disponible en <a href="../olimpiadas-plantillas/">Planillas e instrumentos para el documento</a>.</p>
+    <p class="indice-t">Qué contiene</p>
+    <ol class="indice">
+      <li><a href="#escuela">Tu escuela</a></li>
+      <li><a href="#documentos">Los documentos del trabajo</a></li>
+      <li><a href="#mapa">El mapa de los entregables</a></li>
+      <li><a href="#clase1">Lo que se presenta completo en la clase 1</a></li>
+      <li><a href="#entrega">La entrega final</a></li>
+    </ol>
+  </div>
+</header>
+
+<main>
+
+  <section id="escuela">
+    <h2>Tu escuela</h2>
+    <p>Cada escuela recibió una consigna distinta. Presioná tu escuela para ver qué documentos le corresponden a tu equipo.</p>
+
+    <div class="selector" role="group" aria-label="Elegí tu escuela">
+      <button class="sel-btn" type="button" data-esc="t3" aria-pressed="false">
+        <b>E.E.S.T. N.º 3 · Domingo F. Sarmiento</b>
+        <span>Una situación problemática con seis entregables obligatorios</span>
+      </button>
+      <button class="sel-btn" type="button" data-esc="t5" aria-pressed="false">
+        <b>E.E.S.T. N.º 5 · Amancio Williams</b>
+        <span>Diez situaciones, con siete requisitos comunes de encabezado</span>
+      </button>
+    </div>
+
+    <p class="sel-aviso">Presioná tu escuela para ver los documentos de tu equipo.</p>
+
+    <div class="solo t3">
+      <p>La consigna solicita seis entregables sobre una misma situación. Este espacio de la materia cubre los instrumentos que los producen: el relevamiento, la comparación de alternativas, el registro del trabajo y la entrega. Los entregables 3 y 4, definición del equipo según el usuario y gestión de compra, se trabajan en <a href="../olimpiadas-especificar-y-comprar/">De la necesidad al presupuesto</a>.</p>
+    </div>
+    <div class="solo t5">
+      <p>La consigna asigna a cada equipo una situación entre diez. Este espacio de la materia cubre los instrumentos comunes a todas: el relevamiento, la comparación entre alternativas, el registro de dificultades y la distribución de responsabilidades. La situación 3 y la estimación de costos de la 10 se trabajan en <a href="../olimpiadas-especificar-y-comprar/">De la necesidad al presupuesto</a>.</p>
+    </div>
+  </section>
+
+  <section id="documentos">
+    <h2>Los documentos del trabajo</h2>
+    <p>La grilla de la Olimpíada otorga 68 de los 100 puntos a la planificación, el producto final, la autorregulación, el pensamiento combinatorio y el trabajo en equipo. Los documentos que se solicitan son los instrumentos con los que el equipo produce y demuestra esa parte. Cada uno se completa con su planilla y se presenta en el momento indicado.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Documento</th>
+            <th scope="col">Qué contiene</th>
+            <th scope="col">Aplica</th>
+            <th scope="col">Debe estar completo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><b>1 · Consigna señalada</b></td><td>Los fragmentos con números y condiciones subrayados, con la nota de qué exige cada uno y cómo se verifica</td><td>Las dos</td><td>Clase 1</td></tr>
+          <tr><td><b>2 · Cronograma y responsabilidades</b></td><td>Cada tarea con su día, su responsable y de qué depende</td><td>Las dos</td><td>Clase 1</td></tr>
+          <tr><td><b>3 · Guía de relevamiento</b></td><td>Las preguntas, a quién se hacen y para qué sirve cada dato</td><td>Las dos</td><td>Clase 1</td></tr>
+          <tr><td><b>4 · Inventario de equipos</b></td><td>Los equipos del sector, su uso y su último mantenimiento</td><td>Las dos</td><td>Día 2</td></tr>
+          <tr><td><b>5 · Plan de tareas de mantenimiento</b></td><td>Tareas con periodicidad, herramienta, precaución y responsable</td><td>Las dos</td><td>Clase 2</td></tr>
+          <tr><td><b>6 · Criterios de reemplazo de componentes</b></td><td>Indicador, valor que dispara el reemplazo y razón de ese valor</td><td>Las dos</td><td>Clase 2</td></tr>
+          <tr><td><b>7 · Protocolo de medición</b></td><td>Qué se mide, con qué, en qué condiciones y cómo se registra</td><td>Las dos</td><td>Día 2</td></tr>
+          <tr><td><b>8 · Registro de mantenimiento</b></td><td>Las tareas y mediciones hechas sobre una computadora</td><td>Las dos</td><td>Día 3</td></tr>
+          <tr><td><b>9 · Plan de copias de seguridad</b></td><td>Qué se copia, cada cuánto, a dónde y cómo se recupera</td><td>Las dos</td><td>Días 2 y 3</td></tr>
+          <tr><td><b>10 · Matriz de comparación ponderada</b></td><td>Criterios, pesos que suman cien, puntajes y el párrafo de decisión</td><td>Las dos</td><td>Días 2 y 3</td></tr>
+          <tr><td><b>11 · Fichas de caso de prueba</b></td><td>Al menos cuatro casos, uno negativo, con su resultado esperado y su evidencia</td><td>Las dos</td><td>Día 4</td></tr>
+          <tr><td><b>12 · Bitácora</b></td><td>Qué pasó, qué se probó, qué lo resolvió y dónde se buscó</td><td>Las dos</td><td>Todos los días</td></tr>
+          <tr><td><b>13 · Especificación de equipos por perfil</b></td><td>Perfiles, tareas, componente elegido y costo con fuente</td><td>Las dos</td><td>Días 3 y 4</td></tr>
+          <tr><td><b>14 · Registro de pedidos de cotización</b></td><td>Empresas, fechas de envío y respuesta, y dónde está la copia</td><td>Solo la Técnica 3</td><td>Días 1 a 4</td></tr>
+          <tr><td><b>15 · Lista de cotejo controlada</b></td><td>El recorrido del documento terminado, con lo que falta y quién lo resuelve</td><td>Las dos</td><td>Día 5</td></tr>
+          <tr><td><b>16 · Referencias</b></td><td>Las fuentes con título, fecha de acceso y dirección</td><td>Las dos</td><td>Día 5</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="mapa">
+    <h2>El mapa de los entregables</h2>
+    <p>Los documentos de la tabla anterior se producen a partir de una consigna, y cada pedido de esa consigna termina en una parte determinada del documento. Este mapa conecta cada entregable con el apartado donde se lee y la planilla con la que se produce. Se proyecta o se copia en el pizarrón en la clase 1, y cada equipo lo completa con sus propios datos.</p>
+
+    <div class="solo t3">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Entregable</th>
+              <th scope="col">Qué pide</th>
+              <th scope="col">Dónde va en el documento</th>
+              <th scope="col">Planillas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><b>1 · Plan de mantenimiento preventivo</b></td><td>Planilla con todas las computadoras por tipo, año, último y próximo mantenimiento</td><td>Apartado 4 (Desarrollo); la planilla completa al anexo</td><td>4, 5, 6, 7, 8</td></tr>
+            <tr><td><b>2 · Plan de copias de seguridad</b></td><td>Planilla de copias organizada por gerencia</td><td>Apartado 4 (Desarrollo)</td><td>9</td></tr>
+            <tr><td><b>3 · Definición del equipo según el usuario</b></td><td>Dos perfiles por gerencia y el equipo elegido con su costo</td><td>Apartado 4 (Desarrollo)</td><td>13</td></tr>
+            <tr><td><b>4 · Gestión de compra</b></td><td>Presupuestos de tres empresas, pedidos por correo</td><td>Apartado 5 (Comparación y decisión); el registro al anexo</td><td>14, 10</td></tr>
+            <tr><td><b>5 · Carpeta con el código</b></td><td>Código frontend, backend y base de datos comprimido</td><td>Se adjunta como archivo; se referencia en Desarrollo</td><td>—</td></tr>
+            <tr><td><b>6 · Sitio web dinámico</b></td><td>Vista de usuario y vista de administrador, productos desde la base</td><td>Apartado 6 (Pruebas y resultados); las capturas al anexo</td><td>11</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="solo t5">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Requisito del encabezado</th>
+              <th scope="col">Dónde va en el documento</th>
+              <th scope="col">Planilla</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><b>Solución técnica</b></td><td>Apartado 4 (Desarrollo)</td><td>—</td></tr>
+            <tr><td><b>Documento de cinco a diez páginas</b></td><td>El cuerpo completo, sin contar los anexos</td><td>—</td></tr>
+            <tr><td><b>Esquema o prototipo</b></td><td>Apartado 4 (Desarrollo) y las pruebas del apartado 6</td><td>11</td></tr>
+            <tr><td><b>Comparación entre al menos dos alternativas</b></td><td>Apartado 5 (Comparación y decisión)</td><td>10</td></tr>
+            <tr><td><b>Explicación de la elegida</b></td><td>Apartado 5, en el párrafo de decisión</td><td>10</td></tr>
+            <tr><td><b>Registro de dificultades</b></td><td>Apartado 7 (Registro de dificultades)</td><td>12</td></tr>
+            <tr><td><b>Distribución de responsabilidades</b></td><td>Apartado 3 (Proceso de trabajo)</td><td>2</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="hint">Cada equipo puede completar su propia versión de este mapa en la planilla 1, al lado de cada pedido de la consigna: qué exige y dónde se va a leer en el documento.</p>
+  </section>
+
+  <section id="clase1">
+    <h2>Lo que se presenta completo en la clase 1</h2>
+    <p>Al final del primer encuentro cada equipo presenta estos cuatro documentos. Los tres primeros se completan durante la clase; el cuarto, el documento base, es la estructura de lo que se va a entregar.</p>
+    <ul class="limpia">
+      <li><b>La consigna señalada.</b> Subrayada en el texto de su escuela, con la nota de cada pedido: qué exige y cómo se verifica.</li>
+      <li><b>El cronograma.</b> Con día y responsable por tarea, y el quinto día libre de producción.</li>
+      <li><b>La guía de relevamiento.</b> Lista para salir a relevar, con las preguntas, a quién se hacen y para qué sirve cada dato.</li>
+      <li><b>El documento base abierto.</b> El archivo donde se arma el trabajo, con la portada completa y los títulos de todos los apartados vacíos.</li>
+    </ul>
+
+    <h3 class="sub">Cómo se arma el documento base</h3>
+    <p>Cada equipo abre un archivo en el procesador de textos, aplica Arial 12 con interlineado sencillo y deja armada la estructura del PDF que va a entregar. Así, desde el primer día el documento final tiene forma y el trabajo de los cinco días consiste en completarlo.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">En el documento</th>
+            <th scope="col">Qué se deja armado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Portada</b></td>
+            <td>Los datos de identificación del equipo: Olimpíada Nacional de ETP 2026, especialidad Informática, escuela, CUE, localidad, provincia, correo institucional, nombre del equipo, estudiantes participantes, coordinación a cargo, situación problemática y fecha de entrega</td>
+          </tr>
+          <tr>
+            <td><b>Apartados del cuerpo</b></td>
+            <td>Un título por cada apartado, en orden: Situación y necesidades detectadas, Alcance, Proceso de trabajo y responsabilidades, Desarrollo, Comparación de alternativas y decisión, Pruebas y resultados, Registro de dificultades, Conclusiones</td>
+          </tr>
+          <tr>
+            <td><b>Cierre</b></td>
+            <td>Los títulos de Referencias y Anexos, para que las planillas completas, las capturas y los mails vayan al final</td>
+          </tr>
+          <tr>
+            <td><b>Nombre del archivo</b></td>
+            <td><code class="inline">BNS-INFO-CUE-XXX</code>, donde el CUE es el de la escuela y los tres dígitos el número de equipo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="hint">La portada se completa con la planilla 1. Los apartados del cuerpo se llenan con el material de los planes y el de la especificación, cada uno en su día.</p>
+
+    <div class="solo t3">
+      <div class="aviso">
+        <span class="rule-tag">Técnica 3, además</span>
+        <p>El mismo día se envía el aviso de pedido de cotización a las cinco o seis empresas, porque la respuesta tarda días hábiles y el entregable 4 depende de ese plazo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="entrega">
+    <h2>La entrega final</h2>
+    <p>El día 5 el equipo presenta el documento completo en un único PDF, con los anexos adentro. Antes de exportar se recorre la lista de cotejo sobre el documento terminado, se cargan las referencias y se controla que el nombre del archivo coincida con el dato cargado en la plataforma.</p>
+    <div class="rule-card">
+      <span class="rule-tag">Cómo se controla</span>
+      <p>Los documentos se revisan en el momento en que cada uno está previsto, con la planilla 15. Lo que se evalúa es que el documento esté escrito, con su dato y su fuente, no que la solución técnica sea la mejor.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Material de Evaluación de Proyectos · Olimpíadas de ETP 2026 · 7.º año · E.E.S.T. N.º 3 «Domingo Faustino Sarmiento» y E.E.S.T. N.º 5 «Amancio Williams»</p>
+  <p>Planillas e instrumentos: <a href="../olimpiadas-plantillas/">la página de planillas</a>.</p>
+</footer>
+
+<script>
+  var KEY = "olimpiadas-consigna-trabajo";
+  var state = {};
+  try { var guardado = localStorage.getItem(KEY); if (guardado) state = JSON.parse(guardado) || {}; } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  var botones = Array.prototype.slice.call(document.querySelectorAll(".sel-btn"));
+  function aplicarEscuela(esc) {
+    document.body.classList.remove("esc-none", "esc-t3", "esc-t5");
+    document.body.classList.add(esc ? "esc-" + esc : "esc-none");
+    botones.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.esc === esc)); });
+  }
+  botones.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var esc = b.dataset.esc;
+      if (state.escuela === esc) { esc = null; }
+      state.escuela = esc;
+      save();
+      aplicarEscuela(esc);
+    });
+  });
+  aplicarEscuela(state.escuela || null);
+</script>
+
+</body>
+</html>
